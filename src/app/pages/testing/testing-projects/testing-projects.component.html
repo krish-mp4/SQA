@@ -1,0 +1,147 @@
+<!-- Add Filter Tabs -->
+<!-- Add, Filter Buttons Row -->
+<div class="col-sm-12 mt-5" style="margin-top: 90px;margin-bottom: 5px;">
+  <div class="row">
+    <div class="col-sm-12" style="text-align: right;margin-right:-12px">
+      <button
+        [ngClass]="{ 'disable-custom': !canCreate }"
+        mat-raised-button color="primary"
+        class="pull-right btn-primary margin-right-5 mt-3"
+        (click)="openEditDialog(null)" matTooltip="Add Project">
+        <mat-icon>add</mat-icon> Add Project
+      </button>
+ 
+      <button
+        mat-raised-button style="background-color: black;color: white; "
+       matTooltip="Filter"
+        class="pull-right filter-hover margin-right-10 mt-3"
+        (click)="filterToggle = !filterToggle">
+        <mat-icon>filter_list</mat-icon> Filter
+      </button>
+    </div>
+  </div>
+</div>
+ 
+ 
+<!-- Filter UI -->
+<div fxLayout="row wrap" *ngIf="filterToggle" style=" margin-bottom: 10px;">
+    <div fxFlex="100" class="flex-p w-100">
+        <form [formGroup]="filterForm">
+            <mat-card class="filter" style="width: 98.5%;margin-left: 14px;">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4 row me-2">
+                            <div class="col-sm-3 newMarginClass " style="margin-top: 4px;">
+                                <b class="keyword-text">Keyword:</b>
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" formControlName="Keyword"
+                                   class="form-control" placeholder="Search Project">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row me-2">
+                            <div class="col-sm-3 newMarginClass">
+                                <b class="keyword-text">Status:</b>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-select placeholder="Select Status" class="form-control" formControlName="Status">
+                                    <mat-option [value]=true>
+                                        Active
+                                    </mat-option>
+                                    <mat-option [value]=false>
+                                        InActive
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pull-right ">
+                            <a (click)="filterToggle = !filterToggle" class="pull-right"
+                                style="font-size: 25px; cursor: pointer; margin-left: 5px">
+                                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                            </a>
+                            
+                            <button mat-raised-button class="pull-right btn-default margin-right-10"
+                                (click)="clearFilter()">
+                               <mat-icon>settings_backup_restore    </mat-icon> Clear
+                            </button>
+                              <button mat-raised-button color="primary" style="margin-right: 10px;" class="pull-right" (click)="getCategory()">
+                                <mat-icon>search</mat-icon>Search
+                            </button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </form>
+    </div>
+</div>
+ 
+<!-- Table -->
+<div class="w-100">
+    <div>
+        <div class="flex-p  ">
+            <div class="row">
+                <div class="col-sm-12" style="width: 98.5%;
+    margin-left: 16px;">
+                    <div id="grid-table-container" class="table-responsive">
+                        <table matSort id="example2" class="table table-bordered table-hover">
+                            <thead class="tbl-head">
+                                <tr>
+                                    <th class="text-center" style="width: 107px!important;">Actions</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Project Name</th>
+                                    <th class="text-center">Project Code</th>
+                                    <th class="text-center">Project Lead </th>
+                                    <th class="text-center"> Section</th>
+                                    <th class="text-center">Section Lead</th>
+                                   
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of allProjects">
+                                     <td class=" text-center">
+                                        <a matTooltip="Edit Project" [ngClass]="{'disable-custom' : !canUpdate }"
+                                            style="margin-right: 10px; cursor: pointer; color: cornflowerblue;"
+                                            (click)="openEditDialog(item)">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a [ngClass]="{'disable-custom' : !canDelete || item.TotalUsed}">
+                                            <i style="cursor: pointer;" matTooltip="Delete Project"
+                                                class="fa fa-trash red" (click)="deleteConfirmation(item)"></i>
+                                        </a>
+                                    </td>
+                                    <td class="text-center" style="text-align: center !important;">
+                                        <a [ngStyle]="{'color':  item.IsActive? 'blue' : 'red','cursor':'pointer'}"
+                                            [ngClass]="{'disable-custom' : !canUpdate}">
+                                            <span *ngIf="!item.IsActive" (click)="Confirmation(item)"
+                                                style="color:red">Inactive</span>
+                                            <span *ngIf=" item.IsActive" (click)="Confirmation(item)"
+                                                style="color:blue;">Active</span>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">{{item.ProjectName}}</td>
+                                    <td class="text-center">{{item.ProjectCode}}</td>
+                                    <td class="text-center">{{item.IssueReporterLead}}</td>
+                                    <td class="text-center">{{item.ReporterLead}}</td>
+                                    <td class="text-center">{{item.VILead}}</td>
+                                   
+                                   
+                                </tr>
+                            </tbody>
+                            <tr *ngIf="allProjects == null || allProjects.length == 0">
+                                <td colspan="12" class="text-center">No records found</td>
+                            </tr>
+                        </table>
+                        <mat-paginator class="col-sm-12" [length]="totalSize" [pageIndex]="currentPage"
+                            [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50, 100]" (page)="fnHandlePage($event)"
+                            showFirstLastButtons>
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+ 

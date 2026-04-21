@@ -1,0 +1,66 @@
+<div class="breadcrumb-back">
+  <button mat-raised-button class="back-btn btn-col" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> Back
+  </button>
+</div>
+
+<div class="pills">
+
+  <ul class="nav nav-pills custom-nav">
+
+    <!-- Tabs -->
+    <li routerLinkActive="active" [routerLink]="['./base-info']">
+      <a mat-raised-button class="navtabWidth">Base Info</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./summary']">
+      <a mat-raised-button class="navtabWidth">Summary</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./updates']">
+      <a mat-raised-button class="navtabWidth">Updates</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./capaa']">
+      <a mat-raised-button class="navtabWidth">CAPA</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./documnets']">
+      <a mat-raised-button class="navtabWidth">Documents</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./notes']">
+      <a mat-raised-button class="navtabWidth">Notes</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./timeline']">
+      <a mat-raised-button class="navtabWidth">Timeline</a>
+    </li>
+
+    <!-- Spacer (push right side items) -->
+    <li class="spacer"></li>
+
+    <!-- Priority (Base Info only) -->
+    <!-- <li class="form-item" *ngIf="isBaseInfoActive">
+      <label>Priority</label>
+      <input type="checkbox" class="custom-checkbox">
+    </li> -->
+
+    <!-- Due Date (Base Info only) -->
+    <li class="form-item" *ngIf="isBaseInfoActive">
+      <label>Due Date</label>
+      <input type="date" class="form-input m-1">
+    </li>
+
+    <!-- ETA (Base Info only) -->
+    <li class="form-item" *ngIf="isBaseInfoActive">
+      <label>ETA</label>
+      <input type="date" class="form-input m-1">
+    </li>
+
+
+  </ul>
+
+</div>
+
+<router-outlet></router-outlet>

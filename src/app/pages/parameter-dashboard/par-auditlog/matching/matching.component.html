@@ -1,0 +1,143 @@
+<div class="col-sm-12" align="end">
+    <button type="button" class="btn btn-outline-success" style="margin-right: 10px; height: 41px;">Save Draft</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="'test'">
+        <mat-icon>save</mat-icon>Submit
+    </button>
+</div>
+<div class="col-sm-2 mt-3" style="margin-left: -30px;">
+    <div class="col-sm-12">
+        <div class="row-wrap mb-10">
+            <div class="w-100" style="margin-bottom:10px">
+                <div class="col-xs-3" style="margin-bottom:100px;">
+                    <div class="pills">
+                        <ul class="nav nav-pills">
+                            <li routerLinkActive="active" routerLink="./prtsdashboard">
+                                <a [ngStyle]="{'background-color':isChecked3 == 'yes' ? '#D3D3D3' : '#099FF0' }"
+                                    (click)="color3()" mat-raised-button class="navtabWidth" style="margin-top: 10px;">
+                                    Left (10)
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" routerLink="./prtsdashboard">
+                                <a [ngStyle]="{'background-color':isChecked4 == 'yes' ? '#D3D3D3' : '#099FF0' }"
+                                    (click)="color4()" mat-raised-button class="navtabWidth" style="margin-top: 10px;">
+                                    Front (12)
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" routerLink="./prtsdashboard">
+                                <a [ngStyle]="{'background-color':isChecked5 == 'yes' ? '#D3D3D3' : '#099FF0' }"
+                                    (click)="color5()" mat-raised-button class="navtabWidth" style="margin-top: 10px;">
+                                    Right (15)
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" routerLink="./prtsdashboard">
+                                <a [ngStyle]="{'background-color':isChecked6 == 'yes' ? '#D3D3D3' : '#099FF0' }"
+                                    (click)="color6()" mat-raised-button class="navtabWidth" style="margin-top: 10px;">
+                                    Rear (12)
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" routerLink="./prtsdashboard">
+                                <a [ngStyle]="{'background-color':isChecked7 == 'yes' ? '#D3D3D3' : '#099FF0' }"
+                                    (click)="color7()" mat-raised-button class="navtabWidth" style="margin-top: 10px;">
+                                    Top (15)
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" routerLink="./prtsdashboard">
+                                <a [ngStyle]="{'background-color':isChecked8 == 'yes' ? '#D3D3D3' : '#099FF0' }"
+                                    (click)="color8()" mat-raised-button class="navtabWidth" style="margin-top: 10px;">
+                                    Bottom (11)
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" routerLink="./prtsdashboard">
+                                <a [ngStyle]="{'background-color':isChecked9 == 'yes' ? '#D3D3D3' : '#099FF0' }"
+                                    (click)="color9()" mat-raised-button class="navtabWidth" style="margin-top: 10px;">
+                                    Total (75)
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-4 col-sm-4 mt-5 mb-5" style="margin-left:30px ;">
+    <div class="col-sm-12 col-sm-12">
+        <mat-card style="height:333px ;">
+            <mat-card-content>
+                <div class="text-center">
+                    <img style="height: 280px; width:350px" src="{{Image}}" (click)="imgpop(null)" />
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<div class="col-lg-6 col-xm-6 mt-5 mb-5">
+    <div class="col-lg-12 col-xm-12 ">
+        <div class="flex-p row-wrap">
+            <mat-card style="height:328px ;">
+                <mat-card-content style="padding-bottom: 0px">
+                    <table style="padding-left: 0px; padding-right: 0px;" matSort id="example2"
+                        class="table table-bordered table-hover">
+                        <thead class="tbl-head">
+                            <tr>
+                                <th class="theadcolor">Status</th>
+                                <th class="theadcolor">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of values">
+                                <!-- <td>{{item.module}}</td> -->
+                                <!-- <td>{{item.check}}</td>
+                                <td>{{item.pass}}</td>
+                                <td>{{item.fail}}</td> -->
+                                <td>{{item.status}}</td>
+                                <td>{{item.value}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-10 mb-5">
+    <table style="margin-top: 7px;padding-left: 0px; padding-right: 0px;" matSort id="example2"
+        class="table table-bordered table-hover">
+        <thead class="tbl-head">
+            <tr>
+                <th class="theadcolor">Serial</th>
+                <th class="theadcolor text-center">Grid Row</th>
+                <th class="theadcolor text-center">Grid Column</th>
+                <th class="theadcolor text-center">Checkpoints</th>
+                <th class="theadcolor">Measure</th>
+                <th class="theadcolor">LSL</th>
+                <th class="theadcolor">USL</th>
+                <th class="theadcolor text-center">Actual Value</th>
+                <th>Unit</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of values1">
+                <td>{{item.serial}}</td>
+                <td class="text-center">{{item.row}}</td>
+                <td class="text-center">{{item.col}}</td>
+                <td class="text-center">{{item.checkpoints}}</td>
+                <td>{{item.measure}}</td>
+                <td>{{item.lsl}}</td>
+                <td>{{item.usl}}</td>
+                <td class="text-center">{{item.value}}</td>
+                <td>{{item.unit}}</td>
+                <td class="text-center editDel">
+                    <a style="cursor: pointer;margin-right:10px;" matTooltip="Edit" (click)="imgpop(item)">
+                        <i class="fa fa-edit" style="color: cornflowerblue"></i>
+                    </a>
+                    <a style="cursor: pointer;" matTooltip="Checkpoint Request" (click)="request(item)">
+                        <i class="fa fa-share-square-o"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

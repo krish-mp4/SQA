@@ -1,0 +1,78 @@
+<div class="nav-container" [ngClass]="{'nav-open': isNavOpen, 'nav-closed': !isNavOpen}">
+  <!-- Toggle Button with Hamburger Icon -->
+  <button (click)="toggleNav()" class="toggle-button">
+    <mat-icon class="toggle-icon">menu</mat-icon>
+  </button>
+
+  <nav class="nav-links">
+    <ul>
+      <!-- <li routerLinkActive="active" [routerLink]="['departments']">
+      <a style="margin-top: 10px;">
+        <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Departments">apartment</mat-icon>
+        <span *ngIf="isNavOpen">Departments</span>
+      </a>
+    </li> -->
+      <li routerLinkActive="active" [routerLink]="['status-master']">
+        <a style="margin-top: 10px;">
+          <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Status Master">toggle_on</mat-icon>
+          <span *ngIf="isNavOpen">Status Master</span>
+        </a>
+      </li>
+      <!-- <li routerLinkActive="active" [routerLink]="['sections']">
+      <a style="margin-top: 10px;">
+        <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Sections">view_week</mat-icon>
+        <span *ngIf="isNavOpen">Sections</span>
+      </a>
+    </li>
+    <li routerLinkActive="active" [routerLink]="['categories']">
+      <a style="margin-top: 10px;">
+        <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Categories">category</mat-icon>
+        <span *ngIf="isNavOpen">Categories</span>
+      </a>
+    </li> -->
+      <!-- <li routerLinkActive="active" [routerLink]="['continents']">
+      <a style="margin-top: 10px;">
+        <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Continents">public</mat-icon>
+        <span *ngIf="isNavOpen">Continents</span>
+      </a>
+    </li> -->
+      <li routerLinkActive="active" [routerLink]="['country']">
+        <a style="margin-top: 10px;">
+          <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Country">flag</mat-icon>
+          <span *ngIf="isNavOpen">Countries</span>
+        </a>
+      </li>
+      <li routerLinkActive="active" [routerLink]="['criticality']">
+        <a style="margin-top: 10px;">
+          <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Criticality">priority_high</mat-icon>
+          <span *ngIf="isNavOpen">Criticality</span>
+        </a>
+      </li>
+      <li routerLinkActive="active" [routerLink]="['step']">
+        <a style="margin-top: 10px;">
+          <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Step">stairs</mat-icon>
+          <span *ngIf="isNavOpen">Steps</span>
+        </a>
+      </li>
+      <li routerLinkActive="active" [routerLink]="['distributor']">
+        <a style="margin-top: 10px;">
+          <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Step">stairs</mat-icon>
+          <span *ngIf="isNavOpen">Distributor </span>
+        </a>
+      </li>
+
+      <li routerLinkActive="active" [routerLink]="['department']">
+        <a style="margin-top: 10px;">
+          <mat-icon class="nav-icon" *ngIf="!isNavOpen" matTooltip="Step">stairs</mat-icon>
+          <span *ngIf="isNavOpen">Department </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+</div>
+
+<div [ngClass]="{'full-width': !isNavOpen}" class="col-sm-10">
+  <router-outlet></router-outlet>
+</div>

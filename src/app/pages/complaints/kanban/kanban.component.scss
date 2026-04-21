@@ -1,0 +1,348 @@
+/* Back button pulled up to sit alongside the breadcrumb title */
+.breadcrumb-back {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -52px;
+    padding-right: 15px;
+    height: 52px;
+    align-items: center;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+}
+
+/* Expanded card detail section */
+.card-expanded-details {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #ccc;
+    font-size: 12px;
+    color: #444;
+
+    p {
+        margin: 3px 0;
+    }
+}
+
+.notes-list {
+    margin: 4px 0 0 16px;
+    padding: 0;
+    font-size: 11px;
+    color: #666;
+
+    li {
+        margin-bottom: 2px;
+    }
+}
+
+.list-0 .kanban-list-header {
+    background-color: #f1f2f4;
+}
+ 
+/* Backlog */
+.list-1 .kanban-list-header {
+    background-color: #f1f2f4;
+}
+ 
+/* Doing */
+.list-2 .kanban-list-header {
+    background-color: #f1f2f4;
+}
+ 
+/* Overdue */
+.list-3 .kanban-list-header {
+    background-color: #f1f2f4;
+}
+ 
+/* WIP */
+.list-4 .kanban-list-header {
+    background-color: #f1f2f4;
+}
+ 
+/* Done */
+.list-5 .kanban-list-header {
+    background-color: #f1f2f4;
+}
+ 
+/* Hold */
+ 
+.kanban-board {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px;
+    white-space: nowrap;
+    align-items: stretch;
+    min-height: 70vh;
+}
+ 
+ 
+.bac {
+    background-color: rgb(254, 254, 196);
+}
+ 
+.kanban-list {
+    min-width: 330px;
+    height: auto;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+}
+ 
+.kanban-list-header {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    color: black;
+    border-radius: 8px 8px 0 0;
+}
+ 
+.drop-container {
+    padding: 5px;
+    background: #f1f2f4;
+    border-radius: 0 0 8px 8px;
+    flex-grow: 1;
+    min-height: 250px;
+}
+ 
+ 
+ 
+.kanban-card {
+    padding: 8px;
+    margin-bottom: 10px;
+    background: white;
+    border: 2px solid #87CEFA;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    /* Ensures card takes full width of the container */
+}
+ 
+ 
+.card-header {
+    background-color: #f1f2f4;
+    padding: 10px;
+    font-size: 14px;
+}
+ 
+.card-subject {
+    // background-color: #2e83ce;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    word-wrap: break-word;
+    /* Ensures long words break properly */
+    overflow-wrap: break-word;
+    /* Alternative for better support */
+    white-space: normal;
+    /* Ensures text wraps onto new lines */
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.card-footer {
+    background-color: #d3d3d3;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.notes-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+ 
+.archive-btn {
+    background-color: transparent;
+    border: none;
+    color: blue;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+ 
+ 
+/* Status-based colors */
+.backlog-card {
+    background-color: rgb(209, 231, 245);
+}
+ 
+.doing-card {
+    background-color: rgb(246, 246, 221);
+}
+ 
+.done-card {
+    background-color: rgb(222, 244, 222);
+}
+ 
+// .hold-card {
+//     background-color: rgb(246, 234, 234);
+// }
+ 
+/* Default Card */
+.default-card {
+    background-color: lightgray;
+}
+ 
+.kanban-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+ 
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+ 
+/* Left-aligned List Title */
+.list-title {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+ 
+/* Right-aligned Card Count in a Box */
+.card-count {
+    background: #dcdee0;
+    color: rgb(17, 16, 16);
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+}
+ 
+.expedite-indicator {
+    width: 40px;
+    height: 5px;
+    margin: 15px;
+    background-color: red;
+    margin-bottom: 5px;
+}
+ 
+.overdue-indicator {
+    width: 40px;
+    height: 5px;
+    margin: 15px;
+    background-color: rgb(11, 11, 11);
+    margin-bottom: 5px;
+}
+ 
+.indicators-row {
+    display: flex;
+    align-items: center;
+    /* Aligns items vertically */
+    gap: 3px;
+    /* Adds space between indicators */
+}
+ 
+ 
+ 
+.mine {
+    position: fixed;
+    bottom: 80px;
+    right: 40px;
+    background-color: #e6e6e6 !important;
+}
+ 
+ 
+.card-header {
+    //   background-color: #f1f2f4;
+    background-color: #ddeffa;
+    padding: 10px;
+    font-size: 14px;
+ 
+}
+ 
+.card-subject {
+    // background-color: #2e83ce;
+    padding: 10px;
+    font-size: 14px !important;
+    // font-weight: bold;
+    word-wrap: break-word;
+    /* Ensures long words break properly */
+    overflow-wrap: break-word;
+    /* Alternative for better support */
+    white-space: normal;
+    /* Ensures text wraps onto new lines */
+}
+ 
+.card-subject1 {
+    // background-color: #2e83ce;
+    padding: 10px;
+    font-size: 1.7rem !important;
+    font-weight: bolder !important;
+    // font-weight: bold;
+    word-wrap: break-word;
+    /* Ensures long words break properly */
+    overflow-wrap: break-word;
+    /* Alternative for better support */
+    white-space: normal;
+    /* Ensures text wraps onto new lines */
+}
+ 
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: white;
+  border: 2px solid #2196f3;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+.cdk-drag {
+  cursor: move;
+}
+
+// .pending-card {
+//   background-color: #ffe0e0;
+// }
+
+// .process-card {
+//   background-color: #e0f7fa;
+// }
+
+// .hold-card {
+//   background-color: #fff3cd;
+// }
+
+// .closed-card {
+//   background-color: #e0ffe0;
+// }
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+
+// .icon {
+//   font-size: 20px;
+//   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+// }
+
+.icon {
+  font-size: 20px;
+   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  cursor: pointer;
+}

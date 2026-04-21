@@ -1,0 +1,167 @@
+.page-wrapper {
+  padding: 20px;
+  background-color: #f4f7f6;
+}
+
+/* Top Level Controls Container */
+.dashboard-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Main Dashboard Selector Buttons */
+.dash-btn-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.dash-btn {
+  padding: 15px 25px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #f8f9fa;
+  color: #555;
+  transition: all 0.2s ease-in-out;
+}
+
+.dash-btn.active {
+  color: #000;
+  font-weight: bold;
+  border-color: #999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* Grid/Graph View Toggle */
+.view-toggle-group {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.view-toggle-group button {
+  padding: 8px 16px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.view-toggle-group button:first-child {
+  border-right: 1px solid #ccc;
+}
+
+.view-toggle-group button.active {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+/* Main Content Area */
+.dashboard-content {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  min-height: 500px;
+}
+
+/* Filters for Charts */
+.chart-filters {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.btn-group button {
+  background-color: white;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn-group button.active {
+  background-color: #555;
+  color: white;
+  border-color: #555;
+}
+
+/* Table and Chart Sections */
+.table-section h3 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.table-section {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+td {
+  font-size: 13px;
+}
+
+.total-row {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+.chart-section {
+  width: 100%;
+}
+
+#barChartContainer, #pieChartContainer, #phoneBarChartContainer, #phonePieChartContainer, #rpnBarChartContainer, #rpnPieChartContainer, #ageingPieChartContainer {
+  height: 500px;
+  width: 100%;
+}
+
+.nav-pills > li.active > a[mat-raised-button] {
+    background-color: #6c757d; /* Dark background */
+    color: white;
+}
+
+/* (Optional) Styles the INACTIVE button for consistency */
+.nav-pills > li:not(.active) > a[mat-raised-button] {
+    background-color: #f0f0f0; /* Light background */
+    color: black;
+}
