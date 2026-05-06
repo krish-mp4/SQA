@@ -157,5 +157,9 @@ export class BaseInfoComponent implements OnInit {
   }
 
 
+  goBack(){
+    this.router.navigate(['/app/prts-part/prtsissuestatus/psr']);
+  }
+
 
 }

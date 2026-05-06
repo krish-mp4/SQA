@@ -19,23 +19,24 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DocumentsOnePagerComponent } from './documents-one-pager/documents-one-pager.component';
 import { AddDocumentsComponent } from './documents-one-pager/add-documents/add-documents.component';
 import { AddUpdateComponent } from './updates-one-pager/add-update/add-update.component';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
-  { path: "", redirectTo: "action", pathMatch: "full" },
+  { path: "", redirectTo: "base-info", pathMatch: "full" },
 
   // { path: 'action', component: ActionComponent, data: { breadcrumb: 'PSR', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' } },
   {
     path: "action",
     component: ActionComponent,
     loadChildren: () =>
-      import("./action/action.module").then((m) => m.ActionModule),
-    data: { breadcrumb: 'Actions Grid view', description: 'This page is used to Actions' }
+      import("./action/action.module").then((m) => m.ActionModule)
   },
-  { path: 'alert', component: AlertComponent, data: { breadcrumb: 'One Pager', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' } },
-  { path: 'base-info', component: BaseInfoOnePagerComponent, data: { breadcrumb: 'PSR', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' } },
-  { path: 'updates', component: UpdatesOnePagerComponent, data: { breadcrumb: 'One Pager', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' } },
-  { path: 'mitigation', component: MitigationOnePagerComponent, data: { breadcrumb: 'PSR', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' } },
-  { path: 'document', component: DocumentsOnePagerComponent, data: { breadcrumb: 'Documents', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' } },
+  { path: 'alert', component: AlertComponent, },
+  { path: 'base-info', component: BaseInfoOnePagerComponent },
+  { path: 'updates', component: UpdatesOnePagerComponent,  },
+  { path: 'mitigation', component: MitigationOnePagerComponent, },
+  { path: 'document', component: DocumentsOnePagerComponent, },
 
 
 ]
@@ -51,7 +52,8 @@ const routes: Routes = [
     AddMitigationComponent,
     DocumentsOnePagerComponent,
     AddDocumentsComponent,
-    AddUpdateComponent
+    AddUpdateComponent,
+    MitigationOnePagerComponent
   ],
   imports: [
     CommonModule,
@@ -63,8 +65,9 @@ const routes: Routes = [
     MatOptionModule,
     MatCheckboxModule,
     MatCardModule,
-    MatDialogModule
-
+    MatDialogModule,
+    QuillModule.forRoot(),
+     FormsModule,
   ]
 })
 export class PrtsOnePagerModule { }

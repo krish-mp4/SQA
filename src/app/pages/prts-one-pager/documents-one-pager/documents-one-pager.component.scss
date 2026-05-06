@@ -10,3 +10,8 @@
   overflow: hidden;
   text-overflow: ellipsis; /* ... */
 }
+
+.table-wrapper {
+  width: 97%;        /* adjust: 60%, 50%, etc */
+  margin: 0 auto;    /* center the table */
+}

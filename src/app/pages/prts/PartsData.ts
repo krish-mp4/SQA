@@ -1,4 +1,13 @@
 
+
+
+    export interface ClosureItem {
+  date: string;
+  subject: string;
+}
+
+
+
 export class PartsData {
 
 
@@ -170,10 +179,10 @@ export class PartsData {
     }
     static closur() {
         let values = [
-            { date: '17-sep-2020', subject: 'Engineering drawing updated' },
-            { date: '17-sep-2020', subject: 'Engineering drawing updated' },
-            { date: '17-sep-2020', subject: 'Engineering drawing updated' },
-            { date: '17-sep-2020', subject: 'Engineering drawing updated' },
+            { date: '17-sep-2024,08:52 PM', subject: 'Quality Issue Resolution & Action Tracking' },
+            { date: '10-oct-2025,10:30 AM', subject: 'Corrective Actions for Manufacturing Quality Deviations' },
+            { date: '25-Jan-2026,06:13 PM', subject: 'Quality Improvement Action Plan (QIP)' },
+            { date: '18-Jul-2026,07:55 AM', subject: 'Non-Conformance Resolution & Action Items' },
         ]
         return values;
     }
@@ -229,6 +238,8 @@ export class PartsData {
         ]
         return values;
     }
+
+
     
 
 

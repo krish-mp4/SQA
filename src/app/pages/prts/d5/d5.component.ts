@@ -87,16 +87,17 @@ export class D5Component implements OnInit {
 
    
  values = [
-  { check:  '1. Are the correct tools/fixtures being used?' },
-   { check: '2. Are the tools set to the specified torque?' },
-   { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-   { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-   { check: '5. This is the correct length of air hose with no extra sections added?' },
-   { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-   { check: '7. Is the tool connected to the ANDON System properly?' },
-   { check: '8. If Error proofing is present, is it working correctly?' },
-   { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
- ];
+  { check: 'What corrective actions are proposed to eliminate each verified root cause ?' },
+  { check: 'How do the proposed actions modify or control the specific process step where the issue originates?' },
+  { check: 'Have alternative solutions been evaluated, and what criteria were used to select the best option?' },
+  { check: 'Do the corrective actions address both occurrence causes and escape causes?' },
+  { check: 'What impact will the proposed changes have on process flow, cycle time, and productivity?' },
+  { check: 'Have risk assessments been conducted to ensure no new failure modes are introduced?' },
+  { check: 'Are the proposed actions technically feasible with current equipment, resources, and skills?' },
+  { check: 'What process parameters, controls, or standards will be updated as part of the corrective action?' },
+  { check: 'How will the effectiveness of each corrective action be measured after implementation?' },
+  { check: 'Have all stakeholders reviewed and approved the selected actions?' }
+];
  valuess=[
    {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
    {possible: 'Is the current Data/analysis data available?',short:'current Data'   },

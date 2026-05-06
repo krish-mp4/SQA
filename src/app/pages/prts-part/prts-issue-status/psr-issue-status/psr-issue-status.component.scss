@@ -37,6 +37,7 @@
     width: 100%;
     border-collapse: collapse;
   }
+  
 
 
 
@@ -102,4 +103,48 @@
   cursor: pointer;
   font-size: 20px;
   vertical-align: middle;
+}
+
+table {
+  min-width: 1500px; /* increase as needed */
+}
+
+/* Toolbar at the top */
+.fixed-toolbar {
+  position: sticky;   /* stays pinned inside scroll area */
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+
+  display: flex;
+  justify-content: flex-end; /* align buttons to the right */
+  gap: 12px;                 /* spacing between buttons */
+}
+
+/* Table */
+.data-table {
+  width: 100%;
+  table-layout: auto; /* natural column sizing */
+}
+
+.data-table th,
+.data-table td {
+  padding: 8px 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap; /* prevent awkward wrapping */
+}
+
+/* Scroll buttons */
+.scroll-buttons {
+  display: flex;
+  justify-content: flex-end; /* push to right side */
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.scroll-buttons .mine {
+  background-color: #f5f5f5;
 }

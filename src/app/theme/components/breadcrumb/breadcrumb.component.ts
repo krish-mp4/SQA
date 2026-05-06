@@ -11,8 +11,8 @@ import { Settings } from '../../../app.settings.model';
 })
 export class BreadcrumbComponent {
 
-    public pageTitle:string;
-    Header : string
+    public pageTitle!:string;
+    public Header! : string
     public breadcrumbs: {
         name: string;
         url: string;

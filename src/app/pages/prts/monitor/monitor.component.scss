@@ -120,3 +120,44 @@
 .cdk-overlay-container {
   z-index: 9999 !important;
 }
+
+
+/* Make table cells handle inputs properly */
+.table td {
+  vertical-align: middle;
+  padding: 6px !important;
+  text-align: center;
+}
+
+/* Fix select inside table */
+.table td select.form-control {
+  width: 100%;
+  min-width: 120px;   /* 👈 important */
+  height: 32px;
+  padding: 2px 6px;
+  font-size: 13px;
+}
+
+/* Prevent column shrink */
+.table th,
+.table td {
+  white-space: nowrap;
+}
+
+/* Optional: give specific columns proper width */
+.table td:nth-child(5),
+.table td:nth-child(6),
+.table td:nth-child(7) {
+  min-width: 140px;
+}
+
+/* Improve table layout */
+.table {
+  table-layout: auto;
+}
+
+/* Fix responsive overflow cutting dropdown */
+.table-responsive {
+  overflow-x: auto;
+  overflow-y: visible; /* 👈 important */
+}

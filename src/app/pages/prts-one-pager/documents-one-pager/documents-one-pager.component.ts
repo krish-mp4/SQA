@@ -32,7 +32,7 @@ export class DocumentsOnePagerComponent implements OnInit {
   back() {
     // this.router.navigate(['/app/prtsnavbar/d7']);
   }
-  public adddocument(auditdata) {
+  public adddocument(auditdata:any) {
     let dialogRef = this.dialog.open(AddDocumentsComponent, {
       data: auditdata,
       height: 'auto',

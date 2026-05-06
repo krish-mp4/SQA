@@ -1,3 +1,9 @@
+
+<div class="page-header ms-2">
+  <h3 class="page-title">Mitigation</h3>
+</div>
+
+
 <quill-editor
   [(ngModel)]="content"
   [modules]="modules"
@@ -5,4 +11,10 @@
   placeholder="Insert text here ...">
 </quill-editor>
 
-<button class="save-btn">💾 Save Evaluation Report</button>
+
+
+<button mat-raised-button class="mt-4  pull-right vamshi" type="button"
+        style="color: rgb(251, 253, 251); background-color:rgb(10, 93, 182);">
+        <mat-icon>save</mat-icon>
+        save
+    </button>

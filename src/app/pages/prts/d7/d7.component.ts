@@ -20,11 +20,11 @@ import { AddCapaComponent } from '../../capa/add-capa/add-capa.component';
 export class D7Component implements OnInit {
   data: any;
    addLookupGroup: FormGroup;
-   editLookupGroup: FormGroup;
+   editLookupGroup!: FormGroup;
    lookup: any = false;
    codes: any = [];
    colors: Array<any> = [{ 'code': 'green', 'name': 'Green', 'colorClass': 'dot_green' }, { 'code': 'blue', 'name': 'Blue', 'colorClass': 'dot_blue' }, { 'code': 'grey', 'name': 'Grey', 'colorClass': 'dot_grey' }, { 'code': 'red', 'name': 'Red', 'colorClass': 'dot_red' }];
-   pageGroup: FormGroup;
+   pageGroup!: FormGroup;
    deleteLookupItemValue: any;
    index: any;
    private _lookupService: any;
@@ -83,16 +83,17 @@ export class D7Component implements OnInit {
 
    }
  values = [
-  { check:  '1. Are the correct tools/fixtures being used?' },
-   { check: '2. Are the tools set to the specified torque?' },
-   { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-   { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-   { check: '5. This is the correct length of air hose with no extra sections added?' },
-   { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-   { check: '7. Is the tool connected to the ANDON System properly?' },
-   { check: '8. If Error proofing is present, is it working correctly?' },
-   { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
- ];
+  { check: 'Have all relevant process documents  been permanently updated to reflect the corrective actions?' },
+  { check: 'Are the new process controls standardized and applied across all similar lines, machines, or plants?' },
+  { check: 'Have lessons learned been documented and shared across relevant teams or departments?' },
+  { check: 'Has the FMEA been updated to reflect new risks, controls, and revised RPN values?' },
+  { check: 'Are preventive controls in place to detect early signs of recurrence ?' },
+  { check: 'Have training programs been updated, and are all current/future operators trained on the revised process?' },
+  { check: 'Are audit mechanisms  updated to include the new controls?' },
+  { check: 'Have similar products, processes, or sites been reviewed for potential occurrence of the same issue?' },
+  { check: 'Are there system-level changes required ?' },
+  { check: 'Is there a monitoring plan in place to ensure long-term sustainability of the corrective actions?' }
+];
  valuess=[
    {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
    {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
@@ -171,7 +172,7 @@ check_box_type = {
      });
 
    }
-   addMeeting(item) {
+   addMeeting(item:any) {
      this.dialog.open(AddCapaComponent, {
        data: item,
        width: "850px",
@@ -244,7 +245,7 @@ check_box_type = {
      });
    }
 
-   addNewInputField(val): void {
+   addNewInputField(val:any): void {
      console.log(val, "test")
 
      if (val > 0) {
@@ -263,7 +264,7 @@ check_box_type = {
 
    }
 
-   fnLookupDeleteItemModal(i) {
+   fnLookupDeleteItemModal(i:number) {
      this.index = i;
      this.removeInputField(this.index);
    }
@@ -301,7 +302,7 @@ check_box_type = {
  selectCheckBox() {
 
    }
- public adddocument(auditdata) {
+ public adddocument(auditdata:any) {
      let dialogRef = this.dialog.open(ActionDocumentTwoDialogComponent, {
        data: auditdata,
        height: 'auto',
@@ -311,7 +312,7 @@ check_box_type = {
      });
    }
 
-   public adddocumenttype(audit) {
+   public adddocumenttype(audit:any) {
      let dialogRef = this.dialog.open(ActionDocumentTwoTypeComponent, {
        data: audit,
        height: 'auto',

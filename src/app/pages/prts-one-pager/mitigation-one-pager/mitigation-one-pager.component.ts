@@ -18,19 +18,30 @@ export class MitigationOnePagerComponent implements OnInit {
   constructor(public dialog: MatDialog,) { }
 
   ngOnInit(): void {
-    if (environment.mode == 1) {
-      this.values = Onepager.alert();
-    }
-    else {
-
-    }
+   
   }
+
+content: string = '';
+
+  modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ script: 'sub' }, { script: 'super' }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ align: [] }],
+      ['link', 'image'],
+      ['clean']
+    ]
+  };
+
+
 
   values = [
 
   ];
 
-  public addParameter(auditdata) {
+  public addParameter(auditdata: any) {
     let dialogRef = this.dialog.open(AddMitigationComponent, {
       data: auditdata,
       height: 'auto',
@@ -40,12 +51,6 @@ export class MitigationOnePagerComponent implements OnInit {
     });
   }
 
-  addMeeting(item) {
-    // this.dialog.open(AddMeetingComponent, {
-    //   data: item,
-    //   width: "850px",
-    //   height: "auto"
-    // })
-  }
+
 
 }

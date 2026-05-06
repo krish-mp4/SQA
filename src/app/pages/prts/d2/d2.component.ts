@@ -85,15 +85,16 @@ export class D2Component implements OnInit {
 
    }
  values = [
-  { check:  '1. Are the correct tools/fixtures being used?' },
-   { check: '2. Are the tools set to the specified torque?' },
-   { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-   { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-   { check: '5. This is the correct length of air hose with no extra sections added?' },
-   { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-   { check: '7. Is the tool connected to the ANDON System properly?' },
-   { check: '8. If Error proofing is present, is it working correctly?' },
-   { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
+  { check:  'What exactly is the problem, and how is it defined in measurable terms?' },
+   { check: 'At which specific process step or operation is the issue occurring?' },
+   { check: 'When was the problem first observed, and what is its frequency or trend over time?' },
+   { check: 'Where in the process flow does the defect originate vs where it is detected?' },
+   { check: 'What is the magnitude of the issue ?' },
+   { check: 'Which products, batches, machines, or shifts are affected?' },
+   { check: 'What are the standard process parameters, and how do current conditions deviate from them?' },
+   { check: 'What is the impact on downstream processes or customers (internal/external)?' },
+   { check: 'What is the “Is / Is Not” comparison ?' },
+   { check: 'What objective data  supports the problem statement?' }
  ];
  valuess=[
    {possible: 'Is the current Data/analysis data available?',short:'current Data'   },

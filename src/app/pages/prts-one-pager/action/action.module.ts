@@ -21,13 +21,13 @@ const routes: Routes = [
     path: "grid-view",
     component: ActionGridViewComponent,
 
-    data: { breadcrumb: 'Action', description: "Grid view screen" }
+   
   },
   {
     path: "calenders",
     component: ActionCalenderOnepagerComponent,
 
-    data: { breadcrumb: 'Action', description: "Grid view screen" }
+
   },
 
 ]

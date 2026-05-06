@@ -1,3 +1,10 @@
+<div class="page-header ms-4">
+    <h3 class="page-title">7D matrix</h3>
+</div>
+
+
+
+
 <div class="col-lg-12" style="overflow: hidden; ">
     <!-- <div>
         <h2 style="font-size:25px; font-weight:bold;margin-left: 4px;">CAPA</h2>
@@ -9,10 +16,7 @@
             <mat-icon class="me-1">arrow_back</mat-icon> Back
         </button>
     </div> -->
-    <div style="margin-bottom: 30px; margin-top: 30px; margin-right: 0px;">
-         <button mat-raised-button  class="pull-right" style="background-color: gray; color: white" (click)="goBack()">
-            <mat-icon>arrow_back</mat-icon>Back
-        </button>
+   
         <!-- <button mat-raised-button color="primary" class="pull-right margin-right-10" (click)="openCAPA(null)">
             <mat-icon>person_add</mat-icon> Add CAPA
         </button>
@@ -21,7 +25,12 @@
             class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
             <mat-icon class="">filter_list</mat-icon> Filter
         </button> -->
-    </div>
+
+         <!-- <div style="margin-bottom: 30px; margin-top: 30px; margin-right: 0px;">
+        <button mat-raised-button class="pull-right" style="background-color: gray; color: white" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>Back
+        </button>
+    </div> -->
 
 
     <div class="col-lg-12" fxLayout="row wrap" *ngIf="filterToggle" style="margin-bottom: -5px;">
@@ -41,12 +50,12 @@
 
                             <!-- Country -->
                             <div class="col-sm-4 row me-2 mt-3">
-                                <div class="col-sm-3 newMarginClass"><b>Step Code	:</b></div>
+                                <div class="col-sm-3 newMarginClass"><b>Step Code :</b></div>
                                 <div class="col-sm-9">
                                     <mat-select placeholder="Select Step Code	" class="form-control">
                                         <mat-option value="Albania">Shift Manage</mat-option>
                                         <mat-option value="Algeria">Shift Manage</mat-option>
-                                      
+
                                     </mat-select>
                                 </div>
                             </div>
@@ -55,7 +64,7 @@
                             <div class="col-sm-4 row me-2 mt-3">
                                 <div class="col-sm-3 newMarginClass"><b>Department:</b></div>
                                 <div class="col-sm-9">
-                                   <mat-select placeholder="Select Department" class="form-control">
+                                    <mat-select placeholder="Select Department" class="form-control">
                                         <mat-option value="Developer">Developer</mat-option>
                                         <mat-option value="RnD">RnD</mat-option>
                                         <mat-option value="QA">QA</mat-option>
@@ -72,31 +81,31 @@
                                 <div class="col-sm-9">
                                     <mat-select placeholder="Select Status" class="form-control">
                                         <mat-option value="Opened">Opened</mat-option>
-                                      
+
                                         <mat-option value="WIP">WIP</mat-option>
                                         <mat-option value="Pending">Pending</mat-option>
-                                      
+
                                     </mat-select>
                                 </div>
                             </div>
 
-                         
+
                             <div class="col-sm-4 row me-2 mt-3">
                                 <div class="col-sm-3 newMarginClass"><b>From Date:</b></div>
                                 <div class="col-sm-9">
-                                      <input type="date" class="form-control" placeholder="" />
+                                    <input type="date" class="form-control" placeholder="" />
                                 </div>
                             </div>
 
-                          
+
                             <div class="col-sm-4 row me-2 mt-3">
                                 <div class="col-sm-3 newMarginClass"><b>To Date:</b></div>
                                 <div class="col-sm-9">
-                                      <input type="date" class="form-control" placeholder="" />
+                                    <input type="date" class="form-control" placeholder="" />
                                 </div>
                             </div>
 
-                           
+
 
                             <!-- Buttons -->
                             <div class="col-sm-12 pull-right mt-3" style="margin-left: -15px;">
@@ -126,111 +135,422 @@
 
     <!-- Table -->
 
- <div id="grid-table-container" class="table-responsive" style="width: 100%">
+    <div id="grid-table-container" class="table-responsive" style="width: 100%">
 
-    <table atSort id="example2" class="table table-bordered table-hover data-table" style="margin-top: 13px;">
-        <thead class="tbl-head">
-            <tr>
-                <th>Step Code</th>
-                <th>Step Name</th>
-                <th class="text-center">Notes</th>
-                <th style="width: 10%; text-align: center !important;">Department</th>
-                <th style="width: 10%; text-align: center !important;">Assigned</th>
-                <th style="width: 10%; text-align: center !important;">Status</th>
-                <th class="text-center">Last Updated</th>
-                <th class="text-center">Updated By</th>
-                <th class="text-center">Start Date</th>
-                <th class="text-center">End Date</th>
-                <th class="text-center">Active</th>
-                <th class="text-center">Done</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="text-center">S-001</td>
-                <td class="text-center">Initial Review</td>
-                <td class="text-center">
-                    <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
-                </td>
-                <td>
-                    <select class="form-control">
-                        <option value="1">Agency A</option>
-                        <option value="2" selected>Agency B</option>
-                        <option value="3">Agency C</option>
-                    </select>
-                </td>
-                <td>
-                    <select class="form-control">
-                        <option value="101" selected>Jane Smith</option>
-                        <option value="102">Peter Jones</option>
-                        <option value="103">Mary Williams</option>
-                    </select>
-                </td>
-                <td class="text-center">
-                    <select class="form-control">
-                        <option value="Not Started">Not Started</option>
-                        <option value="In Progress" selected>In Progress</option>
-                        <option value="Completed">Completed</option>
-                    </select>
-                </td>
-                <td class="text-center">2025-10-09</td>
-                <td class="text-center">Jane Smith</td>
-                <td class="text-center">
-                    <input type="date" style="height: 37px;" value="2025-10-01" class="form-control" disabled>
-                </td>
-                <td class="text-center">
-                    <input type="date" style="height: 37px;" value="2025-10-15" class="form-control" disabled>
-                </td>
-                <td class="text-center">
-                    <input type="checkbox" checked>
-                </td>
-              <td class="text-center">
-  <input type="checkbox" [(ngModel)]="checked1" (change)="onCheckboxChange('row1')">
-</td>
-            </tr>
-            <tr>
-                <td class="text-center">S-002</td>
-                <td class="text-center">Quality Check</td>
-                <td class="text-center">
-                     <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
-                </td>
-                <td>
-                    <select class="form-control">
-                        <option value="1" selected>Agency A</option>
-                        <option value="2">Agency B</option>
-                        <option value="3">Agency C</option>
-                    </select>
-                </td>
-                <td>
-                    <select class="form-control">
-                        <option value="101">Jane Smith</option>
-                        <option value="102" selected>Peter Jones</option>
-                        <option value="103">Mary Williams</option>
-                    </select>
-                </td>
-                <td class="text-center">
-                    <select class="form-control">
-                        <option value="Not Started" selected>Not Started</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Completed">Completed</option>
-                    </select>
-                </td>
-                <td class="text-center">2025-10-08</td>
-                <td class="text-center">Admin</td>
-                <td class="text-center">
-                    <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
-                </td>
-                <td class="text-center">
-                    <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
-                </td>
-                <td class="text-center">
-                    <input type="checkbox">
-                </td>
-  <td class="text-center">
-  <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
-</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <table atSort id="example2" class="table table-bordered table-hover data-table" style="margin-top: 13px;">
+            <thead class="tbl-head">
+                <tr>
+                    <th class="text-center">Execute</th>
+                    <th class="text-center">Step </th>
+                    <th class="text-center">Step Name</th>
+                    <th class="text-center">Notes</th>
+                    <th style="width: 10%; text-align: center !important;">Department</th>
+                    <th style="width: 10%; text-align: center !important;">Assigned</th>
+                    <th style="width: 10%; text-align: center !important;">Status</th>
+                    <th class="text-center">Last Updated</th>
+                    <th class="text-center">Updated By</th>
+                    <th class="text-center">Start Date</th>
+                    <th class="text-center">End Date</th>
+                    <th class="text-center">Done</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox">
+                    </td>
+                    <td class="text-center">D1</td>
+                    <td class="text-center">Process</td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1">Agency A</option>
+                            <option value="2" selected>Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101" selected>Jane Smith</option>
+                            <option value="102">Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started">Not Started</option>
+                            <option value="In Progress" selected>In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>   
+                    <td class="text-center">2025-10-09</td>
+                    <td class="text-center">Jane Smith</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-01" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-15" class="form-control" disabled>
+                    </td>
+                   
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked1" (change)="onCheckboxChange('row1')">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox">
+                    </td>
+                    <td class="text-center">D2</td>
+                    <td class="text-center">Tools </td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1" selected>Agency A</option>
+                            <option value="2">Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101">Jane Smith</option>
+                            <option value="102" selected>Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started" selected>Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                    <td class="text-center">2025-10-08</td>
+                    <td class="text-center">Admin</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
+                    </td>
+                    
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox">
+                    </td>
+                    <td class="text-center">D3a</td>
+                    <td class="text-center">Production </td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1" selected>Agency A</option>
+                            <option value="2">Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101">Jane Smith</option>
+                            <option value="102" selected>Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started" selected>Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                    <td class="text-center">2025-10-08</td>
+                    <td class="text-center">Admin</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
+                    </td>
+                   
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox">
+                    </td>
+                    <td class="text-center">D3b</td>
+                    <td class="text-center">Supplier Quality Management </td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1" selected>Agency A</option>
+                            <option value="2">Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101">Jane Smith</option>
+                            <option value="102" selected>Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started" selected>Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                    <td class="text-center">2025-10-08</td>
+                    <td class="text-center">Admin</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
+                    </td>
+                   
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
+                    </td>
+                </tr>
+
+                <tr>
+                      <td class="text-center">
+                        <input type="checkbox" >
+                    </td>
+                    <td class="text-center">D4a</td>
+                    <td class="text-center">Internal Quality Control </td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1" selected>Agency A</option>
+                            <option value="2">Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101">Jane Smith</option>
+                            <option value="102" selected>Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started" selected>Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                    <td class="text-center">2025-10-08</td>
+                    <td class="text-center">Admin</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
+                    </td>
+                   
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
+                    </td>
+                </tr>
+
+                <tr>
+                      <td class="text-center">
+                        <input type="checkbox" >
+                    </td>
+                    <td class="text-center">D4b</td>
+                    <td class="text-center">Supplier Part Quality </td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1" selected>Agency A</option>
+                            <option value="2">Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101">Jane Smith</option>
+                            <option value="102" selected>Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started" selected>Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                    <td class="text-center">2025-10-08</td>
+                    <td class="text-center">Admin</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
+                    </td>
+                  
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
+                    </td>
+                </tr>
+
+                <tr>
+                      <td class="text-center">
+                        <input type="checkbox" >
+                    </td>
+                    <td class="text-center">D5</td>
+                    <td class="text-center">Process Engineering </td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1" selected>Agency A</option>
+                            <option value="2">Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101">Jane Smith</option>
+                            <option value="102" selected>Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started" selected>Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                    <td class="text-center">2025-10-08</td>
+                    <td class="text-center">Admin</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
+                    </td>
+                  
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
+                    </td>
+                </tr>
+
+
+                <tr>
+                      <td class="text-center">
+                        <input type="checkbox" >
+                    </td>
+                    <td class="text-center">D6</td>
+                    <td class="text-center">Product Design </td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1" selected>Agency A</option>
+                            <option value="2">Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101">Jane Smith</option>
+                            <option value="102" selected>Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started" selected>Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                    <td class="text-center">2025-10-08</td>
+                    <td class="text-center">Admin</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
+                    </td>
+                   
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox" >
+                    </td>
+                    <td class="text-center">D7</td>
+                    <td class="text-center">Cross Functional Team </td>
+                    <td class="text-center">
+                        <span style="color: blue; cursor: pointer;"><mat-icon>info</mat-icon></span>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1" selected>Agency A</option>
+                            <option value="2">Agency B</option>
+                            <option value="3">Agency C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control">
+                            <option value="101">Jane Smith</option>
+                            <option value="102" selected>Peter Jones</option>
+                            <option value="103">Mary Williams</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <select class="form-control">
+                            <option value="Not Started" selected>Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                    <td class="text-center">2025-10-08</td>
+                    <td class="text-center">Admin</td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-16" class="form-control" disabled>
+                    </td>
+                    <td class="text-center">
+                        <input type="date" style="height: 37px;" value="2025-10-20" class="form-control" disabled>
+                    </td>
+                  
+                    <td class="text-center">
+                        <input type="checkbox" [(ngModel)]="checked2" (change)="onCheckboxChange('row2')">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

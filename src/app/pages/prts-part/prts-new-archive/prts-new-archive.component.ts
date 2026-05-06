@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-prts-new-archive',
@@ -8,6 +9,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./prts-new-archive.component.scss']
 })
 export class PrtsNewArchiveComponent implements OnInit {
+
+  @ViewChild('tableContainer') tableContainer!: ElementRef;
 
   //Objective Audit
   public pageSize = 5;
@@ -20,7 +23,7 @@ export class PrtsNewArchiveComponent implements OnInit {
   public popoverStatusTitle: string = 'Confirm Status Change';
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
-  public popoversendMessage: 'Are you sure you want to send.?'
+  public popoversendMessage:string = 'Are you sure you want to send.?';
   public popoversendTitle: string = 'Confirm Delete';
   values = []
   ngOnInit() {
@@ -152,7 +155,7 @@ export class PrtsNewArchiveComponent implements OnInit {
   saveStatus() {
     //this.alertService.createAlert('Successfully saved.', 1);
   }
-  public addchecklistaudit(auditdata) {
+  public addchecklistaudit(auditdata: any) {
     // let dialogRef = this.dialog.open(AddintiativeComponent, {
     //   data: auditdata,
     //   height: 'auto',
@@ -161,12 +164,16 @@ export class PrtsNewArchiveComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(data => {
     // });
   }
-  scrollGrid(side) {
-    var ele = document.getElementById('tableScroll');
-    if (side == 'right')
-      ele.scrollLeft += 210;
-    else
-      ele.scrollLeft -= 210;
+ scrollGrid(direction: string) {
+  const container = this.tableContainer.nativeElement;
+
+  const scrollAmount = 200;
+
+  if (direction === 'right') {
+    container.scrollLeft += scrollAmount;
+  } else {
+    container.scrollLeft -= scrollAmount;
   }
+}
 
 }

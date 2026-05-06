@@ -37,11 +37,17 @@ export class PrtsComponent implements OnInit {
 
   values1 = [];
 
-  public addmodule(item) {
+  public addmodule(item:any) {
     this.dialog.open(AddInitiativeComponent, {
       data: item,
       width: "600px",
       height: "auto"
     })
   }
+
+  isNavOpen = true;
+
+toggleNav() {
+  this.isNavOpen = !this.isNavOpen;
+}
 }

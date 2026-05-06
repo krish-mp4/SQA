@@ -15,14 +15,14 @@ export class PrtsIssueNewComponent implements OnInit {
   check_box_type = CheckBoxType;
   isRepeted: boolean = true;
   addStep = 1;
-  currentlyChecked: CheckBoxType;
+  currentlyChecked?: CheckBoxType;
   data: any;
   addLookupGroup: FormGroup;
   editLookupGroup: FormGroup;
   lookup: any = false;
   codes: any = [];
   colors: Array<any> = [{ 'code': 'green', 'name': 'Green', 'colorClass': 'dot_green' }, { 'code': 'blue', 'name': 'Blue', 'colorClass': 'dot_blue' }, { 'code': 'grey', 'name': 'Grey', 'colorClass': 'dot_grey' }, { 'code': 'red', 'name': 'Red', 'colorClass': 'dot_red' }];
-  pageGroup: FormGroup;
+  pageGroup?: FormGroup;
   deleteLookupItemValue: any;
   index = 10;
   private _lookupService: any;
@@ -99,7 +99,7 @@ export class PrtsIssueNewComponent implements OnInit {
     });
   }
 
-  addNewInputField(val): void {
+  addNewInputField(val: number): void {
     console.log(val, "test")
 
     if (val > 0) {
@@ -118,7 +118,7 @@ export class PrtsIssueNewComponent implements OnInit {
 
   }
 
-  fnLookupDeleteItemModal(i) {
+  fnLookupDeleteItemModal(i: number, item: any): void {
     this.index = i;
     this.removeInputField(this.index);
   }
@@ -136,10 +136,10 @@ export class PrtsIssueNewComponent implements OnInit {
 
     this.currentlyChecked = targetType;
   }
-  repeted(event) {
+  repeted(event: any) {
     this.isRepeted = !this.isRepeted;
   }
-  changeAddStep(value) {
+  changeAddStep(value: number) {
     this.addStep = value;
   }
   goback() {

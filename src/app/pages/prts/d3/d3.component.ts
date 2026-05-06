@@ -84,15 +84,16 @@ export class D3Component implements OnInit {
 
     }
   values = [
-   { check:  '1. Are the correct tools/fixtures being used?' },
-    { check: '2. Are the tools set to the specified torque?' },
-    { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-    { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-    { check: '5. This is the correct length of air hose with no extra sections added?' },
-    { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-    { check: '7. Is the tool connected to the ANDON System properly?' },
-    { check: '8. If Error proofing is present, is it working correctly?' },
-    { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
+   { check: 'Have all affected in-process materials (WIP), semi-finished, and finished goods within the plant been identified and physically segregated?' },
+  { check: 'Is containment applied at the exact process step where the defect originates, as well as all downstream internal operations?' },
+  { check: 'Have all relevant production lines, machines, shifts, and operators been included in the containment scope?' },
+  { check: 'What temporary controls are implemented within production?' },
+  { check: 'Are clear identification methods  used to distinguish suspect vs approved material?' },
+  { check: 'Have production operators and supervisors been formally informed and trained on containment procedures?' },
+  { check: 'Is there a defined process for handling non-conforming material  within the plant?' },
+  { check: 'How is containment effectiveness being monitored internally ?' },
+  { check: 'Are there risks that containment actions could disrupt production flow, introduce errors, or create bottlenecks?' },
+  { check: 'Is ownership clearly assigned for maintaining containment actions until permanent corrective actions (D5/D6) are validated?' }
   ];
   valuess=[
     {possible: 'Is the current Data/analysis data available?',short:'current Data'   },

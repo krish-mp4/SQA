@@ -4,6 +4,11 @@ import { PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import { AppSettings } from '../app.settings';
 import { Settings } from '../app.settings.model';
 import { MenuService } from '../theme/components/menu/menu.service';
+import { filter } from 'rxjs/operators';
+
+
+
+
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
@@ -11,21 +16,56 @@ import { MenuService } from '../theme/components/menu/menu.service';
   providers: [MenuService]
 })
 export class PagesComponent implements OnInit {
+  showBreadcrumb = true;
   @ViewChild('sidenav') sidenav: any;
   @ViewChild('backToTop') backToTop: any;
-  @ViewChildren(PerfectScrollbarDirective) pss: QueryList<PerfectScrollbarDirective>;
+  @ViewChildren(PerfectScrollbarDirective) pss!: QueryList<PerfectScrollbarDirective>;
   public settings: Settings;
   public menus = ['vertical', 'horizontal'];
-  public menuOption: string;
+  public menuOption!: string;
   public menuTypes = ['default', 'compact', 'mini'];
-  public menuTypeOption: string;
+  public menuTypeOption!: string;
   public lastScrollTop: number = 0;
   public showBackToTop: boolean = false;
   public toggleSearchBar: boolean = false;
-  private defaultMenu: string; //declared for return default menu when window resized
+  private defaultMenu!: string; //declared for return default menu when window resized
 
   constructor(public appSettings: AppSettings, public router: Router, private menuService: MenuService) {
     this.settings = this.appSettings.settings;
+      this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: NavigationEnd) => {
+
+      const hiddenRoutes = [
+        '/base-info',     // 👈 your route
+        '/dashboard',
+        '/alert',
+           '/updates',
+            '/mitigation',
+              '/document',
+                "/grid-view",
+                "/calenders",
+                "/moniter",
+                "/action-grid-calender/grid-meet",
+                 "/d1",
+                 "/d2",
+                  "/d3",
+                  "/d3-b",
+                    "/d4",
+                    "/d4-b",
+                      "/d5",
+                      "/d6",
+                        "/d7",
+                        "/closure",
+
+
+             // add more if needed
+      ];
+
+      this.showBreadcrumb = !hiddenRoutes.some(route =>
+        event.urlAfterRedirects.includes(route)
+      );
+    });
   }
 
   ngOnInit() {
@@ -67,7 +107,7 @@ export class PagesComponent implements OnInit {
     this.settings.menuType = this.menuTypeOption;
   }
 
-  public changeTheme(theme) {
+  public changeTheme(theme:any) {
     this.settings.theme = theme;
   }
 
@@ -75,7 +115,7 @@ export class PagesComponent implements OnInit {
     this.sidenav.toggle();
   }
 
- public onPsScrollY(event) {
+ public onPsScrollY(event:any) {
   (event.target.scrollTop > 300)
     ? this.backToTop.nativeElement.style.display = 'flex'
     : this.backToTop.nativeElement.style.display = 'none';

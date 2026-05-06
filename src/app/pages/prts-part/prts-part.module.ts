@@ -40,14 +40,14 @@ const routes: Routes = [
     path: "prts-d-role",
     component: PrtsDRolesComponent,
     pathMatch: "full",
-      
+
   },
   {
     path: "prtsdashboard",
     component: PrtsDashboardComponent,
     loadChildren: () =>
       import("./prts-dashboard/prts-dashboard.module").then((m) => m.PrtsDashboardModule),
-    data: {   description: 'PRTS-Dashboard' }
+    data: { description: 'PRTS-Dashboard' }
   },
   {
     path: "prtsnewissue",
@@ -61,7 +61,7 @@ const routes: Routes = [
     component: PrtsIssueStatusComponent,
     loadChildren: () =>
       import("./prts-issue-status/prts-issue-status.module").then((m) => m.PrtsIssueStatusModule),
-   
+
   },
   {
     path: "grid-one",
@@ -72,9 +72,8 @@ const routes: Routes = [
   {
     path: "newissue",
     component: PrtsIssueNewComponent,
-    pathMatch: "full",
-    data: { breadcrumb: 's2rhyjgntydhnbfg', description: "Alerts" }
-    
+    pathMatch: "full"
+
   },
   {
     path: "new-alerts",
@@ -86,7 +85,7 @@ const routes: Routes = [
     path: "new-archive",
     component: PrtsNewArchiveComponent,
     pathMatch: "full",
-     
+
   },
   {
     path: "prtssetup",
@@ -121,7 +120,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    
+
     //NgxChartsModule,
     // OwlDateTimeModule,
     // OwlNativeDateTimeModule,

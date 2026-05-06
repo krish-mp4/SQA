@@ -5,6 +5,11 @@ import { Component, OnInit } from '@angular/core';
 import { PartsData } from '../PartsData';
 import { environment } from 'src/environments/environment';
 
+interface ClosureItem {
+  date: string;
+  subject: string;
+}
+
 @Component({
   selector: 'app-closure',
   templateUrl: './closure.component.html',
@@ -12,33 +17,31 @@ import { environment } from 'src/environments/environment';
 })
 export class ClosureComponent implements OnInit {
 
+  values: ClosureItem[] = [];
+
   constructor(public router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (environment.mode == 1) {
-      this.values = PartsData.closur();
-    }
-    else {
-
+      this.values = PartsData.closur() || [];
     }
   }
-  values = [
 
-  ]
   next() {
     this.router.navigate(['/app/prtsnavbar/summary']);
   }
+
   back() {
     this.router.navigate(['/app/prtsnavbar/d7']);
   }
-  public adddocument(auditdata) {
+
+  public adddocument(auditdata: any) {
     let dialogRef = this.dialog.open(AddDocumentComponent, {
       data: auditdata,
       height: 'auto',
       width: '600px'
     });
-    dialogRef.afterClosed().subscribe(data => {
-    });
-  }
 
+    dialogRef.afterClosed().subscribe(() => {});
+  }
 }

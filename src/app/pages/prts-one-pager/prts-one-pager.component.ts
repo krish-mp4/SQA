@@ -12,4 +12,11 @@ export class PrtsOnePagerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  isNavOpen = true;
+
+toggleNav() {
+  this.isNavOpen = !this.isNavOpen;
+}
+
 }

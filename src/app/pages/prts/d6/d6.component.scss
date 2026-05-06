@@ -1,4 +1,4 @@
-button {
+button:not([mat-raised-button]) {
   background-color: white;
   border: none;
   padding: 10px 20px;

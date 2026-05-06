@@ -116,3 +116,12 @@
   width: 180px; /* adjust width */
   min-width: 180px;
 }
+
+#grid-table-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.data-table {
+  min-width: 2000px; /* increase if needed */
+}

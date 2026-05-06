@@ -22,11 +22,11 @@ export class D1Component implements OnInit {
 
   data: any;
   addLookupGroup: FormGroup;
-  editLookupGroup: FormGroup;
+  editLookupGroup?: FormGroup;
   lookup: any = false;
   codes: any = [];
   colors: Array<any> = [{ 'code': 'green', 'name': 'Green', 'colorClass': 'dot_green' }, { 'code': 'blue', 'name': 'Blue', 'colorClass': 'dot_blue' }, { 'code': 'grey', 'name': 'Grey', 'colorClass': 'dot_grey' }, { 'code': 'red', 'name': 'Red', 'colorClass': 'dot_red' }];
-  pageGroup: FormGroup;
+  pageGroup?: FormGroup;
   deleteLookupItemValue: any;
   index: any;
   private _lookupService: any;
@@ -86,15 +86,16 @@ export class D1Component implements OnInit {
 
   }
 values = [
- { check:  '1. Are the correct tools/fixtures being used?' },
-  { check: '2. Are the tools set to the specified torque?' },
-  { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-  { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-  { check: '5. This is the correct length of air hose with no extra sections added?' },
-  { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-  { check: '7. Is the tool connected to the ANDON System properly?' },
-  { check: '8. If Error proofing is present, is it working correctly?' },
-  { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
+  { check: 'What is the exact process being analyzed, and where does it start and end?' },
+  { check: 'Who is the process owner, and which cross-functional stakeholders must be involved?' },
+  { check: 'What are the key inputs for this process?' },
+  { check: 'What are the expected outputs, and how is quality measured for them?' },
+  { check: 'What does the current “as-is” process flow look like, including rework and inspection points?' },
+  { check: 'Which process parameters are Critical to Quality (CTQs), and what are their acceptable limits?' },
+  { check: 'What existing controls  are in place to ensure process stability?' },
+  { check: 'What data is currently available for this process, and is it reliable and traceable?' },
+  { check: 'Are there known variations, bottlenecks, or recurring failure points in this process?' },
+  { check: 'What similar issues or past corrective actions (CAPAs/NCRs) are associated with this process?' }
 ];
 valuess=[
   {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
@@ -211,7 +212,7 @@ va=[
   saveLookup() {
     // if(this.data != null)
     {
-      if (this.editLookupGroup.valid) {
+      if (this.editLookupGroup?.valid) {
         // this._lookupService.EditLookups(this.editLookupGroup.value).subscribe(res => {
         //   if(res != null) {
         //     this.dialogRef.close(res['Data']);

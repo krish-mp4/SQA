@@ -85,16 +85,17 @@ export class D6Component implements OnInit {
 
     }
   values = [
-   { check:  '1. Are the correct tools/fixtures being used?' },
-    { check: '2. Are the tools set to the specified torque?' },
-    { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-    { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-    { check: '5. This is the correct length of air hose with no extra sections added?' },
-    { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-    { check: '7. Is the tool connected to the ANDON System properly?' },
-    { check: '8. If Error proofing is present, is it working correctly?' },
-    { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
-  ];
+  { check: 'Have all approved corrective actions been implemented in the targeted process steps as planned?' },
+  { check: 'Were implementation activities executed according to a defined plan ?' },
+  { check: 'Have updated process documents been revised and released?' },
+  { check: 'Are operators and relevant personnel trained on the new or modified process requirements?' },
+  { check: 'Have process parameters, machine settings, or tooling changes been correctly applied and verified?' },
+  { check: 'What data has been collected post-implementation to validate effectiveness ?' },
+  { check: 'Does the data demonstrate that the root cause has been eliminated or significantly reduced?' },
+  { check: 'Have validation trials or pilot runs been conducted under normal operating conditions?' },
+  { check: 'Are there any unintended side effects on process performance ?' },
+  { check: 'Has the effectiveness of corrective actions been formally reviewed and approved by stakeholders?' }
+];
   valuess=[
     {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
     {possible: 'Is the current Data/analysis data available?',short:'current Data'   },

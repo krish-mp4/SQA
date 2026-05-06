@@ -1,245 +1,241 @@
-<!-- <div mat-dialog-content> -->
-<div class="row">
-    <div class="col-lg-6 col-sm-6">
-        <div class="row">
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">PRTS No. : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder="51155DVHS5">
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">Issue Title : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder=" EnterIssue Title">
-                </div>
-            </div>
-
-
-            <div class="form-group ">
-                <label class="col-lg-4 control-label"> Issue Description: </label>
-                <div class="col-lg-8 ">
-                    <textarea type="text" class="form-control" style="height: 80px; " placeholder="Enter Description"
-                        required></textarea>
-
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">Assigned Date: </label>
-                <div class="col-lg-8">
-                    <input class="form-control" placeholder="MM/DD/YYYY" (keypress)="false" [owlDateTimeTrigger]="dt2"
-                        [owlDateTime]="dt2" name="dt2">
-                    <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">Source : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder="Enter Source">
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">Raiser Name : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder="Enter Raiser Name">
-                </div>
-            </div>
-            <div class="form-group  ">
-                <label class="col-lg-4">Raiser Department: </label>
-                <div class="col-lg-8 ">
-                    <mat-select class="form-control" placeholder="Select Model" required>
-                        <mat-option [value]="0">GA</mat-option>
-                        <mat-option [value]="1">Paint</mat-option>
-
-                    </mat-select>
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">VIN : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder="Enter VIN">
-                </div>
-            </div>
-            <!-- <div class="form-group  ">
-                <label class="col-lg-4">New Project : </label>
-                <div class="col-lg-8">
-                    <div class="col-lg-4 newMarginClass">
-                        <input type="checkbox" name="test" [checked]="currentlyChecked === check_box_type.APPLY_FOR_JOB"
-                            (click)="selectCheckBox(check_box_type.APPLY_FOR_JOB)"> &nbsp;&nbsp; YES
-                    </div>
-
-                    <div class="col-lg-4 newMarginClass">
-                        <input class="col-lg-4 newMarginClass" type="checkbox" name="test"
-                            [checked]="currentlyChecked === check_box_type.MODIFY_A_JOB"
-                            (click)="selectCheckBox(check_box_type.MODIFY_A_JOB)">&nbsp;&nbsp; NO
-                    </div>
-
-                </div>
-            </div> -->
-
-            <!-- <div class="form-group ">
-                <label class="col-lg-4 control-label"> Project Code/Name: </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder="Enter  Project Code/Name">
-                </div>
-            </div> -->
-            <div class="form-group  ">
-                <label class="col-lg-4">Model: </label>
-                <div class="col-lg-8 ">
-                    <mat-select class="form-control" placeholder="Select Model" required>
-                        <mat-option [value]="0">Hector</mat-option>
-                        <mat-option [value]="1">Astor</mat-option>
-                        <mat-option [value]="2">Gloster</mat-option>
-                        <mat-option [value]="4">EV</mat-option>
-                    </mat-select>
-                </div>
-            </div>
-            <div class="form-group  ">
-                <label class="col-lg-4">Variant: </label>
-                <div class="col-lg-8">
-                    <mat-select class="form-control" placeholder="Select Variant" required>
-                        <mat-option [value]="0">VDI</mat-option>
-                        <mat-option [value]="1">SXI</mat-option>
-                        <mat-option [value]="2">LDI</mat-option>
-                    </mat-select>
-
-                </div>
-            </div>
-            <div class="form-group  ">
-                <label class="col-lg-4">Issue Severity: </label>
-                <div class="col-lg-8 ">
-                    <mat-select class="form-control" placeholder="Select Severity" required>
-                        <mat-option [value]="0">Hight</mat-option>
-                        <mat-option [value]="1">Medium</mat-option>
-                        <mat-option [value]="2">Low</mat-option>
-
-                    </mat-select>
-                </div>
-            </div>
-            <div class="form-group  ">
-                <label class="col-lg-4">Category: </label>
-                <div class="col-lg-8">
-                    <mat-select class="form-control" placeholder="Select Category" required>
-                        <mat-option [value]="0">Category-1</mat-option>
-                        <mat-option [value]="1">Category-2</mat-option>
-                        <mat-option [value]="2">Category-3</mat-option>
-                    </mat-select>
-
-                </div>
-            </div>
-
-            <div class="form-group  ">
-                <label class="col-lg-4">Repeat Issue : </label>
-                <div class="col-lg-8">
-                    <mat-checkbox class="col-lg-4 newMarginClass" (change)="repeted($event)"></mat-checkbox>
-                </div>
-            </div>
-
-
-            <div class="form-group " *ngIf=" isRepeted">
-                <label class="col-lg-4 control-label"> Enter PRTS Reference : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder="Enter   PRTS Reference ">
-                </div>
-            </div>
-
-
-
-
-        </div>
-
-    </div>
-    <div class="col-lg-6 col-sm-6 ">
-
-        <div class="row">
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">1. What : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder=" Enter What">
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">2. Where : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder=" Enter Where">
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">3. When : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder=" Enter When">
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">4. Who : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder=" Enter Who">
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">5. Why : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder=" Enter Why">
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">6. How : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder=" Enter How  ">
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">7. How Much : </label>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder=" Enter How Much ">
-                </div>
-            </div>
-
-
-
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">Assigned to : </label>
-                <div class="col-lg-8">
-
-
-                    <mat-select class="form-control" placeholder="Select Department" required>
-                        <mat-option [value]="0">Tejaswi(Quality Assurance)</mat-option>
-
-                        <mat-option [value]="1">Roshan(Supply Chain)</mat-option>
-                    </mat-select>
-                </div>
-            </div>
-            <div class="form-group ">
-                <label class="col-lg-4 control-label">Containment Assigned to : </label>
-                <div class="col-lg-8">
-
-
-                    <mat-select class="form-control" placeholder="Select Department" required>
-                        <mat-option [value]="0">Tejaswi(R & D)</mat-option>
-                        <mat-option [value]="1">Ayush(Customer Service)</mat-option>
-
-                    </mat-select>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
+<div class="page-header ms-5">
+  <h3 class="page-title">Base Information</h3>
 </div>
 
-<div class="col-lg-12 margin-top:40px mb-10">
+
+<div class="d-flex justify-content-end p-1 me-5">
+        <button style="background-color: gray; color: white" class="btn btn-grey d-flex align-items-center"
+            (click)="goBack()">
+            <mat-icon class="me-1">arrow_back</mat-icon> Back
+        </button>
+    </div>
+
+<!-- <div mat-dialog-content> -->
 
 
+<div class="page-container" >
+    <!-- <div class="page-header">
+        <h2>New Issue</h2>
+        <p>Create A New PRTS Issue For Tracking And Resolution</p>
+    </div> -->
 
-    <button mat-raised-button class="" type="button" (click)="next()"
-        style="color: rgb(7, 10, 7); background-color: #e0e0e0; margin-left: 27cm;">
-        Next <mat-icon>fast_forward</mat-icon>
-    </button>
+    <div class="form-layout">
 
-    <button mat-raised-button class=" pull-right vamshi" type="button"
-        style="color: rgb(251, 253, 251); background-color:rgb(10, 93, 182);">
-        <mat-icon>save</mat-icon>
-        save
-    </button>
+        <div class="form-column-main">
 
+            <div class="form-card">
+                <h3>Basic Information</h3>
+                <div class="form-grid">
+                    <!-- <div class="form-group full-span">
+                        <label>Request Type</label>
+                        <mat-radio-group class="radio-group">
+                            <mat-radio-button value="1" [checked]="true">PSR</mat-radio-button>
+                            <mat-radio-button value="2">One Pager</mat-radio-button>
+                        </mat-radio-group>
+                    </div> -->
+                    <div class="form-group">
+                        <label>PRTS No.</label>
+                        <input type="text" class="form-control" placeholder="Enter PRTS No.">
+                    </div>
+                    <div class="form-group">
+                        <label>Assigned Date:</label>
+                        <input type="text" class="form-control" placeholder="Select Date">
+                    </div>
+                    <div class="form-group full-span important">
+                        <label class="add-member-label">Issue Title:</label>
+                        <input type="text" class="form-control" placeholder="Enter the title of the issue">
+                    </div>
+                    <div class="form-group full-span important">
+                        <label class="add-member-label">Issue Description:</label>
+                        <textarea class="form-control" rows="4" placeholder="Describe the issue in detail"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Source:</label>
+                        <input type="text" class="form-control" placeholder="Enter the source">
+                    </div>
+                    <div class="form-group">
+                        <label>Author:</label>
+                        <input type="text" value="Roshan" class="form-control" placeholder="Enter the author's name"
+                            readonly>
+                    </div>
+                    <div class="form-group full-span">
+                        <label>Author Department:</label>
+                        <input type="text" class="form-control" placeholder="Enter the author's department">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h3>Project Information</h3>
+                <div class="form-grid">
+                    <!-- <div class="form-group full-span"> -->
+                    <!-- <label>New Project</label> -->
+                    <!-- <div class="checkbox-group">
+              <mat-checkbox>Yes</mat-checkbox>
+              <mat-checkbox [checked]="true">No</mat-checkbox>
+            </div> -->
+                    <!-- </div> -->
+                    <!-- <div class="form-group full-span">
+            <label>Project Code/Name:</label>
+            <input type="text" class="form-control" placeholder="Enter Project Code/Name">
+          </div> -->
+
+
+           <div class="form-group full-span">
+                        <label>VIN:</label>
+                        <input type="text" class="form-control" placeholder="Enter  VIN">
+                    </div>
+                    <div class="form-group">
+                        <label>Model:</label>
+                        <input type="text" class="form-control" placeholder="Enter Model">
+                    </div>
+                    <div class="form-group">
+                        <label>Variant:</label>
+                        <input type="text" class="form-control" placeholder="Enter Variant">
+                    </div>
+                    <div class="form-group">
+                        <label>Issue Severity:</label>
+                        <input type="text" class="form-control" placeholder="e.g., High, Medium, Low">
+                    </div>
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <input type="text" class="form-control" placeholder="Enter Category">
+                    </div>
+                    <div class="form-group">
+                        <mat-checkbox class="report-issue-checkbox" (change)="repeted($event)">Repeat
+                            Issue</mat-checkbox>
+                    </div>
+
+                    <!-- <div class="form-group full-span" *ngIf="isRepeted">
+            <label>Enter PRTS Reference :</label>
+            <div>
+              <mat-select class="form-control" placeholder="Enter PRTS Reference">
+                <mat-option value="MCH-101">CNC Lathe Machine</mat-option>
+                <mat-option value="MCH-102">Hydraulic Press</mat-option>
+                <mat-option value="MCH-103">Injection Molding Machine</mat-option>
+                <mat-option value="MCH-104">Welding Robot</mat-option>
+                <mat-option value="MCH-105">Packaging Line 3</mat-option>
+              </mat-select>
+            </div>
+          </div> -->
+
+
+                    <!-- urururu -->
+                    <div class="form-group full-span" *ngIf="isRepeted">
+                        <label>Enter PRTS Reference :</label>
+
+                        <mat-select class="form-control" placeholder="Enter PRTS Reference" [(value)]="selectedMachine">
+
+                            <!-- 🔍 Search -->
+                            <mat-option>
+                                <ngx-mat-select-search [formControl]="searchCtrl" placeholderLabel="Search"
+                                    noEntriesFoundLabel="No results found">
+                                </ngx-mat-select-search>
+                            </mat-option>
+
+                            <!-- Options -->
+                            <mat-option *ngFor="let machine of filteredMachines" [value]="machine.value">
+                                {{ machine.viewValue }}
+                            </mat-option>
+
+                        </mat-select>
+                    </div>
+                    <!-- urururu -->
+
+
+                </div>
+            </div>
+
+            <!-- <div class="form-card">
+        <h3>Assignment Details</h3>
+        <div class="assignment-header">
+          <label class="assignment-label">Assigned to:</label>
+        </div>
+        <div class="assignment-row">
+          <mat-select class="form-control" placeholder="Select User">
+            <mat-option value="1">Admin (Quality Assurance)</mat-option>
+            <mat-option value="2">Ayush (Supply Chain)</mat-option>
+          </mat-select>
+          <div class="assignment-header">
+            <label class="assignment-label">Containment Assigned:</label>
+          </div>
+          <mat-select class="form-control" placeholder="Select user">
+            <mat-option value="1">Ayush (Customer Service)</mat-option>
+            <mat-option value="2">Admin (R & D)</mat-option>
+          </mat-select>
+        </div>
+       
+      </div> -->
+
+            <div class="form-card">
+                <h3>Assignment Details</h3>
+
+                <!-- Labels -->
+                <div class="assignment-header assignment-grid">
+                    <label class="assignment-label">Assigned to:</label>
+                    <label class="assignment-label">Containment Assigned:</label>
+                </div>
+
+                <!-- Inputs -->
+                <div class="assignment-row">
+                    <mat-select class="form-control" placeholder="Assigned User">
+                        <mat-option value="1">Tejaswi (Quality Assurance)</mat-option>
+                        <mat-option value="2">Ayush (Supply Chain)</mat-option>
+                    </mat-select>
+
+                    <mat-select class="form-control" placeholder="Containment User">
+                        <mat-option value="1">Ayush (Customer Service)</mat-option>
+                        <mat-option value="2">Roshan (R & D)</mat-option>
+                    </mat-select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-column-side">
+            <div class="form-card">
+                <h3>5W2H Analysis</h3>
+                <div class="analysis-grid">
+                    <div class="form-group">
+                        <label>1. What:</label>
+                        <textarea class="form-control" rows="3" placeholder="What happened?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>2. Where:</label>
+                        <textarea class="form-control" rows="3" placeholder="Where did it occur?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>3. When:</label>
+                        <textarea class="form-control" rows="3" placeholder="When did it happen?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>4. Who:</label>
+                        <textarea class="form-control" rows="3" placeholder="Who was involved?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>5. Why:</label>
+                        <textarea class="form-control" rows="3" placeholder="Why did it happen?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>6. How:</label>
+                        <textarea class="form-control" rows="3" placeholder="What is the impact/extent?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>7. How Much:</label>
+                        <textarea class="form-control" rows="3" placeholder="What is the impact/extent?"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons" >
+        <!-- <button mat-raised-button class="ms-2 add-dark-hover btn-default" (click)="close()"
+            style="background-color: lightgray; color: red;margin-right: 8px;">
+            <mat-icon>cancel</mat-icon>
+            Close
+        </button> -->
+        <button mat-raised-button type="button" class="save" color="primary" style="margin-right: 5px;">
+            <mat-icon>save</mat-icon> Update
+        </button>
+    </div>
 </div>

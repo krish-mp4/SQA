@@ -8,7 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
-  NotesForm: FormGroup;
+  NotesForm!: FormGroup;
   isProject: boolean = false;
   isSaveBtnClicked: boolean = false;
   todayDate = new Date();
@@ -23,8 +23,11 @@ export class NoteComponent implements OnInit {
   ngOnInit() {
   }
 
-  close(value) {
+  close(value:any) {
     this.dialogRef.close(value);
   }
+
+
+  
 
 }

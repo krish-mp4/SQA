@@ -63,7 +63,7 @@ import { MitigationComponent } from './mitigation/mitigation.component';
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "moniter", pathMatch: "full" },
+  { path: "", redirectTo: "base-info", pathMatch: "full" },
 
   {
     path: "action-grid-calender",
@@ -254,7 +254,6 @@ const routes: Routes = [
   {
     path: "closure",
     component: ClosureComponent,
-    data: { breadcrumb: 'PRTS(Archives/Subject/Closure) ', description: "Closure" }
   },
   {
     path: "closure-note",

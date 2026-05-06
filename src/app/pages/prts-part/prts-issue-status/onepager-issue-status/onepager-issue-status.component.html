@@ -43,6 +43,16 @@
 </div>
 
 <!-- Table -->
+
+
+
+
+
+
+
+
+
+
 <div>
     <div class="col-xs-12" style="padding: 0 0 0 11px;">
         <div id="grid-table-container" class="table-responsive" style="width: 99%;">
@@ -56,26 +66,31 @@
                                 <div class="row-wrap">
                                     <div class="w-100">
                                         <div class="row pull-right" style="margin-right: -20px;">
-                                            <div class="">
-                                                <button mat-raised-button color="primary"
-                                                    class="pull-right  btn-primary  mt-3  "
-                                                    (click)="addchecklistaudit(null)">
-                                                    <mat-icon>add</mat-icon> Add Request
-                                                </button>
+                                            <div id="table-wrapper">
+                                                <!-- fixed toolbar stays OUTSIDE scroll area -->
+                                                <div class="fixed-toolbar">
+                                                    <button mat-raised-button color="primary" class="btn-primary mt-3"
+                                                        (click)="addchecklistaudit(null)">
+                                                        <mat-icon>add</mat-icon> Add Request
+                                                    </button>
 
-                                                <button mat-raised-button
-                                                    class="pull-right  btn-primary margin-right-5   mt-3"
-                                                    (click)="grid(null)">
-                                                    Grid Columns
-                                                </button>
-                                                <button style="margin-bottom: 7px" mat-raised-button color="primary"
-                                                    class="pull-right filters-hover margin-right-10 mt-3"
-                                                    (click)="filterToggle = !filterToggle">
-                                                    <mat-icon>filter_list</mat-icon> Filter
-                                                </button>
+                                                    <button mat-raised-button class="btn-primary margin-right-5 mt-3"
+                                                        (click)="grid(null)">
+                                                        Grid Columns
+                                                    </button>
 
+                                                    <button mat-raised-button color="primary"
+                                                        class="filters-hover margin-right-10 mt-3"
+                                                        (click)="filterToggle = !filterToggle">
+                                                        <mat-icon>filter_list</mat-icon> Filter
+                                                    </button>
+                                                </div>
 
+                                                <div id="grid-table-container" class="table-scroll">
+                                                    <!-- your table here -->
+                                                </div>
                                             </div>
+
 
 
                                         </div>
@@ -289,7 +304,7 @@
 
             </div>
             <!-- Table -->
-            <table matSort id="example2" class="table table-bordered table-hover">
+            <table matSort class="table table-bordered table-hover">
                 <thead class="tbl-head">
                     <tr>
                         <th class="theadcolor">Reference</th>
@@ -344,20 +359,38 @@
                             </mat-select>
                         </td>
                         <td class="text-center editDel">
-                            <a style="cursor: pointer;" matTooltip="Edit" (click)="addchecklistaudit(1)">
-                                <i class="fa fa-edit" style="color: cornflowerblue"></i>
-                            </a>
-                            <a><i class="fa fa-trash red" matTooltip="Delete" style="cursor: pointer;"></i>
-                            </a>
-                            <a><i class="fa fa-archive" matTooltip="Archive" style="cursor: pointer;"></i>
-                            </a>
+                            <button mat-icon-button matTooltip="Edit" (click)="addchecklistaudit(1)"
+                                class="action-btn edit">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+
+                            <button mat-icon-button matTooltip="Archive" class="action-btn archive">
+                                <mat-icon>archive</mat-icon>
+                            </button>
+
+                            <button mat-icon-button matTooltip="Delete" class="action-btn delete">
+                                <mat-icon>delete</mat-icon>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+            <button class="mine" mat-fab (click)="scrollGrid('right')">
+                <mat-icon style="color: #37474f">fast_forward</mat-icon>
+            </button>
+            <button class="mine" mat-fab style="margin-right: 78px !important" (click)="scrollGrid('left')">
+                <mat-icon style="color: #37474f">fast_rewind</mat-icon>
+            </button>
+
+
+
             <!-- Pagination -->
             <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
                 [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+
         </div>
+
+
     </div>
 </div>

@@ -1,6 +1,21 @@
-<!-- <img style="margin-top: 2%; display: flex; margin-left: auto; margin-right: auto;" src="/assets/under-construction.png"
-    height="400px" alt="under-construction"> -->
-<div>
+
+<!-- <div fxLayout="row wrap" class="breadcrumb" style="padding-bottom: 8px !important;" *ngIf="router.url != ''">
+    <div fxFlex="100" class="">
+
+        <div fxLayout="row" style="float: right !important;margin-top: 10px;" class="pull-right">
+
+           
+        </div>
+        <h3 style="margin-top:10px;margin-bottom:10px;margin-left: 15px;" class="pull-left">{{Header}}</h3>
+        <br>
+      
+    </div>
+</div> -->
+
+
+
+
+<!-- <div>
     <div class="container-fluid" style="padding-right: 7px; padding-left: 1px;">
         <div class="w-100">
             <div class="flex-p">
@@ -26,52 +41,64 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="w-100">
-        <div class="flex-p">
-            <div class="row wrap">
-                <div class="col-sm-2 no-padding">
-                    <div class="row super-row mb-4">
-                        <!-- <a mat-raised-button routerLinkActive="active-link" routerLink="alert"
-                            class="col-sm-6 vamshi tab-active" style="margin-left:2px; margin-bottom:5px; ">
-                            Alerts (7)
-                        </a> -->
-                        <!-- <div class="col-sm-5"></div> -->
+   <div class="layout-container">
 
-                        <a routerLinkActive="active-link" routerLink="base-info" class="col-sm col-sm-6 font-color">Base
-                            Info
-                        </a>
+        
 
-                         <a routerLinkActive="active-link" routerLink="updates"
-                            class="col-sm col-sm-6  font-color">Updates
+     <!-- Sidebar -->
+<div class="sidebar" [ngClass]="{'nav-open': isNavOpen, 'nav-closed': !isNavOpen}">
 
-                        </a>
+  <!-- Toggle Button -->
+  <button (click)="toggleNav()" class="toggle-button">
+    <mat-icon>menu</mat-icon>
+  </button>
 
-                        <a mat-raised-button routerLinkActive="active-link" routerLink="action"
-                            class="col-sm-6 ml-5 nav vamshi1" style="margin-left:2px; margin-bottom:3px;">CAPA
+  <ul>
+    <li class="mx-2" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="base-info">
+      <a>
+        <mat-icon *ngIf="!isNavOpen" matTooltip="Base Info">info</mat-icon>
+        <span *ngIf="isNavOpen">Base Info</span>
+      </a>
+    </li>
 
-                        </a>
+    <li  class="mx-2" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="updates">
+      <a>
+        <mat-icon *ngIf="!isNavOpen" matTooltip="Updates">update</mat-icon>
+        <span *ngIf="isNavOpen">Updates</span>
+      </a>
+    </li>
 
+    <li  class="mx-2" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="action/grid-view">
+      <a>
+        <mat-icon *ngIf="!isNavOpen" matTooltip="CAPA">assignment</mat-icon>
+        <span *ngIf="isNavOpen">CAPA</span>
+      </a>
+    </li>
 
+    <li  class="mx-2" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        routerLink="mitigation">
+      <a>
+        <mat-icon *ngIf="!isNavOpen" matTooltip="Mitigation">build</mat-icon>
+        <span *ngIf="isNavOpen">Mitigation</span>
+      </a>
+    </li>
 
-                        
-                       
+    <li  class="mx-2" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="document">
+      <a>
+        <mat-icon *ngIf="!isNavOpen" matTooltip="Documents">folder</mat-icon>
+        <span *ngIf="isNavOpen">Documents</span>
+      </a>
+    </li>
+  </ul>
 
-                        <a routerLinkActive="active-link" routerLink="mitigation"
-                            class="col-sm col-sm-6 font-color">Mitigation
-                        </a>
-
-                        <a routerLinkActive="active-link" routerLink="document"
-                            class="col-sm col-sm-6 font-color">Documents
-                        </a>
-
-                    </div>
-                </div>
-                <div class="col-sm-10 no-padding">
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+<!-- Content -->
+<div class=" content">
+  <router-outlet></router-outlet>
+</div>
+
+    </div>
+ 

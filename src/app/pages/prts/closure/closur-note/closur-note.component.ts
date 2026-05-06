@@ -21,4 +21,18 @@ export class ClosurNoteComponent implements OnInit {
     
   }
 
+  content: string = '';
+
+  modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ script: 'sub' }, { script: 'super' }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ align: [] }],
+      ['link', 'image'],
+      ['clean']
+    ]
+  };
+
 }

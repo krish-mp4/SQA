@@ -15,7 +15,7 @@ import { StatusConfirmationDialogComponent } from '../../testing/testing-project
 })
 export class PrtsDRolesComponent implements OnInit {
 
-  dropdownList: any[];
+  dropdownList!: any[];
   gridCmp: any;
   Status = [{ name: 'Active', value: true }, { name: "Inactive", value: false }];
   public pageSize = 5;

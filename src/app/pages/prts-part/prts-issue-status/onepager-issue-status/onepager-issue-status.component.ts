@@ -146,4 +146,19 @@ export class OnepagerIssueStatusComponent implements OnInit {
     // console.log(event);
   }
 
+
+   scrollGrid(direction: string) {
+  const container = document.getElementById('grid-table-container');
+
+  if (!container) return;
+
+  const scrollAmount = 200; // adjust as needed
+
+  if (direction === 'right') {
+    container.scrollLeft += scrollAmount;
+  } else {
+    container.scrollLeft -= scrollAmount;
+  }
+}
+
 }

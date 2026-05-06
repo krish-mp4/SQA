@@ -21,11 +21,11 @@ export class D4BComponent implements OnInit {
 
    data: any;
     addLookupGroup: FormGroup;
-    editLookupGroup: FormGroup;
+    editLookupGroup?: FormGroup;
     lookup: any = false;
     codes: any = [];
     colors: Array<any> = [{ 'code': 'green', 'name': 'Green', 'colorClass': 'dot_green' }, { 'code': 'blue', 'name': 'Blue', 'colorClass': 'dot_blue' }, { 'code': 'grey', 'name': 'Grey', 'colorClass': 'dot_grey' }, { 'code': 'red', 'name': 'Red', 'colorClass': 'dot_red' }];
-    pageGroup: FormGroup;
+    pageGroup?: FormGroup;
     deleteLookupItemValue: any;
     index: any;
     private _lookupService: any;
@@ -85,16 +85,17 @@ export class D4BComponent implements OnInit {
 
     }
   values = [
-   { check:  '1. Are the correct tools/fixtures being used?' },
-    { check: '2. Are the tools set to the specified torque?' },
-    { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-    { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-    { check: '5. This is the correct length of air hose with no extra sections added?' },
-    { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-    { check: '7. Is the tool connected to the ANDON System properly?' },
-    { check: '8. If Error proofing is present, is it working correctly?' },
-    { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
-  ];
+  { check: 'At which process step should the defect have been detected, and why was it missed?' },
+  { check: 'What inspection or control method  was in place at that stage?' },
+  { check: 'Was the detection method capable of identifying this specific defect ?' },
+  { check: 'Were inspection standards, criteria, or acceptance limits clearly defined and correctly applied?' },
+  { check: 'Was the inspection frequency or sampling plan sufficient to catch the defect?' },
+  { check: 'Were there any human factors involved ?' },
+  { check: 'Were inspection tools, gauges, or systems properly calibrated and functioning at the time?' },
+  { check: 'Did process changes, overrides, or deviations bypass existing controls or inspections?' },
+  { check: 'Was there a breakdown in data monitoring or escalation ?' },
+  { check: 'Has the escape root cause been validated with objective evidence and agreed upon by the team?' }
+];
   valuess=[
     {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
     {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
@@ -174,7 +175,7 @@ check_box_type = {
       });
 
     }
-    addMeeting(item) {
+    addMeeting(item: any) {
       this.dialog.open(AddCapaComponent, {
         data: item,
         width: "850px",
@@ -213,7 +214,7 @@ check_box_type = {
     saveLookup() {
       // if(this.data != null)
       {
-        if (this.editLookupGroup.valid) {
+        if (this.editLookupGroup?.valid) {
           // this._lookupService.EditLookups(this.editLookupGroup.value).subscribe(res => {
           //   if(res != null) {
           //     this.dialogRef.close(res['Data']);
@@ -247,7 +248,7 @@ check_box_type = {
       });
     }
 
-    addNewInputField(val): void {
+    addNewInputField(val: number): void {
       console.log(val, "test")
 
       if (val > 0) {
@@ -266,7 +267,7 @@ check_box_type = {
 
     }
 
-    fnLookupDeleteItemModal(i) {
+    fnLookupDeleteItemModal(i: number, item: any): void {
       this.index = i;
       this.removeInputField(this.index);
     }
@@ -304,7 +305,7 @@ check_box_type = {
   selectCheckBox() {
 
     }
-  public adddocument(auditdata) {
+  public adddocument(auditdata: any) {
       let dialogRef = this.dialog.open(ActionDocumentTwoDialogComponent, {
         data: auditdata,
         height: 'auto',
@@ -314,7 +315,7 @@ check_box_type = {
       });
     }
 
-    public adddocumenttype(audit) {
+    public adddocumenttype(audit: any) {
       let dialogRef = this.dialog.open(ActionDocumentTwoTypeComponent, {
         data: audit,
         height: 'auto',

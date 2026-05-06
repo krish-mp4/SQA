@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 import { Router } from '@angular/router';
 enum CheckBoxType { APPLY_FOR_JOB, MODIFY_A_JOB, NONE };
@@ -34,7 +35,7 @@ export class BaseInfoOnePagerComponent implements OnInit {
 
   constructor(public router: Router,
     //public dialogRef: MatDialogRef<AddValidationComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-    public fb: FormBuilder,) {
+    public fb: FormBuilder, ) {
 
     this.addLookupGroup = this.fb.group({
       CodeMasterId: new FormControl(''),
@@ -154,5 +155,9 @@ export class BaseInfoOnePagerComponent implements OnInit {
 
     this.currentlyChecked = targetType;
   }
+
+ goBack() {
+  this.router.navigate(['app/prts-part/prtsissuestatus/one-pager']);
+}
 
 }

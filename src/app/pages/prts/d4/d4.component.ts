@@ -85,16 +85,17 @@ export class D4Component implements OnInit {
 
    }
  values = [
-  { check:  '1. Are the correct tools/fixtures being used?' },
-   { check: '2. Are the tools set to the specified torque?' },
-   { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-   { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-   { check: '5. This is the correct length of air hose with no extra sections added?' },
-   { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-   { check: '7. Is the tool connected to the ANDON System properly?' },
-   { check: '8. If Error proofing is present, is it working correctly?' },
-   { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
- ];
+  { check: 'At which exact process step and condition does the defect originate (machine, operation, stage)?' },
+  { check: 'What specific process parameter(s)  deviate from standard during defect occurrence?' },
+  { check: 'What evidence  correlates process variation with the defect?' },
+  { check: 'Have structured RCA tools been applied specifically to process variables?' },
+  { check: 'Was the process operating within defined specifications at the time of defect generation? If not, why?' },
+  { check: 'Are there differences between “good” vs “defective” runs under the same process conditions?' },
+  { check: 'Have controlled trials or experiments been conducted to reproduce the defect under suspected conditions?' },
+  { check: 'Are machine-related factors  contributing to the issue?' },
+  { check: 'Are material variations  influencing process performance?' },
+  { check: 'Has the true occurrence root cause been validated with objective evidence and agreed upon by the cross-functional team?' }
+];
  valuess=[
    {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
    {possible: 'Is the current Data/analysis data available?',short:'current Data'   },

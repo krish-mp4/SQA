@@ -10,11 +10,38 @@ import { StatusConfirmationDialogComponent } from 'src/app/pages/testing/testing
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 
+interface PsrIssue {
+  ref: string;
+  Status: string;
+  AuditType: string;
+  Checkpoints: string;
+  Description: string;
+  Date: string;
+  Source: string;
+  RequestedBy: string;
+  ReportingDept: string;
+  ProjectCode: string;
+  Model: string;
+  Variant: string;
+  Criticality: string;
+  Category: string;
+  WHandH: string;
+  AssignedTo: string;
+  ContainmentAssignedTo: string;
+  Location: string;
+  Fuel_Type: string;
+  Transmission: string;
+  Info: string;
+}
+
 @Component({
   selector: 'app-psr-issue-status',
   templateUrl: './psr-issue-status.component.html',
   styleUrls: ['./psr-issue-status.component.scss']
 })
+
+
+
 export class PsrIssueStatusComponent implements OnInit {
 
   headers = [
@@ -35,18 +62,18 @@ export class PsrIssueStatusComponent implements OnInit {
 
   ];
   savedHeaders = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-  public single: any[];
-  public multi: any[];
-  public triple: any[];
+    public single: any[] = [];
+    public multi: any[] = [];
+  public triple: any[] = [];
   public showLegend = false;
   public gradient = false;
-  allClients: any[];
+  allClients?: any[];
   public colorScheme = {
     domain: ['#2F3E9E', '#D22E2E', '#378D3B', '#0096A6', '#F47B00', '#606060']
   };
   color = 'accent';
   checked = true;
-  public first: any[];
+  public first: any[] = [];
       deleteConfirmation() {
     let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: 'auto',
@@ -65,10 +92,10 @@ export class PsrIssueStatusComponent implements OnInit {
   public showLabels = true;
   public explodeSlices = false;
   public doughnut = false;
-  public settings: Settings;
+  public settings?: Settings;
   public setting = [];
   sortedData: any;
-  pageEvent: PageEvent;
+  pageEvent?: PageEvent;
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
@@ -94,9 +121,9 @@ export class PsrIssueStatusComponent implements OnInit {
   public popoverTitle: string = 'Confirm Delete';
   public popoverMessage: string = 'Are you sure you want to delete this.?';
 
-  public popoversendMessage: 'Are you sure you want to send.?'
+  public popoversendMessage?: 'Are you sure you want to send.?'
   public popoversendTitle: string = 'Confirm Delete';
-  values = []
+ values: PsrIssue[] = [];
 ngOnInit() {
     if (environment.mode == 1) {
       // 1. Set the totalSize for the paginator
@@ -254,7 +281,7 @@ values1 = [
 
 
   opendashboard() {
-    window.open('/#/app/prtsnavbar/moniter');
+    window.open('/#/app/prtsnavbar/base-info');
   }
 
  
@@ -263,7 +290,7 @@ values1 = [
   saveStatus() {
     //this.alertService.createAlert('Successfully saved.', 1);
   }
-  public addchecklistaudit(auditdata) {
+  public addchecklistaudit(auditdata: any) {
     // this.router.navigate(['./app/prts/intiative']);
     window.open('/#/app/prts-grid')
 
@@ -275,7 +302,7 @@ values1 = [
     //  dialogRef.afterClosed().subscribe(data => {
     //  });
   }
-  public grid(auditdata) {
+  public grid(auditdata: any) {
     // let dialogRef = this.dialog.open(GridColumnComponent, {
     //   data: auditdata,
     //   height: 'auto',
@@ -284,16 +311,22 @@ values1 = [
     // dialogRef.afterClosed().subscribe(data => {
     // });
   }
-  public onSelect(event) {
+  public onSelect(event?: any) {
     // console.log(event);
   }
 
-    scrollGrid(side) {
-    var ele = document.getElementById('tableScroll');
-    if (side == 'right')
-      ele.scrollLeft += 210;
-    else
-      ele.scrollLeft -= 210;
+   scrollGrid(direction: string) {
+  const container = document.getElementById('grid-table-container');
+
+  if (!container) return;
+
+  const scrollAmount = 200; // adjust as needed
+
+  if (direction === 'right') {
+    container.scrollLeft += scrollAmount;
+  } else {
+    container.scrollLeft -= scrollAmount;
   }
+}
 
 }

@@ -85,17 +85,18 @@ export class D3BComponent implements OnInit {
 
 
     }
-  values = [
-   { check:  '1. Are the correct tools/fixtures being used?' },
-    { check: '2. Are the tools set to the specified torque?' },
-    { check: '3. Are the tools properly calibrated? Last calibration date__________' },
-    { check: '4. Are any bits or sockets worn or not in proper working condition?' },
-    { check: '5. This is the correct length of air hose with no extra sections added?' },
-    { check: '6. Are the tools rails, controllers, flow regulator connections correct?' },
-    { check: '7. Is the tool connected to the ANDON System properly?' },
-    { check: '8. If Error proofing is present, is it working correctly?' },
-    { check: '9. Does the workplace layout allow the Operator to work efficiently?' }
-  ];
+  values =[
+  { check: 'Have all potentially affected shipments  been identified using traceability data?' },
+  { check: 'Has a formal customer notification been issued with clear instructions ?' },
+  { check: 'Are containment actions consistently applied across all customers, regions, and distribution channels?' },
+  { check: 'What external controls are in place ?' },
+  { check: 'Is there a robust recall/hold mechanism to stop further distribution of suspect products?' },
+  { check: 'How are suspect vs cleared products clearly identified at customer or distributor locations?' },
+  { check: 'What is the defined process for disposition of affected products  in the field?' },
+  { check: 'How is the effectiveness of external containment being monitored ?' },
+  { check: 'Are communication channels established for real-time updates between internal teams and customers?' },
+  { check: 'Is ownership clearly defined for managing external containment until permanent corrective actions are validated?' }
+];
   valuess=[
     {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
     {possible: 'Is the current Data/analysis data available?',short:'current Data'   },
