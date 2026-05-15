@@ -84,7 +84,7 @@ const routes: Routes = [
     },
     {
         path: 'projects', component: TestingProjectsComponent,
-        data: { breadcrumb: 'Testing', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' }
+        data: { breadcrumb: 'Projects', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' }
     },
 
 
