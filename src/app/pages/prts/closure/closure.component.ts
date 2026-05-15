@@ -54,4 +54,8 @@ export class ClosureComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => { });
   }
+
+      goBack(){
+    this.router.navigate(['/app/prts-part/prtsissuestatus/psr']);
+  }
 }

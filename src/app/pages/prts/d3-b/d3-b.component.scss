@@ -86,3 +86,111 @@ textarea {
   font-size: 13px;
   color: #555;
 }
+
+.documents-wrapper {
+  margin-left: 30px;
+  width: 800px;
+}
+
+.documents-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.documents-table td,
+.documents-table th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.top-btn-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.bottom-btn-section {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.doc-link {
+  color: cornflowerblue;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background-color: #e0e0e0;
+  color: black;
+}
+
+.save-btn {
+  background-color: #3262a8;
+  color: white;
+}
+.page-header {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title {
+  margin: 0 !important;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.header-info {
+  margin: 3px 0 0 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.back-btn {
+  background-color: gray;
+  color: white;
+
+  display: flex;
+  align-items: center;
+
+  height: 40px;
+  margin-top: 5px;
+}
+
+/* Optional spacing replacements for Bootstrap classes */
+.ms-5 {
+  margin-left: 3rem;
+}
+
+.me-5 {
+  margin-right: 3rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.ms-3 {
+  margin-left: 1rem;
+}
+
+.fw-bold {
+  font-weight: 700;
+}

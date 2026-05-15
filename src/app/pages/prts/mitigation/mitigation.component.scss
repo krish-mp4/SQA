@@ -1,13 +1,20 @@
-
 ::ng-deep .ql-toolbar {
   border-radius: 6px 6px 0 0;
 }
 
 ::ng-deep .ql-container {
   border-radius: 0 0 6px 6px;
-  min-height: 350px;
+
+  min-height: 700px;   /* initial height */
+  max-height: 1000px;  /* maximum height */
+
+  resize: vertical;
+  overflow-y: auto;
 }
 
+::ng-deep .ql-editor {
+  min-height: 700px;
+}
 .save-btn {
   position: fixed;
   bottom: 20px;
@@ -21,22 +28,83 @@
 }
 
 .editor-container {
-  width: 60%;              /* initial width (adjust as you like) */
-  max-width: 100%;   
-  min-width: 60%;      /* stop growing beyond full width */
-  display: inline-block;
+  width: 60%;
+  max-width: 100%;
+  min-width: 60%;
+ 
+
+  display: flex;
+  flex-direction: column;
+
   text-align: left;
-  resize: horizontal;      /* allow drag to resize */
-  overflow: auto;
+  overflow: hidden;
 }
 
 .editor-container .ql-toolbar,
 .editor-container .ql-container {
-  width: 100%;             /* toolbar matches editor width */
+  width: 100%;
 }
 
 .header-info {
-  margin: 3px 0px 0px 0px;
+  margin: 3px 0 0 0;
   font-size: 13px;
   color: #555;
+}
+
+.page-header {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title {
+  margin: 0 !important;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.back-btn {
+  background-color: gray;
+  color: white;
+
+  display: flex;
+  align-items: center;
+
+  height: 40px;
+  margin-top: 5px;
+}
+
+/* Bootstrap spacing helpers */
+
+.ms-5 {
+  margin-left: 3rem;
+}
+
+.me-5 {
+  margin-right: 3rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.ms-3 {
+  margin-left: 1rem;
+}
+
+.fw-bold {
+  font-weight: 700;
 }

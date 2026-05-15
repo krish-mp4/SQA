@@ -31,6 +31,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { TestdashboardComponent } from '../dashboard/testdashboard/testdashboard.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AddProjectSectionComponent } from './testing-projects/add-project-section/add-project-section.component';
+import { ActivityRpmComponent } from './activity/activity-rpm/activity-rpm.component';
+import { GatesRpmComponent } from './gates/gates-rpm/gates-rpm.component';
 
 
 
@@ -38,6 +40,7 @@ const routes: Routes = [
     { path: "", redirectTo: "test-dashboard", pathMatch: "full" },
     {
         path: 'test-dashboard', component: TestdashboardComponent,
+        data: {breadcrum:'Radar'}
        
     },
 
@@ -53,6 +56,14 @@ const routes: Routes = [
     {
         path: 'teststatus', component: TeststatusComponent,
         data: { breadcrumb: 'Test Status', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' }
+    },
+    {
+        path: 'activity', component: ActivityRpmComponent,
+        data: { breadcrumb: 'Activity', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' }
+    },
+    {
+        path: 'gates', component: GatesRpmComponent,
+        data: { breadcrumb: 'Gates', description: 'Dashboard  based audits can be recorded here for a specific vehicle across a hierarchy of Categories  and checkpoints.  Issues are recorded and a demerit indicating the severity of the issue is recorded.  Demerit master varies with audit type.' }
     },
 
     // {
@@ -101,6 +112,8 @@ const routes: Routes = [
         StatusConfirmationDialogComponent,
         TestdashboardComponent,
         AddProjectSectionComponent,
+        ActivityRpmComponent,
+        GatesRpmComponent,
     ],
     imports: [
         CommonModule,

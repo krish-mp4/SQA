@@ -35,4 +35,8 @@ export class ClosurNoteComponent implements OnInit {
     ]
   };
 
+     goBack(){
+    this.router.navigate(['/app/prts-part/prtsissuestatus/psr']);
+  }
+
 }

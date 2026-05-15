@@ -118,12 +118,8 @@ export class MonitorComponent implements OnInit {
   // goBack() {
   //   this.router.navigate(['/app/complaints']);
   // }
-  goBack() {
-    if (this.fromPage === 'meeting') {
-      this.router.navigate(['/app/complaints/meeting']);
-    } else {
-      this.router.navigate(['/app/complaints']);
-    }
+  goBack(){
+    this.router.navigate(['/app/prts-part/prtsissuestatus/psr']);
   }
 
   public openCAPA(id: any) {

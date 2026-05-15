@@ -121,4 +121,8 @@ export class D2Component implements OnInit {
   fnLookupDeleteItemModal(i: number): void {
     this.lookupNameDetails.removeAt(i);
   }
+
+    goBack(){
+    this.router.navigate(['/app/prts-part/prtsissuestatus/psr']);
+  }
 }

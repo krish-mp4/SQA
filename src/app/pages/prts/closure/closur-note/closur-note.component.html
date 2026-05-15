@@ -1,13 +1,38 @@
 <div class="page-header ms-5">
-    <h3 class="page-title">Closure </h3>
-    <p class="header-info mb-0">
-        <span class="fw-bold">Ref No:</span>
-        PSR-24001
 
-        <span class="ms-3 fw-bold">Subject:</span>
-        Paint Defect
-    </p>
+    <!-- Left Content -->
+    <div class="header-content">
+        <h3 class="page-title mb-1">Closure</h3>
+
+        <p class="header-info mb-0">
+            <span class="fw-bold">Ref No:</span>
+            PSR-24001
+
+            <span class="ms-3 fw-bold">Subject:</span>
+            Paint Defect
+        </p>
+    </div>
+
+    <!-- Back Button -->
+    <button
+        class="btn btn-grey back-btn me-5"
+        (click)="goBack()"
+        style="
+          background-color: gray;
+          color: white;
+          display: flex;
+          align-items: center;
+          height: 40px;
+          margin-top: 5px;
+          margin-right: 3rem;
+        "
+    >
+        <mat-icon class="me-1">arrow_back</mat-icon>
+        Back
+    </button>
+
 </div>
+
 
 <div class="top-section ms-5">
 

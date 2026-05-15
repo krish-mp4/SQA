@@ -4,26 +4,45 @@
       <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Radar</a>
     </li>
 
+
+     <li routerLinkActive="active" [routerLink]="['./projects']">
+      <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Projects</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./projcts']">
+      <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Overview</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./activity']">
+      <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Activity</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./gates']">
+      <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Gates</a>
+    </li>
+
+    <li routerLinkActive="active" [routerLink]="['./projcts']">
+      <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Team</a>
+    </li>
+
     <!-- Add template ref for issues tab -->
     <li routerLinkActive="active" [routerLink]="['./issues']">
       <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Issues</a>
     </li>
 
-    <li routerLinkActive="active" [routerLink]="['./tractorstatus']">
+    <!-- <li routerLinkActive="active" [routerLink]="['./tractorstatus']">
       <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Equipment Status</a>
     </li>
 
     <li routerLinkActive="active" [routerLink]="['./teststatus']">
       <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Test Status</a>
-    </li>
+    </li> -->
 
     <li routerLinkActive="active" [routerLink]="['./testing-masterData']">
       <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Master Data</a>
     </li>
 
-    <li routerLinkActive="active" [routerLink]="['./projects']">
-      <a mat-raised-button class="navtabWidth" style="margin-top: 10px;">Projects</a>
-    </li>
+   
 
     <!-- ✅ Show only if Issues tab is active -->
     <ng-container *ngIf="issuesTab.isActive">

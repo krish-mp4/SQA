@@ -47,6 +47,10 @@ export class D7Component implements OnInit {
     });
   }
 
+    goBack(){
+    this.router.navigate(['/app/prts-part/prtsissuestatus/psr']);
+  }
+
   ngOnInit(): void {
     // Start with 5 WHY inputs
     this.addNewInputField(4);

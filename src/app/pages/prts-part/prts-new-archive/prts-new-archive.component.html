@@ -1,5 +1,16 @@
 <!-- Table -->
 <div class="col-sm-12">
+
+  <div class="page-header d-flex justify-content-between align-items-start">
+
+    <div class="header-content ms-4">
+      <h3 class="page-title mb-2">Archives</h3>
+
+
+    </div>
+
+  </div>
+
   <div class="col-xs-12" style="padding: 0 0 0 11px">
     <div>
       <!-- <h3>Checklist based Audit</h3> -->
@@ -203,43 +214,40 @@
                   </div>
                 </div>
               </div>
-              
-        <div class="row" style="margin-top: 16px;">
-  <div class="col-12 d-flex justify-content-end align-items-center gap-3">
-    <!-- Toggle Icon -->
-   
 
-    <!-- Clear Button -->
-  
+              <div class="row" style="margin-top: 16px;">
+                <div class="col-12 d-flex justify-content-end align-items-center gap-3">
+                  <!-- Toggle Icon -->
 
-    <!-- Search Button -->
-    <button mat-raised-button color="primary"
-            (click)="getTests()">
-      <mat-icon>search</mat-icon> Search
-    </button>
 
-      <button mat-raised-button class="btn-default"
-            (click)="clearFilter(); getTests()">
-      <mat-icon>settings_backup_restore</mat-icon> Clear
-    </button>
-     <a (click)="filterToggle = !filterToggle"  
-       style="font-size: 25px; cursor: pointer;">
-      <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-    </a>
-  </div>
-</div>
+                  <!-- Clear Button -->
+
+
+                  <!-- Search Button -->
+                  <button mat-raised-button color="primary" (click)="getTests()">
+                    <mat-icon>search</mat-icon> Search
+                  </button>
+
+                  <button mat-raised-button class="btn-default" (click)="clearFilter(); getTests()">
+                    <mat-icon>settings_backup_restore</mat-icon> Clear
+                  </button>
+                  <a (click)="filterToggle = !filterToggle" style="font-size: 25px; cursor: pointer;">
+                    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
             </mat-card-content>
           </mat-card>
         </div>
       </div>
       <!-- Table -->
-<div #tableContainer id="grid-table-container" class="table-responsive" style="width: 100%">
+      <div #tableContainer id="grid-table-container" class="table-responsive" style="width: 100%">
         <table atSort id="example2" class="table table-bordered table-hover data-table">
           <thead class="tbl-head">
             <tr>
-                            <th class="theadcolor text-center">Actions</th>
+              <th class="theadcolor text-center">Actions</th>
 
-               <th class="theadcolor text-center">Status</th>
+              <th class="theadcolor text-center">Status</th>
               <th class="theadcolor">Reference</th>
               <th class="theadcolor">Subject</th>
               <th class="theadcolor">Description</th>
@@ -260,24 +268,24 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of values">
-             
-               <!-- <td class="text-center editDel">
+
+              <!-- <td class="text-center editDel">
                 <a><i class="fa fa-archive" matTooltip="UnArchive" style="cursor: pointer"></i>
                 </a>
               </td> -->
 
-            <td class="text-center editDel">
-  <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-    
-    <a matTooltip="Unarchive" (click)="unarchiveConfirmation()" style="cursor: pointer;">
-      <span class="material-symbols-outlined" 
-            style="color: #9966ff; font-size: 20px; line-height: 1; vertical-align: middle;">
-        unarchive
-      </span>
-    </a>
+              <td class="text-center editDel">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
 
-  </div>
-</td>
+                  <a matTooltip="Unarchive" (click)="unarchiveConfirmation()" style="cursor: pointer;">
+                    <span class="material-symbols-outlined"
+                      style="color: #9966ff; font-size: 20px; line-height: 1; vertical-align: middle;">
+                      unarchive
+                    </span>
+                  </a>
+
+                </div>
+              </td>
 
               <!-- Status -->
               <td class="text-center">
@@ -343,7 +351,7 @@
 
               <!-- Containment Assigned To -->
               <td>{{item.ContainmentAssignedTo}}</td>
-             
+
             </tr>
           </tbody>
         </table>

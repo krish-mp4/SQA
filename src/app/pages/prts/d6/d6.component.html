@@ -1,29 +1,38 @@
-<!-- <div class="col-lg-12"> -->
-<!-- <button mat-raised-button color="primary" style="margin-right: 5px; margin-left: 7px;" class="pull-right btn-primary "
-    (click)="addMeeting(null)">
-    <mat-icon>add</mat-icon> Add Actions
-  </button> -->
-<!-- <button mat-raised-button class="pull-right" type="button" (click)="back1()"
-    style="color: rgb(7, 10, 7); background-color: #e0e0e0;">
-    <mat-icon>fast_rewind</mat-icon> Back
-  </button>
-</div> -->
+<div class="page-header ms-5">
 
-<div class="page-header  ms-5 d-flex justify-content-between align-items-start" style="padding-top:0px ;">
+    <!-- Left Content -->
+    <div class="header-content">
+        <h3 class="page-title mb-1">D6 (Product ENG)</h3>
 
-  <!-- Left Content -->
-  <div class="header-content">
-    <h3 class="page-title mb-1">D6 (Product ENG)</h3>
+        <p class="header-info mb-0">
+            <span class="fw-bold">Ref No:</span>
+            PSR-24001
 
-     <p class="header-info mb-0">
-                <span class="fw-bold">Ref No:</span>
-               PSR-24001
+            <span class="ms-3 fw-bold">Subject:</span>
+            Paint Defect
+        </p>
+    </div>
 
-                <span class="ms-3 fw-bold">Subject:</span>
-               Paint Defect
-            </p>
-  </div>
+    <!-- Back Button -->
+    <button
+        class="btn btn-grey back-btn me-5"
+        (click)="goBack()"
+        style="
+          background-color: gray;
+          color: white;
+          display: flex;
+          align-items: center;
+          height: 40px;
+          margin-top: 5px;
+          margin-right: 3rem;
+        "
+    >
+        <mat-icon class="me-1">arrow_back</mat-icon>
+        Back
+    </button>
+
 </div>
+
 
 
 <div style="display: flex; gap: 10px; padding: 30px;" class="mt-4">
@@ -31,13 +40,7 @@
     (click)="setTab('overview')">
     Overview
   </button>
-  <!-- <button
-    style="font-weight: bold; border-radius: 5px"
-    [ngClass]="{ 'active-tab': activeTab === 'diagnosis' }"
-    (click)="setTab('diagnosis')"
-  >
-    Diagnosis
-  </button> -->
+
   <button style="font-weight: bold; border-radius: 5px" [ngClass]="{ 'active-tab': activeTab === 'fishbone' }"
     (click)="setTab('fishbone')">
     Fish Bone Diagram
@@ -46,20 +49,7 @@
     (click)="setTab('5why')">
     5 WHY
   </button>
-  <!-- <button
-    style="font-weight: bold; border-radius: 5px"
-    [ngClass]="{ 'active-tab': activeTab === 'monitoring' }"
-    (click)="setTab('monitoring')"
-  >
-    Monitoring
-  </button>
-  <button
-    style="font-weight: bold; border-radius: 5px"
-    [ngClass]="{ 'active-tab': activeTab === 'deployment' }"
-    (click)="setTab('deployment')"
-  >
-    Deployment
-  </button> -->
+
   <button style="font-weight: bold; border-radius: 5px" [ngClass]="{ 'active-tab': activeTab === 'documents' }"
     (click)="setTab('documents')">
     Documents
@@ -70,11 +60,7 @@
     Updates
   </button>
 
-  <!-- <button
-      style="font-weight: bold; border-radius: 5px"
-      [ngClass]="{ 'active-tab': activeTab === 'documents' }"
-      (click)="setTab('documents')"
-  > -->
+
   <button style="font-weight: bold; border-radius: 5px" [ngClass]="{ 'active-tab': activeTab === 'capa' }"
     (click)="setTab('capa')">
     CAPA
@@ -86,8 +72,8 @@
 
 <!-- Overview  -->
 <div *ngIf="activeTab === 'overview'">
-  <div class="col-lg-12" style="margin-top: -40px">
-    <!-- Master Data Tabs -->
+  <!-- <div class="col-lg-12" style="margin-top: -40px">
+    
     <div class="col-xs-12" style="margin-top: 15px; margin-left: -16px; margin-bottom: 30px"></div>
   </div>
   <button mat-raised-button color="primary" class="pull-right btn-primary mt-3 mb-4"
@@ -98,7 +84,7 @@
   <button mat-raised-button color="primary" class="pull-right btn-primary mt-3"
     style="margin-right: 5px; padding: 4px 10px; font-size: 13px" (click)="addMeeting(null)">
     <mat-icon style="font-size: 20px">add</mat-icon> Add CAPA
-  </button>
+  </button> -->
 
   <div class="col-lg-12 row">
     <div class="col-lg-4 col-sm-4">
@@ -158,7 +144,7 @@
   </div>
 
 
-  <div class="col-sm-12 btn-footer-space clearfix mt-5" style="margin-right: 25px;">
+  <div class="col-sm-12 btn-footer-space clearfix mt-5" style="margin-right: 30px;">
     <div class="d-flex justify-content-end gap-2 footer-actions mx-3">
 
       <button mat-raised-button (click)="back()" type="button" style="color: #070a07; background-color: #e0e0e0;">
@@ -352,7 +338,7 @@
 </div>
 
 <!-- Why -->
-<div *ngIf="activeTab === '5why'" style="margin-left: 25px;">
+<div *ngIf="activeTab === '5why'" style="margin-left: 30px;">
 
   <div class="row-wrap">
     <div class="w-100">
@@ -386,9 +372,9 @@
                 <i class="fa fa-trash text-danger"></i>
               </a>
 
-             <a *ngIf="i === 0" (click)="addNewInputField()" style="cursor:pointer;">
-  <i class="fa fa-plus dhe"></i>
-</a>
+              <a *ngIf="i === 0" (click)="addNewInputField()" style="cursor:pointer;">
+                <i class="fa fa-plus dhe"></i>
+              </a>
 
             </div>
 
@@ -441,65 +427,90 @@
 
 
 <!-- Documents -->
-<!-- Documents -->
-<div *ngIf="activeTab === 'documents'" style="margin-left: 30px;">
+<div *ngIf="activeTab === 'documents'" class="documents-wrapper ms-5" style="width: 800px;">
 
-  <!-- Button row aligned above the table -->
-  <div style="width: auto; min-width: 800px; display: flex; justify-content: flex-end; margin-bottom: 8px; margin-right: 200px;">
+  <!-- Top Right Add Button -->
+  <div class="top-btn-section">
     <button mat-raised-button color="primary" class="btn-primary" (click)="adddocument(null)">
-      <mat-icon>add</mat-icon> Add Documents
+      <mat-icon>add</mat-icon>
+      Add Documents
     </button>
   </div>
 
-  <table matSort id="example2" class="table table-bordered table-hover"
-    style="table-layout: fixed; width: auto; min-width: 800px;">
+  <!-- Table -->
+  <table matSort id="example2" class="table table-bordered table-hover documents-table">
+
     <thead class="tbl-head">
       <tr>
         <th style="width: 100px;">Date</th>
         <th style="width: 80px;">Refer</th>
         <th style="width: 60px;" class="text-center">Done</th>
         <th style="width: 150px;" class="text-center">Document Type</th>
-        <th style="width: 60px;" class="theadcolor text-center">View</th>
-        <th style="width: 80px;" class="theadcolor text-center">Actions</th>
+        <th style="width: 60px;" class="text-center">View</th>
+        <th style="width: 80px;" class="text-center">Actions</th>
       </tr>
     </thead>
+
     <tbody>
       <tr *ngFor="let item of documents">
-        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ item.date }}</td>
-        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ item.refer }}</td>
-        <td class="text-center"><input type="checkbox"></td>
-        <td style="color: cornflowerblue; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
-          class="text-center" (click)="adddocumenttype(item)">
+
+        <td>{{ item.date }}</td>
+
+        <td>{{ item.refer }}</td>
+
+        <td class="text-center">
+          <input type="checkbox">
+        </td>
+
+        <td class="text-center doc-link" (click)="adddocumenttype(item)">
           Containment Log.pdf
         </td>
-        <td class="text-center"><mat-icon>library_books</mat-icon></td>
+
+        <td class="text-center">
+          <mat-icon>library_books</mat-icon>
+        </td>
+
         <td class="text-center editDel">
-          <a style="cursor: pointer; margin-right: 10px;" matTooltip="Edit" (click)="adddocument(item)">
+          <a style="cursor:pointer; margin-right:10px;" matTooltip="Edit" (click)="adddocument(item)">
             <i class="fa fa-edit" style="color: cornflowerblue;"></i>
           </a>
-          <a matTooltip="Delete" (click)="deleteConfirmation(item)" style="cursor: pointer;">
+
+          <a matTooltip="Delete" (click)="deleteConfirmation(item)" style="cursor:pointer;">
             <i class="fa fa-trash red"></i>
           </a>
         </td>
+
       </tr>
     </tbody>
   </table>
 
-  <div class="col-lg-12"  >
-    <div class="pull-right mt-5" style="margin-right: 170px;" >
-      <button mat-raised-button (click)="back()" class="mr-2" type="button"
-        style="color: rgb(7, 10, 7); background-color: #e0e0e0; margin-right: 10px;">
-        <mat-icon>fast_rewind</mat-icon> Back
-      </button>
-      <button mat-raised-button class="mr-2" type="button"
-        style="color: rgba(252, 253, 252, 0.926); background-color: #3262a8; margin-right: 10px;">
-        <mat-icon>save</mat-icon> Save
-      </button>
-      <button mat-raised-button (click)="next()" class="mr-2" type="button"
-        style="color: rgb(6, 6, 6); background-color: #e0e0e0;">
-        Next <mat-icon>fast_forward</mat-icon>
-      </button>
-    </div>
+  <!-- Bottom Right Buttons -->
+  <div class="bottom-btn-section">
+
+    <button style="color: rgb(7, 10, 7); background-color: #e0e0e0; " mat-raised-button
+      (click)="back()" type="button" class="secondary-btn">
+
+      <mat-icon>fast_rewind</mat-icon>
+      Back
+
+    </button>
+
+    <button style="color: rgba(252, 253, 252, 0.926); background-color: #3262a8; " mat-raised-button
+      type="button" class="save-btn">
+
+      <mat-icon>save</mat-icon>
+      Save
+
+    </button>
+
+    <button style="color: rgb(7, 10, 7); background-color: #e0e0e0; " mat-raised-button
+      (click)="next()" type="button" class="secondary-btn">
+
+      Next
+      <mat-icon>fast_forward</mat-icon>
+
+    </button>
+
   </div>
 
 </div>
@@ -507,7 +518,11 @@
 
 <!-- capa -->
 
-<div *ngIf="activeTab === 'capa'" class="col-sm-12" style="margin-top: 10px; margin-left: 25px;">
+<div *ngIf="activeTab === 'capa'" class="col-sm-12" style="margin-top: 10px; margin-left:30px">
+  <button mat-raised-button color="primary" class="pull-right btn-primary mb-3 me-3"
+    style="margin-right: 5px;  font-size: 13px" (click)="addMeeting(null)">
+    <mat-icon style="font-size: 20px">add</mat-icon> Add CAPA
+  </button>
   <div class="table-responsive" id="grid-table-container" style="width: 100%; margin-left: -7px;">
     <table class="table table-bordered table-hover">
       <thead class="tbl-head">
@@ -561,7 +576,7 @@
 
   <div class="row">
     <div class="form-group">
-      <h2><label class="col-lg-12 control-label"style="font-size: 16px;"> Root Cause Analysis: </label></h2>
+      <h2><label class="col-lg-12 control-label" style="font-size: 16px;"> Root Cause Analysis: </label></h2>
       <div class="col-lg-12">
         <textarea class="form-control" style="height: 131px; width: 27cm;" placeholder="Enter Root Cause Analysis"
           required></textarea>
@@ -569,7 +584,7 @@
     </div>
 
     <div class="form-group">
-      <h2><label class="col-lg-12 control-label"style="font-size: 16px;"> Interim Corrective Action: </label></h2>
+      <h2><label class="col-lg-12 control-label" style="font-size: 16px;"> Interim Corrective Action: </label></h2>
       <div class="col-lg-12">
         <textarea class="form-control" style="height: 131px; width: 27cm;" placeholder="Enter Interim Corrective Action"
           required></textarea>
@@ -577,7 +592,7 @@
     </div>
 
     <div class="form-group">
-      <h2><label class="col-lg-12 control-label"style="font-size: 16px;"> Permanent Corrective Action: </label></h2>
+      <h2><label class="col-lg-12 control-label" style="font-size: 16px;"> Permanent Corrective Action: </label></h2>
       <div class="col-lg-12">
         <textarea class="form-control" style="height: 131px; width: 27cm;"
           placeholder="Enter Permanent Corrective Action" required></textarea>
@@ -585,7 +600,7 @@
     </div>
   </div>
 
-  <div align="end" style="margin-top: 35px; margin-right: 10px;margin-bottom: 20px;">
+  <div align="end" style="margin-top: 30px; margin-bottom: 20px; margin-right: 10px;">
 
     <!-- <button mat-raised-button class="pull-right vamshi"
       style="color: white; background-color: rgb(10, 93, 182); margin-right: 160px;">
