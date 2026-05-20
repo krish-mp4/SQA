@@ -28,6 +28,45 @@
           <span *ngIf="isNavOpen">Score Matrix</span>
         </a>
       </li>
+     <!-- Asset Master -->
+<li routerLinkActive="active">
+  <a [routerLink]="['asset-master']">
+    <mat-icon *ngIf="!isNavOpen" matTooltip="Asset Master">inventory_2</mat-icon>
+    <span *ngIf="isNavOpen">Asset Master</span>
+  </a>
+</li>
+
+<!-- Item Master -->
+<li routerLinkActive="active">
+  <a [routerLink]="['item-master']">
+    <mat-icon *ngIf="!isNavOpen" matTooltip="Item Master">list_alt</mat-icon>
+    <span *ngIf="isNavOpen">Item Master</span>
+  </a>
+</li>
+
+<!-- Item Category -->
+<li routerLinkActive="active">
+  <a [routerLink]="['item-category']">
+    <mat-icon *ngIf="!isNavOpen" matTooltip="Item Category">folder</mat-icon>
+    <span *ngIf="isNavOpen">Item Category</span>
+  </a>
+</li>
+
+<!-- Item Sub Category -->
+<li routerLinkActive="active">
+  <a [routerLink]="['item-sub-category']">
+    <mat-icon *ngIf="!isNavOpen" matTooltip="Item Sub Category">folder_open</mat-icon>
+    <span *ngIf="isNavOpen">Item Sub Category</span>
+  </a>
+</li>
+
+<!-- Resource Master -->
+<li routerLinkActive="active">
+  <a [routerLink]="['resource-master']">
+    <mat-icon *ngIf="!isNavOpen" matTooltip="Resource Master">manage_accounts</mat-icon>
+    <span *ngIf="isNavOpen">Resource Master</span>
+  </a>
+</li>
 
     </ul>
   </nav>
