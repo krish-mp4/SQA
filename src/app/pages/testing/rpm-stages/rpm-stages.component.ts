@@ -25,32 +25,32 @@ fnHandlePage(event: any) {
   {
     "phase": "Feasibility",
     "description": "Evaluate project viability, business value, technical feasibility, budget, risks, and stakeholder alignment before execution approval.",
-    "tasks": "Market Research",
+    "tasks": 2,
   },
   {
     "phase": "Design",
     "description": "Create functional, technical, and UI/UX designs for the solution architecture and workflows.",
-    "tasks":"Wireframing", 
+    "tasks": 3,
   },
   {
     "phase": "Prototyping",
     "description": "Develop an initial working prototype to validate concepts, workflows, usability, and stakeholder expectations.",
-    "tasks": "Prototype Planning",
+    "tasks": 1,
   },
   {
     "phase": "Testing",
     "description": "Validate functionality, quality, performance, security, and usability before production release.",
-    "tasks": "Test Case Creation",
+    "tasks": 4,
   },
   {
     "phase": "Launch",
     "description": "Prepare and release the product/application into the production environment for end users.",
-    "tasks":"Deployment Planning",
+    "tasks": 5,
   },
   {
     "phase": "Implementation",
     "description": "Execute full-scale adoption, user onboarding, operational transition, and support activities after launch.",
-    "tasks": "Data Migration",
+    "tasks": 2,
   }
 ]
 
