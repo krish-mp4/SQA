@@ -22,10 +22,11 @@
                             (click)="deleteConfirmation(item)"></i>
                     </a>
                 </td>
-                <td class="text-center">{{ item.phase }}</td>
-                <td>{{ item.description }}</td>
-                <td>
-                    {{ item.tasks }}
+                <td >{{ item.phase }}</td>
+                <td >{{ item.description }}</td>
+                <td class="text-center">
+                    <a href=""> {{ item.tasks }}</a>
+                   
                     <!-- <ul class="mb-0 ps-3">
                         <li *ngFor="let task of item.tasks">{{ task }}</li>
                     </ul> -->
