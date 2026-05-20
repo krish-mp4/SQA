@@ -15,7 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { MasterdataComponent } from './masterdata.component';
+
 import { AddcategoryComponent } from './category/addcategory/addcategory.component';
 import { AddeditdeparmentComponent } from './deparments/addeditdeparment/addeditdeparment.component';
 import { AdddetectionComponent } from './detection/adddetection/adddetection.component';
@@ -61,7 +61,7 @@ const routes: Routes = [
     AddresparasComponent,
     AddeditscorematrixComponent,
     AddeditsubgroupComponent,
-    MasterdataComponent, ScoreMatrixComponent, DeparmentsComponent, DetectionComponent, CategoryComponent, SubGroupsComponent, RespareasComponent],
+    ScoreMatrixComponent, DeparmentsComponent, DetectionComponent, CategoryComponent, SubGroupsComponent, RespareasComponent],
   imports: [
 
     CommonModule,
