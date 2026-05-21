@@ -36,6 +36,10 @@ import { RpmTasksComponent } from './rpm-tasks/rpm-tasks.component';
 import { GatesComponent } from './gates/gates.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';          // ← add this
 import { MatNativeDateModule } from '@angular/material/core';
+import { RpmStagesWbsComponent } from './rpm-stages/rpm-stages-wbs/rpm-stages-wbs.component';
+import { AddModuleComponent } from './rpm-stages/rpm-stages-wbs/add-module/add-module.component';
+import { AddTaskComponent } from './rpm-tasks/add-task/add-task.component';
+// import { AddCriteriaComponent } from './rpm-tasks/add-criteria/add-criteria.component';                // ← add this
 import { TestingKanbanComponent } from './testing-kanban/testing-kanban.component';                // ← add this
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -49,6 +53,7 @@ const routes: Routes = [
     { path: 'activity', component: ActivityRpmComponent, data: { breadcrumb: 'Activity' } },
     { path: 'stages', component: RpmStagesComponent, data: { breadcrumb: 'Stages' } },
     { path: 'tasks', component: RpmTasksComponent, data: { breadcrumb: 'Tasks' } },
+  { path: 'stages/wbs', component: RpmStagesWbsComponent, data: { breadcrumb: 'WBS' } },
     { path: 'projects', component: TestingProjectsComponent, data: { breadcrumb: 'Projects' } },
     { path: 'testing-kanban', component: TestingKanbanComponent, data: { breadcrumb: 'Kanban' } },
     // {
@@ -91,6 +96,10 @@ const routes: Routes = [
         RpmStagesComponent,
         RpmTasksComponent,
         MasterdataComponent,
+        RpmStagesWbsComponent,
+        AddModuleComponent,
+        AddTaskComponent,
+        // AddCriteriaComponent,
         TestingKanbanComponent,
     ],
     imports: [
