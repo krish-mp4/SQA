@@ -20,6 +20,8 @@ import { PartsScatterComponent } from './parts-scatter/parts-scatter.component';
 import { PartsBellcurveComponent } from './parts-bellcurve/parts-bellcurve.component';
 import { PartsParetoComponent } from './parts-pareto/parts-pareto.component';
 import { PartsInnerActionsComponent } from './parts-inner-actions/parts-inner-actions.component';
+import { PartsSummaryComponent } from './parts-summary/parts-summary.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 const routes: Routes = [
   {
@@ -32,6 +34,7 @@ const routes: Routes = [
       { path: 'scatter', component: PartsScatterComponent },
       { path: 'bell-curve', component: PartsBellcurveComponent }, 
       { path: 'pareto', component: PartsParetoComponent },
+      { path: 'summary', component: PartsSummaryComponent },
       
       { path: '', redirectTo: 'commodity', pathMatch: 'full' }
     ]
@@ -46,7 +49,8 @@ const routes: Routes = [
     PartsScatterComponent,
     PartsBellcurveComponent,
     PartsParetoComponent,
-    PartsInnerActionsComponent 
+    PartsInnerActionsComponent,
+    PartsSummaryComponent 
   ],
   imports: [
     CommonModule,
@@ -57,9 +61,9 @@ const routes: Routes = [
     MatButtonModule,
     MatSelectModule,
     MatIconModule,
-    
     // ✅ ADDED: Add it to the imports array here
-    CanvasJSAngularChartsModule 
-  ]
+    CanvasJSAngularChartsModule,
+    FlexLayoutModule
+]
 })
 export class PartsAnalyticsModule { }
