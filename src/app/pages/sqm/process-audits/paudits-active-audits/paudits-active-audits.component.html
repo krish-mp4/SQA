@@ -19,7 +19,7 @@
     <button mat-raised-button class="btn-dark">
       <mat-icon>filter_list</mat-icon> Filter
     </button>
-    <button mat-raised-button color="primary" class="btn-blue">
+    <button mat-raised-button color="primary" class="btn-blue" (click)="openaudit()">
       <mat-icon>person_add</mat-icon> Add Audit
     </button>
   </div>
@@ -43,8 +43,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let audit of auditData">
-         <td class="text-link">
-  <a [routerLink]="['../reference']">{{ audit.ref }}</a>
+                  <td class="text-link">
+  <a 
+    [routerLink]="['../reference']"
+    target="_blank"
+  >
+    {{ audit.ref }}
+  </a>
 </td>
           <td>{{ audit.commodity }}</td>
           <td>{{ audit.location }}</td>
