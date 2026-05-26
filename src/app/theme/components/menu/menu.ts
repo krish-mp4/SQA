@@ -35,14 +35,14 @@ export const horizontalMenuItems = [
   new Menu(1, 'SUB Audits', '/app/subjective-audits', null, 'find_in_page', null, false, 0),
   new Menu(6, '7D', '/app/prts-part', null, 'request_quote', null, false, 0),
 
-  new Menu(7, 'R&D', '/app/testing', null, 'engineering', null, false, 0),
+  new Menu(7, 'RPM', '/app/testing', null, 'engineering', null, false, 0),
 
   new Menu(9, 'SQA', '/app/sqm', null, 'settings_applications', null, false, 0),
 
   new Menu(8, 'Complaints', '/app/complaints', null, 'settings', null, false, 0),
-//  new Menu(5, 'Setup', '/app/setups', null, 'build', null, true, 0),
-//      new Menu(501, 'MasterData', '/app/setups/setup-masterdata', null, 'storage', null, false, 5),
-//   new Menu(502, 'Audit Config', '/app/setups/setup-audit', null, 'group_add', null, false, 5),
+  //  new Menu(5, 'Setup', '/app/setups', null, 'build', null, true, 0),
+  //      new Menu(501, 'MasterData', '/app/setups/setup-masterdata', null, 'storage', null, false, 5),
+  //   new Menu(502, 'Audit Config', '/app/setups/setup-audit', null, 'group_add', null, false, 5),
 
 
   // new Menu(5, 'Setup', '/app/setup', null, 'business_center', null, false, 0),
@@ -52,11 +52,11 @@ export const horizontalMenuItems = [
   // new Menu(8, 'Finance', '/app/finance', null, 'settings_applications', null, false, 0),
   new Menu(4, 'Admin', '/app/admin', null, 'supervisor_account', null, true, 0),
   new Menu(401, 'Roles & Users', '/app/admin/manage-users', null, 'group_add', null, false, 4),
-   // new Menu(407, 'Master Data', '/app/setups/setup-masterdata', null, 'storage', null, false, 4),
+  // new Menu(407, 'Master Data', '/app/setups/setup-masterdata', null, 'storage', null, false, 4),
   new Menu(408, 'Audit Config', '/app/setups/setup-audit', null, 'group_add', null, false, 4),
   //new Menu(408, 'Master Data', '/app/setups/setup-audit', null, 'group_add', null, false, 4),
-   new Menu(402, 'Master Data', '/app/setups/setup-masterdata/status-master', null, 'storage', null, false, 4),
-   new Menu(403, 'Departments', '/app/admin/departments', null, 'apartment', null, false, 4),
+  new Menu(402, 'Master Data', '/app/setups/setup-masterdata/status-master', null, 'storage', null, false, 4),
+  new Menu(403, 'Departments', '/app/admin/departments', null, 'apartment', null, false, 4),
   new Menu(403, 'Lookup Options', '/app/admin/lookups', null, 'search', null, false, 4),
   new Menu(404, 'Preferences', '/app/admin/settings', null, 'settings_applications', null, false, 4),
   new Menu(405, 'Event Log', '/app/admin/event-log', null, 'engineering', null, false, 4),

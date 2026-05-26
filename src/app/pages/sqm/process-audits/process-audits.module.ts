@@ -36,7 +36,9 @@ import { ProcessAuditsCategoriesComponent } from './paudits-setup/process-audits
 import { CommodityMasterComponent } from './paudits-setup/commodity-master/commodity-master.component';
 import { AddProcessCategoryPopComponent } from './paudits-setup/process-audits-categories/add-process-category-pop/add-process-category-pop.component';
 import { AddCommodityPopComponent } from './paudits-setup/commodity-master/add-commodity-pop/add-commodity-pop.component';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   {
@@ -44,26 +46,26 @@ const routes: Routes = [
     component: ProcessAuditsComponent,
     children: [
       { path: '', redirectTo: 'analytics', pathMatch: 'full' },
-      { 
-        path: 'analytics', 
-        loadChildren: () => import('./paudits-analytics/paudits-analytics.module').then(m => m.PauditsAnalyticsModule) 
+      {
+        path: 'analytics',
+        loadChildren: () => import('./paudits-analytics/paudits-analytics.module').then(m => m.PauditsAnalyticsModule)
       },
       { path: 'new-audit', component: PauditsNewAuditComponent },
       { path: 'active-audits', component: PauditsActiveAuditsComponent },
       { path: 'reference', component: ActiveauditsReferenceComponent },
       { path: 'details', component: PauditsAlertsDetailsComponent },
-     { 
-  path: 'setup', 
-  component: PauditsSetupComponent,
-  children: [
-    // Default redirect to Process Audit Categories when they click "Setup"
-    { path: '', redirectTo: 'process-cat', pathMatch: 'full' },
-    
-    // The two child tabs
-    { path: 'process-cat', component: ProcessAuditsCategoriesComponent },
-    { path: 'commodity', component: CommodityMasterComponent }
-  ]
-},
+      {
+        path: 'setup',
+        component: PauditsSetupComponent,
+        children: [
+          // Default redirect to Process Audit Categories when they click "Setup"
+          { path: '', redirectTo: 'process-cat', pathMatch: 'full' },
+
+          // The two child tabs
+          { path: 'process-cat', component: ProcessAuditsCategoriesComponent },
+          { path: 'commodity', component: CommodityMasterComponent }
+        ]
+      },
       { path: 'alerts', component: PauditsAlertsComponent },
       { path: 'completed-audits', component: PauditsCompletedAuditsComponent },
       { path: 'user-manual', component: PauditsUserManualComponent },
@@ -75,8 +77,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    ProcessAuditsComponent, 
-    PauditsNewAuditComponent,
+    ProcessAuditsComponent,
     PauditsActiveAuditsComponent,
     PauditsSetupComponent,
     PauditsAlertsComponent,
@@ -89,7 +90,8 @@ const routes: Routes = [
     ProcessAuditsCategoriesComponent,
     CommodityMasterComponent,
     AddProcessCategoryPopComponent,
-    AddCommodityPopComponent
+    AddCommodityPopComponent,
+    PauditsNewAuditComponent
   ],
   imports: [
     CommonModule,
@@ -108,7 +110,9 @@ const routes: Routes = [
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,     // ← Add this
+    MatDialogModule   // ← Add this
   ]
 })
 export class ProcessAuditsModule { }

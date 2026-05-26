@@ -9,6 +9,13 @@
     </button>
   </div>
 
+   
+  <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+    <button mat-raised-button style="background-color: #37474f; color: white;" (click)="toggleFilters()">
+      <mat-icon>filter_list</mat-icon> Filter
+    </button>
+  </div>
+
   <div class="filter-wrapper" *ngIf="showFilters">
     <mat-card class="filter-card">
       <mat-card-content>
