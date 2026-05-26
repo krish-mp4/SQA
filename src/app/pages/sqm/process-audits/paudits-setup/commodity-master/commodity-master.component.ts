@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AddCommodityPopComponent } from './add-commodity-pop/add-commodity-pop.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-commodity-master',
@@ -19,8 +21,9 @@ export class CommodityMasterComponent implements OnInit {
     { name: 'Non-Metallic', status: 'Active' },
     { name: 'Sheet Metal', status: 'Active' }
   ];
+ 
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {}
 
@@ -35,5 +38,19 @@ export class CommodityMasterComponent implements OnInit {
 
   onGo(): void {
     console.log('Filters Applied:', { category: this.selectedCategory, status: this.selectedStatus });
+  }
+
+  addCommodity() {
+   const dialogRef = this.dialog.open(AddCommodityPopComponent, {
+       width: '650px',
+       disableClose: true        // prevents closing on backdrop click
+     });
+   
+     dialogRef.afterClosed().subscribe((result: { name: string; status: string; }) => {
+       if (result) {
+         // result = { name: '...', status: '...' }
+         this.tableData.push(result);  // or call your API here
+       }
+     });
   }
 }

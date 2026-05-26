@@ -216,3 +216,51 @@
   align-items: center;
   justify-content: center;
 }
+
+.custom-mat-select {
+  width: 160px !important;
+  height: 36px !important;
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+
+  // DO NOT set display/padding on the host — let Material handle its own layout
+
+  ::ng-deep .mat-select-trigger {
+    height: 36px !important;
+    padding: 0 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  ::ng-deep .mat-select-value {
+    flex: 1 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    color: #333 !important;
+    max-width: calc(100% - 24px) !important;   // leave room for arrow
+  }
+
+  ::ng-deep .mat-select-placeholder {
+    color: #999 !important;
+    font-size: 13px !important;
+    opacity: 1 !important;
+  }
+
+  ::ng-deep .mat-select-arrow-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    padding-left: 4px !important;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    color: #555 !important;
+    border-left: 5px solid transparent !important;
+    border-right: 5px solid transparent !important;
+    border-top: 5px solid currentColor !important;
+  }
+}

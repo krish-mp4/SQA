@@ -3,6 +3,7 @@ import { PauditsNewAuditComponent } from './paudits-new-audit/paudits-new-audit.
 import { MatDialog } from '@angular/material/dialog';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { PauditsHelpDeskComponent } from './paudits-help-desk/paudits-help-desk.component';
 
 @Component({
   selector: 'app-process-audits',
@@ -41,6 +42,25 @@ export class ProcessAuditsComponent implements OnInit {
     this.dialog.open(PauditsNewAuditComponent, {
       width: '600px',
       height: '600px'
+    });
+  }
+
+//   openUserManual() {
+//   window.open('assets\sample-1.pdf', '_blank');
+// }
+
+openUserManual(fileName: string): void {
+   
+    const pdfUrl = `assets/${fileName}`; 
+    
+   
+    window.open(pdfUrl, '_blank');
+  }
+
+  openHelpDesk(){
+    this.dialog.open(PauditsHelpDeskComponent, {
+      width: '600px',
+      height: '350px'
     });
   }
 }

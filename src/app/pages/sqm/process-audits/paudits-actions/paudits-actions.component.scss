@@ -75,7 +75,7 @@
     border: 1px solid #ccc !important;
     border-radius: 4px;
     font-size: 13px;
-    min-width: 110px;
+    min-width: 150px;
     display: block; /* Ensure it takes up space */
 
     /* Reach inside to format the trigger box without breaking the text */
@@ -130,3 +130,56 @@
     color: #555;
   }
 }
+
+/* Remove the ::ng-deep from INSIDE .custom-grid-table */
+/* Add these at the BOTTOM of your SCSS file, at root level */
+
+/* Status cell width */
+.status-cell {
+  min-width: 160px;
+  width: 130px;
+}
+
+/* Style the mat-select wrapper */
+::ng-deep td .mat-mdc-select,
+::ng-deep td .mat-select {
+  width: 150px !important;
+  min-width: 150px !important;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  background: #fff;
+  display: inline-flex !important;
+  align-items: center;
+}
+
+/* Make the trigger row fully visible */
+::ng-deep td .mat-mdc-select-trigger,
+::ng-deep td .mat-select-trigger {
+  display: flex !important;
+  align-items: center !important;
+  width: 150px !important;
+  height: 32px !important;
+  overflow: visible !important;
+}
+
+/* Force the selected value text to show */
+::ng-deep td .mat-mdc-select-value,
+::ng-deep td .mat-select-value {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #333 !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  max-width: 120px !important;
+  text-overflow: ellipsis;
+}
+
+/* Arrow icon */
+::ng-deep td .mat-mdc-select-arrow-wrapper,
+::ng-deep td .mat-select-arrow-wrapper {
+  display: flex !important;
+  align-items: center !important;
+}
+

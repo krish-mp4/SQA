@@ -4,13 +4,8 @@
     <div class="col-lg-4 text-center">
       <h3 class="chart-header">Commodity Distribution</h3>
       <div class="chart-container">
-        <ngx-charts-pie-chart
-          [results]="commodityData"
-          [scheme]="colorSchemeCommodity"
-          [labels]="true"
-          [doughnut]="false"
-          [explodeSlices]="false"
-          [legend]="false">
+        <ngx-charts-pie-chart [results]="commodityData" [scheme]="colorSchemeCommodity" [labels]="true"
+          [doughnut]="false" [explodeSlices]="false" [legend]="false">
         </ngx-charts-pie-chart>
       </div>
     </div>
@@ -18,13 +13,8 @@
     <div class="col-lg-4 text-center">
       <h3 class="chart-header">Auditor Distribution</h3>
       <div class="chart-container">
-        <ngx-charts-pie-chart
-          [results]="auditorData"
-          [scheme]="colorSchemeAuditor"
-          [labels]="true"
-          [doughnut]="false"
-          [explodeSlices]="false"
-          [legend]="false">
+        <ngx-charts-pie-chart [results]="auditorData" [scheme]="colorSchemeAuditor" [labels]="true" [doughnut]="false"
+          [explodeSlices]="false" [legend]="false">
         </ngx-charts-pie-chart>
       </div>
     </div>
@@ -32,13 +22,8 @@
     <div class="col-lg-4 text-center">
       <h3 class="chart-header">Audits Status</h3>
       <div class="chart-container">
-        <ngx-charts-pie-chart
-          [results]="statusData"
-          [scheme]="colorSchemeStatus"
-          [labels]="true"
-          [doughnut]="false"
-          [explodeSlices]="false"
-          [legend]="false">
+        <ngx-charts-pie-chart [results]="statusData" [scheme]="colorSchemeStatus" [labels]="true" [doughnut]="false"
+          [explodeSlices]="false" [legend]="false">
         </ngx-charts-pie-chart>
       </div>
     </div>
@@ -63,15 +48,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of tableData">
-            <td class="text-link">
-  <a 
-    [routerLink]="['../reference']"
-    target="_blank"
-  >
-   {{ item.auditRef }}
-  </a>
-</td>
-           
+          <td class="text-link">
+            <a [routerLink]="['../reference']" target="_blank">
+              {{ item.auditRef }}
+            </a>
+          </td>
+
           <td>{{ item.commodity }}</td>
           <td>{{ item.location }}</td>
           <td>{{ item.supplier }}</td>
@@ -81,18 +63,15 @@
           <td class="text-link text-center">{{ item.capa }}</td>
           <td class="text-link text-center">{{ item.score }}</td>
           <td class="text-center">
-         <mat-select
-  class="mat-select form-control"
-  placeholder="Select Status"
-  [(ngModel)]="item.status">
+            <mat-select class="mat-select form-control" placeholder="Select Status" [(ngModel)]="item.status">
 
-  <mat-option value="Pending">Initiated</mat-option>
-  <mat-option value="WIP">Awarded</mat-option>
-  <mat-option value="Completed">In Progress</mat-option>
-  <mat-option value="WIP">On Hold</mat-option>
-  <mat-option value="Completed">Complete</mat-option>
+              <mat-option value="Pending">Initiated</mat-option>
+              <mat-option value="WIP">Awarded</mat-option>
+              <mat-option value="Completed">In Progress</mat-option>
+              <mat-option value="WIP">On Hold</mat-option>
+              <mat-option value="Completed">Complete</mat-option>
 
-</mat-select>
+            </mat-select>
           </td>
           <td class="text-center">
             <mat-checkbox color="primary" [(ngModel)]="item.done"></mat-checkbox>
@@ -101,11 +80,7 @@
       </tbody>
     </table>
 
-    <mat-paginator 
-      [length]="tableData.length"
-      [pageSize]="4"
-      [pageSizeOptions]="[4, 10, 25, 50]"
-      showFirstLastButtons>
+    <mat-paginator [length]="tableData.length" [pageSize]="4" [pageSizeOptions]="[4, 10, 25, 50]" showFirstLastButtons>
     </mat-paginator>
   </div>
 

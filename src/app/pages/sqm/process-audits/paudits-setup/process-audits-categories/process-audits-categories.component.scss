@@ -75,28 +75,7 @@
 }
 
 /* Safe mat-select styling */
-.custom-mat-select {
-  width: 180px;
-  background-color: white !important;
-  border: 1px solid #ccc !important;
-  border-radius: 4px;
-  font-size: 13px;
-  display: block;
 
-  ::ng-deep .mat-select-trigger {
-    height: 32px !important;
-    padding: 0 10px !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-  
-  ::ng-deep .mat-select-value {
-    color: #555 !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: block !important;
-  }
-}
 
 .button-group {
   display: flex;
@@ -104,21 +83,9 @@
   margin-left: auto;
 }
 
-.btn-go {
-  background-color: white !important;
-  color: #333 !important;
-  border: 1px solid #ccc !important;
-  box-shadow: none !important;
-  display: flex;
-  align-items: center;
-}
 
-.btn-clear {
-  background-color: #37474f !important;
-  color: white !important;
-  display: flex;
-  align-items: center;
-}
+
+
 
 /* --- Table Styling --- */
 .table-responsive {
@@ -176,5 +143,101 @@
     }
     .edit-icon { color: cornflowerblue; } 
     .delete-icon { color: red; } 
+  }
+}
+
+.custom-mat-select {
+  width: 160px !important;
+  height: 36px !important;
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+
+  // DO NOT set display/padding on the host — let Material handle its own layout
+
+  ::ng-deep .mat-select-trigger {
+    height: 36px !important;
+    padding: 0 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  ::ng-deep .mat-select-value {
+    flex: 1 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    color: #333 !important;
+    max-width: calc(100% - 24px) !important;   // leave room for arrow
+  }
+
+  ::ng-deep .mat-select-placeholder {
+    color: #999 !important;
+    font-size: 13px !important;
+    opacity: 1 !important;
+  }
+
+  ::ng-deep .mat-select-arrow-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    padding-left: 4px !important;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    color: #555 !important;
+    border-left: 5px solid transparent !important;
+    border-right: 5px solid transparent !important;
+    border-top: 5px solid currentColor !important;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  align-items: center;
+}
+
+.btn-go {
+  height: 36px !important;
+  background-color: white !important;
+  color: #333 !important;
+  border: 1px solid #ccc !important;
+  box-shadow: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px;
+  padding: 0 14px !important;
+  line-height: 36px !important;
+
+  mat-icon, .mat-icon {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 16px !important;
+    font-family: 'Material Icons' !important;
+  }
+}
+
+.btn-clear {
+  height: 36px !important;
+  background-color: #37474f !important;
+  color: white !important;
+  box-shadow: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px;
+  padding: 0 14px !important;
+  line-height: 36px !important;
+
+  mat-icon, .mat-icon {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 16px !important;
+    font-family: 'Material Icons' !important;
   }
 }

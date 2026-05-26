@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-process-category-pop',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-process-category-pop.component.scss']
 })
 export class AddProcessCategoryPopComponent implements OnInit {
+  selectedCommodity: string = '';
 
-  constructor() { }
+  constructor(private dialogRef: MatDialogRef<AddProcessCategoryPopComponent>) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  close(): void {
+    this.dialogRef.close();
   }
 
+  save(): void {
+    // emit data back to parent
+    this.dialogRef.close({ commodity: this.selectedCommodity });
+  }
 }

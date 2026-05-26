@@ -7,8 +7,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrls: ['./paudits-alerts.component.scss']
 })
 export class PauditsAlertsComponent implements OnInit {
- // Toggles the visibility of the filter panel
-  showFilters: boolean = false; 
+  // Toggles the visibility of the filter panel
+  showFilters: any;
+  // showFilters: boolean = false; 
 
   // Mock data for the table based on the provided image
   tableData = [
