@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import * as Highcharts from "highcharts";
-import { PauditsNewAuditComponent } from "../paudits-new-audit/paudits-new-audit.component";
-import { MatDialog } from "@angular/material/dialog";
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import * as Highcharts from 'highcharts';
+import { PauditsNewAuditComponent } from '../paudits-new-audit/paudits-new-audit.component';
 
 @Component({
   selector: "app-paudits-active-audits",
@@ -13,21 +13,15 @@ export class PauditsActiveAuditsComponent implements OnInit {
 
   // Pie Chart 1: Commodity Distribution
   commodityChartOptions: Highcharts.Options = {
-    chart: { type: "pie", height: 300 },
-    title: {
-      text: "Commodity Distribution",
-      style: { color: "#666", fontSize: "18px" },
-    },
+    chart: { type: 'pie', height: 300,spacing: [10,10,10,10] },
+    title: { text: 'Commodity Distribution', style: { color: '#666', fontSize: '18px' } },
     credits: { enabled: false },
     plotOptions: {
       pie: {
-        innerSize: "0%",
-        dataLabels: {
-          enabled: true,
-          format: "{point.name}",
-          style: { fontWeight: "normal", color: "#666" },
-        },
-      },
+        size: '80%',
+        innerSize: '0%', 
+        dataLabels: { enabled: true, format: '{point.name}', style: { fontWeight: 'normal', color: '#666' } }
+      }
     },
     series: [
       {
@@ -53,28 +47,28 @@ export class PauditsActiveAuditsComponent implements OnInit {
       style: { color: "#666", fontSize: "18px" },
     },
     credits: { enabled: false },
-    plotOptions: {
-      pie: {
-        innerSize: "0%",
-        dataLabels: {
-          enabled: true,
-          format: "{point.name}",
-          style: { fontWeight: "normal", color: "#666" },
-        },
-      },
-    },
-    series: [
-      {
-        type: "pie",
-        name: "Auditor",
-        data: [
-          { name: "Ramesh Kum...", y: 25, color: "#3f51b5" },
-          { name: "Suresh Sin...", y: 25, color: "#e53935" },
-          { name: "Sagar Kuma...", y: 25, color: "#4caf50" },
-          { name: "Mahesh Kum...", y: 25, color: "#00acc1" },
-        ],
-      },
-    ],
+   plotOptions: {
+  pie: {
+    size: '80%',        // fixes radius consistency
+    innerSize: '0%',   // donut style, same across charts
+    dataLabels: {
+      enabled: true,
+      format: '{point.name}',
+      style: { fontWeight: 'normal', color: '#666' }
+    }
+  }
+}
+,
+    series: [{
+      type: 'pie',
+      name: 'Auditor',
+      data: [
+        { name: 'Ramesh Kum...', y: 25, color: '#3f51b5' },
+        { name: 'Suresh Sin...', y: 25, color: '#e53935' },
+        { name: 'Sagar Kuma...', y: 25, color: '#4caf50' },
+        { name: 'Mahesh Kum...', y: 25, color: '#00acc1' }
+      ]
+    }]
   };
 
   // Pie Chart 3: Audits Status
@@ -87,13 +81,10 @@ export class PauditsActiveAuditsComponent implements OnInit {
     credits: { enabled: false },
     plotOptions: {
       pie: {
-        innerSize: "0%",
-        dataLabels: {
-          enabled: true,
-          format: "{point.name}",
-          style: { fontWeight: "normal", color: "#666" },
-        },
-      },
+        size: '80%',        // fixes radius consistency 
+        innerSize: '0%',
+        dataLabels: { enabled: true, format: '{point.name}', style: { fontWeight: 'normal', color: '#666' } }
+      }
     },
     series: [
       {
@@ -168,14 +159,20 @@ export class PauditsActiveAuditsComponent implements OnInit {
     },
   ];
 
-  constructor(private dialog: MatDialog) {}
+
 
   ngOnInit(): void {}
 
-  openaudit() {
+constructor(private dialog:MatDialog) { } 
+
+
+openaudit() {
     this.dialog.open(PauditsNewAuditComponent, {
-      width: "600px",
-      height: "600px",
+      width: '600px',
+      height: '600px'
     });
   }
+
+
+  
 }

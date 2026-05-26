@@ -2,13 +2,13 @@
 
   <div class="charts-row">
     <div class="chart-container">
-      <highcharts-chart [Highcharts]="Highcharts" [options]="commodityChartOptions" style="width: 80%; display: block;"></highcharts-chart>
+      <highcharts-chart [Highcharts]="Highcharts" [options]="commodityChartOptions"></highcharts-chart>
     </div>
     <div class="chart-container">
-      <highcharts-chart [Highcharts]="Highcharts" [options]="auditorChartOptions" style="width: 80%; display: block;"></highcharts-chart>
+      <highcharts-chart [Highcharts]="Highcharts" [options]="auditorChartOptions"></highcharts-chart>
     </div>
     <div class="chart-container">
-      <highcharts-chart [Highcharts]="Highcharts" [options]="statusChartOptions" style="width: 80%; display: block;"></highcharts-chart>
+      <highcharts-chart [Highcharts]="Highcharts" [options]="statusChartOptions"></highcharts-chart>
     </div>
   </div>
 
@@ -19,7 +19,7 @@
     <button mat-raised-button class="btn-dark">
       <mat-icon>filter_list</mat-icon> Filter
     </button>
-    <button mat-raised-button color="primary" class="btn-blue" (click)="openaudit()">
+   <button mat-raised-button color="primary" class="btn-blue" (click)="openaudit()">
       <mat-icon>person_add</mat-icon> Add Audit
     </button>
   </div>
@@ -65,9 +65,13 @@
               <option>Pending</option>
             </select>
           </td>
-          <td class="text-center">
-            <mat-checkbox [checked]="audit.done" color="primary"></mat-checkbox>
-          </td>
+ <td class="text-center">
+  <mat-checkbox 
+    [checked]="audit.done" 
+    (change)="audit.done = $event.checked" 
+    color="primary">
+  </mat-checkbox>
+</td>
           <td class="text-center manage-icons">
             <i class="fas fa-edit edit-icon" title="Edit"></i>
             <i class="fas fa-trash delete-icon" title="Delete"></i>
@@ -76,11 +80,7 @@
       </tbody>
     </table>
 
-    <mat-paginator 
-        [length]="auditData.length"
-        [pageSize]="4"
-        [pageSizeOptions]="[4, 10, 20]"
-        aria-label="Select page">
+    <mat-paginator [length]="auditData.length" [pageSize]="4" [pageSizeOptions]="[4, 10, 20]" aria-label="Select page">
     </mat-paginator>
   </div>
 
