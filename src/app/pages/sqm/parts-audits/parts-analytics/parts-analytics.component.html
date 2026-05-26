@@ -73,6 +73,17 @@
     >
       Pareto
     </button>
+    <button
+      mat-raised-button
+      class="tab-btn"
+      routerLink="summary"
+      routerLinkActive="active-tab"
+      #rla6="routerLinkActive"
+      [color]="rla6.isActive ? 'primary' : ''"
+      (click)="forceUpdate()"
+    >
+      Summary
+    </button>
 
   </div>
 
@@ -81,3 +92,5 @@
   </div>
 
 </div>
+
+

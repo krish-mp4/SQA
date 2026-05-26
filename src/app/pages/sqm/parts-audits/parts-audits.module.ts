@@ -23,7 +23,7 @@ import { PartsAuditsComponent } from './parts-audits.component';
 import { PartsSetupComponent } from './parts-setup/parts-setup.component';
 import { PartsAlertsComponent } from './parts-alerts/parts-alerts.component';
 import { PartsCompletedAuditsComponent } from './parts-completed-audits/parts-completed-audits.component';
-import { PartsActionsComponent } from './parts-actions/parts-actions.component'; 
+import { PartsActionsComponent } from './parts-actions/parts-actions.component';
 import { PartsUserManualComponent } from './parts-user-manual/parts-user-manual.component';
 import { HelpDeskComponent } from './help-desk/help-desk.component';
 import { NewAuditComponent } from './new-audit/new-audit.component';
@@ -35,14 +35,14 @@ const routes: Routes = [
     path: '',
     component: PartsAuditsComponent,
     children: [
-      { 
-        path: 'analytics', 
-        loadChildren: () => import('./parts-analytics/parts-analytics.module').then(m => m.PartsAnalyticsModule) 
+      {
+        path: 'analytics',
+        loadChildren: () => import('./parts-analytics/parts-analytics.module').then(m => m.PartsAnalyticsModule)
       },
       // ✅ CHANGED: Lazy load the new Active Audits module
-      { 
-        path: 'active-audits', 
-        loadChildren: () => import('./parts-active-audits/parts-active-audits.module').then(m => m.PartsActiveAuditsModule) 
+      {
+        path: 'active-audits',
+        loadChildren: () => import('./parts-active-audits/parts-active-audits.module').then(m => m.PartsActiveAuditsModule)
       },
       { path: 'new-audit', component: NewAuditComponent },
       { path: 'setup', component: PartsSetupComponent },
@@ -51,8 +51,8 @@ const routes: Routes = [
       { path: 'actions', component: PartsActionsComponent },
       { path: 'user-manual', component: PartsUserManualComponent },
       { path: 'help-desk', component: HelpDeskComponent },
-      
-      { path: '', redirectTo: 'analytics', pathMatch: 'full' } 
+
+      { path: '', redirectTo: 'analytics', pathMatch: 'full' }
     ]
   }
 ];
@@ -71,7 +71,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes), 
+    RouterModule.forChild(routes),
     FormsModule,
     NgxChartsModule,
     HighchartsChartModule,
