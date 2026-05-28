@@ -166,12 +166,20 @@
 }
 
 .data-table th {
-  background-color: #005f73;
+  background-color:  #3f3f3f;
   color: white;
   font-weight: bold;
   padding: 12px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid #e1e1e1;
+}
+
+th {
+  background-color: #3f3f3f;
+  color: white;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #e1e1e1;  /* ← darker shade of the header blue */
 }
 
 .data-table td {
@@ -345,3 +353,4 @@ select {
   border-radius: 4px;
   cursor: pointer;
 }
+

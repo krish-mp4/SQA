@@ -49,12 +49,7 @@
     border: 1px solid #dee2e6; 
   }
 
-  th {
-    /* Styles for header */
-    color: #FFFFFF;
-    background-color: #296596; /* Matched to the blue header in your image */
-    font-weight: 500;
-  }
+
 
   td {
     /* Styles for cells */
@@ -150,4 +145,13 @@
 
 .btn-go {
   font-weight: 500;
+}
+
+// DELETE this — no longer needed
+th {
+  background-color: #3f3f3f;
+  color: white;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #e1e1e1;
 }

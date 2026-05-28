@@ -142,30 +142,26 @@
 
   th {
     color: #FFFFFF;
-    background-color: #296596; 
+    background-color: #3f3f3f;  /* ← updated */
     font-weight: 500;
     text-align: left;
+    border: 1px solid #e1e1e1;  /* ← updated */
   }
 
   tbody tr:nth-child(even) { background-color: #f9f9f9; }
-  tbody tr:nth-child(odd) { background-color: #ffffff; }
-  tbody tr:hover { background-color: #f1f5f9; }
+  tbody tr:nth-child(odd)  { background-color: #ffffff; }
+  tbody tr:hover           { background-color: #f1f5f9; }
 
-  /* Dynamic Status Colors */
   .status-link {
     cursor: pointer;
     font-weight: 400;
     text-decoration: none;
-    
-    &:hover {
-      text-decoration: underline;
-    }
+    &:hover { text-decoration: underline; }
   }
 
   .text-blue { color: #0000ff !important; }
-  .text-red { color: #ff0000 !important; }
+  .text-red  { color: #ff0000 !important; }
 
-  /* Action Icons */
   .manage-icons {
     mat-icon {
       font-size: 18px;
@@ -174,8 +170,8 @@
       cursor: pointer;
       margin: 0 8px;
     }
-    .edit-icon { color: cornflowerblue; } 
-    .delete-icon { color: red; } 
+    .edit-icon  { color: cornflowerblue; }
+    .delete-icon { color: red; }
   }
 }
 

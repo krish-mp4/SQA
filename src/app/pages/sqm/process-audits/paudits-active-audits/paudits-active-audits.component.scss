@@ -62,7 +62,7 @@
       padding: 12px 10px;
       text-align: left;
       font-weight: bold;
-      border: 1px solid #5a8eb8; /* Subtle inner border for header */
+    border: 1px solid #e1e1e1; /* Subtle inner border for header */
       white-space: nowrap;
 
       &:nth-child(7), &:nth-child(8), &:nth-child(9), &:nth-child(10), &:nth-child(11) {
@@ -200,4 +200,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+th {
+  background-color: #3f3f3f;
+  color: white;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #e1e1e1;  /* ← darker shade of the header blue */
 }
