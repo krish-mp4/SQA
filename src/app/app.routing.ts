@@ -211,8 +211,14 @@ const routes: Routes = [
             {
     path: 'gates',
     loadChildren: () => import('./pages/testing/gates/gates.module').then(m => m.GatesModule)
-    // ☝️ use whichever path actually exists on disk
-}
+    // use whichever path actually exists on disk
+},
+// Add this inside the { path: 'app', component: PagesComponent, children: [ ... ] } array
+{
+    path: 'inner-screens', 
+    loadChildren: () => import('./pages/inner-screens/inner-screens.module').then(m => m.InnerScreensModule),
+    data: { breadcrumb: 'Inner Screens',hideBreadcrumb: true }
+},
 
 
         ]
