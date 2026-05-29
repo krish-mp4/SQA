@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // <-- ADDED for [(ngModel)]
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 // Angular Material Imports
 import { MatIconModule } from '@angular/material/icon';
@@ -13,12 +13,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatCheckboxModule } from '@angular/material/checkbox'; // <-- ADDED for <mat-checkbox>
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip'; // <-- ADDED for matTooltip
 
-// Charting Modules
+// Other Libraries
+import { FlexLayoutModule } from '@angular/flex-layout'; // <-- ADDED for fxLayout
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { NgxChartsModule } from '@swimlane/ngx-charts'; // <-- ADDED for <ngx-charts-pie-chart>
+import { NgxChartsModule } from '@swimlane/ngx-charts'; 
 
 // Components
 import { ProcessAuditsComponent } from './process-audits.component';
@@ -36,14 +40,10 @@ import { ProcessAuditsCategoriesComponent } from './paudits-setup/process-audits
 import { CommodityMasterComponent } from './paudits-setup/commodity-master/commodity-master.component';
 import { AddProcessCategoryPopComponent } from './paudits-setup/process-audits-categories/add-process-category-pop/add-process-category-pop.component';
 import { AddCommodityPopComponent } from './paudits-setup/commodity-master/add-commodity-pop/add-commodity-pop.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ActionDescRemarksComponent } from './paudits-actions/action-desc-remarks/action-desc-remarks.component';
 import { ProcessActionsGridComponent } from './paudits-actions/process-actions-grid/process-actions-grid.component';
 import { ProcessActionsEditComponent } from './paudits-actions/process-actions-edit/process-actions-edit.component';
 import { ProcessDocPopComponent } from './paudits-actions/process-doc-pop/process-doc-pop.component';
-
 
 const routes: Routes = [
   {
@@ -63,10 +63,7 @@ const routes: Routes = [
         path: 'setup',
         component: PauditsSetupComponent,
         children: [
-          // Default redirect to Process Audit Categories when they click "Setup"
           { path: '', redirectTo: 'process-cat', pathMatch: 'full' },
-
-          // The two child tabs
           { path: 'process-cat', component: ProcessAuditsCategoriesComponent },
           { path: 'commodity', component: CommodityMasterComponent }
         ]
@@ -105,26 +102,25 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule,             // <-- ADDED
-    NgxChartsModule,         // <-- ADDED (Fixes your current error)
-    MatCheckboxModule,       // <-- ADDED
+    FormsModule,
+    ReactiveFormsModule,
+    NgxChartsModule,
+    CanvasJSAngularChartsModule,
+    HighchartsChartModule,
+    FlexLayoutModule,          // <-- ADDED to imports array
+    MatCheckboxModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    CanvasJSAngularChartsModule,
-    HighchartsChartModule,
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule,
-    MatCardModule,     // ← Add this
-    MatDialogModule,   // ← Add this
-    RouterModule,
-    
-  
+    MatCardModule,
+    MatDialogModule,
+    MatTooltipModule,          // <-- ADDED to imports array
   ]
 })
 export class ProcessAuditsModule { }

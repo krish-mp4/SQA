@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 
 import { AddPartspopComponent } from './add-partspop/add-partspop.component';
+import { PartsMasterSuppliersComponent } from './parts-master-suppliers/parts-master-suppliers.component';
 
 @Component({
   selector: 'app-parts-master',
@@ -163,6 +164,18 @@ export class PartsMasterComponent implements OnInit {
       width: '650px',
       disableClose: true,
       data: data
+    });
+  }
+
+
+
+
+  opensuppliers()
+  {
+    this.dialog.open(PartsMasterSuppliersComponent, {
+      width: '650px',
+      disableClose: true,
+      data: null
     });
   }
 }
