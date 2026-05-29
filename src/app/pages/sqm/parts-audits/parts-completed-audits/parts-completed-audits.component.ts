@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActiveGridDialogComponent } from '../../process-audits/paudits-active-audits/activeaudits-reference/active-grid-dialog/active-grid-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-parts-completed-audits',
@@ -46,7 +48,7 @@ export class PartsCompletedAuditsComponent implements OnInit {
     { auditRef: '2024/Process/254865', commodity: 'Camshaft', location: 'Mumbai Factory', supplier: 'DEF Automotive Ltd', auditor: 'Manoj Singh', date: '15-07-2024', issues: 2, capa: 0, score: '95 %', status: 'Select Status', done: true }
   ];
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -62,5 +64,15 @@ export class PartsCompletedAuditsComponent implements OnInit {
     if (this.tableContainer && this.tableContainer.nativeElement) {
       this.tableContainer.nativeElement.scrollBy({ left: 350, behavior: 'smooth' });
     }
+  }
+
+  
+  openGridView() {
+    this.dialog.open(ActiveGridDialogComponent, {
+      width: '650px',
+      height: 'auto',
+        maxHeight: '90vh',
+          panelClass: 'no-scroll-dialog' 
+    });
   }
 }

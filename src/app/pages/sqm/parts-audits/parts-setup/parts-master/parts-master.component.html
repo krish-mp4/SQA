@@ -14,7 +14,7 @@
       Filter
     </button>
 
-    <button (click)="addpart()"
+    <button (click)="addpart(null)"
       mat-raised-button
       color="primary"
       style="background-color: #1b85ca; color: #fff;">
@@ -156,7 +156,7 @@
 
           <td class="text-center manage-icons">
 
-            <mat-icon
+            <mat-icon  (click)="addpart(1)"
               class="edit-icon"
               matTooltip="Edit"
               style="color: #3b7bbd; font-size: 18px; margin-right: 8px; cursor: pointer;">

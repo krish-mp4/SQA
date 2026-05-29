@@ -25,10 +25,10 @@
 
   <div class="d-flex justify-content-end mb-3 gap-2">
     <button mat-raised-button class="btn-black" (click)="opendocpop()">
-      <mat-icon class="icon-sm">upload</mat-icon> Upload File
+      <mat-icon class="icon-sm" style="margin-top: 7px;">upload</mat-icon> Upload File
     </button>
     <button mat-raised-button color="primary" class="btn-blue" (click)="addchecklistaudit()">
-      <mat-icon class="icon-sm">person_add</mat-icon> Add Parameter
+      <mat-icon class="icon-sm" style="margin-top: 7px;">person_add</mat-icon> Add Parameter
     </button>
   </div>
 
@@ -60,7 +60,7 @@
           <td>{{ item.spec }}</td>
           <td class="text-center">{{ item.min }}</td>
           <td class="text-center">{{ item.max }}</td>
-          <td class="text-center text-link" style="color: blue; cursor: pointer;">{{ item.actionLink }}</td>
+          <td class="text-center text-link" style="color: blue; cursor: pointer;" >   <a routerLink="/app/inner-screens/parts-audit-details">{{ item.actionLink }}</a></td>
           <td>{{ item.special }}</td>
           <td>{{ item.method }}</td>
           <td class="text-center">{{ item.s1 | number:'1.1-1' }}</td>
