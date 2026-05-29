@@ -21,6 +21,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatCheckboxModule } from '@angular/material/checkbox';
+// import { FormsModule } from '@angular/forms';
+// import { ReactiveFormsModule } from '@angular/forms';
 
 // ❌ REMOVED all the PartsAudits imports from here! 
 // They belong exclusively to PartsAuditsModule now.
@@ -71,7 +74,8 @@ const routes: Routes = [
         MatInputModule,
         MatDatepickerModule,
         MatNativeDateModule, 
-        MatSidenavModule
+        MatSidenavModule,
+        MatCheckboxModule
     ],
     providers: []
 })

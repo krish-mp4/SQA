@@ -39,6 +39,8 @@ import { AddCommodityPopComponent } from './paudits-setup/commodity-master/add-c
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ActionDescRemarksComponent } from './paudits-actions/action-desc-remarks/action-desc-remarks.component';
+
 
 const routes: Routes = [
   {
@@ -91,7 +93,8 @@ const routes: Routes = [
     CommodityMasterComponent,
     AddProcessCategoryPopComponent,
     AddCommodityPopComponent,
-    PauditsNewAuditComponent
+    PauditsNewAuditComponent,
+    ActionDescRemarksComponent
   ],
   imports: [
     CommonModule,
@@ -113,7 +116,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatCardModule,     // ← Add this
     MatDialogModule,   // ← Add this
-    RouterModule
+    RouterModule,
+    
+  
   ]
 })
 export class ProcessAuditsModule { }
