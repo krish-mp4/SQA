@@ -8,6 +8,9 @@ import { ActionDescRemarksComponent } from '../../process-audits/paudits-actions
 import { AddIssuesssComponent } from 'src/app/pages/testing/testing-issues/add-issuesss/add-issuesss.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { IssuesGridColumnsComponent } from 'src/app/pages/testing/testing-issues/issues-grid-columns/issues-grid-columns.component';
+import { PartsActionsGridComponent } from './parts-actions-grid/parts-actions-grid.component';
+import { PartsActionsEditComponent } from './parts-actions-edit/parts-actions-edit.component';
+import { PartsActionsDocsComponent } from './parts-actions-docs/parts-actions-docs.component';
 
 @Component({
   selector: 'app-parts-actions',
@@ -306,5 +309,37 @@ export class PartsActionsComponent implements OnInit {
       { CategoryId: 'C002', CategoryName: 'Detection 2' },
       { CategoryId: 'C003', CategoryName: 'Detection 3' }
     ];
+
+    partsgrid()
+    {
+      this.dialog.open(PartsActionsGridComponent, {
+          width: '650px',
+          height: 'auto',
+            maxHeight: '90vh',
+              panelClass: 'no-scroll-dialog' 
+    })}
+    
+    
+    editparts()
+    {
+      this.dialog.open(PartsActionsEditComponent, {
+          width: '650px',
+          height: 'auto',
+            maxHeight: '90vh',
+              panelClass: 'no-scroll-dialog' 
+    })}
+    
+    
+    docsPhoto()
+    {
+      this.dialog.open(PartsActionsDocsComponent, {
+          width: '650px',
+          height: 'auto',
+            maxHeight: '90vh',
+              panelClass: 'no-scroll-dialog' 
+    })}
+    
+
+
   
 }

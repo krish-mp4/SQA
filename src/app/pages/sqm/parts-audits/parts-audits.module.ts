@@ -26,6 +26,9 @@ import { PartsUserManualComponent } from './parts-user-manual/parts-user-manual.
 import { HelpDeskComponent } from './help-desk/help-desk.component';
 import { NewAuditComponent } from './new-audit/new-audit.component';
 import { ViewDocPhotosComponent } from './parts-actions/view-doc-photos/view-doc-photos.component';
+import { PartsActionsGridComponent } from './parts-actions/parts-actions-grid/parts-actions-grid.component';
+import { PartsActionsEditComponent } from './parts-actions/parts-actions-edit/parts-actions-edit.component';
+import { PartsActionsDocsComponent } from './parts-actions/parts-actions-docs/parts-actions-docs.component';
 
 // ❌ REMOVED PartsAlertsComponent and PartsAlertsDetailsComponent
 
@@ -71,7 +74,10 @@ const routes: Routes = [
     PartsUserManualComponent,
     HelpDeskComponent,
     NewAuditComponent,
-    ViewDocPhotosComponent
+    ViewDocPhotosComponent,
+    PartsActionsGridComponent,
+    PartsActionsEditComponent,
+    PartsActionsDocsComponent
     // ❌ REMOVED Alerts components from declarations
   ],
   imports: [

@@ -23,6 +23,7 @@ import { AddPartCategoryComponent } from './audit-categories/add-part-category/a
 import { AddPartsFamilypopComponent } from './parts-families/add-parts-familypop/add-parts-familypop.component';
 import { AddPartspopComponent } from './parts-master/add-partspop/add-partspop.component';
 import { SharedModule } from "src/app/shared/shared.module";
+import { PartsMasterSuppliersComponent } from './parts-master/parts-master-suppliers/parts-master-suppliers.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,8 @@ const routes: Routes = [
     PartsMasterComponent,
     AddPartCategoryComponent,
     AddPartsFamilypopComponent,
-    AddPartspopComponent
+    AddPartspopComponent,
+    PartsMasterSuppliersComponent
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,7 @@
     <mat-icon class="">filter_list</mat-icon> Filter
   </button>
 
-  <button mat-raised-button style="background-color: black; color: white; " matTooltip="Grid Columns">
+  <button mat-raised-button style="background-color: black; color: white; " matTooltip="Grid Columns" (click)="partsgrid()">
     <mat-icon>grid_on</mat-icon> Grid Columns
   </button>
 </div>
@@ -207,7 +207,7 @@
         <tbody>
           <tr *ngFor="let applicant of tableList">
             <td class="text-center">
-              <a matTooltip="Edit" (click)="addTests(applicant)">
+              <a matTooltip="Edit" (click)="editparts()">
                 <i class="fa fa-edit"></i>
               </a>
               <a matTooltip="Delete" (click)="deleteConfirmation(applicant)">
