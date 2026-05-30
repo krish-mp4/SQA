@@ -75,7 +75,7 @@
       <tbody>
         <tr *ngFor="let item of tableData">
             <td class="text-link">
-  <a routerLink="/app/inner-screens/parts-completed-ref">
+   <a [routerLink]="['/app','sqm','parts-inner-screen','parts-completed-reference']">
     {{ item.auditRef }}
   </a>
 </td>
@@ -87,7 +87,7 @@
           <td>{{ item.date }}</td>
           <td class="text-link text-center">{{ item.issues }}</td>
           <td class="text-link text-center">{{ item.capa }}</td>
-          <td class="text-link text-center"><a routerLink="/app/inner-screens/parts-completed-ref">{{ item.score }}</a></td>
+          <td class="text-link text-center">   <a [routerLink]="['/app','sqm','parts-inner-screen','parts-completed-reference']">{{ item.score }}</a></td>
           <td class="text-center">
          <mat-select
   class="mat-select form-control"

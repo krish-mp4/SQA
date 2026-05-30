@@ -44,6 +44,7 @@ import { ActionDescRemarksComponent } from './paudits-actions/action-desc-remark
 import { ProcessActionsGridComponent } from './paudits-actions/process-actions-grid/process-actions-grid.component';
 import { ProcessActionsEditComponent } from './paudits-actions/process-actions-edit/process-actions-edit.component';
 import { ProcessDocPopComponent } from './paudits-actions/process-doc-pop/process-doc-pop.component';
+ 
 
 const routes: Routes = [
   {
@@ -72,7 +73,9 @@ const routes: Routes = [
       { path: 'completed-audits', component: PauditsCompletedAuditsComponent },
       { path: 'user-manual', component: PauditsUserManualComponent },
       { path: 'help-desk', component: PauditsHelpDeskComponent },
-      { path: 'actions', component: PauditsActionsComponent }
+      { path: 'actions', component: PauditsActionsComponent },
+        
+      
     ]
   }
 ];
@@ -97,7 +100,8 @@ const routes: Routes = [
     ActionDescRemarksComponent,
     ProcessActionsGridComponent,
     ProcessActionsEditComponent,
-    ProcessDocPopComponent
+    ProcessDocPopComponent,
+ 
   ],
   imports: [
     CommonModule,

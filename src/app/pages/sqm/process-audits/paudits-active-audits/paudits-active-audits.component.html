@@ -43,11 +43,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let audit of auditData">
-          <td class="text-link">
-            <a routerLink="/app/inner-screens/process-audit-ref">
-              {{ audit.ref }}
-            </a>
-          </td>
+      <td class="text-link">
+  <a [routerLink]="['/app','sqm','process-inner-screen','process-audit-reference']">
+    {{ audit.ref }}
+  </a>
+</td>
           <td>{{ audit.commodity }}</td>
           <td>{{ audit.location }}</td>
           <td>{{ audit.supplier }}</td>

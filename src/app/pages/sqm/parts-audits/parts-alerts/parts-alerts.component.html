@@ -84,7 +84,7 @@
           <td style="width: 8%;">{{ item.completionDate }}</td>
           <td>{{ item.delay }}</td>
           <td class="text-link">
-  <a routerLink="/app/inner-screens/parts-audit-details">View</a>
+    <a [routerLink]="['/app','sqm','parts-inner-screen','parts-audit-details']">View</a>
 </td>
           <td style="text-align: center;" class="text-center">
              <mat-checkbox   color="primary">

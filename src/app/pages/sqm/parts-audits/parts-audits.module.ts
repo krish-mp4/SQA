@@ -29,6 +29,7 @@ import { ViewDocPhotosComponent } from './parts-actions/view-doc-photos/view-doc
 import { PartsActionsGridComponent } from './parts-actions/parts-actions-grid/parts-actions-grid.component';
 import { PartsActionsEditComponent } from './parts-actions/parts-actions-edit/parts-actions-edit.component';
 import { PartsActionsDocsComponent } from './parts-actions/parts-actions-docs/parts-actions-docs.component';
+ 
 
 // ❌ REMOVED PartsAlertsComponent and PartsAlertsDetailsComponent
 
@@ -77,7 +78,8 @@ const routes: Routes = [
     ViewDocPhotosComponent,
     PartsActionsGridComponent,
     PartsActionsEditComponent,
-    PartsActionsDocsComponent
+    PartsActionsDocsComponent,
+ 
     // ❌ REMOVED Alerts components from declarations
   ],
   imports: [
