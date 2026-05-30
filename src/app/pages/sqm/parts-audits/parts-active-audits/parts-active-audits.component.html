@@ -44,7 +44,7 @@
       <tbody>
         <tr *ngFor="let audit of auditData">
           <td class="text-link">
-            <a routerLink="/app/inner-screens/parts-audit-ref">
+            <a [routerLink]="['/app','sqm','parts-inner-screen','parts-audit-reference']">
               {{ audit.ref }}
             </a>
           </td>
@@ -54,7 +54,7 @@
           <td>{{ audit.auditor }}</td>
           <td>{{ audit.date }}</td>
           <td class="text-link text-center">{{ audit.action }}</td>
-          <td class="text-link text-center"><a routerLink="/app/inner-screens/parts-audit-ref">{{ audit.score }}</a></td>
+          <td class="text-link text-center"> <a [routerLink]="['/app','sqm','parts-inner-screen','parts-audit-reference']">{{ audit.score }}</a></td>
           
           <td class="text-center status-cell">
              <mat-select

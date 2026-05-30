@@ -22,6 +22,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ProcessInnerScreenComponent } from './process-inner-screen/process-inner-screen.component';
+import { PartsInnerScreenComponent } from './parts-inner-screen/parts-inner-screen.component';
+// import { PartsAuditReferenceComponent } from './parts-inner-screen/parts-audit-reference/parts-audit-reference.component';
+// import { PartsAuditDetailsComponent } from './parts-inner-screen/parts-audit-details/parts-audit-details.component';
+// import { PartsCompletedReferenceComponent } from './parts-inner-screen/parts-completed-reference/parts-completed-reference.component';
+ 
+// import { ProcessCompletedReferenceComponent } from './process-inner-screen/process-completed-reference/process-completed-reference.component';
 // import { FormsModule } from '@angular/forms';
 // import { ReactiveFormsModule } from '@angular/forms';
 
@@ -44,11 +51,29 @@ const routes: Routes = [
         loadChildren: () => import('./parts-audits/parts-audits.module').then(m => m.PartsAuditsModule),
         data: { breadcrumb: 'Parts Audit' ,hideBreadcrumb: true} 
     }, 
+       { 
+        path: 'process-inner-screen', 
+        loadChildren: () => import('./process-inner-screen/process-inner-screen.module').then(m => m.ProcessInnerScreen),
+        data: { breadcrumb: 'Parts Audit' ,hideBreadcrumb: true} 
+    }, 
+      { 
+        path: 'parts-inner-screen', 
+        loadChildren: () => import('./parts-inner-screen/parts-inner-screen.module').then(m => m.PartsInnerScreen),
+        data: { breadcrumb: 'Parts Audit' ,hideBreadcrumb: true} 
+    }, 
 ]
 
 @NgModule({
     declarations: [
        SqmDashboardComponent,
+       ProcessInnerScreenComponent,
+       PartsInnerScreenComponent,
+    //    PartsAuditReferenceComponent,
+    //    PartsAuditDetailsComponent,
+    //    PartsCompletedReferenceComponent,
+      
+ 
+    //    ProcessCompletedReferenceComponent,
         
     ],
     imports: [

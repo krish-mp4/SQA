@@ -15,27 +15,26 @@ import { MatButtonModule } from '@angular/material/button';   // <-- FIXES THE B
 import { MatTooltipModule } from '@angular/material/tooltip'; // <-- FIXES TOOLTIPS ON ICONS
 
 // Import your components
-import { InnerScreensComponent } from './inner-screens.component';
-import { PartsAuditDetailsComponent } from './parts-audit-details/parts-audit-details.component';
-import { PartsAuditRefComponent } from './parts-audit-ref/parts-audit-ref.component';
+ 
+ 
 import { ProcessAuditDetailsComponent } from './process-audit-details/process-audit-details.component';
-import { ProcessAuditRefComponent } from './process-audit-ref/process-audit-ref.component';
-import { ProcessCompletedRefComponent } from './process-completed-ref/process-completed-ref.component';
-import { PartsCompletedRefComponent } from './parts-completed-ref/parts-completed-ref.component';
+ 
+import { ProcessInnerScreenComponent } from './process-inner-screen.component';
+import { ProcessAuditReferenceComponent } from './process-audit-reference/process-audit-reference.component';
+import { ProcessCompletedReferenceComponent } from './process-completed-reference/process-completed-reference.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: InnerScreensComponent, 
+    component: ProcessInnerScreenComponent, 
     children: [
-      { path: 'parts- -details', component: PartsAuditDetailsComponent },
-      { path: 'parts- -ref', component: PartsAuditRefComponent },
-      { path: 'process- -details', component: ProcessAuditDetailsComponent },
-      { path: 'process- -ref', component: ProcessAuditRefComponent },
-       { path: 'process- -ref', component: ProcessCompletedRefComponent },
-       { path: 'parts- -ref', component: PartsCompletedRefComponent },
+       
+      { path: 'process-audit-details', component: ProcessAuditDetailsComponent },
+      { path: 'process-audit-reference', component: ProcessAuditReferenceComponent },
+       { path: 'process-completed-reference', component: ProcessCompletedReferenceComponent },
+ 
       
-      { path: '', redirectTo: 'process- -details', pathMatch: 'full' }
+      { path: '', redirectTo: 'process-audit-details', pathMatch: 'full' }
     ]
   }
 ];
@@ -58,13 +57,9 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   declarations: [
-    InnerScreensComponent,
-    PartsAuditDetailsComponent,
-    PartsAuditRefComponent,
     ProcessAuditDetailsComponent,
-    ProcessAuditRefComponent,
-    ProcessCompletedRefComponent,
-    PartsCompletedRefComponent
+    ProcessAuditReferenceComponent,
+    ProcessCompletedReferenceComponent
   ]
 })
-export class InnerScreensModule { }
+export class ProcessInnerScreen { }

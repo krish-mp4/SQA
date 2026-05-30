@@ -12,7 +12,6 @@ import { ImgPopSealingComponent } from './img-pop-sealing/img-pop-sealing.compon
 })
 export class SealingComponent implements OnInit {
 
-
   isChecked3: string = 'no';
   isChecked4: string = 'yes';
   isChecked5: string = 'yes';
@@ -20,24 +19,37 @@ export class SealingComponent implements OnInit {
   isChecked7: string = 'yes';
   isChecked8: string = 'yes';
   isChecked9: string = 'yes';
+  isChecked10: string = 'yes';
+  isChecked11: string = 'yes';
+
+  // --- GRID DENSITY CONTROL ---
+  // Change these numbers to adjust the grid box size. 
+  // More rows/cols = smaller boxes. Less rows/cols = bigger boxes.
+  gridRows = Array(8).fill(0); 
+  gridCols = Array(11).fill(0);
+
+  // Holds the currently displayed image for the HTML binding
+  Images: string = '/assets/Right_fender.jpeg'; 
+
+ images = {
+    img1: '/assets/Right_fender.jpeg', // Right Fender
+    img2: '/assets/Right_Front_Door.jpeg', // Right Front Door
+    img3: '/assets/Right_Rear_Door.jpeg', // Right Rear Door
+    img4: '/assets/Rear.jpeg', // Rear
+    img5: '/assets/Left_Rear_Door.jpeg',   // Left Rear Door (Replace with actual path)
+    img6: '/assets/Left_Front_Door.jpeg',  // Left Front Door (Replace with actual path)
+    img7: '/assets/Left_Fender.jpeg', // Left Fender (Replace with actual path)
+    img8: '/assets/Roof.jpeg',        // Roof (Replace with actual path)
+    img9: '/assets/Bonnet.jpeg'       // Bonnet
+  };
 
   constructor(public dialog: MatDialog) {
     if (environment.mode === 1) {
     }
   }
+
   ngOnInit(): void {
   }
-  Image: any = '/assets/car10x10.png';
-
-  // values = [
-  //   { module: 'Left', check: '23', pass: '22', fail: '1' },
-  //   { module: 'Front', check: '41', pass: '38', fail: '3' },
-  //   { module: 'Right', check: '15', pass: '13', fail: '2' },
-  //   { module: 'Rear', check: '25', pass: '25', fail: '0' },
-  //   { module: 'Top', check: '12', pass: '10', fail: '2' },
-  //   { module: 'Bottom', check: '12', pass: '9', fail: '3' },
-  //   { module: 'Total', check: '128', pass: '117', fail: '11' },
-  // ]
 
   values = [
     { status: 'Total', value: '128' },
@@ -52,7 +64,6 @@ export class SealingComponent implements OnInit {
     { value: '5.5', row: '4', col: '5', serial: '123', checkpoints: 'checkpoint-3', measure: 'Alignment', lsl: '0.1', usl: '1.0', unit: 'mm' },
     { value: '5.5', row: '5', col: '3', serial: '124', checkpoints: 'checkpoint-4', measure: 'Consistancy', lsl: '0.20', usl: '1.2', unit: 'mm' },
     { value: '5.5', row: '8', col: '8', serial: '125', checkpoints: 'checkpoint-5', measure: 'GAP', lsl: '0.20', usl: '1.2', unit: 'mm' },
-
   ]
 
   imgpop(item) {
@@ -71,69 +82,63 @@ export class SealingComponent implements OnInit {
     })
   }
 
-  color3() {
-    this.isChecked3 = 'no';
-    this.isChecked4 = 'yes';
-    this.isChecked5 = 'yes';
-    this.isChecked6 = 'yes';
-    this.isChecked7 = 'yes';
-    this.isChecked8 = 'yes';
-    this.isChecked9 = 'yes';
-  }
-  color4() {
-    this.isChecked3 = 'yes';
-    this.isChecked4 = 'no';
-    this.isChecked5 = 'yes';
-    this.isChecked6 = 'yes';
-    this.isChecked7 = 'yes';
-    this.isChecked8 = 'yes';
-    this.isChecked9 = 'yes';
-  }
-  color5() {
-    this.isChecked3 = 'yes';
-    this.isChecked4 = 'yes';
-    this.isChecked5 = 'no';
-    this.isChecked6 = 'yes';
-    this.isChecked7 = 'yes';
-    this.isChecked8 = 'yes';
-    this.isChecked9 = 'yes';
-  }
-  color6() {
-    this.isChecked3 = 'yes';
-    this.isChecked4 = 'yes';
-    this.isChecked5 = 'yes';
-    this.isChecked6 = 'no';
-    this.isChecked7 = 'yes';
-    this.isChecked8 = 'yes';
-    this.isChecked9 = 'yes';
-  }
-  color7() {
-    this.isChecked3 = 'yes';
-    this.isChecked4 = 'yes';
-    this.isChecked5 = 'yes';
-    this.isChecked6 = 'yes';
-    this.isChecked7 = 'no';
-    this.isChecked8 = 'yes';
-    this.isChecked9 = 'yes';
-  }
-  color8() {
-    this.isChecked3 = 'yes';
-    this.isChecked4 = 'yes';
-    this.isChecked5 = 'yes';
-    this.isChecked6 = 'yes';
-    this.isChecked7 = 'yes';
-    this.isChecked8 = 'no';
-    this.isChecked9 = 'yes';
-  }
-  color9() {
+  // Helper method to reset all tabs to inactive state
+  resetColors() {
     this.isChecked3 = 'yes';
     this.isChecked4 = 'yes';
     this.isChecked5 = 'yes';
     this.isChecked6 = 'yes';
     this.isChecked7 = 'yes';
     this.isChecked8 = 'yes';
-    this.isChecked9 = 'no';
+    this.isChecked9 = 'yes';
+    this.isChecked10 = 'yes';
+    this.isChecked11 = 'yes';
   }
 
+  // Tab click methods
+  color3() { 
+    this.resetColors(); 
+    this.isChecked3 = 'no'; 
+    this.Images = this.images.img1; 
+  }
+  color4() { 
+    this.resetColors(); 
+    this.isChecked4 = 'no'; 
+    this.Images = this.images.img2; 
+  }
+  color5() { 
+    this.resetColors(); 
+    this.isChecked5 = 'no'; 
+    this.Images = this.images.img3; 
+  }
+  color6() { 
+    this.resetColors(); 
+    this.isChecked6 = 'no'; 
+    this.Images = this.images.img4; 
+  }
+  color7() { 
+    this.resetColors(); 
+    this.isChecked7 = 'no'; 
+    this.Images = this.images.img5; 
+  }
+  color8() { 
+    this.resetColors(); 
+    this.isChecked8 = 'no'; 
+    this.Images = this.images.img6; 
+  }
+  color9() { 
+    this.resetColors(); 
+    this.isChecked9 = 'no'; 
+    this.Images = this.images.img7; 
+  }
+  color10() { 
+    this.resetColors(); 
+    this.isChecked10 = 'no'; 
+    this.Images = this.images.img8; 
+  }
+  color11() { 
+    this.resetColors(); 
+    this.isChecked11 = 'no'; 
+    this.Images = this.images.img9; 
+  }
 }
-
