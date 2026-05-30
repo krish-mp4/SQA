@@ -91,3 +91,29 @@ td {
   height: 40px;
 }
 
+/* Aging Analysis Layout */
+.aging-title {
+  margin-bottom: 15px;
+}
+
+.aging-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.aging-table-card {
+  flex: 1;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+}
+
+.aging-chart-card {
+  flex: 2;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+  min-height: 350px;
+}

@@ -1,7 +1,7 @@
 <div class="col-sm-12 mt-4" style="margin-left: -2px; margin-bottom: 15px;">
     <div class="col-lg-4 col-sm-4">
         <div class="form-group">
-            <label class="control-label col-sm-4 mt-2">Select Period    : </label>
+            <label class="control-label col-sm-4 mt-2">Select Period : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 mt-1">
                 <mat-select class="form-control" [value]="0">
                     <mat-option [value]="0">-- Select Period --</mat-option>
@@ -29,20 +29,16 @@
     </div>
 
     <div class="col-lg-4 col-sm-4">
- 
-  <button mat-raised-button 
-          [color]="viewMode === 2 ? 'primary' : ''" 
-        
-          (click)="viewMode = 2">
-    View 2
-  </button>
 
-   <button mat-raised-button    style="margin-left: 10px;" 
-          [color]="viewMode === 1 ? 'primary' : ''" 
-          (click)="viewMode = 1">
-    View 1
-  </button>
-</div>
+        <button mat-raised-button [color]="viewMode === 2 ? 'primary' : ''" (click)="switchView(2)">
+            View 2
+        </button>
+
+        <button mat-raised-button style="margin-left: 10px;" [color]="viewMode === 1 ? 'primary' : ''"
+            (click)="switchView(1)">
+            View 1
+        </button>
+    </div>
 
 </div>
 
@@ -123,20 +119,20 @@
                         </div>
                     </div>
 
-                        <div class="row" style="padding-top:10px; margin-right:2px !important">
-            <div>
-              <button mat-raised-button class="pull-right btn-success">
-                GO
-              </button>
-            </div>
-          </div>
+                    <div class="row" style="padding-top:10px; margin-right:2px !important">
+                        <div>
+                            <button mat-raised-button class="pull-right btn-success">
+                                GO
+                            </button>
+                        </div>
+                    </div>
                 </mat-card-content>
             </mat-card>
         </div>
     </div>
 </div>
 
- 
+
 
 <!-- <div class="row mt-3 mb-3 text-center">
   <div class="col-sm-6">
@@ -147,48 +143,57 @@
   </div>
 </div> -->
 
-<!-- SINGLE VIEW -->
+
 <!-- SINGLE VIEW -->
 <div *ngIf="viewMode === 1">
-  <div *ngFor="let img of images" class="row mb-4" style="margin-top: 20px;">
-    <div class="col-sm-12" style="margin-left: 31px;">
-      <h2 style="margin-bottom: 20px;">{{ img.title }}</h2>
-      
-      <!-- Wrap image and overlay here -->
-      <div class="image-grid-container" [ngStyle]="{'width.%': 55}">
-        <img [src]="img.src" [alt]="img.title"
-             [ngStyle]="{'height.px': 506, 'width.%': 100, 'background': 'white'}">
-        <div class="grid-overlay"></div>
-      </div>
-           
+    <div *ngFor="let img of images; let i = index" class="row mb-4" style="margin-top: 20px;">
+        <div class="col-sm-12" style="margin-left: 31px;">
+            <h2 style="margin-bottom: 20px;">{{ img.title }}</h2>
+
+            <div class="image-grid-container" [ngStyle]="{'width': img.width, 'height': img.height}">
+                <img [src]="img.src" [alt]="img.title" style="width: 100%; height: 100%; background: white;">
+                <!-- Canvas overlay replaces grid-overlay div -->
+                <!-- <canvas #gridCanvas
+          [width]="img.width"
+          [height]="img.height"
+          class="grid-canvas">
+        </canvas> -->
+
+                <canvas #gridCanvas [width]="img.widthPx" [height]="img.heightPx" class="grid-canvas">
+                </canvas>
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- DOUBLE VIEW -->
-<!-- DOUBLE VIEW -->
 <div *ngIf="viewMode === 2" style="margin-top: 80px;">
-  <div class="row mb-4" *ngFor="let row of images | slice:0:images.length; let i = index">
-    <ng-container *ngIf="i % 2 === 0">
-      
-      <div class="col-sm-6 text-center" *ngIf="images[i]" style="margin-bottom: 30px;">
-        <h2 style="margin-bottom: 20px;">{{ images[i].title }}</h2>
-        <!-- Wrap Image 1 -->
-        <div class="image-grid-container" [ngStyle]="{'height': images[i].height, 'width': images[i].width}">
-          <img [src]="images[i].src" [alt]="images[i].title" style="width: 100%; height: 100%; background: white;">
-          <div class="grid-overlay"></div>
-        </div>
-      </div>
+    <div class="row mb-4" *ngFor="let row of images; let i = index">
+        <ng-container *ngIf="i % 2 === 0">
 
-      <div class="col-sm-6 text-center" *ngIf="images[i + 1]">
-        <h2 style="margin-bottom: 20px;">{{ images[i + 1].title }}</h2>
-        <!-- Wrap Image 2 -->
-        <div class="image-grid-container" [ngStyle]="{'height': images[i + 1].height, 'width': images[i + 1].width}">
-          <img [src]="images[i + 1].src" [alt]="images[i + 1].title" style="width: 100%; height: 100%; background: white;">
-          <div class="grid-overlay"></div>
-        </div>
-      </div>
+            <div class="col-sm-6 text-center" *ngIf="images[i]" style="margin-bottom: 30px;">
+                <h2 style="margin-bottom: 20px;">{{ images[i].title }}</h2>
+                <div class="image-grid-container" [ngStyle]="{'height': images[i].height, 'width': images[i].width}">
+                    <img [src]="images[i].src" [alt]="images[i].title"
+                        style="width: 100%; height: 100%; background: white;">
+                    <canvas #gridCanvas [width]="images[i].widthPx" [height]="images[i].heightPx" class="grid-canvas">
+                    </canvas>
+                </div>
+            </div>
 
-    </ng-container>
-  </div>
+            <div class="col-sm-6 text-center" *ngIf="images[i + 1]">
+                <h2 style="margin-bottom: 20px;">{{ images[i + 1].title }}</h2>
+                <div class="image-grid-container"
+                    [ngStyle]="{'height': images[i + 1].height, 'width': images[i + 1].width}">
+                    <img [src]="images[i + 1].src" [alt]="images[i + 1].title"
+                        style="width: 100%; height: 100%; background: white;">
+                    <canvas #gridCanvas [width]="images[i + 1].widthPx" [height]="images[i + 1].heightPx"
+                        class="grid-canvas">
+                    </canvas>
+                </div>
+            </div>
+
+        </ng-container>
+    </div>
 </div>
