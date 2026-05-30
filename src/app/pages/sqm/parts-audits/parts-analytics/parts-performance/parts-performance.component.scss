@@ -1,60 +1,8 @@
-/* ── Tab Buttons ── */
-.tab-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.secondary-row {
-  margin-top: -4px;
-}
-
-.tab-btn {
-  min-width: 105px !important;
-  height: 46px !important;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  padding: 0 22px !important;
-  background: #f8f8f8 !important;
-  color: #333 !important;
-  border-radius: 4px !important;
-  font-size: 15px !important;
-  font-weight: 500 !important;
-  text-transform: none !important;
-  text-decoration: none !important;
-  border: 0px solid #e3e3e3 !important;
-  box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.20),
-    0 1px 2px rgba(0, 0, 0, 0.08) !important;
-  transition: all 0.2s ease;
-}
-
-.tab-btn:hover {
-  background: #687075 !important;
-  color: #ffffff !important;
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.22),
-    0 2px 4px rgba(0, 0, 0, 0.10) !important;
-}
-
-.tab-btn:hover .mdc-button__label {
-  color: #ffffff !important;
-}
-
-.tab-btn.active-tab {
-  background: #5b6f7b !important;
-  color: #fff !important;
-  border-color: #5b6f7b !important;
-  font-weight: 600 !important;
-}
-
-.tab-btn.active-tab:hover {
-  background: #536671 !important;
-  color: #fff !important;
+.perf-container {
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
 }
 
 /* ── Filter Bar ── */
@@ -70,6 +18,12 @@
   border-bottom: 1px solid #c0d8e2;
 }
 
+.filter-label {
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
 .filter-group {
   display: flex;
   align-items: center;
@@ -77,11 +31,6 @@
   font-weight: bold;
   color: #000;
   font-family: Arial, sans-serif;
-}
-
-.filter-label {
-  font-weight: 600;
-  color: #333;
 }
 
 /* ── Go Button ── */
@@ -95,16 +44,24 @@
 
 /* ── Section Title ── */
 .section-title {
-  margin: 0 0 15px 0;
   font-size: 18px;
   color: #333;
+  margin: 0 0 8px 5px;
 }
 
-/* ── Row & Cards ── */
+/* ── Section Wrapper ── */
+.section-wrapper {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* ── Row ── */
 .row {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 40px;
+  margin-right: 20px;
+  align-items: flex-start;
 }
 
 .card {
@@ -115,14 +72,16 @@
 }
 
 .table-container {
-  flex: 1.5;
+  flex: 1;
 }
 
+/* ── Chart Container Fix ── */
 .chart-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 2;
+  min-width: 0;
+  min-height: 420px;      /* ← gives Highcharts a measurable parent height */
+  display: block;         /* ← remove flex so chart fills naturally */
+  overflow: visible;
 }
 
 /* ── Table ── */
@@ -146,7 +105,6 @@ td {
   font-size: 13px;
 }
 
-.total-row {
-  font-weight: bold;
-  background-color: #f1f1f1;
+tr:nth-child(even) td {
+  background-color: #f9f9f9;
 }
