@@ -6,7 +6,7 @@
   font-size: 13px;
   outline: none;
   cursor: pointer;
-  box-sizing: border-box;  // ← ensures padding doesn't overflow the cell
+  box-sizing: border-box;
 
   &:focus {
     border-color: #3b82f6;
@@ -31,7 +31,6 @@
 
 mat-paginator {
   flex-shrink: 0;
-  // border-top: 1px solid #e2e8f0;
   background: #fff;
   position: sticky;
   bottom: 0;
@@ -39,16 +38,17 @@ mat-paginator {
 }
 
 #example2 {
-  min-width: 1200px;
+  min-width: 1600px;
   width: 100%;
 }
 
 .mine {
-    position: fixed;
-    bottom: 80px;
-    right: 40px;
-    background-color: #e6e6e6 !important;
-    z-index: 9999;
+  position: fixed;
+  bottom: 80px;
+  right: 40px;
+  background-color: #e6e6e6 !important;
+  z-index: 9999;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
 .scroll-controls {
@@ -59,26 +59,9 @@ mat-paginator {
   gap: 12px;
 }
 
-.mine {
-  background-color: #e6e6e6 !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-
-#grid-table-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 .table-responsive {
-  overflow-x: auto;   // allow horizontal scroll
-  overflow-y: hidden; // keep vertical clean
-}
-
-table {
-  min-width: 1600px;  // increase this value to force overflow
-  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /* Custom Range Slider Styles */
@@ -86,7 +69,6 @@ table {
   -webkit-appearance: none;
   width: 90px;
   height: 8px;
-  /* Uses CSS variables passed from HTML to dynamically color the track */
   background: linear-gradient(to right, var(--slider-color) var(--slider-fill), #555555 var(--slider-fill));
   border-radius: 10px;
   outline: none;
@@ -102,7 +84,7 @@ table {
   border-radius: 50%;
   background: var(--slider-color);
   cursor: pointer;
-  border: 1px solid #fff; /* Optional: adds a slight white border for visibility */
+  border: 1px solid #fff;
 }
 
 .custom-range::-moz-range-thumb {
@@ -112,4 +94,12 @@ table {
   background: var(--slider-color);
   cursor: pointer;
   border: 1px solid #fff;
+}
+
+/* * UI FIX: Force the calendar header text color to remain white 
+ * AND the background to remain black, overriding any Bootstrap/Global table styles applied to <th> 
+ */
+.calendar-container thead th {
+  background-color: black !important;
+  color: white !important;
 }
