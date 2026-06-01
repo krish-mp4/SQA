@@ -26,9 +26,9 @@ export class TestdashboardComponent implements OnInit, AfterViewInit {
     { key: "rpn", title: "Buffer", color: "#fddff1" },
   ];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) { }
 
-  // --- RESP Data (Kept for Grid View if needed) ---
+  // --- RESP Data ---
   headers: string[] = ["Area", "O", "R1", "R2", "C", "Total"];
   data = [
     { area: "VEHICLE", O: 11, R1: 9, R2: 3, C: 16 },
@@ -58,89 +58,71 @@ export class TestdashboardComponent implements OnInit, AfterViewInit {
   phoneTotals = { O: 20, R1: 15, R2: 14, C: 33, Total: 82 };
   selectedPhoneCategory: string = "Distribution";
 
+  // --- Gantt filter state ---
+  selectedProject = 'Project Alpha';
+  projects = ['Project Alpha', 'Project Beta'];
+  selectedStageFilter = 'all';
+  filteredGanttData: any[] = [];
+
+  // Gate/Sprint header structure
+  gateHeaders = [
+    { key: 'g0', label: 'Gate 0', subtitle: 'Project Initiation',   sprints: ['Sprint 0.1'] },
+    { key: 'g1', label: 'Gate 1', subtitle: 'Concept Development',  sprints: ['Sprint 1.1', 'Sprint 1.2'] },
+    { key: 'g2', label: 'Gate 2', subtitle: 'Feasibility Study',    sprints: ['Sprint 2.1', 'Sprint 2.2', 'Sprint 2.3'] },
+    { key: 'g3', label: 'Gate 3', subtitle: 'Detailed Planning',    sprints: ['Sprint 3.1', 'Sprint 3.2'] },
+    { key: 'g4', label: 'Gate 4', subtitle: 'Design & Development', sprints: ['Sprint 4.1', 'Sprint 4.2', 'Sprint 4.3'] },
+    { key: 'g5', label: 'Gate 5', subtitle: 'Validation & Testing', sprints: ['Sprint 5.1', 'Sprint 5.2'] },
+  ];
+
+  // Gantt data — replaces the old ganttData array
   ganttData = [
-    {
-      task: "Phase 1: Initiation",
-      start: Date.UTC(2024, 0, 1),
-      end: Date.UTC(2024, 0, 10),
-      completion: 100,
-      color: "#28a745"
-    },
-    {
-      task: "Phase 2: Planning",
-      start: Date.UTC(2024, 0, 11),
-      end: Date.UTC(2024, 0, 25),
-      completion: 100,
-      color: "#28a745"
-    },
-    {
-      task: "Phase 3: Design",
-      start: Date.UTC(2024, 0, 26),
-      end: Date.UTC(2024, 1, 10),
-      completion: 80,
-      color: "#28a745"
-    },
-    {
-      task: "Phase 4: Development",
-      start: Date.UTC(2024, 1, 11),
-      end: Date.UTC(2024, 2, 20),
-      completion: 45,
-      color: "#f4a300"
-    },
-    {
-      task: "Phase 5: Testing",
-      start: Date.UTC(2024, 2, 21),
-      end: Date.UTC(2024, 3, 5),
-      completion: 20,
-      color: "#dc3545"
-    },
-    {
-      task: "Phase 6: Deployment",
-      start: Date.UTC(2024, 3, 6),
-      end: Date.UTC(2024, 3, 12),
-      completion: 0,
-      color: "#adb5bd"
-    },
-    {
-      task: "Phase 7: Support",
-      start: Date.UTC(2024, 3, 13),
-      end: Date.UTC(2024, 3, 30),
-      completion: 0,
-      color: "#adb5bd"
-    }
+    { task: '0. Project Initiation (Gate 0)',   start: Date.UTC(2024, 4, 1),  end: Date.UTC(2024, 4, 7),  completion: 100, gate: 'g0' },
+    { task: '1. Concept Development (Gate 1)',  start: Date.UTC(2024, 4, 8),  end: Date.UTC(2024, 4, 21), completion: 100, gate: 'g1' },
+    { task: '2. Feasibility Study (Gate 2)',    start: Date.UTC(2024, 4, 22), end: Date.UTC(2024, 5, 11), completion: 75,  gate: 'g2' },
+    { task: '3. Detailed Planning (Gate 3)',    start: Date.UTC(2024, 5, 12), end: Date.UTC(2024, 6, 2),  completion: 40,  gate: 'g3' },
+    { task: '4. Design & Development (Gate 4)', start: Date.UTC(2024, 6, 3),  end: Date.UTC(2024, 6, 23), completion: 20,  gate: 'g4' },
+    { task: '5. Validation & Testing (Gate 5)', start: Date.UTC(2024, 6, 24), end: Date.UTC(2024, 7, 13), completion: 0,   gate: 'g5' },
+    { task: '6. Launch Preparation',            start: Date.UTC(2024, 7, 14), end: Date.UTC(2024, 7, 27), completion: 0,   gate: 'g5' },
+    { task: '7. Project Closure',               start: Date.UTC(2024, 7, 28), end: Date.UTC(2024, 8, 3),  completion: 0,   gate: 'g5' },
   ];
 
   // --- Ageing Data ---
   ageingHeaders: string[] = ["Period", "Issues"];
   ageingData = [
-    { PERIOD: "0-10", ISSUES: 15 },
-    { PERIOD: "10-20", ISSUES: 12 },
-    { PERIOD: "20-30", ISSUES: 7 },
-    { PERIOD: "30-40", ISSUES: 5 },
-    { PERIOD: "40-50", ISSUES: 15 },
+    { PERIOD: "0-10",   ISSUES: 15 },
+    { PERIOD: "10-20",  ISSUES: 12 },
+    { PERIOD: "20-30",  ISSUES: 7 },
+    { PERIOD: "30-40",  ISSUES: 5 },
+    { PERIOD: "40-50",  ISSUES: 15 },
     { PERIOD: "50-100", ISSUES: 10 },
-    { PERIOD: "100+", ISSUES: 30 },
+    { PERIOD: "100+",   ISSUES: 30 },
   ];
   ageingTotal = 94;
 
-  // --- Buffer Data (Formerly RPN Data) ---
+  // --- Buffer Data ---
   selectedRpnCategory: string = "Distribution";
-  
+
   bufferSprintData = [
     { sprint: 1, bufferUsed: 0.8 },
-    { sprint: 2, bufferUsed: 2.5 }, // Exceeds average line (2.5 > 2) -> Red
-    { sprint: 3, bufferUsed: 2.2 }, // Below average line (2.2 <= 3) -> Green
-    { sprint: 4, bufferUsed: 4.8 }, // Exceeds average line (4.8 > 4) -> Red
-    { sprint: 5, bufferUsed: 4.0 }, // Below average line (4.0 <= 5) -> Green
-    { sprint: 6, bufferUsed: 6.5 }  // Exceeds average line (6.5 > 6) -> Red
+    { sprint: 2, bufferUsed: 2.5 },
+    { sprint: 3, bufferUsed: 2.2 },
+    { sprint: 4, bufferUsed: 4.8 },
+    { sprint: 5, bufferUsed: 4.0 },
+    { sprint: 6, bufferUsed: 6.5 },
   ];
 
-  ngOnInit(): void {}
+  // ─── Lifecycle ────────────────────────────────────────────────────────────
+
+  ngOnInit(): void {
+    this.filteredGanttData = [...this.ganttData];
+  }
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
     this.renderChartWithDelay();
   }
+
+  // ─── Dashboard / View control ─────────────────────────────────────────────
 
   setActiveDashboard(key: "resp" | "category" | "ageing" | "rpn") {
     this.activeDashboard = key;
@@ -160,44 +142,57 @@ export class TestdashboardComponent implements OnInit, AfterViewInit {
     this.selectedCategory = category;
     this.renderChartWithDelay();
   }
-  isPieChartMode() {
-    return this.selectedCategory !== "Distribution";
-  }
+  isPieChartMode() { return this.selectedCategory !== "Distribution"; }
 
   setPhoneCategory(category: string) {
     this.selectedPhoneCategory = category;
     this.renderChartWithDelay();
   }
-  isPhonePieChartMode() {
-    return this.selectedPhoneCategory !== "Distribution";
-  }
+  isPhonePieChartMode() { return this.selectedPhoneCategory !== "Distribution"; }
 
   setRpnCategory(category: string) {
     this.selectedRpnCategory = category;
     this.renderChartWithDelay();
   }
-  isRpnPieChartMode() {
-    return this.selectedRpnCategory !== "Distribution";
-  }
+  isRpnPieChartMode() { return this.selectedRpnCategory !== "Distribution"; }
 
   renderActiveChart() {
     switch (this.activeDashboard) {
-      case "resp":
-        this.renderRespChart();
-        break;
-      case "category":
-        this.renderGanttChart();
-        break;
-      case "ageing":
-        this.renderAgeingChart();
-        break;
-      case "rpn":
-        this.renderRpnChart();
-        break;
+      case "resp":    this.renderRespChart();    break;
+      case "category": /* pure HTML table — no Highcharts needed */ break;
+      case "ageing":  this.renderAgeingChart();  break;
+      case "rpn":     this.renderRpnChart();     break;
     }
   }
 
-  // --- Portfolio Specific Renders (Replaces old generic resp renders) ---
+  // ─── Gantt helpers ────────────────────────────────────────────────────────
+
+  applyGanttFilter() {
+    this.filteredGanttData = this.selectedStageFilter === 'all'
+      ? [...this.ganttData]
+      : this.ganttData.filter(d => d.gate === this.selectedStageFilter);
+  }
+
+  isSprintInRange(item: any, gateKey: string, _sprint: string): boolean {
+    return item.gate === gateKey;
+  }
+
+  getBarColor(pct: number): string {
+    if (pct >= 75) return '#28a745';
+    if (pct > 0 && pct < 40) return '#dc3545';
+    if (pct > 0)  return '#f4a300';
+    return '#adb5bd';
+  }
+
+  getDarkBarColor(pct: number): string {
+    if (pct >= 75) return '#1a6b31';
+    if (pct > 0 && pct < 40) return '#a0212b';
+    if (pct > 0)  return '#c47e00';
+    return '#888';
+  }
+
+  // ─── Portfolio charts ─────────────────────────────────────────────────────
+
   renderRespChart() {
     this.renderPortfolioStatusChart();
     this.renderPortfolioSummaryChart();
@@ -205,72 +200,42 @@ export class TestdashboardComponent implements OnInit, AfterViewInit {
 
   renderPortfolioStatusChart() {
     const containerId = 'portfolioStatusChartContainer';
-    const container = document.getElementById(containerId);
-    if (!container) return;
+    if (!document.getElementById(containerId)) return;
 
     Highcharts.chart(containerId, {
       chart: { type: 'column' },
-      title: { 
-        text: 'Portfolio Project Status',
-        style: { fontWeight: 'bold' }
-      },
+      title: { text: 'Portfolio Project Status', style: { fontWeight: 'bold' } },
       subtitle: { text: 'Total Projects: 7' },
       credits: { enabled: false },
-      xAxis: {
-        categories: ['On Track', 'Off Track'],
-        lineWidth: 1
-      },
+      xAxis: { categories: ['On Track', 'Off Track'], lineWidth: 1 },
       yAxis: {
-        min: 0,
-        max: 6,
-        tickInterval: 1,
+        min: 0, max: 6, tickInterval: 1,
         title: { text: 'Number of Projects' },
-        gridLineDashStyle: 'Dash' 
+        gridLineDashStyle: 'Dash',
       },
-      tooltip: {
-        headerFormat: '',
-        pointFormat: '<b>{point.name}</b>: {point.y} Projects'
-      },
+      tooltip: { headerFormat: '', pointFormat: '<b>{point.name}</b>: {point.y} Projects' },
       plotOptions: {
         column: {
           grouping: false,
-          dataLabels: {
-            enabled: true,
-            style: { fontWeight: 'bold', fontSize: '14px' }
-          }
-        }
+          dataLabels: { enabled: true, style: { fontWeight: 'bold', fontSize: '14px' } },
+        },
       },
       series: [
-        {
-          type: 'column',
-          name: 'On Track (5)',
-          data: [{ x: 0, y: 5, color: '#00a859' }], 
-        },
-        {
-          type: 'column',
-          name: 'Off Track (2)',
-          data: [{ x: 1, y: 2, color: '#ed1c24' }], 
-        }
-      ]
+        { type: 'column', name: 'On Track (5)',  data: [{ x: 0, y: 5, color: '#00a859' }] },
+        { type: 'column', name: 'Off Track (2)', data: [{ x: 1, y: 2, color: '#ed1c24' }] },
+      ],
     } as any);
   }
 
   renderPortfolioSummaryChart() {
     const containerId = 'portfolioSummaryPieChartContainer';
-    const container = document.getElementById(containerId);
-    if (!container) return;
+    if (!document.getElementById(containerId)) return;
 
     Highcharts.chart(containerId, {
       chart: { type: 'pie' },
-      title: { 
-        text: 'Gate 0 - Portfolio Summary', 
-        align: 'left',
-        style: { fontSize: '16px', fontWeight: 'bold' } 
-      },
+      title: { text: 'Gate 0 - Portfolio Summary', align: 'left', style: { fontSize: '16px', fontWeight: 'bold' } },
       credits: { enabled: false },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)'
-      },
+      tooltip: { pointFormat: '{series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)' },
       plotOptions: {
         pie: {
           allowPointSelect: true,
@@ -278,141 +243,45 @@ export class TestdashboardComponent implements OnInit, AfterViewInit {
           showInLegend: true,
           dataLabels: {
             enabled: true,
-            format: '<div style="text-align: center"><b>{point.y}</b><br/>({point.percentage:.0f}%)</div>',
-            distance: -40, 
+            format: '<div style="text-align:center"><b>{point.y}</b><br/>({point.percentage:.0f}%)</div>',
+            distance: -40,
             useHTML: true,
-            style: {
-              color: 'white',
-              textOutline: 'none',
-              fontSize: '14px'
-            }
-          }
-        }
+            style: { color: 'white', textOutline: 'none', fontSize: '14px' },
+          },
+        },
       },
       legend: {
-        align: 'right',
-        verticalAlign: 'middle',
-        layout: 'vertical',
-        itemMarginTop: 10,
-        itemMarginBottom: 10,
+        align: 'right', verticalAlign: 'middle', layout: 'vertical',
+        itemMarginTop: 10, itemMarginBottom: 10, useHTML: true,
         labelFormatter: function () {
-            // @ts-ignore
-            return `<span style="width: 80px; display:inline-block">${this.name}</span> <span style="font-weight: bold">${this.y}</span>`;
+          // @ts-ignore
+          return `<span style="width:80px;display:inline-block">${this.name}</span> <span style="font-weight:bold">${this.y}</span>`;
         },
-        useHTML: true
       },
-      series: [
-        {
-          type: 'pie',
-          name: 'Projects',
-          innerSize: '0%', 
-          data: [
-            { name: 'Processed', y: 4, color: '#3366cc' }, 
-            { name: 'Pending', y: 3, color: '#808b96' },   
-            { name: 'Kill', y: 2, color: '#e74c3c' },      
-            { name: 'Rework', y: 4, color: '#f39c12' },    
-            { name: 'Go', y: 7, color: '#2ecc71' }         
-          ]
-        }
-      ]
+      series: [{
+        type: 'pie',
+        name: 'Projects',
+        innerSize: '0%',
+        data: [
+          { name: 'Processed', y: 4, color: '#3366cc' },
+          { name: 'Pending',   y: 3, color: '#808b96' },
+          { name: 'Kill',      y: 2, color: '#e74c3c' },
+          { name: 'Rework',    y: 4, color: '#f39c12' },
+          { name: 'Go',        y: 7, color: '#2ecc71' },
+        ],
+      }],
     } as any);
   }
 
-  // --- Gantt Chart Render ---
-  renderGanttChart() {
-    const containerId = 'ganttChartContainer';
-    const container = document.getElementById(containerId);
+  // ─── Ageing chart ─────────────────────────────────────────────────────────
 
-    if (!container) {
-      return;
-    }
-
-    Highcharts.chart(containerId, {
-      chart: {
-        type: 'xrange',
-        height: 450
-      },
-
-      title: {
-        text: 'Project Timeline'
-      },
-
-      credits: {
-        enabled: false
-      },
-
-      xAxis: {
-        type: 'datetime'
-      },
-
-      yAxis: {
-        title: {
-          text: 'Project Stages'
-        },
-        categories: this.ganttData.map(x => x.task),
-        reversed: true
-      },
-
-      tooltip: {
-        pointFormat:
-          '<b>{point.task}</b><br>' +
-          'Start: {point.x:%e %b %Y}<br>' +
-          'End: {point.x2:%e %b %Y}<br>' +
-          'Progress: {point.completion}%'
-      },
-
-      plotOptions: {
-        xrange: {
-          borderRadius: 3
-        }
-      },
-
-      series: [
-        {
-          type: 'xrange',
-          name: 'Phases',
-          pointWidth: 24,
-          data: this.ganttData.map((item, index) => ({
-            x: item.start,
-            x2: item.end,
-            y: index,
-            color:
-              item.completion >= 75
-                ? '#28a745'
-                : item.completion > 0
-                ? '#f4a300'
-                : '#adb5bd',
-            partialFill: {
-              amount: item.completion / 100,
-              fill:
-                item.completion >= 75
-                  ? '#28a745'
-                  : item.completion > 0
-                  ? '#f4a300'
-                  : '#adb5bd'
-            },
-            task: item.task,
-            completion: item.completion
-          }))
-        } as any
-      ]
-    });
-  }
-
-  // --- Ageing Chart Render ---
   renderAgeingChart() {
-    const ageingData = this.ageingData.map((d) => ({
-      name: d.PERIOD,
-      y: d.ISSUES,
-    }));
-    this.renderPieChart(
-      "ageingPieChartContainer",
-      ageingData,
-      "Ageing Analysis",
-    );
+    const ageingData = this.ageingData.map(d => ({ name: d.PERIOD, y: d.ISSUES }));
+    this.renderPieChart("ageingPieChartContainer", ageingData, "Ageing Analysis");
   }
 
-  // --- Buffer specific renders replacing old RPN ---
+  // ─── Buffer charts ────────────────────────────────────────────────────────
+
   renderRpnChart() {
     this.renderBufferBarChart();
     this.renderBufferPieChart();
@@ -420,45 +289,31 @@ export class TestdashboardComponent implements OnInit, AfterViewInit {
 
   renderBufferBarChart() {
     const containerId = 'bufferBarChartContainer';
-    const container = document.getElementById(containerId);
-    if (!container) return;
-  
-    // Generate a dynamic 45-degree threshold line (y = x) based on the max sprint
+    if (!document.getElementById(containerId)) return;
+
     const maxSprint = Math.max(...this.bufferSprintData.map(d => d.sprint), 5);
-    const lineData = [];
-    for (let i = 0; i <= maxSprint + 1; i++) {
-      lineData.push([i, i]);
-    }
-  
-    // Map data and apply conditional coloring
-    const columnData = this.bufferSprintData.map((d) => ({
+    const lineData: [number, number][] = [];
+    for (let i = 0; i <= maxSprint + 1; i++) lineData.push([i, i]);
+
+    const columnData = this.bufferSprintData.map(d => ({
       x: d.sprint,
       y: d.bufferUsed,
-      color: d.bufferUsed > d.sprint ? '#dc3545' : '#28a745' // Red if Y > X, Green if Y <= X
+      color: d.bufferUsed > d.sprint ? '#dc3545' : '#28a745',
     }));
-  
+
     Highcharts.chart(containerId, {
       chart: { type: 'column' },
       title: { text: 'Buffer Time vs Sprints Completed' },
       credits: { enabled: false },
-      xAxis: {
-        title: { text: 'Sprints' },
-        min: 0,
-        tickInterval: 1
-      },
-      yAxis: {
-        title: { text: 'Buffer Time Used' },
-        min: 0
-      },
-      tooltip: {
-        shared: true
-      },
+      xAxis: { title: { text: 'Sprints' }, min: 0, tickInterval: 1 },
+      yAxis: { title: { text: 'Buffer Time Used' }, min: 0 },
+      tooltip: { shared: true },
       series: [
         {
           type: 'column',
           name: 'Buffer Used',
           data: columnData,
-          dataLabels: { enabled: true, format: '{point.y}' }
+          dataLabels: { enabled: true, format: '{point.y}' },
         },
         {
           type: 'line',
@@ -467,55 +322,42 @@ export class TestdashboardComponent implements OnInit, AfterViewInit {
           color: '#007bff',
           dashStyle: 'Dash',
           marker: { enabled: false },
-          enableMouseTracking: false // Prevents tooltip from snapping to the threshold line
-        }
-      ]
+          enableMouseTracking: false,
+        },
+      ],
     } as any);
   }
-  
+
   renderBufferPieChart() {
     const containerId = 'bufferPieChartContainer';
-    const container = document.getElementById(containerId);
-    if (!container) return;
-  
-    // Use the same conditional colors for consistency in the pie chart
-    const pieData = this.bufferSprintData.map((d) => ({
+    if (!document.getElementById(containerId)) return;
+
+    const pieData = this.bufferSprintData.map(d => ({
       name: 'Sprint ' + d.sprint,
       y: d.bufferUsed,
-      color: d.bufferUsed > d.sprint ? '#dc3545' : '#28a745'
+      color: d.bufferUsed > d.sprint ? '#dc3545' : '#28a745',
     }));
-  
+
     Highcharts.chart(containerId, {
       chart: { type: 'pie' },
       title: { text: 'Buffer Time Distribution' },
       credits: { enabled: false },
-      tooltip: {
-        pointFormat: 'Buffer Used: <b>{point.y}</b> ({point.percentage:.1f}%)'
-      },
+      tooltip: { pointFormat: 'Buffer Used: <b>{point.y}</b> ({point.percentage:.1f}%)' },
       plotOptions: {
         pie: {
           allowPointSelect: true,
           cursor: 'pointer',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.y}'
-          }
-        }
+          dataLabels: { enabled: true, format: '<b>{point.name}</b>: {point.y}' },
+        },
       },
-      series: [
-        {
-          type: 'pie',
-          name: 'Buffer Used',
-          data: pieData
-        }
-      ]
+      series: [{ type: 'pie', name: 'Buffer Used', data: pieData }],
     } as any);
   }
 
-  // --- Generic Chart Helpers (Kept for Ageing chart usage) ---
+  // ─── Generic helpers ──────────────────────────────────────────────────────
+
   renderPieChart(containerId: string, data: any[], title: string) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+    if (!document.getElementById(containerId)) return;
     Highcharts.chart(containerId, {
       chart: { type: "pie" },
       title: { text: title },
@@ -524,37 +366,26 @@ export class TestdashboardComponent implements OnInit, AfterViewInit {
         pie: {
           allowPointSelect: true,
           cursor: "pointer",
-          dataLabels: {
-            enabled: true,
-            format: "<b>{point.name}</b>: {point.percentage:.1f} %",
-          },
+          dataLabels: { enabled: true, format: "<b>{point.name}</b>: {point.percentage:.1f} %" },
         },
       },
-      series: [{ type: "pie", name: "Issues", colorByPoint: true, data: data }],
+      series: [{ type: "pie", name: "Issues", colorByPoint: true, data }],
     });
   }
 
-  renderBarChart(
-    containerId: string,
-    series: any[],
-    categories: string[],
-    title: string,
-  ) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+  renderBarChart(containerId: string, series: any[], categories: string[], title: string) {
+    if (!document.getElementById(containerId)) return;
     Highcharts.chart(containerId, {
       chart: { type: "column" },
       title: { text: title },
-      xAxis: { categories: categories, crosshair: true },
+      xAxis: { categories, crosshair: true },
       yAxis: { min: 0, title: { text: "Total Count" } },
       tooltip: {
         headerFormat: "<b>{point.x}</b><br/>",
         pointFormat: "{series.name}: {point.y}<br/>Total: {point.stackTotal}",
       },
-      plotOptions: {
-        column: { stacking: "normal", dataLabels: { enabled: false } },
-      },
-      series: series,
+      plotOptions: { column: { stacking: "normal", dataLabels: { enabled: false } } },
+      series,
     });
   }
 }
