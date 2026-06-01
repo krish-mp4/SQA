@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTasksComponent } from './add-tasks/add-tasks.component';
 import { FreezepanesDialogComponent } from '../testing-projects/freezepanes-dialog/freezepanes-dialog.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-rpm-tasks',
@@ -13,8 +14,6 @@ export class RpmTasksComponent implements OnInit {
   showFilter: boolean = false;
   isNavOpen: boolean | undefined;
 
-  constructor(private dialog: MatDialog) { }
-
   allProjects: any[] = [];
   currentPage: number = 0;
   pageSize: number = 10;
@@ -22,29 +21,53 @@ export class RpmTasksComponent implements OnInit {
   canUpdate = true;
   canDelete = true;
 
-  ngOnInit(): void {
-    this.getAllProjects();
+  isCalendarView: boolean = false;
+
+  selectedIcon: number | null = 3;
+  currentView: "Mega" | "Mini" | "Micro" = "Mega";
+  isExpandeded: boolean = true;
+  IsShow: boolean = false;
+  currentTime: string = "";
+  selectedTab1: string = "All";
+  selectedTab2: number | null = null;
+  FilterForm: FormGroup;
+
+  // Dropdown Master Collections
+  providers = ["Chris Waller", "Chunck James", "Bennett Pugh", "Catherina Jefferson", "William C.Bomer", "John Russell"];
+  locations = ["Texas", "Dallas", "Houston", "Hyderabad", "Kondapur"];
+  hoursList = ["1:00 AM", "2:00 AM", "3:00 AM", "4:00 AM", "5:00 AM", "6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"];
+
+  // Dynamic Array holding calendar format of the grid data
+  calendarCards: any[] = [];
+
+  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef, private dialog: MatDialog) {
+    this.FilterForm = this.fb.group({ KeyWord: null });
   }
 
-  // >>> NEW: Helper method to dynamically change slider color <<<
+  ngOnInit(): void {
+    this.getAllProjects();
+    this.updateTime();
+    setInterval(() => this.updateTime(), 60000);
+  }
+
   getSliderColor(percent: number): string {
-    if (percent <= 30) return '#0000ff'; // Blue for low completion
-    if (percent > 30 && percent <= 80) return '#ffb300'; // Yellow/Orange for mid completion
-    if (percent === 100) return '#ff0000'; // Red (based on your image's top slider)
-    return '#008000'; // Green for high completion
+    if (percent <= 30) return '#0000ff'; 
+    if (percent > 30 && percent <= 80) return '#ffb300'; 
+    if (percent === 100) return '#ff0000'; 
+    return '#008000'; 
   }
 
   getAllProjects(): void {
-    // Mock data fetch - replace with service/API call
+    // Replaced Team Names with Real Person Names
     const mockData = [
       {
         IsActive: true,
         ProjectName: 'Portal Upgrade',
         ProjectCode: '202605/Engg/001',
-        PercentCompletion: 100, // This will show red based on logic
+        PercentCompletion: 100, 
         TaskName: 'UI Design Implementation',
         TaskType: 'Development',
-        Responsibility: 'Frontend Team',
+        Responsibility: 'Alice Johnson', 
         Duration: '5 days',
         Effort: '20',
         Description: 'Implement the new dashboard UI layout.',
@@ -62,10 +85,10 @@ export class RpmTasksComponent implements OnInit {
         IsActive: false,
         ProjectName: 'DB Migration',
         ProjectCode: '202605/Engg/002',
-        PercentCompletion: 45, // This will show yellow
+        PercentCompletion: 45,
         TaskName: 'Database Optimization',
         TaskType: 'Maintenance',
-        Responsibility: 'Backend Team',
+        Responsibility: 'Robert Smith',
         Duration: '3 days',
         Effort: '12',
         Description: 'Optimize slow running queries in production.',
@@ -83,10 +106,10 @@ export class RpmTasksComponent implements OnInit {
         IsActive: true,
         ProjectName: 'User Docs v2',
         ProjectCode: '202605/Tech/003',
-        PercentCompletion: 10, // This will show blue
+        PercentCompletion: 10,
         TaskName: 'Update User Manual',
         TaskType: 'Documentation',
-        Responsibility: 'Tech Writing Team',
+        Responsibility: 'Clara Davis',
         Duration: '2 days',
         Effort: '8',
         Description: 'Draft new sections for the v2.0 release features.',
@@ -107,7 +130,7 @@ export class RpmTasksComponent implements OnInit {
         PercentCompletion: 60,
         TaskName: 'API Integration Testing',
         TaskType: 'Testing',
-        Responsibility: 'QA Team',
+        Responsibility: 'Daniel Martinez',
         Duration: '4 days',
         Effort: '16',
         Description: 'Test all third-party API integrations for the new release.',
@@ -128,7 +151,7 @@ export class RpmTasksComponent implements OnInit {
         PercentCompletion: 0,
         TaskName: 'Security Audit',
         TaskType: 'Compliance',
-        Responsibility: 'Security Team',
+        Responsibility: 'Evelyn Wright',
         Duration: '6 days',
         Effort: '24',
         Description: 'Conduct a full security audit on the production environment.',
@@ -141,119 +164,66 @@ export class RpmTasksComponent implements OnInit {
         Priority: 'High',
         Complexity: 'High',
         Template: 'Security Audit Template'
-      },
-      {
-        IsActive: true,
-        ProjectName: 'Load Testing',
-        ProjectCode: '202606/QA/002',
-        PercentCompletion: 95, // This will show green
-        TaskName: 'Performance Benchmarking',
-        TaskType: 'Testing',
-        Responsibility: 'DevOps Team',
-        Duration: '3 days',
-        Effort: '10',
-        Description: 'Run load and stress tests on the staging environment.',
-        PlanStart: '2025-01-20',
-        PlanEnd: '2025-01-22',
-        ActualStart: '2025-01-20',
-        ActualEnd: '2025-01-22',
-        ETA: '2025-01-22',
-        Status: 'Completed',
-        Priority: 'Medium',
-        Complexity: 'Medium',
-        Template: 'Performance Template v1'
-      },
-      {
-        IsActive: true,
-        ProjectName: 'Agile Wrap-up',
-        ProjectCode: '202606/Mgt/003',
-        PercentCompletion: 100,
-        TaskName: 'Sprint Retrospective Report',
-        TaskType: 'Documentation',
-        Responsibility: 'Scrum Master',
-        Duration: '1 day',
-        Effort: '4',
-        Description: 'Compile and share the sprint retrospective findings.',
-        PlanStart: '2025-01-24',
-        PlanEnd: '2025-01-24',
-        ActualStart: '2025-01-24',
-        ActualEnd: '2025-01-24',
-        ETA: '2025-01-24',
-        Status: 'Completed',
-        Priority: 'Low',
-        Complexity: 'Low',
-        Template: 'Doc Template Standard'
-      },
-      {
-        IsActive: false,
-        ProjectName: 'Mobile App V1',
-        ProjectCode: '202606/Engg/004',
-        PercentCompletion: 15,
-        TaskName: 'Mobile Responsive Fixes',
-        TaskType: 'Development',
-        Responsibility: 'Frontend Team',
-        Duration: '4 days',
-        Effort: '18',
-        Description: 'Fix layout and responsiveness issues on mobile devices.',
-        PlanStart: '2025-01-25',
-        PlanEnd: '2025-01-28',
-        ActualStart: '',
-        ActualEnd: '',
-        ETA: '2025-01-29',
-        Status: 'Pending',
-        Priority: 'Medium',
-        Complexity: 'Medium',
-        Template: 'Dev Template v1'
-      },
-      {
-        IsActive: true,
-        ProjectName: 'Infrastructure',
-        ProjectCode: '202606/Ops/005',
-        PercentCompletion: 25,
-        TaskName: 'CI/CD Pipeline Setup',
-        TaskType: 'DevOps',
-        Responsibility: 'DevOps Team',
-        Duration: '5 days',
-        Effort: '22',
-        Description: 'Configure and deploy the CI/CD pipeline for automated builds.',
-        PlanStart: '2025-01-29',
-        PlanEnd: '2025-02-02',
-        ActualStart: '2025-01-29',
-        ActualEnd: '',
-        ETA: '2025-02-03',
-        Status: 'Hold',
-        Priority: 'High',
-        Complexity: 'High',
-        Template: 'DevOps Template v3'
-      },
-      {
-        IsActive: true,
-        ProjectName: 'Market Research',
-        ProjectCode: '202607/Prod/001',
-        PercentCompletion: 100,
-        TaskName: 'Customer Feedback Analysis',
-        TaskType: 'Research',
-        Responsibility: 'Product Team',
-        Duration: '2 days',
-        Effort: '6',
-        Description: 'Analyze customer feedback from the latest product release.',
-        PlanStart: '2025-02-03',
-        PlanEnd: '2025-02-04',
-        ActualStart: '2025-02-03',
-        ActualEnd: '2025-02-04',
-        ETA: '2025-02-04',
-        Status: 'Completed',
-        Priority: 'Low',
-        Complexity: 'Low',
-        Template: 'Research Template v1'
       }
     ];
 
-    // Simulate pagination
     this.totalSize = mockData.length;
     const start = this.currentPage * this.pageSize;
     const end = start + this.pageSize;
     this.allProjects = mockData.slice(start, end);
+    
+    // Generate calendar data based directly on grid data
+    this.generateCalendarData();
+  }
+
+  // Maps allProjects data to the calendarCards structure
+  generateCalendarData(): void {
+    const statusColors: any = {
+      'Completed': '#a0e4ff',
+      'Progress': '#ffea9f',
+      'Hold': '#ffcdd2',
+      'Pending': '#e3b2ff'
+    };
+
+    this.calendarCards = this.allProjects.map((project, i) => {
+      return {
+        hour: this.hoursList[i % this.hoursList.length],
+        user: project.Responsibility,
+        dayPlacement: (i % 5) + 1, // Distributes blocks smoothly across Mon-Fri cells
+        taskName: project.TaskName,
+        projectName: project.ProjectName,
+        status: project.Status,
+        planStart: project.PlanStart,
+        color: statusColors[project.Status] || '#90ee90',
+        pInitials: project.TaskName.substring(0, 2).toUpperCase()
+      };
+    });
+  }
+
+  updateTime(): void {
+    const now = new Date();
+    const formattedHours = now.getHours() % 12 || 12;
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    this.currentTime = `${formattedHours}:${minutes} ${now.getHours() >= 12 ? "PM" : "AM"}`;
+  }
+
+  toggleCalendarView(): void {
+    this.isCalendarView = true;
+  }
+
+  showGridView(): void {
+    this.isCalendarView = false;
+  }
+
+  setView(view: "Mega" | "Mini" | "Micro") {
+    this.currentView = view;
+    this.isExpandeded = view !== "Micro";
+  }
+
+  toggleExpand() {
+    if (this.currentView === "Mega") this.setView("Mini");
+    else if (this.currentView === "Mini") this.setView("Micro");
+    else this.setView("Mega");
   }
 
   toggleNav() {
@@ -318,4 +288,9 @@ export class RpmTasksComponent implements OnInit {
       height: 'auto',
     });
   }
+
+  setSelectedTab1(tab: string) { this.selectedTab1 = tab; }
+  setSelectedTab2(index: number) { this.selectedTab2 = index; }
+  clearFilter() {}
+  go() {}
 }
