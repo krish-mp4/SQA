@@ -207,13 +207,17 @@ export class RpmTasksComponent implements OnInit {
     this.currentTime = `${formattedHours}:${minutes} ${now.getHours() >= 12 ? "PM" : "AM"}`;
   }
 
-  toggleCalendarView(): void {
-    this.isCalendarView = true;
-  }
+  // toggleCalendarView(): void {
+  //   this.isCalendarView = true;
+  // }
 
-  showGridView(): void {
-    this.isCalendarView = false;
-  }
+  // showGridView(): void {
+  //   this.isCalendarView = false;
+  // }
+
+  toggleView(): void {
+  this.isCalendarView = !this.isCalendarView;
+}
 
   setView(view: "Mega" | "Mini" | "Micro") {
     this.currentView = view;
@@ -293,4 +297,7 @@ export class RpmTasksComponent implements OnInit {
   setSelectedTab2(index: number) { this.selectedTab2 = index; }
   clearFilter() {}
   go() {}
+
+
+
 }
