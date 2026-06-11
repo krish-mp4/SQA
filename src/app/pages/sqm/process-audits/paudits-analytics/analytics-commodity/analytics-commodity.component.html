@@ -69,33 +69,43 @@
 
 
 
-<h2 class="section-title " style="margin-left: 18px;">Distribution of Actions by Commodity</h2>
+<h2 class="section-title " style="margin-left: 18px;"> Distribution By Rating </h2>
 <div class="row">
   <div class="card table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Commodity Name</th>
-          <th>Critical (%)</th>
-          <th>Important (%)</th>
-          <th>Others (%)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of commodityList">
-          <td>{{ item.name }}</td>
-          <td>{{ item.critical }}</td>
-          <td>{{ item.important }}</td>
-          <td>{{ item.others }}</td>
-        </tr>
-        <tr class="total-row">
-          <td>Total</td>
-          <td>75%</td>
-          <td>55%</td>
-          <td>65%</td>
-        </tr>
-      </tbody>
-    </table>
+  <table>
+  <thead>
+    <tr>
+      <th>Commodity Name</th>
+      <th>5</th>
+      <th>4</th>
+      <th>3</th>
+      <th>2</th>
+      <th>1</th>
+      <th>NA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of commodityList">
+      <td>{{ item.name }}</td>
+      <td>{{ item.rating5 }}</td>
+      <td>{{ item.rating4 }}</td>
+      <td>{{ item.rating3 }}</td>
+      <td>{{ item.rating2 }}</td>
+      <td>{{ item.rating1 }}</td>
+      <td>{{ item.ratingNA }}</td>
+    </tr>
+
+    <tr class="total-row">
+      <td>Total</td>
+      <td>75</td>
+      <td>68</td>
+      <td>60</td>
+      <td>48</td>
+      <td>35</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
   </div>
   <div class="card chart-container">
     <highcharts-chart [Highcharts]="Highcharts" [options]="commodityPieOptions"
@@ -103,7 +113,7 @@
   </div>
 </div>
 
-<h3 class="section-title" style="margin-left: 18px;">Distribution of Actions by Status</h3>
+<h3 class="section-title" style="margin-left: 18px;">Distribution by Severity</h3>
 
 <div class="row">
   <div class="card table-container">

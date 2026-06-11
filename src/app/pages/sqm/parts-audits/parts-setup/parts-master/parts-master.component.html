@@ -33,34 +33,26 @@
     <div class="filter-row">
 
       <div class="filter-group">
-        <label class="filter-label">Category:</label>
+        <label class="filter-label">Commodity:</label>
 
         <mat-select
-          placeholder="Select Model"
+          placeholder="Select Commodity"
           class="custom-mat-select"
           [(ngModel)]="selectedIndustry">
 
-          <mat-option value="manufacturing">Exterior</mat-option>
-          <mat-option value="automotive">Interior</mat-option>
+          <mat-option value="manufacturing">Casting</mat-option>
+          <mat-option value="automotive">Forging</mat-option>
           <!-- <mat-option value="logistics">Logistics</mat-option> -->
-
+           <mat-option value="manufacturing">Machining</mat-option>
+          <mat-option value="automotive">Fasteners</mat-option>
+           <mat-option value="automotive">Non-Metallic</mat-option>
         </mat-select>
       </div>
 
-      <div class="filter-group">
-
-        <label class="filter-label">Status:</label>
-
-        <mat-select
-          placeholder="Select Status"
-          class="custom-mat-select"
-          [(ngModel)]="selectedStatus">
-
-          <mat-option value="Active">Active</mat-option>
-          <mat-option value="Inactive">Inactive</mat-option>
-
-        </mat-select>
-      </div>
+<div class="filter-group">
+  <label class="filter-label mb-0">Keyword :</label>
+  <input type="text" [(ngModel)]="selectedKeyword" placeholder="Enter Keyword" class="custom-mat-input">
+</div>
 
       <div class="button-group">
 
@@ -102,8 +94,8 @@
           <th class="text-center">Suppliers</th>
           <th class="text-center">Priority</th>
           <th class="text-center">Status</th>
-          <th class="text-center">Upload Parameter Template</th>
-          <th class="text-center">Manage</th>
+          <th class="text-center">  Parameter  </th>
+          <th class="text-center">Actions</th>
         </tr>
       </thead>
 

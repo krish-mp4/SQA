@@ -8,6 +8,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/
 import { StatusConfirmationDialogComponent } from 'src/app/pages/testing/testing-projects/add-projects/status-confirmation-dialog/status-confirmation-dialog.component';
 import { ObjSetupAudittypessComponent } from 'src/app/pages/objective-audits/prts-objective-setup/obj-setup-modules-checkpoints/obj-setup-audittypess/obj-setup-audittypess.component';
 import { ObjImageDialogComponent } from 'src/app/pages/objective-audits/prts-objective-setup/obj-setup-modules-checkpoints/obj-image-dialog/obj-image-dialog.component';
+import { SetupImgPopComponent } from './setup-img-pop/setup-img-pop.component';
 
 @Component({
   selector: 'app-sub-setup-module-master',
@@ -234,7 +235,7 @@ values1 = [
       }
 
       imageSource(val: string) {
-        this.dialog.open(ObjImageDialogComponent, {
+        this.dialog.open(SetupImgPopComponent, {
           width: 'auto',
           height: 'auto',
           data: {

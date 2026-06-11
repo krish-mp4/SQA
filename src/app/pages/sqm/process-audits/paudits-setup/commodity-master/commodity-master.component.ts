@@ -22,6 +22,7 @@ export class CommodityMasterComponent implements OnInit {
     { name: 'Non-Metallic', status: 'Active',code : 16 },
     { name: 'Sheet Metal', status: 'Active',code : 17 }
   ];
+selectedKeyword: any;
  
 
   constructor(private dialog: MatDialog,  public router: Router) { }

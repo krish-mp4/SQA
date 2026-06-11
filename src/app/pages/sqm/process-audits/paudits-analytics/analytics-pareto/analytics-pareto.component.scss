@@ -53,6 +53,7 @@ td {
   margin: 0 0 15px 0;
   font-size: 18px;
   color: #333;
+  margin-left: 3px;
 }
 
 /* ── Filter Bar ── */
@@ -101,4 +102,9 @@ th {
   padding: 12px;
   font-size: 14px;
   border: 1px solid #e1e1e1;  /* ← darker shade of the header blue */
+}
+
+h2
+{
+  margin-left: 80px;
 }

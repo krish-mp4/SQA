@@ -91,7 +91,7 @@
 }
 
 .panel-title {
-  text-align: center;
+  // text-align: center;
   font-size: 18px;
   font-weight: bold;
   margin-top: 0;
@@ -354,3 +354,60 @@ select {
   cursor: pointer;
 }
 
+/* Panel Header Layout */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Changed from center to flex-start to remove top gap */
+  margin-bottom: 15px; 
+}
+
+/* Fix title margins and line-height */
+.panel-header .panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: auto; 
+  line-height: 32px; /* Matches the dropdown height for perfect side-by-side alignment */
+}
+
+/* Compact Material Dropdown Styling */
+.panel-dropdown {
+  width: 140px; 
+  
+  /* Force the text field wrapper to be short */
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 32px !important;
+    padding: 0 10px !important;
+  }
+
+  ::ng-deep .mat-mdc-form-field-flex {
+    height: 32px !important;
+    align-items: center !important;
+  }
+  
+  /* Remove default padding from the input area that forces height */
+  ::ng-deep .mat-mdc-form-field-infix {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Center the selected text */
+  ::ng-deep .mat-mdc-select-trigger {
+    height: 32px !important;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Hide the extra space reserved for error messages at the bottom */
+  ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+  }
+  
+  /* Adjust label alignment */
+  ::ng-deep .mat-mdc-form-field-label-wrapper {
+    top: -10px; 
+  }
+}

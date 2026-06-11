@@ -44,6 +44,7 @@ import { ActionDescRemarksComponent } from './paudits-actions/action-desc-remark
 import { ProcessActionsGridComponent } from './paudits-actions/process-actions-grid/process-actions-grid.component';
 import { ProcessActionsEditComponent } from './paudits-actions/process-actions-edit/process-actions-edit.component';
 import { ProcessDocPopComponent } from './paudits-actions/process-doc-pop/process-doc-pop.component';
+import { AuditCategoriesInnerscreenComponent } from './paudits-setup/process-audits-categories/audit-categories-innerscreen/audit-categories-innerscreen.component';
  
 
 const routes: Routes = [
@@ -63,14 +64,26 @@ const routes: Routes = [
       {
         path: 'setup',
         component: PauditsSetupComponent,
-        children: [
+       children: [
           { path: '', redirectTo: 'process-cat', pathMatch: 'full' },
-          { path: 'process-cat', component: ProcessAuditsCategoriesComponent },
-          // 2. CHANGE THIS line to lazy load
+        { 
+            path: 'process-cat', 
+            children: [
+              // Default view: Shows the Grid
+              { path: '', component: ProcessAuditsCategoriesComponent },
+              // Inner view: Shows the Inner Screen
+              { path: 'inner', component: AuditCategoriesInnerscreenComponent } 
+            ]
+          },
+          // --
+          
+          // 1. ADD THE NEW ROUTE HERE
+          { path: 'process-cat-inner', component: AuditCategoriesInnerscreenComponent }, 
+          
           { 
              path: 'commodity', 
              loadChildren: () => import('./paudits-setup/commodity-master/commodity-master.module').then(m => m.CommodityMasterModule) 
-          }
+          },
         ]
       },
       { path: 'alerts', component: PauditsAlertsComponent },
@@ -105,6 +118,7 @@ const routes: Routes = [
     ProcessActionsGridComponent,
     ProcessActionsEditComponent,
     ProcessDocPopComponent,
+    AuditCategoriesInnerscreenComponent,
  
   ],
   imports: [
@@ -131,4 +145,4 @@ const routes: Routes = [
     MatTooltipModule,          // <-- ADDED to imports array
   ]
 })
-export class ProcessAuditsModule { }
+export class ProcessAuditsModule { }  

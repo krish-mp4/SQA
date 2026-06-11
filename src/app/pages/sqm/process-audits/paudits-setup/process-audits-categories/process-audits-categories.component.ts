@@ -14,12 +14,12 @@ export class ProcessAuditsCategoriesComponent implements OnInit {
   selectedStatus: string = '';
 
   tableData = [
-    { name: 'Quality Management System', status: 'Active', code : 'QMS' },
-    { name: 'Material and Sub-Supplier Management ', status: 'Active', code : 'M M' },
-    { name: 'Production Process Control', status: 'Active', code : 'PPC' },
-    { name: 'Preventive Maintenance', status: 'Active', code : 'PM' },
-    { name: 'capa ', status: 'Active', code : 'CAPA' },
-       { name: ' housekeeping ', status: 'Active', code : '5S' }
+    { name: 'Quality Management System', status: 'Active', code : 'QMS', checklist :'12' },
+    { name: 'Material and Sub-Supplier Management ', status: 'Active', code : 'MM' , checklist :'12'},
+    { name: 'Production Process Control', status: 'Active', code : 'PPC', checklist :'12' },
+    { name: 'Preventive Maintenance', status: 'Active', code : 'PM', checklist :'12' },
+ 
+       { name: ' housekeeping ', status: 'Active', code : '5S', checklist :'12' }
   ];
  
 

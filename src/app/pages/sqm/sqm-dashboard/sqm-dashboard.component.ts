@@ -49,7 +49,7 @@ export class SqmDashboardComponent implements OnInit {
   partsAuditOptions: Highcharts.Options = {
     ...this.chartOptionsBase,
     series: [
-      { type: 'column', name: 'Plan', data: [85, 80, 68, 70] },
+      // { type: 'column', name: 'Plan', data: [85, 80, 68, 70] },
       { type: 'column', name: 'Actual', data: [40, 35, 92, 78] }
     ]
   };
@@ -58,7 +58,7 @@ export class SqmDashboardComponent implements OnInit {
   processAuditOptions: Highcharts.Options = {
     ...this.chartOptionsBase,
     series: [
-      { type: 'column', name: 'Plan', data: [85, 80, 68, 70] },
+      // { type: 'column', name: 'Plan', data: [85, 80, 68, 70] },
       { type: 'column', name: 'Actual', data: [40, 35, 92, 78] }
     ]
   };

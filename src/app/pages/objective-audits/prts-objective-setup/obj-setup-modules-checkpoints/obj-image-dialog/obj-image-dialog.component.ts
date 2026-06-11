@@ -92,4 +92,14 @@ export class ObjImageDialogComponent implements OnInit {
     }
     console.log('Saving file:', this.file.name);
   }
+
+
+  isPreHighlighted(rowIndex: number, colIndex: number): boolean {
+    if (!this.ImageObj || !this.ImageObj.highlightedCells) return false;
+    
+    // Check if the current row and col exist in the parent's highlightedCells array
+    return this.ImageObj.highlightedCells.some(
+      (cell: any) => cell.row === rowIndex && cell.col === colIndex
+    );
+  }
 }

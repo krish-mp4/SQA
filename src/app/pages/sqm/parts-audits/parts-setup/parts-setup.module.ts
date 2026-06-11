@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-
-// ✅ ADDED: FormsModule is required for [(ngModel)] in your dropdowns and checkboxes
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-// ✅ ADDED: All required Material Imports for your setup components
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -16,25 +13,28 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Component Imports
 import { PartsSetupComponent } from './parts-setup.component';
-import { AuditCategoriesComponent } from './audit-categories/audit-categories.component';
 import { PartsFamiliesComponent } from './parts-families/parts-families.component';
 import { PartsMasterComponent } from './parts-master/parts-master.component';
-import { AddPartCategoryComponent } from './audit-categories/add-part-category/add-part-category.component';
 import { AddPartsFamilypopComponent } from './parts-families/add-parts-familypop/add-parts-familypop.component';
 import { AddPartspopComponent } from './parts-master/add-partspop/add-partspop.component';
 import { SharedModule } from "src/app/shared/shared.module";
 import { PartsMasterSuppliersComponent } from './parts-master/parts-master-suppliers/parts-master-suppliers.component';
+
+// ❌ REMOVED AuditCategoriesComponent, AddPartCategoryComponent, and PartsauditcatInnergridComponent imports from here
 
 const routes: Routes = [
   {
     path: '',
     component: PartsSetupComponent,
     children: [
-      { path: 'parts-cat', component: AuditCategoriesComponent },
+      // ✅ CHANGED: Lazy load the new AuditCategoriesModule
+      { 
+        path: 'parts-cat', 
+        loadChildren: () => import('./audit-categories/audit-categories.module').then(m => m.AuditCategoriesModule) 
+      },
       { path: 'families', component: PartsFamiliesComponent },
       { path: 'master', component: PartsMasterComponent },
 
-      // Makes "Parts Audit Categories" open by default
       { path: '', redirectTo: 'parts-cat', pathMatch: 'full' }
     ]
   }
@@ -43,20 +43,17 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     PartsSetupComponent,
-    AuditCategoriesComponent,
     PartsFamiliesComponent,
     PartsMasterComponent,
-    AddPartCategoryComponent,
     AddPartsFamilypopComponent,
     AddPartspopComponent,
     PartsMasterSuppliersComponent
+    // ❌ REMOVED audit category components from declarations
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    // ✅ ADDED: Include the new modules here
     FormsModule,
-
     MatPaginatorModule,
     MatSelectModule,
     MatCheckboxModule,
@@ -66,7 +63,5 @@ const routes: Routes = [
     MatIconModule,
     SharedModule
   ]
-
-
 })
 export class PartsSetupModule { }

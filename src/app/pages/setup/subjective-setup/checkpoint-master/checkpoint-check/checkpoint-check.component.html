@@ -32,8 +32,26 @@
             class="table table-bordered table-hover">
             <tbody>
                 <tr>
-                    <td class="text-center"> <img style="height: 250px; width:350px ;" src="{{Image}}"
-                            (click)="imgpop(null)" /></td>
+                    <td class="text-center"> 
+                        <div class="image-grid-container" style="width: 350px; height: 250px; margin: 0 auto; cursor: pointer;" (click)="imgpop(null)">
+                            <img class="overlay-image" [src]="Image" />
+
+                            <table class="grid-overlay">
+                                <tbody>
+                                    <tr *ngFor="let r of gridRows; let rowIndex = index" [style.height.%]="100 / gridRows.length">
+                                        <td *ngFor="let c of gridCols; let colIndex = index"
+                                            class="grid-cell"
+                                            [ngStyle]="{
+                                              'background-color': isPreHighlighted(rowIndex + 1, colIndex + 1) 
+                                                                  ? 'rgba(0, 123, 255, 0.4)' 
+                                                                  : 'transparent'
+                                            }">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -50,7 +68,6 @@
                     <th class="theadcolor">Measure</th>
                     <th class="theadcolor">LSL</th>
                     <th class="theadcolor">USL</th>
-                    <!-- <th class="theadcolor text-center">Actual Value</th> -->
                     <th>Unit</th>
                     <th class="theadcolor text-center">Actions</th>
                 </tr>
@@ -64,7 +81,6 @@
                     <td>{{item.measure}}</td>
                     <td>{{item.lsl}}</td>
                     <td>{{item.usl}}</td>
-                    <!-- <td class="text-center">{{item.value}}</td> -->
                     <td>{{item.unit}}</td>
                     <td class="text-center editDel">
                         <a style="cursor: pointer;margin-right:10px; " matTooltip="Edit" (click)="addcheckpoint(item)">
@@ -80,10 +96,6 @@
 </div>
 <div class="col-lg-12">
     <div class="col-sm-3.5 pull-right mt-5" style="margin-bottom:50px ;">
-        <!-- <button mat-raised-button (click)="back()" class="mr-2" type="button"
-            style="color: rgb(7, 10, 7); background-color: #e0e0e0; margin-right: 10px;">
-            <mat-icon>fast_rewind</mat-icon> Back
-        </button> -->
         <button type="button" class="btn btn-outline-success" style="margin-right: 10px;">
             <mat-icon>save</mat-icon>Save Draft</button>
         <button mat-raised-button class="mr-2" type="button"
@@ -94,9 +106,5 @@
             style="color: rgb(7, 10, 7); background-color: #e0e0e0;">
             <mat-icon>cancel</mat-icon> Close
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <!-- <button mat-raised-button class="mr-2" type="button"
-          style="color: rgb(12, 120, 242); background-color: #e0e0e0;">
-          Skip to 5 Why Analysis
-        </button> -->
     </div>
 </div>

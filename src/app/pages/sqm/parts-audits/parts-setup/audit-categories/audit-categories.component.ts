@@ -15,12 +15,13 @@ export class AuditCategoriesComponent implements OnInit {
   selectedStatus: string = '';
 
   tableData = [
-    { name: 'Dimensional Clock ', status: 'Active' },
-    { name: 'Surface Finish', status: 'Active' },
-    { name: 'Performance', status: 'Active' },
-    { name: 'Metallurgical', status: 'Active' },
-    { name: 'Mechanical', status: 'Active' }
+    { name: 'Dimensional Clock ', code: 'DC001', status: 'Active', parameter :'12' },
+    { name: 'Surface Finish', code: 'SF001', status: 'Active', parameter :'8' },
+    { name: 'Performance', code: 'PE001', status: 'Active', parameter :'10' },
+    { name: 'Metallurgical', code: 'MT001', status: 'Active', parameter :'15' },
+    { name: 'Mechanical', code: 'MC001', status: 'Active', parameter :'20' }
   ];
+selectedKeyword: any;
  
 
   constructor(private dialog: MatDialog) { }

@@ -11,6 +11,8 @@ export class AddQuestionPopComponent {
   questionText: string = '';
   isMandatory: boolean = false;
   isPriority: boolean = false;
+guidelineText: any;
+isEditMode: any;
 
   constructor(public dialogRef: MatDialogRef<AddQuestionPopComponent>) {}
 

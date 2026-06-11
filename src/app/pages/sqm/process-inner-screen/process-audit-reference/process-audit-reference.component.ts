@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 export class ProcessAuditReferenceComponent implements OnInit {
 
   // Top Categories
-  categories = ['QMS', 'MM', 'PPC', 'IME', 'CAPA', '5S'];
+  categories = ['QMS', 'MM', 'PPC', 'IME' , '5S'];
   selectedCategory = 'QMS';
 
   // Dictionary mapping each category to its specific set of 12 questions
@@ -462,6 +462,7 @@ export class ProcessAuditReferenceComponent implements OnInit {
   ];
 
   selectedFiles: File[] = [];
+complianceStatus: any;
 
   constructor(private location: Location) { }
 
@@ -578,4 +579,90 @@ export class ProcessAuditReferenceComponent implements OnInit {
 
     fileInput.click();
   }
+
+
+
+
+
+
+
+
+
+
+classOptions = ['Regular', 'Important', 'Critical'];
+selectedClass = '';
+
+isSlideshowOpen = false;
+currentSlideIndex = 0;
+
+openSlideshow(index: number): void {
+  if (this.galleryImages && this.galleryImages.length > 0) {
+    this.currentSlideIndex = index;
+    this.isSlideshowOpen = true;
+  }
 }
+
+closeSlideshow(): void {
+  this.isSlideshowOpen = false;
+}
+
+prevSlide(event?: Event): void {
+  if (event) {
+    event.stopPropagation();
+  }
+
+  this.currentSlideIndex =
+    (this.currentSlideIndex - 1 + this.galleryImages.length) %
+    this.galleryImages.length;
+}
+
+nextSlide(event?: Event): void {
+  if (event) {
+    event.stopPropagation();
+  }
+
+  this.currentSlideIndex =
+    (this.currentSlideIndex + 1) %
+    this.galleryImages.length;
+}
+
+@HostListener('window:keydown', ['$event'])
+handleKeyboardEvent(event: KeyboardEvent): void {
+  if (!this.isSlideshowOpen) {
+    return;
+  }
+
+  switch (event.key) {
+    case 'ArrowLeft':
+      this.prevSlide();
+      break;
+
+    case 'ArrowRight':
+      this.nextSlide();
+      break;
+
+    case 'Escape':
+      this.closeSlideshow();
+      break;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+}
+
+
+

@@ -4,6 +4,7 @@ import { PartsAddParameterComponent } from '../../parts-audits/parts-active-audi
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Location } from '@angular/common';
+import { AuditrefRemarksPopComponent } from './auditref-remarks-pop/auditref-remarks-pop.component';
 
 @Component({
   selector: 'app-parts-audit-reference',
@@ -46,23 +47,23 @@ categories = [
     // Table Data based  
     tableData = [
       {
-        parameter: 'UTER DIAMETER', spec: '457.0±0.8', min: 23, max: 27, actionLink: 'View', special: 'General', method: 'Thermocouple',
-        s1: 24.5, s2: 25.0, s3: 26.0, s4: 25.5, s5: 24.8, okay: true
+        parameter: 'UTER DIAMETER', spec: '457.0±0.8', min: 23, max: 27, actionLink: '12', special: 'General', method: 'Thermocouple',
+        s1: 24.5, s2: 25.0, s3: 26.0, s4: 25.5, s5: 24.8, okay: false
       },
       {
-        parameter: 'OTAL LENGTH', spec: '4.747 / 34.798', min: 6.5, max: 7.5, actionLink: 'View', special: 'General', method: 'pH Meter',
+        parameter: 'OTAL LENGTH', spec: '4.747 / 34.798', min: 6.5, max: 7.5, actionLink: '13', special: 'General', method: 'pH Meter',
         s1: 7.1, s2: 6.9, s3: 7.2, s4: 6.8, s5: 7.0, okay: true
       },
       {
-        parameter: 'WIDTH', spec: '20.0±0.2', min: 1000, max: 2000, actionLink: 'View', special: 'General', method: 'Conductivity Meter',
+        parameter: 'WIDTH', spec: '20.0±0.2', min: 1000, max: 2000, actionLink: '14', special: 'General', method: 'Conductivity Meter',
         s1: 1400, s2: 1500, s3: 1600, s4: 1550, s5: 1450, okay: false
       },
       {
-        parameter: 'ACE TO HOLE CENTER', spec: '5.0±0.3', min: 7, max: 9, actionLink: 'View', special: 'General', method: 'DO Meter',
+        parameter: 'ACE TO HOLE CENTER', spec: '5.0±0.3', min: 7, max: 9, actionLink: '15', special: 'General', method: 'DO Meter',
         s1: 8.2, s2: 7.8, s3: 8.0, s4: 7.5, s5: 8.1, okay: true
       },
       {
-        parameter: 'ACE TO GROOVE CENTER', spec: '0.0±0.2', min: 0, max: 10, actionLink: 'View', special: 'General', method: 'MICROMETER',
+        parameter: 'ACE TO GROOVE CENTER', spec: '0.0±0.2', min: 0, max: 10, actionLink: '16', special: 'General', method: 'MICROMETER',
         s1: 3.0, s2: 4.5, s3: 5.0, s4: 2.5, s5: 3.5, okay: true
       }
     ];
@@ -90,15 +91,27 @@ categories = [
       this.pagedData = this.tableData.slice(start, start + this.pageSize);
     }
   
-      addchecklistaudit() {
-        let dialogRef = this.dialog.open(PartsAddParameterComponent, {
-          
-          height: 'auto',
-          width: '850px'
-        });
-        dialogRef.afterClosed().subscribe(data => {
-        });
-      }
+  addchecklistaudit() {
+    let dialogRef = this.dialog.open(PartsAddParameterComponent, {
+      height: 'auto',
+      width: '850px'
+    });
+    dialogRef.afterClosed().subscribe(data => {});
+  }
+
+
+
+
+  editParameter(item: any) {
+    let dialogRef = this.dialog.open(PartsAddParameterComponent, {
+      height: 'auto',
+      width: '850px',
+      data: item // <--- This tells the popup it's in Edit mode
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      // Handle any updates after popup closes if necessary
+    });
+  }
   
   
       opendocpop() {
@@ -110,4 +123,43 @@ categories = [
       });
     }
   }
+
+ opennotes() {
+  this.dialog.open(AuditrefRemarksPopComponent, {
+    width: '500px',
+     
+    height: 'auto'
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// Add this method anywhere inside your PartsAuditReferenceComponent class
+  deleteParameter(item: any): void {
+    const confirmDelete = window.confirm('Are you sure you want to delete??');
+    
+    if (confirmDelete) {
+      // Find the index of the item in the main tableData array
+      const index = this.tableData.indexOf(item);
+      
+      if (index > -1) {
+        // Remove the item from the array
+        this.tableData.splice(index, 1);
+        
+        // Refresh the paginated view to reflect the deletion
+        this.updatePage();
+      }
+    }
+  }
+
+
 }

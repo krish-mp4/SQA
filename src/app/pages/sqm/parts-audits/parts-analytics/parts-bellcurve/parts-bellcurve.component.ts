@@ -12,7 +12,7 @@ export class PartsBellcurveComponent implements OnInit {
     animationEnabled: true,
     theme: "light2",
     title: {
-      text: "Bell Curve for Process Audits",
+      text: "Bell Curve for Parts Audits",
       fontFamily: "Arial, sans-serif",
       fontWeight: "normal",
       fontSize: 24,

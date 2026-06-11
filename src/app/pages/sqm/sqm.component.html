@@ -145,7 +145,7 @@
             <span *ngIf="isSidenavOpen">Setup</span>
           </a>
         </li> -->
-        <li routerLinkActive="active" routerLink="./process/alerts">
+        <!-- <li routerLinkActive="active" routerLink="./process/alerts">
           <a>
             <mat-icon
               class="nav-icon"
@@ -154,6 +154,19 @@
               >notifications</mat-icon
             >
             <span *ngIf="isSidenavOpen">Alerts (8)</span>
+          </a>
+        </li> -->
+
+
+              <li routerLinkActive="active" routerLink="./process/actions">
+          <a>
+            <mat-icon
+              class="nav-icon"
+              *ngIf="!isSidenavOpen"
+              matTooltip="Actions"
+              >play_circle_outline</mat-icon
+            >
+            <span *ngIf="isSidenavOpen">CAPA</span>
           </a>
         </li>
         <li routerLinkActive="active" routerLink="./process/completed-audits">
@@ -167,17 +180,7 @@
             <span *ngIf="isSidenavOpen">Completed Audits</span>
           </a>
         </li>
-        <li routerLinkActive="active" routerLink="./process/actions">
-          <a>
-            <mat-icon
-              class="nav-icon"
-              *ngIf="!isSidenavOpen"
-              matTooltip="Actions"
-              >play_circle_outline</mat-icon
-            >
-            <span *ngIf="isSidenavOpen">Actions</span>
-          </a>
-        </li>
+  
         <li (click)="openUserManual('sample-1.pdf')">
           <a>
             <mat-icon
@@ -247,7 +250,7 @@
             <span *ngIf="isSidenavOpen">Setup</span>
           </a>
         </li> -->
-        <li routerLinkActive="active" routerLink="./parts/alerts">
+        <!-- <li routerLinkActive="active" routerLink="./parts/alerts">
           <a>
             <mat-icon
               class="nav-icon"
@@ -256,6 +259,18 @@
               >notifications</mat-icon
             >
             <span *ngIf="isSidenavOpen">Alerts (8)</span>
+          </a>
+        </li> -->
+
+         <li routerLinkActive="active" routerLink="./parts/actions">
+          <a>
+            <mat-icon
+              class="nav-icon"
+              *ngIf="!isSidenavOpen"
+              matTooltip="Actions"
+              >play_circle_outline</mat-icon
+            >
+            <span *ngIf="isSidenavOpen">CAPA</span>
           </a>
         </li>
         <li routerLinkActive="active" routerLink="./parts/completed-audits">
@@ -269,17 +284,7 @@
             <span *ngIf="isSidenavOpen">Completed Audits</span>
           </a>
         </li>
-        <li routerLinkActive="active" routerLink="./parts/actions">
-          <a>
-            <mat-icon
-              class="nav-icon"
-              *ngIf="!isSidenavOpen"
-              matTooltip="Actions"
-              >play_circle_outline</mat-icon
-            >
-            <span *ngIf="isSidenavOpen">Actions</span>
-          </a>
-        </li>
+       
         <li (click)="openUserManual('sample-1.pdf')">
           <a>
             <mat-icon

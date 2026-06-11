@@ -75,50 +75,42 @@ export class SubIssuesComponent implements OnInit {
      this.drawGrid(ctx, width, height, highlightedCells);
    }
  
-   drawGrid(
-     ctx: CanvasRenderingContext2D,
-     width: number,
-     height: number,
-     highlightedCells: { col: number; row: number; color: string; value: string }[]
-   ): void {
-     ctx.clearRect(0, 0, width, height);
- 
-     for (const cell of highlightedCells) {
-       // Subtract 1 so col:1, row:1 = top-left first cell (pixel 0,0)
-       const x = (cell.col - 1) * this.CELL_SIZE;
-       const y = (cell.row - 1) * this.CELL_SIZE;
- 
-       ctx.fillStyle = cell.color;
-       ctx.fillRect(x, y, this.CELL_SIZE, this.CELL_SIZE);
- 
-       ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
-       ctx.font = 'bold 13px Arial';
-       ctx.textAlign = 'center';
-       ctx.textBaseline = 'middle';
-       ctx.fillText(cell.value, x + this.CELL_SIZE / 2, y + this.CELL_SIZE / 2);
-     }
- 
-     // Grid lines (unchanged)
-     ctx.strokeStyle = 'rgba(180, 180, 180, 0.5)';
-     ctx.lineWidth = 1;
- 
-     const cols = Math.ceil(width / this.CELL_SIZE);
-     const rows = Math.ceil(height / this.CELL_SIZE);
- 
-     for (let c = 0; c <= cols; c++) {
-       ctx.beginPath();
-       ctx.moveTo(c * this.CELL_SIZE, 0);
-       ctx.lineTo(c * this.CELL_SIZE, height);
-       ctx.stroke();
-     }
- 
-     for (let r = 0; r <= rows; r++) {
-       ctx.beginPath();
-       ctx.moveTo(0, r * this.CELL_SIZE);
-       ctx.lineTo(width, r * this.CELL_SIZE);
-       ctx.stroke();
-     }
-   }
+drawGrid(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  highlightedCells: { col: number; row: number; color: string; value: string }[]
+): void {
+  ctx.clearRect(0, 0, width, height);
+
+  for (const cell of highlightedCells) {
+    const x = (cell.col - 1) * this.CELL_SIZE;
+    const y = (cell.row - 1) * this.CELL_SIZE;
+
+    ctx.fillStyle = cell.color;
+    ctx.fillRect(x, y, this.CELL_SIZE, this.CELL_SIZE);
+  }
+
+  ctx.strokeStyle = 'rgba(180, 180, 180, 0.5)';
+  ctx.lineWidth = 1;
+
+  const cols = Math.ceil(width / this.CELL_SIZE);
+  const rows = Math.ceil(height / this.CELL_SIZE);
+
+  for (let c = 0; c <= cols; c++) {
+    ctx.beginPath();
+    ctx.moveTo(c * this.CELL_SIZE, 0);
+    ctx.lineTo(c * this.CELL_SIZE, height);
+    ctx.stroke();
+  }
+
+  for (let r = 0; r <= rows; r++) {
+    ctx.beginPath();
+    ctx.moveTo(0, r * this.CELL_SIZE);
+    ctx.lineTo(width, r * this.CELL_SIZE);
+    ctx.stroke();
+  }
+}
 
 images = [
     {

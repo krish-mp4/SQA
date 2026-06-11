@@ -4,6 +4,7 @@ import { PartsAddParameterComponent } from '../../parts-audits/parts-active-audi
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Location } from '@angular/common';
+import { AuditrefRemarksPopComponent } from '../parts-audit-reference/auditref-remarks-pop/auditref-remarks-pop.component';
 
 @Component({
   selector: 'app-parts-completed-reference',
@@ -105,5 +106,29 @@ export class PartsCompletedReferenceComponent implements OnInit {
         
       });
     }
+  }
+
+
+
+
+   editParameter(item: any) {
+    let dialogRef = this.dialog.open(PartsAddParameterComponent, {
+      height: 'auto',
+      width: '850px',
+      data: item // <--- This tells the popup it's in Edit mode
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      // Handle any updates after popup closes if necessary
+    });
+  }
+
+
+
+   opennotes() {
+    this.dialog.open(AuditrefRemarksPopComponent, {
+      width: '500px',
+       
+      height: 'auto'
+    });
   }
 }
