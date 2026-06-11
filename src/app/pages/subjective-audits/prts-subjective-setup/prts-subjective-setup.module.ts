@@ -37,6 +37,7 @@ import { SubSetupAgencyTargetsComponent } from './sub-setup-agency-targets/sub-s
 import { AddSubSetupAgencyTargetsComponent } from './sub-setup-agency-targets/add-sub-setup-agency-targets/add-sub-setup-agency-targets.component';
 import { ModelspopComponent } from './sub-setup-module-master/section-pop/modelspop/modelspop.component';
 import { ModulePopComponent } from './sub-setup-defect-master/module-pop/module-pop.component';
+import { SetupImgPopComponent } from './sub-setup-module-master/setup-img-pop/setup-img-pop.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'sub-setup-audit-types', pathMatch: 'full' },
@@ -95,7 +96,8 @@ const routes: Routes = [
     SubSetupAgencyTargetsComponent,
     AddSubSetupAgencyTargetsComponent,
     ModelspopComponent,
-    ModulePopComponent
+    ModulePopComponent,
+    SetupImgPopComponent
   ],
   imports: [
     CommonModule,

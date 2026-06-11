@@ -25,6 +25,7 @@ export class PartsFamiliesComponent implements OnInit {
   { name: 'Cooling Systems', status: 'Active' },
   { name: 'Steering Systems', status: 'Active' }
 ];
+selectedKeyword: any;
  
 
   constructor(private dialog: MatDialog) { }

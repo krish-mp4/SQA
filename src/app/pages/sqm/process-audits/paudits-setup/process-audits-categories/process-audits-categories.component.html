@@ -39,12 +39,9 @@
         <div class="filter-row">
 
           <div class="filter-group">
-            <label class="filter-label mb-0">Category :</label>
-            <mat-select [(ngModel)]="selectedCategory" placeholder="Select Category" class="custom-mat-select">
-              <mat-option value="Exterior">Exterior</mat-option>
-              <mat-option value="Interior">Interior</mat-option>
-            </mat-select>
-          </div>
+  <label class="filter-label mb-0">Keyword :</label>
+  <input type="text" [(ngModel)]="selectedCategory" placeholder="Enter Keyword" class="custom-mat-input">
+</div>
 
           <div class="filter-group">
             <label class="filter-label mb-0">Status :</label>
@@ -68,34 +65,51 @@
     </mat-card>
   </div>
 
-  <div class="table-responsive bg-white shadow-sm">
-    <table class="custom-grid-table">
-      <thead>
-        <tr>
-          <th>Process Category Name</th>
-          <th class="text-center" style="width: 150px;">Status</th>
-          <th class="text-center" style="width: 150px;">Manages</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of tableData">
-          <td>{{ item.name }}</td>
-          <td class="text-center">
-            <a class="status-link" [ngClass]="item.status === 'Active' ? 'text-blue' : 'text-red'"
-              matTooltip="Click to Change Status">
-              {{ item.status }}
-            </a>
-          </td>
-          <td class="text-center manage-icons">
-            <mat-icon class="edit-icon" matTooltip="Edit"   (click)="addCategory(1)">edit</mat-icon>
-            <mat-icon class="delete-icon" matTooltip="Delete">delete</mat-icon>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="table-responsive bg-white shadow-sm">
+  <table class="custom-grid-table">
+    <thead>
+      <tr>
+        <th>Process Category Name</th>
+        <th>Category Code</th>
+                <th>Checklist  </th>
+         <th class="text-center" style="width: 150px;">Status</th>
+        <th class="text-center" style="width: 150px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of tableData">
+        <td>{{ item.name }}</td>
+        
+     <td class="text-center">
+          
+  {{ item.code }}
+ 
+        </td>
+        <td class="text-center"> <a [routerLink]="['inner']" class="text-blue"
+   [queryParams]="{ code: item.code }"
+   style=" cursor: pointer;"
+   matTooltip="View Details">
+  {{ item.checklist }}
+</a></td>
+        <td class="text-center">
+          <a class="status-link" [ngClass]="item.status === 'Active' ? 'text-blue' : 'text-red'"
+            matTooltip="Click to Change Status">
+            {{ item.status }}
+          </a>
+        </td>
+        <td class="text-center manage-icons">
+          <mat-icon class="edit-icon" matTooltip="Edit" (click)="addCategory(1)">edit</mat-icon>
+          <mat-icon class="delete-icon" matTooltip="Delete">delete</mat-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+   
+</div>
 
     <mat-paginator [length]="tableData.length" [pageSize]="4" [pageSizeOptions]="[4, 10, 25, 50]" showFirstLastButtons>
     </mat-paginator>
   </div>
 
-</div>
+ 

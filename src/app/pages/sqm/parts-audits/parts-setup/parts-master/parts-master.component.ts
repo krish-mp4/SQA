@@ -13,6 +13,7 @@ import { PartsMasterSuppliersComponent } from './parts-master-suppliers/parts-ma
 export class PartsMasterComponent implements OnInit {
 
   @ViewChild('tableContainer') tableContainer!: ElementRef;
+selectedKeyword: any;
 
   constructor(private dialog: MatDialog) {}
 
@@ -33,7 +34,7 @@ export class PartsMasterComponent implements OnInit {
       partCode: 'AF-123',
       partFamily: 'Engine Components',
       commodity: 'Casting',
-      suppliers: 5,
+      suppliers: 15,
       priority: true,
       status: 'Active'
     },
@@ -42,7 +43,7 @@ export class PartsMasterComponent implements OnInit {
       partCode: 'OF-456',
       partFamily: 'Engine Components',
       commodity: 'Forging',
-      suppliers: 5,
+      suppliers: 12,
       priority: true,
       status: 'Inactive'
     },
@@ -51,7 +52,7 @@ export class PartsMasterComponent implements OnInit {
       partCode: 'BP-789',
       partFamily: 'Braking Systems',
       commodity: 'Machining',
-      suppliers: 5,
+      suppliers: 8,
       priority: false,
       status: 'Active'
     },
@@ -60,7 +61,7 @@ export class PartsMasterComponent implements OnInit {
       partCode: 'FP-321',
       partFamily: 'Fuel Systems',
       commodity: 'Fasteners',
-      suppliers: 5,
+      suppliers: 11,
       priority: false,
       status: 'Inactive'
     },
@@ -69,7 +70,7 @@ export class PartsMasterComponent implements OnInit {
       partCode: 'SM-654',
       partFamily: 'Electrical Systems',
       commodity: 'Non-Metallic',
-      suppliers: 5,
+      suppliers: 13,
       priority: false,
       status: 'Active'
     },
@@ -78,7 +79,7 @@ export class PartsMasterComponent implements OnInit {
       partCode: 'AL-987',
       partFamily: 'Electrical Systems',
       commodity: 'Sheet Metal',
-      suppliers: 5,
+      suppliers: 12,
       priority: true,
       status: 'Active'
     }

@@ -6,6 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parts-alerts.component.scss']
 })
 export class PartsAlertsComponent implements OnInit {
+selectedStatus: any;
+selectedIndustry: any;
+onGo() {
+throw new Error('Method not implemented.');
+}
+onClear() {
+throw new Error('Method not implemented.');
+}
 
 // Toggles the visibility of the filter panel
   showFilters: any;

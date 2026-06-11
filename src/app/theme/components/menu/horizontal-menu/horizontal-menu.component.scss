@@ -34,9 +34,21 @@
     left: 100%;
     top: 0;
 }
-.active-link{
-    background-color: #50636d !important;
-    //border-bottom: #1877f2 5px solid !important;
+a.active-link,
+.active-link,
+.horizontal-menu-item .active-link {
+    background: #50636d !important;
+    color: #fff !important;
+}
+
+a.active-link .mat-icon,
+.active-link .mat-icon {
+    color: #fff !important;
+}
+
+a.active-link .horizontal-menu-title,
+.active-link .horizontal-menu-title {
+    color: #fff !important;
 }
 .active-link.test{
     border-bottom: none !important;

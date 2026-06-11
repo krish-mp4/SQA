@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input'; //
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { AnalyticsSummaryComponent } from './analytics-summary/analytics-summary.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
       { path: 'actions', component: AnalyticsActionsComponent },
       { path: 'scatter', component: AnalyticsScatterComponent },
       { path: 'bell-curve', component: AnalyticsBellcurveComponent },
-      { path: 'pareto', component: AnalyticsParetoComponent }
+      { path: 'pareto', component: AnalyticsParetoComponent },
+       { path: 'summary', component: AnalyticsSummaryComponent }
     ]
   }
 ];
@@ -42,7 +44,8 @@ const routes: Routes = [
     AnalyticsActionsComponent,
     AnalyticsScatterComponent,
     AnalyticsBellcurveComponent,
-    AnalyticsParetoComponent
+    AnalyticsParetoComponent,
+    AnalyticsSummaryComponent
   ],
   imports: [
     CommonModule,

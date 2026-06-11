@@ -27,13 +27,10 @@
       <mat-card-content>
         <div class="filter-row">
           
-           <div class="filter-group">
-            <label class="filter-label mb-0">Category :</label>
-            <mat-select [(ngModel)]="selectedCategory" placeholder="Select Category" class="custom-mat-select">
-              <mat-option value="Exterior">Exterior</mat-option>
-              <mat-option value="Interior">Interior</mat-option>
-            </mat-select>
-          </div>
+      <div class="filter-group">
+  <label class="filter-label mb-0">Keyword :</label>
+  <input type="text" [(ngModel)]="selectedKeyword" placeholder="Enter Keyword" class="custom-mat-input">
+</div>
 
           <div class="filter-group">
             <label class="filter-label mb-0">Status :</label>
@@ -63,8 +60,8 @@
         <tr>
           <th>Part Family Name</th>
           <th class="text-center" style="width: 150px;">Status</th>
-          <th class="text-center" style="width: 150px;">Upload Parameter Template</th>
-          <th class="text-center" style="width: 150px;">Manages</th>
+          <th class="text-center" style="width: 150px;"> Parameter Template</th>
+          <th class="text-center" style="width: 150px;">Actions</th>
         </tr>
       </thead>
       <tbody>

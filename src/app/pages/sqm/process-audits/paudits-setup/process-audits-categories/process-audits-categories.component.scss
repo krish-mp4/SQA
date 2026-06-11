@@ -244,3 +244,29 @@
 //   font-size: 14px;
 //   border: 1px solid #e1e1e1;  
 // }
+
+.custom-mat-input {
+  width: 200px !important; /* Slightly wider than select, adjust if needed */
+  height: 36px !important;
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+  padding: 0 10px !important;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #333;
+  transition: border-color 0.2s ease-in-out;
+
+  /* Matches the green focus border from your image */
+  &:focus {
+    border: 1px solid #0c6b4b !important; 
+  }
+
+  &::placeholder {
+    color: #999 !important;
+    font-size: 13px !important;
+    opacity: 1 !important;
+  }
+}

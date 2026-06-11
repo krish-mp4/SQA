@@ -21,7 +21,10 @@ export class RpmTasksComponent implements OnInit {
   canUpdate = true;
   canDelete = true;
 
+  // View States
   isCalendarView: boolean = false;
+  showWeekend: boolean = false; // Tracks weekend toggle state
+  displayDays: number[] = [1, 2, 3, 4, 5]; // Defaults to Monday - Friday
 
   selectedIcon: number | null = 3;
   currentView: "Mega" | "Mini" | "Micro" = "Mega";
@@ -58,7 +61,6 @@ export class RpmTasksComponent implements OnInit {
   }
 
   getAllProjects(): void {
-    // Replaced Team Names with Real Person Names
     const mockData = [
       {
         IsActive: true,
@@ -185,11 +187,14 @@ export class RpmTasksComponent implements OnInit {
       'Pending': '#e3b2ff'
     };
 
+    // Determine if we distribute cards across 5 days or 7 days
+    const daysToDistribute = this.showWeekend ? 7 : 5;
+
     this.calendarCards = this.allProjects.map((project, i) => {
       return {
         hour: this.hoursList[i % this.hoursList.length],
         user: project.Responsibility,
-        dayPlacement: (i % 5) + 1, // Distributes blocks smoothly across Mon-Fri cells
+        dayPlacement: (i % daysToDistribute) + 1, // Dynamically maps to 1-5 or 1-7
         taskName: project.TaskName,
         projectName: project.ProjectName,
         status: project.Status,
@@ -207,17 +212,17 @@ export class RpmTasksComponent implements OnInit {
     this.currentTime = `${formattedHours}:${minutes} ${now.getHours() >= 12 ? "PM" : "AM"}`;
   }
 
-  // toggleCalendarView(): void {
-  //   this.isCalendarView = true;
-  // }
-
-  // showGridView(): void {
-  //   this.isCalendarView = false;
-  // }
-
   toggleView(): void {
-  this.isCalendarView = !this.isCalendarView;
-}
+    this.isCalendarView = !this.isCalendarView;
+  }
+
+  toggleWeekend(): void {
+    this.showWeekend = !this.showWeekend;
+    // Update the array to loop 5 days or 7 days based on the toggle
+    this.displayDays = this.showWeekend ? [1, 2, 3, 4, 5, 6, 7] : [1, 2, 3, 4, 5];
+    // Regenerate data so tasks dynamically span across the weekends too
+    this.generateCalendarData();
+  }
 
   setView(view: "Mega" | "Mini" | "Micro") {
     this.currentView = view;
@@ -297,7 +302,5 @@ export class RpmTasksComponent implements OnInit {
   setSelectedTab2(index: number) { this.selectedTab2 = index; }
   clearFilter() {}
   go() {}
-
-
 
 }

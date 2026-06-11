@@ -38,21 +38,18 @@
       <mat-card-content>
         <div class="filter-row">
 
-          <div class="filter-group">
-            <label class="filter-label mb-0">Category :</label>
-            <mat-select [(ngModel)]="selectedCategory" placeholder="Select Category" class="custom-mat-select">
-              <mat-option value="Exterior">Exterior</mat-option>
-              <mat-option value="Interior">Interior</mat-option>
-            </mat-select>
-          </div>
+         <div class="filter-group">
+  <label class="filter-label mb-0">Keyword :</label>
+  <input type="text" [(ngModel)]="selectedKeyword" placeholder="Enter Keyword" class="custom-mat-input">
+</div>
 
-          <div class="filter-group">
-            <label class="filter-label mb-0">Status :</label>
-            <mat-select [(ngModel)]="selectedStatus" placeholder="Select Status" class="custom-mat-select">
-              <mat-option value="Active">Active</mat-option>
-              <mat-option value="Inactive">Inactive</mat-option>
-            </mat-select>
-          </div>
+<div class="filter-group">
+  <label class="filter-label mb-0">Status :</label>
+  <mat-select [(ngModel)]="selectedStatus" placeholder="Select Status" class="custom-mat-select">
+    <mat-option value="Active">Active</mat-option>
+    <mat-option value="Inactive">Inactive</mat-option>
+  </mat-select>
+</div>
 
           <div class="button-group">
             <button mat-raised-button class="btn-go" (click)="onGo()">
@@ -73,21 +70,34 @@
       <thead>
         <tr>
           <th>  Category Name</th>
+           <th>  Category Code</th>
           <th class="text-center" style="width: 150px;">Status</th>
+          <th class="text-center" style="width: 150px;">Parameter</th>
            <th class="text-center" style="width: 150px;">Upload Parameter Template</th>
-          <th class="text-center" style="width: 150px;">Manages</th>
+          <th class="text-center" style="width: 150px;">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of tableData">
           <td>{{ item.name }}</td>
+          <td>{{ item.code }}</td>
           <td class="text-center">
             <a class="status-link" [ngClass]="item.status === 'Active' ? 'text-blue' : 'text-red'"
               matTooltip="Click to Change Status">
               {{ item.status }}
             </a>
           </td>
+          <td class="text-center">
+  <a class="text-blue" 
+     style="cursor: pointer; text-decoration: underline;" 
+     [routerLink]="['inner']" 
+     [queryParams]="{ code: item.code, name: item.name }"
+     matTooltip="View Parameter Details">
+    {{ item.parameter }}
+  </a>
+</td>
           <td _ngcontent-kaf-c823="" class="text-center editDel"><a _ngcontent-kaf-c823="" mattooltip="download" class="mat-tooltip-trigger" style="cursor: pointer; margin-right: 10px;" ng-reflect-message="download" aria-describedby="cdk-describedby-message-46" cdk-describedby-host=""><i _ngcontent-kaf-c823="" class="fa fa-download" style="color: cornflowerblue;"></i></a><!--container--></td>
+         
           <td class="text-center manage-icons">
             <mat-icon class="edit-icon" matTooltip="Edit"   (click)="addCategory(1)">edit</mat-icon>
             <mat-icon class="delete-icon" matTooltip="Delete">delete</mat-icon>

@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HighchartsChartModule } from 'highcharts-angular';
 
-// Material Imports
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +17,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-// Component Imports
 import { PartsAuditsComponent } from './parts-audits.component';
 import { PartsCompletedAuditsComponent } from './parts-completed-audits/parts-completed-audits.component';
 import { PartsActionsComponent } from './parts-actions/parts-actions.component';
@@ -29,9 +27,7 @@ import { ViewDocPhotosComponent } from './parts-actions/view-doc-photos/view-doc
 import { PartsActionsGridComponent } from './parts-actions/parts-actions-grid/parts-actions-grid.component';
 import { PartsActionsEditComponent } from './parts-actions/parts-actions-edit/parts-actions-edit.component';
 import { PartsActionsDocsComponent } from './parts-actions/parts-actions-docs/parts-actions-docs.component';
- 
-
-// ❌ REMOVED PartsAlertsComponent and PartsAlertsDetailsComponent
+import { MatCardModule } from "@angular/material/card";
 
 const routes: Routes = [
   {
@@ -40,28 +36,37 @@ const routes: Routes = [
     children: [
       {
         path: 'analytics',
-        loadChildren: () => import('./parts-analytics/parts-analytics.module').then(m => m.PartsAnalyticsModule)
+        loadChildren: () =>
+          import('./parts-analytics/parts-analytics.module').then(
+            m => m.PartsAnalyticsModule
+          )
       },
-      // ✅ CHANGED: Lazy load the new Active Audits module
       {
         path: 'active-audits',
-        loadChildren: () => import('./parts-active-audits/parts-active-audits.module').then(m => m.PartsActiveAuditsModule)
+        loadChildren: () =>
+          import('./parts-active-audits/parts-active-audits.module').then(
+            m => m.PartsActiveAuditsModule
+          )
       },
-      { 
-        path: 'setup', 
-        loadChildren: () => import('./parts-setup/parts-setup.module').then(m => m.PartsSetupModule) 
+      {
+        path: 'setup',
+        loadChildren: () =>
+          import('./parts-setup/parts-setup.module').then(
+            m => m.PartsSetupModule
+          )
       },
-      // ✅ CHANGED: Lazy load the new Alerts module
       {
         path: 'alerts',
-        loadChildren: () => import('./parts-alerts/parts-alerts.module').then(m => m.PartsAlertsModule)
+        loadChildren: () =>
+          import('./parts-alerts/parts-alerts.module').then(
+            m => m.PartsAlertsModule
+          )
       },
       { path: 'new-audit', component: NewAuditComponent },
       { path: 'completed-audits', component: PartsCompletedAuditsComponent },
       { path: 'actions', component: PartsActionsComponent },
       { path: 'user-manual', component: PartsUserManualComponent },
       { path: 'help-desk', component: HelpDeskComponent },
-
       { path: '', redirectTo: 'analytics', pathMatch: 'full' }
     ]
   }
@@ -78,14 +83,13 @@ const routes: Routes = [
     ViewDocPhotosComponent,
     PartsActionsGridComponent,
     PartsActionsEditComponent,
-    PartsActionsDocsComponent,
- 
-    // ❌ REMOVED Alerts components from declarations
+    PartsActionsDocsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
+    ReactiveFormsModule,
     NgxChartsModule,
     HighchartsChartModule,
     MatCheckboxModule,
@@ -98,7 +102,8 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatFormFieldModule
-  ]
+    MatFormFieldModule,
+    MatCardModule
+]
 })
 export class PartsAuditsModule { }

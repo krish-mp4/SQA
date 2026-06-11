@@ -17,6 +17,7 @@ import { PartsInnerScreenComponent } from './parts-inner-screen.component';
 import { PartsAuditDetailsComponent } from './parts-audit-details/parts-audit-details.component';
 import { PartsAuditReferenceComponent } from './parts-audit-reference/parts-audit-reference.component';
 import { PartsCompletedReferenceComponent } from './parts-completed-reference/parts-completed-reference.component';
+import { AuditrefRemarksPopComponent } from './parts-audit-reference/auditref-remarks-pop/auditref-remarks-pop.component';
 
 // Import your components
  
@@ -58,7 +59,8 @@ const routes: Routes = [
   declarations: [
    PartsAuditDetailsComponent ,
    PartsAuditReferenceComponent ,
-   PartsCompletedReferenceComponent
+   PartsCompletedReferenceComponent,
+   AuditrefRemarksPopComponent
   ]
 })
 export class PartsInnerScreen { }

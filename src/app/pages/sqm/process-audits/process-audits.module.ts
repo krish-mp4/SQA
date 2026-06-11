@@ -37,13 +37,14 @@ import { PauditsActionsComponent } from './paudits-actions/paudits-actions.compo
 import { ActiveauditsReferenceComponent } from './paudits-active-audits/activeaudits-reference/activeaudits-reference.component';
 import { PauditsAlertsDetailsComponent } from './paudits-alerts/paudits-alerts-details/paudits-alerts-details.component';
 import { ProcessAuditsCategoriesComponent } from './paudits-setup/process-audits-categories/process-audits-categories.component';
-import { CommodityMasterComponent } from './paudits-setup/commodity-master/commodity-master.component';
+// import { CommodityMasterComponent } from './paudits-setup/commodity-master/commodity-master.component';
 import { AddProcessCategoryPopComponent } from './paudits-setup/process-audits-categories/add-process-category-pop/add-process-category-pop.component';
-import { AddCommodityPopComponent } from './paudits-setup/commodity-master/add-commodity-pop/add-commodity-pop.component';
+// import { AddCommodityPopComponent } from './paudits-setup/commodity-master/add-commodity-pop/add-commodity-pop.component';
 import { ActionDescRemarksComponent } from './paudits-actions/action-desc-remarks/action-desc-remarks.component';
 import { ProcessActionsGridComponent } from './paudits-actions/process-actions-grid/process-actions-grid.component';
 import { ProcessActionsEditComponent } from './paudits-actions/process-actions-edit/process-actions-edit.component';
 import { ProcessDocPopComponent } from './paudits-actions/process-doc-pop/process-doc-pop.component';
+import { AuditCategoriesInnerscreenComponent } from './paudits-setup/process-audits-categories/audit-categories-innerscreen/audit-categories-innerscreen.component';
  
 
 const routes: Routes = [
@@ -63,10 +64,26 @@ const routes: Routes = [
       {
         path: 'setup',
         component: PauditsSetupComponent,
-        children: [
+       children: [
           { path: '', redirectTo: 'process-cat', pathMatch: 'full' },
-          { path: 'process-cat', component: ProcessAuditsCategoriesComponent },
-          { path: 'commodity', component: CommodityMasterComponent }
+        { 
+            path: 'process-cat', 
+            children: [
+              // Default view: Shows the Grid
+              { path: '', component: ProcessAuditsCategoriesComponent },
+              // Inner view: Shows the Inner Screen
+              { path: 'inner', component: AuditCategoriesInnerscreenComponent } 
+            ]
+          },
+          // --
+          
+          // 1. ADD THE NEW ROUTE HERE
+          { path: 'process-cat-inner', component: AuditCategoriesInnerscreenComponent }, 
+          
+          { 
+             path: 'commodity', 
+             loadChildren: () => import('./paudits-setup/commodity-master/commodity-master.module').then(m => m.CommodityMasterModule) 
+          },
         ]
       },
       { path: 'alerts', component: PauditsAlertsComponent },
@@ -93,14 +110,15 @@ const routes: Routes = [
     ActiveauditsReferenceComponent,
     PauditsAlertsDetailsComponent,
     ProcessAuditsCategoriesComponent,
-    CommodityMasterComponent,
+    // CommodityMasterComponent,
     AddProcessCategoryPopComponent,
-    AddCommodityPopComponent,
+    // AddCommodityPopComponent,
     PauditsNewAuditComponent,
     ActionDescRemarksComponent,
     ProcessActionsGridComponent,
     ProcessActionsEditComponent,
     ProcessDocPopComponent,
+    AuditCategoriesInnerscreenComponent,
  
   ],
   imports: [
@@ -127,4 +145,4 @@ const routes: Routes = [
     MatTooltipModule,          // <-- ADDED to imports array
   ]
 })
-export class ProcessAuditsModule { }
+export class ProcessAuditsModule { }  
