@@ -51,7 +51,7 @@ scrollLeft() {
   ]
 
  opendashboard() {
-  this.router.navigate(['/app/parameterboard']);
+  window.open('/#/app/parameterboard', '_blank');
 }
 
   //parameterboard

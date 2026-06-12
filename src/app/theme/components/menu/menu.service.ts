@@ -72,10 +72,11 @@ export class MenuService {
 // horizontal-menu.component.ts
 
 isMenuItemActive(menu: any): boolean {
-  const url = this.router.url.split('?')[0]; // strip query params
+  const routerUrl = this.router.url.split('?')[0];
+  const url = (routerUrl && routerUrl !== '/') ? routerUrl : location.hash.replace('#', '').split('?')[0];
 
   const result =
-    url === menu.routerLink ||
+    url.startsWith(menu.routerLink) ||
 
     (menu.routerLink === '/app/prts-part' &&
       (url.startsWith('/app/prtsnavbar') ||
@@ -85,7 +86,8 @@ isMenuItemActive(menu: any): boolean {
       url.startsWith('/app/checklistdoard')) ||
 
     (menu.routerLink === '/app/objective-audits' &&
-      (url.startsWith('/app/setup/subjective') ||
+      (url.startsWith('/app/setup/subjective/check') ||
+       url.startsWith('/app/setup/subjective/overview') ||
        url.startsWith('/app/parameterboard')));
 
   return result;

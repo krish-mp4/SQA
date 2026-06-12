@@ -32,38 +32,29 @@ constructor(
   this.settings = this.appSettings.settings;
 }
 
-  ngOnInit() {
+ngOnInit() {
+  this.menuItems = this.menuService.getHorizontalMenuItems();
+  this.menuItems = this.menuItems.filter(item => item.parentId == this.menuParentId);
 
-
-
-    this.router.events.subscribe(event => {
-  if (event instanceof NavigationEnd) {
-    this.cdr.detectChanges();
+  const isClient = localStorage.getItem('isClient');
+  if (isClient && JSON.parse(isClient) == true) {
+    this.menuItems = this.menuService.getClientMenuItems();
   }
-});
 
-    this.currentUrl = this.router.url;
-
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.currentUrl = event.urlAfterRedirects;
-        this.cdr.detectChanges();
-      }
-    });
-
-    this.menuItems = this.menuService.getHorizontalMenuItems();
-    this.menuItems = this.menuItems.filter(item => item.parentId == this.menuParentId);
-
-    const isClient = localStorage.getItem('isClient');
-
-    if (isClient && JSON.parse(isClient) == true) {
-      this.menuItems = this.menuService.getClientMenuItems();
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      this.currentUrl = event.urlAfterRedirects;
+      this.cdr.detectChanges();
     }
-  }
+  });
+
+  // for new tab: router.url is '/' on first load, re-check after router resolves
+  setTimeout(() => this.cdr.detectChanges(), 100);
+}
 
 isMenuItemActive(menu: any): boolean {
-
-  const url = this.router.url;
+  const routerUrl = this.router.url.split('?')[0];
+  const url = (routerUrl && routerUrl !== '/') ? routerUrl : location.hash.replace('#', '').split('?')[0];
 
   const result =
     url.startsWith(menu.routerLink) ||
@@ -77,11 +68,8 @@ isMenuItemActive(menu: any): boolean {
 
     (menu.routerLink === '/app/objective-audits' &&
       (url.startsWith('/app/setup/subjective/check') ||
-       url.startsWith('/app/setup/subjective/overview')));
-
-  if (menu.title === 'OBJ Audits') {
-    console.log('OBJ RESULT = ', result);
-  }
+       url.startsWith('/app/setup/subjective/overview') ||
+       url.startsWith('/app/parameterboard')));
 
   return result;
 }
