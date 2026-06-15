@@ -14,7 +14,7 @@ export class PartsFamiliesComponent implements OnInit {
   selectedStatus: string = '';
 
   tableData = [
-  { name: 'Engine Components', status: 'Active', parameters: 12 },
+  { name: 'Engine Components', status: 'Active', parameters: 12  },
   { name: 'Transmission Systems', status: 'Active', parameters: 8 },
   { name: 'Chassis and Frame', status: 'Inactive', parameters: 0 },
   { name: 'Suspension Parts', status: 'Active', parameters: 15 },

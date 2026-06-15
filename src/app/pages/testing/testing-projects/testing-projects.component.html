@@ -200,11 +200,11 @@
                     </a>
                 </td>
                 <td class="text-center">
-                    <a style="color: blue; cursor: pointer; text-decoration: none;">{{ item.ProjectName }}</a>
-                </td>
-                <td class="text-center">
-                    <a style="color: blue; cursor: pointer; text-decoration: none;">{{ item.ProjectCode }}</a>
-                </td>
+    <a (click)="goToDashboard(item.ProjectCode)" style="color: blue; cursor: pointer; text-decoration: none;">{{ item.ProjectName }}</a>
+</td>
+<td class="text-center">
+    <a (click)="goToDashboard(item.ProjectCode)" style="color: blue; cursor: pointer; text-decoration: none;">{{ item.ProjectCode }}</a>
+</td>
                 <td class="text-center" matTooltip="{{ item.Description }}">{{ item.Description | slice:0:20 }}...</td>
                 <td class="text-center">{{ item.StartDate }}</td>
                 <td class="text-center">{{ item.DueDate }}</td>

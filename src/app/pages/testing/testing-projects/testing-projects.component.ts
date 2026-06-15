@@ -7,6 +7,7 @@ import { StatusConfirmationDialogComponent } from './add-projects/status-confirm
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { FreezepanesDialogComponent } from './freezepanes-dialog/freezepanes-dialog.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export type Status = 'Pending' | 'Allocated' | 'Progress' | 'Hold' | 'Cancelled' | 'Completed';
 
@@ -110,7 +111,7 @@ export class TestingProjectsComponent implements OnInit {
 
   newNote = '';
 
-  constructor(private fb: FormBuilder, private dialog: MatDialog) {
+constructor(private fb: FormBuilder, private dialog: MatDialog, private router: Router,private route: ActivatedRoute) {
     this.filterForm = this.fb.group({
       Keyword: [''],
       Status: [null]
@@ -886,4 +887,18 @@ export class TestingProjectsComponent implements OnInit {
   trackByCard(index: number, item: Card): number {
     return item.id;
   }
+
+
+
+
+
+
+
+
+goToDashboard(projectCode: string) {
+     
+    this.router.navigate(['dashboard'], { relativeTo: this.route }); 
 }
+}
+
+

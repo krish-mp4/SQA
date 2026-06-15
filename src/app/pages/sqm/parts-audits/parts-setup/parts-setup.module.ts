@@ -19,6 +19,8 @@ import { AddPartsFamilypopComponent } from './parts-families/add-parts-familypop
 import { AddPartspopComponent } from './parts-master/add-partspop/add-partspop.component';
 import { SharedModule } from "src/app/shared/shared.module";
 import { PartsMasterSuppliersComponent } from './parts-master/parts-master-suppliers/parts-master-suppliers.component';
+import { PartsauditcatInnergridComponent } from './audit-categories/partsauditcat-innergrid/partsauditcat-innergrid.component';
+import { FamiliesInnerGridComponent } from './parts-families/families-inner-grid/families-inner-grid.component';
 
 // ❌ REMOVED AuditCategoriesComponent, AddPartCategoryComponent, and PartsauditcatInnergridComponent imports from here
 
@@ -27,14 +29,18 @@ const routes: Routes = [
     path: '',
     component: PartsSetupComponent,
     children: [
-      // ✅ CHANGED: Lazy load the new AuditCategoriesModule
       { 
         path: 'parts-cat', 
         loadChildren: () => import('./audit-categories/audit-categories.module').then(m => m.AuditCategoriesModule) 
       },
-      { path: 'families', component: PartsFamiliesComponent },
+      { 
+        path: 'families', 
+        children: [
+          { path: '', component: PartsFamiliesComponent }, // Default view when hitting /families
+          { path: 'families-inner-grid', component: FamiliesInnerGridComponent } // Child view
+        ]
+      },
       { path: 'master', component: PartsMasterComponent },
-
       { path: '', redirectTo: 'parts-cat', pathMatch: 'full' }
     ]
   }
@@ -47,8 +53,9 @@ const routes: Routes = [
     PartsMasterComponent,
     AddPartsFamilypopComponent,
     AddPartspopComponent,
-    PartsMasterSuppliersComponent
-    // ❌ REMOVED audit category components from declarations
+    PartsMasterSuppliersComponent,
+    FamiliesInnerGridComponent
+ 
   ],
   imports: [
     CommonModule,
