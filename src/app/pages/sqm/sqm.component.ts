@@ -110,7 +110,7 @@ openheatmap() {
 
     addrecordpop(item: any) {
     this.dialog.open(AddRecordPopComponent, {
-      width: '700px',
+      width: '1000px',
       height: 'auto',
       data: item 
     });
