@@ -6,6 +6,7 @@ import { PartsAddParameterComponent } from '../../parts-audits/parts-active-audi
 import { AuditrefRemarksPopComponent } from '../../parts-inner-screen/parts-audit-reference/auditref-remarks-pop/auditref-remarks-pop.component';
 import { ViewDocPhotosComponent } from '../../parts-audits/parts-actions/view-doc-photos/view-doc-photos.component';
 import { UploadstagepopComponent } from './uploadstagepop/uploadstagepop.component';
+import { UploadListComponent } from './upload-list/upload-list.component';
 
 @Component({
   selector: 'app-active-records-ref',
@@ -134,4 +135,14 @@ tableData: any[] = [
       height: 'auto'
     });
   }
+
+
+   openuploadpop() {
+    this.dialog.open(UploadListComponent, {
+      width: '600px',
+      height: 'auto'
+    });
+  }
+
+
 }

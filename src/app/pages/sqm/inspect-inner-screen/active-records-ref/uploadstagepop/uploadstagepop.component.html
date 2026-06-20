@@ -57,14 +57,13 @@
 
 <div style="padding: 10px 20px 20px 20px; display: flex; justify-content: flex-end; align-items: center; gap: 12px;">
     
-    <button mat-raised-button style="background-color: #9e9e9e; color: rgb(244, 0, 0);background-color: rgb(201, 201, 201); box-shadow: 0 4px 6px rgba(0,0,0,0.2);" type="button" (click)="close()">
-        <mat-icon>cancel</mat-icon>
-        Cancel
-    </button>
-
-    <button mat-raised-button style="background-color: #176585; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.2);" type="button">
-        <mat-icon>save</mat-icon>
-        Update
-    </button>
+   <mat-dialog-actions align="end" style="margin-top: 15px;">
+        <button mat-raised-button class="ms-2 add-dark-hover btn-default" (click)="close()" style="background-color: lightgray; color: red;">
+            <mat-icon>cancel</mat-icon> Close
+        </button>
+        <button mat-raised-button type="submit" class="save" color="primary" style="" (click)="changeAddStep(2)">
+            <mat-icon>save</mat-icon>Save  
+        </button>
+    </mat-dialog-actions>
     
 </div>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-// Material & Chart Imports (Needed for your parent HTML filters and charts)
+// Material & Chart Imports 
 import { MatIconModule } from "@angular/material/icon";
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,15 +24,17 @@ const routes: Routes = [
     path: '',
     component: AnalyticsCommodityComponent,
     children: [
- 
+      // DEFAULT ROUTE REDIRECT: When hitting the base URL, redirect to 'processall'
+      { path: '', redirectTo: 'processall', pathMatch: 'full' }, 
+      
+      { path: 'processall', component: ProcessAllComponent },
       { path: 'casting', component: ProcessCastingComponent },
       { path: 'forging', component: ProcessForgingComponent },
       { path: 'machining', component: ProcessMachiningComponent },
       { path: 'fasteners', component: ProcessFastenersComponent },
       { path: 'non-metallic', component: ProcessNonmetallicComponent },
       { path: 'sheet-metal', component: ProcessSheetmetalComponent },
-      { path: 'proprietary', component: ProcessProprietaryComponent },
-       { path: 'processall', component: ProcessAllComponent }
+      { path: 'proprietary', component: ProcessProprietaryComponent }
     ]
   }
 ];

@@ -1,128 +1,87 @@
 import { Component, OnInit } from '@angular/core';
+import * as Highcharts from 'highcharts'; 
 
 @Component({
   selector: 'app-process-all',
   templateUrl: './process-all.component.html',
   styleUrls: ['./process-all.component.scss']
 })
-export class ProcessAllComponent     {
+export class ProcessAllComponent implements OnInit {
 
+  Highcharts: typeof Highcharts = Highcharts; 
 
-  // Table Data
-commodityList = [
-  {
-    name: 'Casting',
-    rating5: 12,
-    rating4: 8,
-    rating3: 5,
-    rating2: 3,
-    rating1: 1,
-    ratingNA: 0
-  },
-  {
-    name: 'Forging',
-    rating5: 10,
-    rating4: 7,
-    rating3: 6,
-    rating2: 2,
-    rating1: 1,
-    ratingNA: 1
-  },
-  {
-    name: 'Machining',
-    rating5: 15,
-    rating4: 9,
-    rating3: 4,
-    rating2: 2,
-    rating1: 0,
-    ratingNA: 0
-  },
-  {
-    name: 'Fasteners',
-    rating5: 8,
-    rating4: 10,
-    rating3: 6,
-    rating2: 3,
-    rating1: 2,
-    ratingNA: 1
-  },
-  {
-    name: 'Non-Metallic',
-    rating5: 11,
-    rating4: 7,
-    rating3: 5,
-    rating2: 4,
-    rating1: 1,
-    ratingNA: 0
-  },
-  {
-    name: 'Sheet Metal',
-    rating5: 9,
-    rating4: 8,
-    rating3: 7,
-    rating2: 3,
-    rating1: 2,
-    ratingNA: 1
-  }
-];
-
-  statusList = [
-    { rating: 'Pending', percent: '40%' },
-    { rating: 'Process', percent: '40%' },
-    { rating: 'Closed', percent: '40%' },
+  // Table Data 1
+  commodityList = [
+    { name: 'Casting', rating5: 12, rating4: 8, rating3: 5, rating2: 3, rating1: 1, ratingNA: 0 },
+    { name: 'Forging', rating5: 10, rating4: 7, rating3: 6, rating2: 2, rating1: 1, ratingNA: 1 },
+    { name: 'Machining', rating5: 15, rating4: 9, rating3: 4, rating2: 2, rating1: 0, ratingNA: 0 },
+    { name: 'Fasteners', rating5: 8, rating4: 10, rating3: 6, rating2: 3, rating1: 2, ratingNA: 1 },
+    { name: 'Non-Metallic', rating5: 11, rating4: 7, rating3: 5, rating2: 4, rating1: 1, ratingNA: 0 },
+    { name: 'Sheet Metal', rating5: 9, rating4: 8, rating3: 7, rating2: 3, rating1: 2, ratingNA: 1 }
   ];
 
-  // Commodity Chart Options
+  // Table Data 2 
+  statusList = [
+    { rating: 'Excellent', percent: '15.8%' }, 
+    { rating: 'Good', percent: '26.3%' },      
+    { rating: 'Satisfied', percent: '10.5%' }, 
+    { rating: 'Major', percent: '26.3%' },     
+    { rating: 'Critical', percent: '10.5%' },  
+    { rating: 'NA', percent: '10.5%' },        
+  ];
+
+  // Commodity Chart Options 
   commodityPieOptions: Highcharts.Options = {
     chart: { type: 'pie', backgroundColor: 'transparent' },
     title: { text: '' },
     credits: { enabled: false },
     plotOptions: {
       pie: {
-        dataLabels: { enabled: true, format: '<b>{point.name}</b>: {point.y:.0f}%' },
+        size: '75%', // <-- Added to lock the size
+        dataLabels: { enabled: true, format: '<b>{point.name}</b>: {point.percentage:.1f}%' },
         showInLegend: false
       }
     },
     series: [{
       type: 'pie',
       data: [
-        { name: 'Critical', y: 30, color: '#ff0000' },
-        { name: 'Important', y: 50, color: '#008000' },
-        { name: 'Others', y: 20, color: '#87ceeb' }
+        { name: 'Casting', y: 29 },      
+        { name: 'Forging', y: 27 },      
+        { name: 'Machining', y: 30 },    
+        { name: 'Fasteners', y: 30 },    
+        { name: 'Non-Metallic', y: 28 }, 
+        { name: 'Sheet Metal', y: 30 }   
       ]
     }]
   };
 
-  // Status Chart Options
+  // Status Chart Options 
   statusPieOptions: Highcharts.Options = {
     chart: { type: 'pie', backgroundColor: 'transparent' },
     title: { text: '' },
     credits: { enabled: false },
     plotOptions: {
       pie: {
-        dataLabels: { enabled: true, format: '<b>{point.name}</b>: {point.y:.0f}%' },
+        size: '75%', // <-- Added to lock the size
+        dataLabels: { enabled: true, format: '<b>{point.name}</b>: {point.percentage:.1f}%' },
         showInLegend: false
       }
     },
     series: [{
       type: 'pie',
       data: [
-        { name: 'Pending', y: 30, color: '#87ceeb' },
-        { name: 'Process', y: 50, color: '#008000' },
-        { name: 'Closed', y: 20, color: '#ff0000' }
+        { name: 'Excellent', y: 30,  color: '#008000' },
+        { name: 'Good', y: 50, color: '#000d80' },
+        { name: 'Satisfied', y: 20, color: '#dbdb21' },
+        { name: 'Major', y: 50, color: '#fcae04' },
+        { name: 'Critical', y: 20, color: '#ff0000' },
+        { name: 'NA', y: 20, color: '#7e7e7e' },
       ]
     }]
   };
 
+  constructor() { }
 
-
-
-
-
-
-
-
-
-
-
+  ngOnInit(): void {
+  }
 }

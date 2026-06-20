@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from "src/app/shared/shared.module";
 import { CapaViewScreenComponent } from './capa-view-screen/capa-view-screen.component';
 import { UploadstagepopComponent } from './active-records-ref/uploadstagepop/uploadstagepop.component';
+import { UploadListComponent } from './active-records-ref/upload-list/upload-list.component';
 
 const routes: Routes = [
   {
@@ -34,7 +35,8 @@ const routes: Routes = [
     ActiveRecordsRefComponent,
     CapaReferenceComponent,
     CapaViewScreenComponent,
-    UploadstagepopComponent
+    UploadstagepopComponent,
+    UploadListComponent
   ],
   imports: [
     CommonModule,
