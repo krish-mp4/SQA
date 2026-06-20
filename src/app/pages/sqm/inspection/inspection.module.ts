@@ -27,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { InspectionCapaComponent } from './inspection-capa/inspection-capa.component';
 import { InspectionArchivesComponent } from './inspection-archives/inspection-archives.component';
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { DefectsPopMasterComponent } from './inspection-datatable/defects-pop-master/defects-pop-master.component';
 
 const routes: Routes = [
   {
@@ -50,7 +51,8 @@ const routes: Routes = [
     AddRecordPopComponent,
     DefectsPopComponent,
     InspectionCapaComponent,
-    InspectionArchivesComponent
+    InspectionArchivesComponent,
+    DefectsPopMasterComponent
   ],
   imports: [
     CommonModule,

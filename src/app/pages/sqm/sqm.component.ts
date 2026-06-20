@@ -9,6 +9,7 @@ import { NewAuditComponent as PartsNewAuditComponent } from './parts-audits/new-
 import { PauditsHelpDeskComponent } from './process-audits/paudits-help-desk/paudits-help-desk.component';
 import { DefectsPopComponent } from './inspection/inspection-datatable/defects-pop/defects-pop.component';
 import { AddRecordPopComponent } from './inspection/add-record-pop/add-record-pop.component';
+import { DefectsPopMasterComponent } from './inspection/inspection-datatable/defects-pop-master/defects-pop-master.component';
 
 @Component({
   selector: 'app-sqm',
@@ -100,8 +101,8 @@ updateLayout(url: string) {
 }
 
 
-openheatmap() {
-    this.dialog.open(DefectsPopComponent, { width: 'auto', height: 'auto' });
+openheatmapname() {
+    this.dialog.open(DefectsPopMasterComponent, { width: 'auto', height: 'auto' });
   }
 
 
