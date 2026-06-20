@@ -1,0 +1,36 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
+@Component({
+  selector: 'app-upload-list',
+  templateUrl: './upload-list.component.html',
+  styleUrls: ['./upload-list.component.scss']
+})
+export class UploadListComponent implements OnInit {
+onFileSelected($event: Event) {
+throw new Error('Method not implemented.');
+}
+selectedFiles: any;
+onDragLeave($event: DragEvent) {
+throw new Error('Method not implemented.');
+}
+onDrop($event: DragEvent) {
+throw new Error('Method not implemented.');
+}
+onDragOver($event: DragEvent) {
+throw new Error('Method not implemented.');
+}
+
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<UploadListComponent>
+  ) { }
+
+  ngOnInit(): void {
+  }
+
+  close(): void {
+    this.dialogRef.close();
+  }
+}

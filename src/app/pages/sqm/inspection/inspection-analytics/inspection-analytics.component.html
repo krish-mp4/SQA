@@ -23,9 +23,17 @@
       </div>
 
       <div class="action-buttons">
-        <button mat-raised-button class="toggle-btn" (click)="toggleView()">
-          <mat-icon>{{ isDailyView ? 'calendar_month' : 'today' }}</mat-icon>
-          {{ isDailyView ? 'Switch to Monthly' : 'Switch to Daily' }}
+        
+        <button mat-raised-button 
+                [ngClass]="isDailyView ? 'btn-active' : 'btn-inactive'" 
+                (click)="switchToDaily()">
+          <mat-icon>today</mat-icon> Daily View
+        </button>
+
+        <button mat-raised-button 
+                [ngClass]="!isDailyView ? 'btn-active' : 'btn-inactive'" 
+                (click)="switchToMonthly()">
+          <mat-icon>calendar_month</mat-icon> Monthly View
         </button>
 
         <button mat-raised-button class="filter-btn" (click)="toggleFilter()">
@@ -35,43 +43,36 @@
     </div>
   </div>
 
-  
-
   <div *ngIf="showFilter" class="row mb-3">
     <div class="col-12">
       <div class="expanded-filter-content">
         <form>
           <div class="row">
-            
-          
-
             <div class="col-md-4 col-sm-6 row align-items-center mb-3">
               <div class="col-sm-4 newMarginClass"><b>Select Unit:</b></div>
               <div class="col-sm-8">
                 <mat-select placeholder="Select Unit" class="form-control mat-select-custom">
                   <mat-option value="Albania">Unit A</mat-option>
-                <mat-option value="Albania">Unit B</mat-option>          
-               <mat-option value="Albania">Unit C</mat-option>
-               <mat-option value="Albania">Unit D</mat-option>
-               <mat-option value="Albania">Unit E</mat-option>
-              </mat-select>
+                  <mat-option value="Albania">Unit B</mat-option>          
+                  <mat-option value="Albania">Unit C</mat-option>
+                  <mat-option value="Albania">Unit D</mat-option>
+                  <mat-option value="Albania">Unit E</mat-option>
+                </mat-select>
               </div>
             </div>
 
-              <div class="col-md-4 col-sm-6 row align-items-center mb-3">
+            <div class="col-md-4 col-sm-6 row align-items-center mb-3">
               <div class="col-sm-4 newMarginClass"><b>Select Stage:</b></div>
               <div class="col-sm-8">
                 <mat-select placeholder="Select Stage" class="form-control mat-select-custom">
                   <mat-option value="Albania">Product</mat-option>
-                <mat-option value="Albania">Customer</mat-option>          
-               <mat-option value="Albania">Part</mat-option>
-               <mat-option value="Albania">Category</mat-option>
-               <mat-option value="Albania">Unit</mat-option>
-              </mat-select>
+                  <mat-option value="Albania">Customer</mat-option>          
+                  <mat-option value="Albania">Part</mat-option>
+                  <mat-option value="Albania">Category</mat-option>
+                  <mat-option value="Albania">Unit</mat-option>
+                </mat-select>
               </div>
             </div>
-
-    
 
             <div class="col-md-4 col-sm-6 row align-items-center mb-3">
               <div class="col-sm-4 newMarginClass"><b>Select Category:</b></div>
@@ -85,52 +86,39 @@
               </div>
             </div>
 
-
-             <div class="col-md-4 col-sm-6 row align-items-center mb-3">
+            <div class="col-md-4 col-sm-6 row align-items-center mb-3">
               <div class="col-sm-4 newMarginClass"><b>Select Customer:</b></div>
               <div class="col-sm-8">
                 <mat-select placeholder="Select Customer" class="form-control mat-select-custom">
                   <mat-option value="Opened">TCS</mat-option>
                   <mat-option value="Closed">Mahindra</mat-option>
                   <mat-option value="Opened">Honda</mat-option>
-              
                 </mat-select>
               </div>
             </div>
 
-
-
-              <div class="col-md-4 col-sm-6 row align-items-center mb-3">
+            <div class="col-md-4 col-sm-6 row align-items-center mb-3">
               <div class="col-sm-4 newMarginClass"><b>Select Product:</b></div>
               <div class="col-sm-8">
                 <mat-select placeholder="Select Product" class="form-control mat-select-custom">
                   <mat-option value="Opened">Nokia</mat-option>
                   <mat-option value="Closed">Totoya</mat-option>
                   <mat-option value="Opened">Honda</mat-option>
-              
                 </mat-select>
               </div>
             </div>
 
-
-              <div class="col-md-4 col-sm-6 row align-items-center mb-3">
+            <div class="col-md-4 col-sm-6 row align-items-center mb-3">
               <div class="col-sm-4 newMarginClass"><b>Select Part:</b></div>
               <div class="col-sm-8">
                 <mat-select placeholder="Select Part" class="form-control mat-select-custom">
                   <mat-option value="Opened">XXX1234</mat-option>
                   <mat-option value="Closed">XXX1233</mat-option>
                   <mat-option value="Opened">XXX1233</mat-option>
-              
                 </mat-select>
               </div>
             </div>
 
-       
-
-       
-        
-
-           
             <div class="col-12 text-end mt-2">
               <button mat-raised-button class="btn-clear me-2">
                 <mat-icon>settings_backup_restore</mat-icon> Clear
@@ -139,7 +127,6 @@
                 <mat-icon>search</mat-icon> Search
               </button>
             </div>
-
           </div>
         </form>
       </div>
@@ -180,43 +167,78 @@
       </mat-card>
     </div>
   </div>
+
   <div class="row mt-1">
     <div class="col-lg-6 col-md-12 mt-3">
       <div class="chart-wrapper">
-        <highcharts-chart [Highcharts]="Highcharts" [options]="activeAnnualPpmOptions" style="width: 100%; height: 350px; display: block;"></highcharts-chart>
+        <highcharts-chart 
+          [Highcharts]="Highcharts" 
+          [options]="activeAnnualPpmOptions" 
+          [(update)]="updateFlag"
+          [oneToOne]="true"  style="width: 100%; height: 350px; display: block;">
+        </highcharts-chart>
       </div>
     </div>
     <div class="col-lg-6 col-md-12 mt-3">
       <div class="chart-wrapper">
-        <highcharts-chart [Highcharts]="Highcharts" [options]="activeMonthlyPpmOptions" style="width: 100%; height: 350px; display: block;"></highcharts-chart>
+        <highcharts-chart 
+          [Highcharts]="Highcharts" 
+          [options]="activeMonthlyPpmOptions" 
+          [(update)]="updateFlag"
+          [oneToOne]="true"  style="width: 100%; height: 350px; display: block;">
+        </highcharts-chart>
       </div>
     </div>
   </div>
 
-  <!-- <div class="row mt-3">
-    <div class="col-lg-6 col-md-12 mt-3">
+  <!-- <div class="row mt-4">
+    <div class="col-lg-6 col-md-12 mt-3 text-center">
+      <h4 class="section-title">Distribution By Defects</h4>
       <div class="chart-wrapper">
-        <highcharts-chart [Highcharts]="Highcharts" [options]="activeAnnualCopqOptions" style="width: 100%; height: 350px; display: block;"></highcharts-chart>
+        <highcharts-chart 
+          [Highcharts]="Highcharts" 
+          [options]="activeDefectsPieOptions" 
+          [(update)]="updateFlag"
+          [oneToOne]="true"  style="width: 100%; height: 350px; display: block;">
+        </highcharts-chart>
       </div>
     </div>
-    <div class="col-lg-6 col-md-12 mt-3">
+    <div class="col-lg-6 col-md-12 mt-3 text-center">
+      <h4 class="section-title">Distribution By Part Families</h4>
       <div class="chart-wrapper">
-        <highcharts-chart [Highcharts]="Highcharts" [options]="activeMonthlyCopqOptions" style="width: 100%; height: 350px; display: block;"></highcharts-chart>
+        <highcharts-chart 
+          [Highcharts]="Highcharts" 
+          [options]="activeProductsPieOptions" 
+          [(update)]="updateFlag"
+          [oneToOne]="true"  style="width: 100%; height: 350px; display: block;">
+        </highcharts-chart>
       </div>
     </div>
   </div> -->
 
-  <div class="row mt-4">
+<div class="row mt-4">
     <div class="col-lg-6 col-md-12 mt-3 text-center">
       <h4 class="section-title">Distribution By Defects</h4>
       <div class="chart-wrapper">
-        <highcharts-chart [Highcharts]="Highcharts" [options]="activeDefectsPieOptions" style="width: 100%; height: 350px; display: block;"></highcharts-chart>
+        <highcharts-chart 
+          [Highcharts]="Highcharts" 
+          [options]="activeDefectsPieOptions" 
+          [(update)]="updateFlag"
+          [oneToOne]="true" 
+          style="width: 100%; height: 350px; display: block;">
+        </highcharts-chart>
       </div>
     </div>
     <div class="col-lg-6 col-md-12 mt-3 text-center">
-      <h4 class="section-title">Distribution By Product Families</h4>
+      <h4 class="section-title">Distribution By Part Families</h4>
       <div class="chart-wrapper">
-        <highcharts-chart [Highcharts]="Highcharts" [options]="activeProductsPieOptions" style="width: 100%; height: 350px; display: block;"></highcharts-chart>
+        <highcharts-chart 
+          [Highcharts]="Highcharts" 
+          [options]="activeProductsPieOptions" 
+          [(update)]="updateFlag"
+          [oneToOne]="true" 
+          style="width: 100%; height: 350px; display: block;">
+        </highcharts-chart>
       </div>
     </div>
   </div>
@@ -225,48 +247,70 @@
     <div class="col-lg-6 col-md-12 pt-3">
       <h4 class="text-center section-title">Top 10 Defects</h4>
       <div class="table-responsive grid-table-container">
-        <table class="table table-bordered table-hover custom-table">
-          <thead class="tbl-head">
-            <tr>
-              <th>Defect</th>
-              <th>QTY</th>
-              <th>Rejection</th>
-              <th>Percent</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of activeTopDefects">
-              <td>{{ item.defect }}</td>
-              <td>{{ item.qty }}</td>
-              <td>{{ item.rejection }}</td>
-              <td>{{ item.percent }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="d-flex" style="gap: 15px;">
+          <table class="table table-bordered table-hover custom-table w-50 mb-0">
+            <thead class="tbl-head">
+              <tr>
+                <th>Defect</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of topDefectsLeft">
+                <td>{{ item.defect }}</td>
+                <td>{{ item.qty }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered table-hover custom-table w-50 mb-0">
+            <thead class="tbl-head">
+              <tr>
+                <th>Defect</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of topDefectsRight">
+                <td>{{ item.defect }}</td>
+                <td>{{ item.qty }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
     <div class="col-lg-6 col-md-12 pt-3">
       <h4 class="text-center section-title">Inspector Activities</h4>
-      <div class="table-responsive grid-table-container">
-        <table class="table table-bordered table-hover custom-table">
+      <div class="table-responsive grid-table-container" style="padding-bottom: 0;">
+        <table class="table table-bordered table-hover custom-table mb-0">
           <thead class="tbl-head">
             <tr>
               <th>Inspector</th>
-              <th>QTY</th>
-              <th>Rejection</th>
-              <th>Percent</th>
+              <th>Quantity</th>
+              <th>Records</th>
+              <th>PPM</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of activeInspectorActivities">
+            <tr *ngFor="let item of paginatedInspectorActivities">
               <td>{{ item.inspector }}</td>
               <td>{{ item.qty }}</td>
-              <td>{{ item.rejection }}</td>
-              <td>{{ item.percent }}</td>
+              <td>{{ item.records }}</td>
+               <td>{{ item.ppm }}</td>
             </tr>
           </tbody>
         </table>
+        
+        <mat-paginator 
+          [length]="activeInspectorActivities.length" 
+          [pageSize]="5" 
+          [pageSizeOptions]="[5, 10, 25]" 
+          (page)="handlePageEvent($event)"
+          style="background-color: transparent;">
+        </mat-paginator>
+
       </div>
     </div>
   </div>

@@ -210,3 +210,44 @@
     }
   }
 }
+
+
+
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 10px;
+
+  /* Active View Button Styling */
+  .btn-active {
+    background-color: #229494 !important; /* Matches your Go button theme */
+    color: white !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Inactive View Button Styling */
+  .btn-inactive {
+    background-color: #f0f0f0 !important;
+    color: #555 !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+    &:hover {
+      background-color: #e4e4e4 !important;
+    }
+  }
+
+  .filter-btn {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
