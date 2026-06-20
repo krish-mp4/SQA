@@ -28,6 +28,7 @@ import { InspectionCapaComponent } from './inspection-capa/inspection-capa.compo
 import { InspectionArchivesComponent } from './inspection-archives/inspection-archives.component';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { DefectsPopMasterComponent } from './inspection-datatable/defects-pop-master/defects-pop-master.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const routes: Routes = [
   {
@@ -52,7 +53,8 @@ const routes: Routes = [
     DefectsPopComponent,
     InspectionCapaComponent,
     InspectionArchivesComponent,
-    DefectsPopMasterComponent
+    DefectsPopMasterComponent,
+    
   ],
   imports: [
     CommonModule,
