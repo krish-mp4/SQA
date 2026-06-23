@@ -32,3 +32,20 @@
     color: white;
   }
 }
+
+/* Ensure the chart container allows label overflow */
+ngx-charts-pie-chart {
+  display: block;
+  overflow: visible;
+}
+
+/* Style for the labels */
+.ngx-charts .pie-label-text {
+  font-size: 12px !important;
+  fill: #333 !important;
+}
+
+/* Style for the connecting lines */
+.ngx-charts .pie-label-line {
+  stroke: #888 !important;
+}
