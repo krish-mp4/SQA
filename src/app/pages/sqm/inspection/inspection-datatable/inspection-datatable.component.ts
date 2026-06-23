@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener }
 import { MatDialog } from '@angular/material/dialog';
 import { AddRecordPopComponent } from '../add-record-pop/add-record-pop.component';
 import { DefectsPopComponent } from './defects-pop/defects-pop.component';
+import { ActiveGridDialogComponent } from '../../process-audits/paudits-active-audits/activeaudits-reference/active-grid-dialog/active-grid-dialog.component';
 
 @Component({
   selector: 'app-inspection-datatable',
@@ -12,26 +13,34 @@ export class InspectionDatatableComponent implements OnInit, AfterViewInit {
 
   @ViewChild('tableContainer', { static: false }) tableContainer!: ElementRef;
 
-  // ── Chart Data & Dims ──
-  public first: any[] = [];
-  public multi: any[] = [];
-  public triple: any[] = [];
+  // ── ngx-charts Configuration ──
+  public first:  any[] = []; // Inspection by Stage
+  public multi:  any[] = []; // Distribution by Part Family
+  public triple: any[] = []; // By Inspector
   
+  public showLegend    = false;
+  public showLabels    = true;
+  public explodeSlices = false;
+  public doughnut      = false;
+  public gradient      = false;
+  public colorScheme: any = {
+    domain: ['#2F3E9E', '#D22E2E', '#378D3B', '#0096A6', '#F47B00', '#606060']
+  };
+
+  public onSelect(event?: any) {
+    console.log('Item clicked', event);
+  }
 
   // ── Grid Data ──
   mockdata: any[] = [];
+  showFilter = false;
 
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.generateMockData();
-   
+    this.updateChartData(); // Calculate chart data from the table data
   }
-
-  
-  }
-
-  
 
   generateMockData() {
     this.mockdata = [
@@ -44,14 +53,45 @@ export class InspectionDatatableComponent implements OnInit, AfterViewInit {
     ];
   }
 
-  // --- UI Helpers ---
-  scrollLeft() { this.tableContainer?.nativeElement.scrollBy({ left: -300, behavior: 'smooth' }); }
-  scrollRight() { this.tableContainer?.nativeElement.scrollBy({ left: 300, behavior: 'smooth' }); }
+  // Dynamically calculate chart data based on mockdata
+  updateChartData() {
+    const stageCounts: any = {};
+    const familyCounts: any = {};
+    const inspectorCounts: any = {};
+
+    this.mockdata.forEach(item => {
+      // Count Stages
+      stageCounts[item.stage] = (stageCounts[item.stage] || 0) + 1;
+      // Count Part Families
+      familyCounts[item.PartFamily] = (familyCounts[item.PartFamily] || 0) + 1;
+      // Count Inspectors
+      inspectorCounts[item.Inspector] = (inspectorCounts[item.Inspector] || 0) + 1;
+    });
+
+    // Map to ngx-charts format: { name: string, value: number }
+    this.first = Object.keys(stageCounts).map(key => ({ name: key, value: stageCounts[key] }));
+    this.multi = Object.keys(familyCounts).map(key => ({ name: key, value: familyCounts[key] }));
+    this.triple = Object.keys(inspectorCounts).map(key => ({ name: key, value: inspectorCounts[key] }));
+  }
+
+  scrollLeft()  { this.tableContainer?.nativeElement.scrollBy({ left: -300, behavior: 'smooth' }); }
+  scrollRight() { this.tableContainer?.nativeElement.scrollBy({ left:  300, behavior: 'smooth' }); }
+
+  addrecord(data: any)          { this.dialog.open(AddRecordPopComponent, { width: '1000px', height: 'auto', data }); }
+  openDefectsPop(item: any)     { this.dialog.open(DefectsPopComponent,   { width: '1400px', height: 'auto', data: item }); }
+  openEditDialog(item: any)     { console.log('Edit clicked for:', item);    }
+  deleteConfirmation(item: any) { console.log('Delete clicked for:', item);  }
+  archiveRecord(item: any)      { console.log('Archive clicked for:', item); }
+
+
+
   
-  onSelect(event?: any) {}
-  addrecord(data: any) { this.dialog.open(AddRecordPopComponent, { width: '600px', data }); }
-  openDefectsPop(item: any) { this.dialog.open(DefectsPopComponent, { width: '700px', data: item }); }
-  openEditDialog(item: any) { console.log('Edit:', item); }
-  deleteConfirmation(item: any) { console.log('Delete:', item); }
-  archiveRecord(item: any) { console.log('Archive:', item); }
+      openGridView(data:any) {
+        this.dialog.open(ActiveGridDialogComponent, {
+          width: '650px',
+          height: 'auto',
+            maxHeight: '90vh',
+              panelClass: 'no-scroll-dialog' 
+        });
+      }
 }
