@@ -1,93 +1,89 @@
-import { clientMenuItems } from './../menu';
-import { Component, OnInit, Input, ViewChild, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { AppSettings } from '../../../../app.settings';
-import { Settings } from '../../../../app.settings.model';
-import { MenuService } from '../menu.service';
-
-import { MatMenuTrigger } from '@angular/material/menu';
+import { supplierMenuItems } from "./../menu"; // Ensure this path matches your project structure
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+} from "@angular/core";
+import { Router, NavigationEnd } from "@angular/router";
+import { AppSettings } from "../../../../app.settings";
+import { Settings } from "../../../../app.settings.model";
+import { MenuService } from "../menu.service";
+import { MatMenuTrigger } from "@angular/material/menu";
 
 @Component({
-  selector: 'app-horizontal-menu',
-  templateUrl: './horizontal-menu.component.html',
-  styleUrls: ['./horizontal-menu.component.scss'],
+  selector: "app-horizontal-menu",
+  templateUrl: "./horizontal-menu.component.html",
+  styleUrls: ["./horizontal-menu.component.scss"],
   encapsulation: ViewEncapsulation.None,
-  providers: [MenuService]
+  providers: [MenuService],
 })
 export class HorizontalMenuComponent implements OnInit {
-
-  @Input('menuParentId') menuParentId: any;
+  @Input("menuParentId") menuParentId: any;
   public menuItems: Array<any> = [];
   public settings: Settings;
-  public currentUrl: string = '';
+  public currentUrl: string = "";
 
   @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
 
-constructor(
-  public appSettings: AppSettings,
-  public menuService: MenuService,
-  public router: Router,
-  private cdr: ChangeDetectorRef
-) {
-  this.settings = this.appSettings.settings;
-}
-
-ngOnInit() {
-  this.menuItems = this.menuService.getHorizontalMenuItems();
-  this.menuItems = this.menuItems.filter(item => item.parentId == this.menuParentId);
-
-  const isClient = localStorage.getItem('isClient');
-  if (isClient && JSON.parse(isClient) == true) {
-    this.menuItems = this.menuService.getClientMenuItems();
+  constructor(
+    public appSettings: AppSettings,
+    public menuService: MenuService,
+    public router: Router,
+    private cdr: ChangeDetectorRef,
+  ) {
+    this.settings = this.appSettings.settings;
   }
 
-  this.router.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      this.currentUrl = event.urlAfterRedirects;
-      this.cdr.detectChanges();
+  ngOnInit() {
+    const isClient = localStorage.getItem("isClient");
+    const userType = localStorage.getItem("userType");
+
+    // 1. Determine which menu list to use
+    let activeMenuArray = [];
+
+    if (userType === "supplier") {
+      activeMenuArray = supplierMenuItems; // Use the imported supplier menu
+    } else if (isClient && JSON.parse(isClient) == true) {
+      activeMenuArray = this.menuService.getClientMenuItems();
+    } else {
+      activeMenuArray = this.menuService.getHorizontalMenuItems(); // Admin/Default
     }
-  });
 
-  // for new tab: router.url is '/' on first load, re-check after router resolves
-  setTimeout(() => this.cdr.detectChanges(), 100);
-}
+    // 2. Filter by parentId AFTER selecting the correct menu list
+    this.menuItems = activeMenuArray.filter(
+      (item) => item.parentId == this.menuParentId,
+    );
 
-isMenuItemActive(menu: any): boolean {
-  const routerUrl = this.router.url.split('?')[0];
-  const url = (routerUrl && routerUrl !== '/') ? routerUrl : location.hash.replace('#', '').split('?')[0];
+    // 3. Handle Route Changes
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl = event.urlAfterRedirects;
+        this.cdr.detectChanges();
+      }
+    });
 
-  const result =
-    url.startsWith(menu.routerLink) ||
+    setTimeout(() => this.cdr.detectChanges(), 100);
+  }
 
-    (menu.routerLink === '/app/prts-part' &&
-      (url.startsWith('/app/prtsnavbar') ||
-       url.startsWith('/app/prtsonepager'))) ||
-
-    (menu.routerLink === '/app/subjective-audits' &&
-      url.startsWith('/app/checklistdoard')) ||
-
-    (menu.routerLink === '/app/objective-audits' &&
-      (url.startsWith('/app/setup/subjective/check') ||
-       url.startsWith('/app/setup/subjective/overview') ||
-       url.startsWith('/app/parameterboard')));
-
-  return result;
-}
+  isMenuItemActive(menu: any): boolean {
+    return this.menuService.isMenuItemActive(menu);
+  }
 
   ngAfterViewInit() {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-
         if (this.settings.fixedHeader) {
-          const mainContent = document.getElementById('main-content');
-
+          const mainContent = document.getElementById("main-content");
           if (mainContent) {
             mainContent.scrollTop = 0;
           }
-        }
-        else {
-          const drawer = document.getElementsByClassName('mat-drawer-content')[0] as HTMLElement;
-
+        } else {
+          const drawer = document.getElementsByClassName(
+            "mat-drawer-content",
+          )[0] as HTMLElement;
           if (drawer) {
             drawer.scrollTop = 0;
           }

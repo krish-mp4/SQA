@@ -44,15 +44,15 @@ const routes: Routes = [
         path: 'app',
         component: PagesComponent, children: [
 
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+          { path: '', redirectTo: 'sqm', pathMatch: 'full' },
 
             {
-                path: "test-dashboard",
+                path: "test@-dashboard",
                 component: TestdashboardComponent,
 
             },
             {
-                path: 'inner-form', component: LogissueInnerFormComponent,
+                path: 'inne@r-form', component: LogissueInnerFormComponent,
                 data: { breadcrumb: 'Issuelog', description: 'This page is used to display the Issue Log' }
             },
             {
@@ -61,7 +61,7 @@ const routes: Routes = [
                 data: { breadcrumb: 'Client Login' }
             },
             {
-                path: 'Compleints', loadChildren: () =>
+                path: 'Comp@leints', loadChildren: () =>
                     import("./pages/complaints/complaints.module").then((m) => m.ComplaintsNewModule),
                 data: { breadcrumb: 'Client Login' }
             },
@@ -74,12 +74,12 @@ const routes: Routes = [
             },
 
             {
-                path: 'dashboard', component: DashboardComponent,
+                path: 'dash@board', component: DashboardComponent,
                 data: { breadcrumb: 'Audit Dashboard' }
             },
 
             {
-                path: 'testing', component: TestingComponent,
+                path: 'te@sting', component: TestingComponent,
                 loadChildren: () => import("./pages/testing/testing.module").then((m) => m.TestingModule),
                 data: { breadcrumb: 'Radar' }
             },
@@ -90,114 +90,114 @@ const routes: Routes = [
             },
 
             {
-                path: 'complaints', component: ComplaintsComponent,
+                path: 'com@plaints', component: ComplaintsComponent,
                 data: { breadcrumb: 'Complaints' }
             },
             {
-                path: 'complaints/complaintsdashboard', component: ComplaintsdashboardComponent,
+                path: 'complai@nts/complaintsdashboard', component: ComplaintsdashboardComponent,
                 data: { breadcrumb: 'Complaints Dashboard' }
             },
             {
-                path: 'complaints/add-complaints', component: AddComplaintComponent,
+                path: 'com@plaints/add-complaints', component: AddComplaintComponent,
                 data: { breadcrumb: ' Add Complaints' }
             },
             {
-                path: 'complaints/capa', component: CapaComponent,
+                path: 'complai@nts/capa', component: CapaComponent,
                 data: { breadcrumb: 'CAPA' }
             },
             {
-                path: 'complaints/attendance', component: AttendanceComponent,
+                path: 'compla@ints/attendance', component: AttendanceComponent,
                 data: { breadcrumb: 'Attendance' }
             },
             {
-                path: 'complaints/kanban', component: KanbanComponent,
+                path: 'co@mplaints/kanban', component: KanbanComponent,
                 data: { breadcrumb: 'Kanban' }
             },
             {
-                path: 'complaints/meeting', component: MeetingComponent,
+                path: 'compl@aints/meeting', component: MeetingComponent,
                 data: { breadcrumb: 'Meeting' }
             },
             {
-                path: 'complaints/meeting/add', component: AddMeetingPageComponent,
+                path: 'compl@aints/meeting/add', component: AddMeetingPageComponent,
                 data: { breadcrumb: 'Add Meeting' }
             },
 
             {
-                path: 'setups',
+                path: 'se@tups',
                 loadChildren: () => import("./pages/setups/setups.module").then((m) => m.TestingModule),
                 data: { breadcrumb: 'Setup' }
             },
 
             {
-                path: 'complaints/reference-number', component: ReferenceNumberComponent,
+                path: 'com@plaints/reference-number', component: ReferenceNumberComponent,
                 loadChildren: () => import("./pages/reference-number/reference-number.module").then((m) => m.ReferenceModule),
                 data: { breadcrumb: 'Base info' }
             },
 
 
             {
-                path: 'checklistdoard', component: ChecklistDashboardComponent, loadChildren: () =>
+                path: 'chec@klistdoard', component: ChecklistDashboardComponent, loadChildren: () =>
                     import('./pages/checklist-dashboard/checklist-dashboard.module').then((m) => m.ChecklistDashboardModule),
                 data: { breadcrumb: 'Subjective Audit', description: 'Audits throught the application are managed here.' }
             },
 
             {
-                path: 'prtsonepager', component: PrtsOnePagerComponent, loadChildren: () =>
+                path: 'prtsone@pager', component: PrtsOnePagerComponent, loadChildren: () =>
                     import("./pages/prts-one-pager/prts-one-pager.module").then((m) => m.PrtsOnePagerModule),
 
 
             },
             // {
-            //     path: 'new-audits', component: NewAuditsComponent, loadChildren: () =>
+            //     path: 'new-au@dits', component: NewAuditsComponent, loadChildren: () =>
             //         import('./pages/new-audits/new-audits.module').then((m) => m.NewAuditsModule),
             //     data: { breadcrumb: 'Audit' }
             // },
             {
-                path: 'subjective-audits', component: SubjectiveAuditsComponent, loadChildren: () =>
+                path: 'sub@jective-audits', component: SubjectiveAuditsComponent, loadChildren: () =>
                     import('./pages/subjective-audits/subjective-audits.module').then((m) => m.SubjectiveAuditsModule),
 
             },
             {
-                path: 'objective-audits', component: ObjectiveAuditsComponent, loadChildren: () =>
+                path: 'objec@tive-audits', component: ObjectiveAuditsComponent, loadChildren: () =>
                     import('./pages/objective-audits/objective-audits.module').then((m) => m.ObjectiveAuditsModule),
 
             },
 
             {
-                path: 'setup', component: SetupComponent, loadChildren: () =>
+                path: 'se@tup', component: SetupComponent, loadChildren: () =>
                     import("./pages/setup/setup.module").then((m) => m.SetupModule),
                 data: { breadcrumb: 'Setup' }
             },
 
             {
-                path: 'radar1', component: RadarComponent, loadChildren: () =>
+                path: 'ra@dar1', component: RadarComponent, loadChildren: () =>
                     import("./pages/radar/radar.module").then((m) => m.RadarModule),
 
                 data: { breadcrumb: 'Home' }
             },
 
             {
-                path: 'prts', component: GridPrtsComponent, loadChildren: () =>
+                path: 'p@rts', component: GridPrtsComponent, loadChildren: () =>
                     import("./pages/prts/prts.module").then((m) => m.PrtsModule),
 
 
             },
             {
 
-                path: 'prts-grid', component: PrtsAddgridComponent, loadChildren: () =>
+                path: 'pr@ts-grid', component: PrtsAddgridComponent, loadChildren: () =>
                     import("./pages/prts-addgrid/prts-addgrid.module").then((m) => m.PrtsAddgridModule),
                    
 
             },
 
             {
-                path: 'prtsnavbar', component: PrtsComponent, loadChildren: () =>
+                path: 'prts@navbar', component: PrtsComponent, loadChildren: () =>
                     import("./pages/prts/prts.module").then((m) => m.PrtsModule),
 
 
             },
             {
-                path: 'prts-part', component: PrtsPart1Component, loadChildren: () =>
+                path: 'prt@s-part', component: PrtsPart1Component, loadChildren: () =>
                     import("./pages/prts-part/prts-part.module").then((m) => m.PrtsPartModule),
 
 

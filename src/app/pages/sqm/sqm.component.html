@@ -163,7 +163,7 @@
         : 'content-full'
     ">
 
-    <ul class="nav nav-pills" *ngIf="!hideSidebar">
+    <!-- <ul class="nav nav-pills" *ngIf="!hideSidebar">
       <li>
         <a mat-raised-button class="navtabWidth" routerLink="./sqmd" routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
@@ -184,7 +184,7 @@
         <a mat-raised-button class="navtabWidth" routerLink="./process/setup/process-cat"
           [class.active]="activeTab === 'setup'">Setup</a>
       </li>
-    </ul>
+    </ul> -->
 
     <div class="d-flex mb-4 mt-4 gap-4 top-tabs" style="margin-left: 37px" *ngIf="activeTab === 'setup'">
       <button mat-raised-button class="tab-btn" routerLink="./process/setup/process-cat" routerLinkActive="active-tab">
