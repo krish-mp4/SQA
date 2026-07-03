@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+
 import { EditissuesComponent } from 'src/app/editissues/editissues.component';
 import { IssuesGridColumnsComponent } from 'src/app/pages/testing/testing-issues/issues-grid-columns/issues-grid-columns.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { AddIssuesssComponent } from 'src/app/pages/testing/testing-issues/add-issuesss/add-issuesss.component';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
 import { PartsActionsDocsComponent } from 'src/app/pages/sqm/parts-audits/parts-actions/parts-actions-docs/parts-actions-docs.component';
 import { PartsActionsEditComponent } from 'src/app/pages/sqm/parts-audits/parts-actions/parts-actions-edit/parts-actions-edit.component';
 import { PartsActionsGridComponent } from 'src/app/pages/sqm/parts-audits/parts-actions/parts-actions-grid/parts-actions-grid.component';
@@ -25,65 +26,10 @@ export class SupplierCapaComponent implements OnInit {
   totalSize = 0;
   myGroup!: FormGroup;
   originalTableList: any[] = [];
-  tableList: any[] = [];
+  alertsCount: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   someElementRef: any;
-
-  constructor(public dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    this.myGroup = new FormGroup({
-      firstName: new FormControl(''),
-      Keyword: new FormControl(''),
-      TractorIdSections: new FormControl(''),
-      ResponsibleSections: new FormControl(''),
-      ResponsibleSectionLeadId: new FormControl(''),
-      SubGroupId: new FormControl(''),
-      ORCStatuses: new FormControl(''),
-      IsNew: new FormControl(''),
-      ScoreMatrix: new FormControl(''),
-      Probability: new FormControl(''),
-      PartCode: new FormControl(''),
-      CategoryId: new FormControl(''),
-      sortOrder: new FormControl('')
-    });
-
-    this.originalTableList = [...this.mockData];
-    this.tableList = [...this.mockData];
-    this.totalSize = this.tableList.length;
-  }
-
-
-  filterToggle: boolean = false;
-  totalSize = 0;
-  myGroup!: FormGroup;
-  originalTableList: any[] = [];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  someElementRef: any;
-  constructor(public dialog: MatDialog) { }
-  ngOnInit(): void {
-
-    this.myGroup = new FormGroup({
-      firstName: new FormControl(''),
-      Keyword: new FormControl(''),
-      TractorIdSections: new FormControl(''),
-      ResponsibleSections: new FormControl(''),
-      ResponsibleSectionLeadId: new FormControl(''),
-      SubGroupId: new FormControl(''),
-      ORCStatuses: new FormControl(''),
-      IsNew: new FormControl(''),
-      ScoreMatrix: new FormControl(''),
-      Probability: new FormControl(''),
-      PartCode: new FormControl(''),
-      CategoryId: new FormControl(''),
-      sortOrder: new FormControl('')
-    });
-
-    this.originalTableList = [...this.tableList];
-  }
-
 
   tableList = [
     {
@@ -113,7 +59,8 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'Medium',
       rating: 4,
       pdcaStatus: 'Plan',
-      capaActionType: 'Containment'
+      capaActionType: 'Containment',
+      isAlert: true
     },
     {
       status: 'Open',
@@ -142,7 +89,8 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'High',
       rating: 2,
       pdcaStatus: 'Do',
-      capaActionType: 'Corrective'
+      capaActionType: 'Corrective',
+      isAlert: true
     },
     {
       status: 'WIP',
@@ -171,7 +119,8 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'Low',
       rating: 5,
       pdcaStatus: 'Check',
-      capaActionType: 'Preventive'
+      capaActionType: 'Preventive',
+      isAlert: false
     },
     {
       status: 'In Progress',
@@ -200,7 +149,8 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'High',
       rating: 3,
       pdcaStatus: 'Act',
-      capaActionType: 'Corrective'
+      capaActionType: 'Corrective',
+      isAlert: false
     },
     {
       status: 'Completed',
@@ -229,7 +179,8 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'Low',
       rating: 5,
       pdcaStatus: 'Closed',
-      capaActionType: 'Containment'
+      capaActionType: 'Containment',
+      isAlert: false
     },
     {
       status: 'WIP',
@@ -258,84 +209,37 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'Medium',
       rating: 3,
       pdcaStatus: 'Plan',
-      capaActionType: 'Preventive'
+      capaActionType: 'Preventive',
+      isAlert: false
     }
   ];
 
-
-
-
-
-
-
-  addTests(applicant: any) {
-    console.log('jkhksbdjk');
-    let dialogRef = this.dialog.open(EditissuesComponent, {
-      // data: id,
-      height: 'auto',
-      width: '5000px',
-    });
-    // dialogRef.afterClosed().subscribe((data: any) => {});
-  }
-  // deleteConfirmation(applicant: any) {
-  //   console.log('Delete:', applicant);
-  // }
-
-  imageSource1() {
-    this.dialog.open(ActionDescRemarksComponent, {
-      width: '500px',
-      height: 'auto',
-    });
-  }
-
-  public addIssues(id: any) {
-    console.log('jkhksbdjk');
-    let dialogRef = this.dialog.open(AddIssuesssComponent, {
-      data: id,
-      height: 'auto',
-      width: '500px',
-    });
-    // dialogRef.afterClosed().subscribe((data: any) => {});
-  }
-
-  public openGrid(id: any) {
-    console.log('jkhksbdjk');
-    let dialogRef = this.dialog.open(IssuesGridColumnsComponent, {
-      data: id,
-      height: 'auto',
-      width: '800px',
-    });
-    // dialogRef.afterClosed().subscribe((data: any) => {});
-  }
-  deleteConfirmation(item: any) {
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: 'auto',
-      data: { ProjectId: item.ProjectId, title: 'Delete Confirmation', content: 'Are you sure you want to Delete?' }
-    });
-
-  }
   tractors = [
     { TractorStatusId: 'ID-01' },
     { TractorStatusId: 'ID-02' },
     { TractorStatusId: 'ID-03' }
   ];
+
   TractorIdSections = [
     { item_id: 1, item_text: 'ID-01' },
     { item_id: 2, item_text: 'ID-02' },
     { item_id: 3, item_text: 'ID-03' },
   ];
+
   responsibleSections = [
     { item_id: 1, item_text: 'Front Axle Bracket Area' },
     { item_id: 2, item_text: 'Gearbox' },
     { item_id: 3, item_text: 'Cooling Package' },
     { item_id: 4, item_text: 'Air Intake System' },
   ];
+
   ORCStatuses = [
     { item_id: 1, item_text: 'O' },
     { item_id: 2, item_text: 'R1' },
     { item_id: 3, item_text: 'R2' },
     { item_id: 4, item_text: 'C' },
   ];
+
   Probability = [
     { item_id: 1, item_text: '1' },
     { item_id: 2, item_text: '2' },
@@ -347,27 +251,114 @@ export class SupplierCapaComponent implements OnInit {
     { item_id: 8, item_text: '8' },
     { item_id: 9, item_text: '9' },
     { item_id: 10, item_text: '10' },
-
   ];
+
   sortOrder = [
     { item_id: 1, item_text: 'ASC' },
     { item_id: 2, item_text: 'DESC' },
-
   ];
+
   IsNew = [
     { item_id: 1, item_text: 'New' },
     { item_id: 2, item_text: 'Regular' },
-
   ];
+
   ScoreMatrix = [
     { item_id: 1, item_text: 'Assembly' },
     { item_id: 2, item_text: 'Service' },
     { item_id: 3, item_text: 'Performance' },
     { item_id: 4, item_text: 'Functional' },
-
-
-
   ];
+
+  resSectionFilterLeads = [
+    { UserId: 'U001', UserName: 'Lead A' },
+    { UserId: 'U002', UserName: 'Lead B' },
+    { UserId: 'U003', UserName: 'Lead C' }
+  ];
+
+  FilterSubgroup = [
+    { SubGroupId: 'SG001', SubGroupName: 'Subgroup 1' },
+    { SubGroupId: 'SG002', SubGroupName: 'Subgroup 2' },
+    { SubGroupId: 'SG003', SubGroupName: 'Subgroup 3' }
+  ];
+
+  scorematrix = [
+    { ScoreMatrixId: 'FE001', ScoreMatrixName: 'High Impact' },
+    { ScoreMatrixId: 'FE002', ScoreMatrixName: 'Medium Impact' },
+    { ScoreMatrixId: 'FE003', ScoreMatrixName: 'Low Impact' }
+  ];
+
+  categories = [
+    { CategoryId: 'C001', CategoryName: 'Detection 1' },
+    { CategoryId: 'C002', CategoryName: 'Detection 2' },
+    { CategoryId: 'C003', CategoryName: 'Detection 3' }
+  ];
+
+  constructor(public dialog: MatDialog) { }
+
+  ngOnInit(): void {
+    this.myGroup = new FormGroup({
+      firstName: new FormControl(''),
+      Keyword: new FormControl(''),
+      TractorIdSections: new FormControl(''),
+      ResponsibleSections: new FormControl(''),
+      ResponsibleSectionLeadId: new FormControl(''),
+      SubGroupId: new FormControl(''),
+      ORCStatuses: new FormControl(''),
+      IsNew: new FormControl(''),
+      ScoreMatrix: new FormControl(''),
+      Probability: new FormControl(''),
+      PartCode: new FormControl(''),
+      CategoryId: new FormControl(''),
+      sortOrder: new FormControl('')
+    });
+
+    this.originalTableList = [...this.tableList];
+    this.totalSize = this.tableList.length;
+    this.alertsCount = this.originalTableList.filter(item => item.isAlert).length;
+  }
+
+  toggleAlerts() {
+    this.isAlertsView = !this.isAlertsView;
+    this.go();
+  }
+
+  addTests(applicant: any) {
+    let dialogRef = this.dialog.open(EditissuesComponent, {
+      height: 'auto',
+      width: '900px',
+    });
+  }
+
+  imageSource1() {
+    this.dialog.open(ActionDescRemarksComponent, {
+      width: '500px',
+      height: 'auto',
+    });
+  }
+
+  public addIssues(id: any) {
+    let dialogRef = this.dialog.open(AddIssuesssComponent, {
+      data: id,
+      height: 'auto',
+      width: '500px',
+    });
+  }
+
+  public openGrid(id: any) {
+    let dialogRef = this.dialog.open(IssuesGridColumnsComponent, {
+      data: id,
+      height: 'auto',
+      width: '800px',
+    });
+  }
+
+  deleteConfirmation(item: any) {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: 'auto',
+      data: { ProjectId: item.ProjectId, title: 'Delete Confirmation', content: 'Are you sure you want to Delete?' }
+    });
+  }
 
   scrollRight() {
     const container = document.getElementById('grid-table-container');
@@ -383,127 +374,28 @@ export class SupplierCapaComponent implements OnInit {
     }
   }
 
-  // Component .ts file
-  ;
-
-  resSectionFilterLeads = [
-    { UserId: 'U001', UserName: 'Lead A' },
-    { UserId: 'U002', UserName: 'Lead B' },
-    { UserId: 'U003', UserName: 'Lead C' }
-  ];
-
-  FilterSubgroup = [
-    { SubGroupId: 'SG001', SubGroupName: 'Subgroup 1' },
-    { SubGroupId: 'SG002', SubGroupName: 'Subgroup 2' },
-    { SubGroupId: 'SG003', SubGroupName: 'Subgroup 3' }
-  ];
-
-
-
-  scorematrix = [
-    { ScoreMatrixId: 'FE001', ScoreMatrixName: 'High Impact' },
-    { ScoreMatrixId: 'FE002', ScoreMatrixName: 'Medium Impact' },
-    { ScoreMatrixId: 'FE003', ScoreMatrixName: 'Low Impact' }
-  ];
-
-  categories = [
-    { CategoryId: 'C001', CategoryName: 'Detection 1' },
-    { CategoryId: 'C002', CategoryName: 'Detection 2' },
-    { CategoryId: 'C003', CategoryName: 'Detection 3' }
-  ];
-
   partsgrid() {
     this.dialog.open(PartsActionsGridComponent, {
       width: '650px',
       height: 'auto',
       maxHeight: '90vh',
       panelClass: 'no-scroll-dialog'
-    })
-  }
-
-  deleteConfirmation(item: any) {
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: 'auto',
-      data: { ProjectId: item.ProjectId, title: 'Delete Confirmation', content: 'Are you sure you want to Delete?' }
     });
   }
 
-  editparts() {
-    this.dialog.open(PartsActionsEditComponent, {
-      width: '650px',
-      height: 'auto',
-      maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog'
-    })
+  processgrid() {
+    this.partsgrid(); // Call mapped logic or open ProcessActionsGridComponent
   }
 
-  scrollLeft() {
-    const container = document.getElementById('grid-table-container');
-    if (container) {
-      container.scrollBy({ left: -300, behavior: 'smooth' });
-    }
+  editrow() {
+    // Implement edit logic here
+    console.log("Edit row clicked");
   }
 
   docsPhoto() {
-    this.dialog.open(PartsActionsDocsComponent, {
-      width: '650px',
-      height: 'auto',
-      maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog'
-    })
+    // Implement docs/photo logic here
+    console.log("Docs/Photos clicked");
   }
-
-  editparts() {
-    this.dialog.open(PartsActionsEditComponent, {
-      width: '650px',
-      height: 'auto',
-      maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog' 
-    });
-  }
-
-  editrow() {
-    this.dialog.open(ProcessActionsEditComponent, {
-      width: '650px',
-      height: 'auto',
-      maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog'
-    })
-  }
-
-  processgrid() {
-    this.dialog.open(ProcessActionsGridComponent, {
-      width: '650px',
-      height: 'auto',
-      maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog'
-    })
-  }
-
-  editrow() {
-    this.dialog.open(ProcessActionsEditComponent, {
-      width: '650px',
-      height: 'auto',
-      maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog' 
-    });
-  }
-
-  processgrid() {
-    this.dialog.open(ProcessActionsGridComponent, {
-      width: '650px',
-      height: 'auto',
-      maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog' 
-    });
-  }
-
-
-
-
-
-
-
 
   go() {
     const filters = this.myGroup.value;
@@ -523,17 +415,6 @@ export class SupplierCapaComponent implements OnInit {
           (item.description && item.description.toLowerCase().includes(keyword))
         );
       }
-
-      // 2. Dropdown Filters
-      // Note: In your mock data, the form controls are storing IDs (e.g., item_id: 1) 
-      // but the tableList contains strings (e.g., processCategory: 'Manufacturing').
-      // You will need to ensure the values match for these to work perfectly in production.
-
-      /* Example of how to filter a dropdown once data types match:
-      if (filters.TractorIdSections) {
-         isMatch = isMatch && item.processCategory === filters.TractorIdSections;
-      }
-      */
 
       return isMatch;
     });

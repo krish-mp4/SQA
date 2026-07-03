@@ -149,7 +149,7 @@
       <td class="text-center">
         <!-- Conditional red text logic applied here -->
         <a [routerLink]="['/app','supplier-login','inner-screen','capa-ref']"
-           [ngStyle]="{'color': applicant.isAlert ? 'red' : 'inherit', 'font-weight': applicant.isAlert ? 'bold' : 'normal'}">
+           [ngStyle]="{'color': applicant.isAlert ? 'red' : 'blue', 'font-weight': applicant.isAlert ? 'bold' : 'normal'}">
           {{ applicant.reference }}
         </a>
       </td>
