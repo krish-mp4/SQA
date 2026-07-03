@@ -54,27 +54,38 @@ export class SupplierCapaComponent implements OnInit {
     this.totalSize = this.tableList.length;
   }
 
-  // Get dynamic count of alerts
-  get alertsCount(): number {
-    return this.originalTableList.filter(item => item.isAlert).length;
+
+  filterToggle: boolean = false;
+  totalSize = 0;
+  myGroup!: FormGroup;
+  originalTableList: any[] = [];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  someElementRef: any;
+  constructor(public dialog: MatDialog) { }
+  ngOnInit(): void {
+
+    this.myGroup = new FormGroup({
+      firstName: new FormControl(''),
+      Keyword: new FormControl(''),
+      TractorIdSections: new FormControl(''),
+      ResponsibleSections: new FormControl(''),
+      ResponsibleSectionLeadId: new FormControl(''),
+      SubGroupId: new FormControl(''),
+      ORCStatuses: new FormControl(''),
+      IsNew: new FormControl(''),
+      ScoreMatrix: new FormControl(''),
+      Probability: new FormControl(''),
+      PartCode: new FormControl(''),
+      CategoryId: new FormControl(''),
+      sortOrder: new FormControl('')
+    });
+
+    this.originalTableList = [...this.tableList];
   }
 
-  // Toggle alerts filtering
-  toggleAlerts() {
-    this.isAlertsView = !this.isAlertsView;
-    if (this.isAlertsView) {
-      this.tableList = this.originalTableList.filter(item => item.isAlert);
-    } else {
-      this.tableList = [...this.originalTableList];
-    }
-    
-    this.totalSize = this.tableList.length;
-    if (this.paginator) {
-      this.paginator.firstPage();
-    }
-  }
 
-  mockData = [
+  tableList = [
     {
       status: 'WIP',
       resolved: true,
@@ -90,6 +101,9 @@ export class SupplierCapaComponent implements OnInit {
       supplierRemarks: 'Awaiting new batch testing.',
       logDate: '01-Jan-2024',
       dueDate: '15-Jan-2024',
+      dateCreated: '02-Jan-2024',
+      dateResolved: '10-Jan-2024',
+      dateClosed: '12-Jan-2024',
       completion: '12-Jan-2024',
       reference: '2026/ENG/098121',
       delayInDays: 3,
@@ -99,8 +113,7 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'Medium',
       rating: 4,
       pdcaStatus: 'Plan',
-      capaActionType: 'Containment',
-      isAlert: false
+      capaActionType: 'Containment'
     },
     {
       status: 'Open',
@@ -117,6 +130,9 @@ export class SupplierCapaComponent implements OnInit {
       supplierRemarks: 'Investigating packaging line.',
       logDate: '10-Feb-2024',
       dueDate: '20-Feb-2024',
+      dateCreated: '19-Jan-2024',
+      dateResolved: '10-Feb-2024',
+      dateClosed: '24-Jan-2024',
       completion: '19-Feb-2024',
       reference: '2026/ENG/098122',
       delayInDays: 2,
@@ -126,8 +142,7 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'High',
       rating: 2,
       pdcaStatus: 'Do',
-      capaActionType: 'Corrective',
-      isAlert: true // Alert Item
+      capaActionType: 'Corrective'
     },
     {
       status: 'WIP',
@@ -144,6 +159,9 @@ export class SupplierCapaComponent implements OnInit {
       supplierRemarks: 'Audit scheduled for next week.',
       logDate: '05-Mar-2024',
       dueDate: '15-Mar-2024',
+      dateCreated: '1-Mar-2024',
+      dateResolved: '11-May-2024',
+      dateClosed: '05-Apr-2024',
       completion: null,
       reference: '2026/ENG/098123',
       delayInDays: 4,
@@ -153,8 +171,7 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'Low',
       rating: 5,
       pdcaStatus: 'Check',
-      capaActionType: 'Preventive',
-      isAlert: false
+      capaActionType: 'Preventive'
     },
     {
       status: 'In Progress',
@@ -171,6 +188,9 @@ export class SupplierCapaComponent implements OnInit {
       supplierRemarks: 'Vendor notified for recalibration.',
       logDate: '01-Jan-2024',
       dueDate: '15-Jan-2024',
+      dateCreated: '07-Dec-2024',
+      dateResolved: '18-Jun-2024',
+      dateClosed: '13-Mar-2024',
       completion: '12-Jan-2024',
       reference: '2026/ENG/098124',
       delayInDays: 6,
@@ -180,8 +200,7 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'High',
       rating: 3,
       pdcaStatus: 'Act',
-      capaActionType: 'Corrective',
-      isAlert: false
+      capaActionType: 'Corrective'
     },
     {
       status: 'Completed',
@@ -198,7 +217,10 @@ export class SupplierCapaComponent implements OnInit {
       supplierRemarks: 'Labels reprinted and replaced.',
       logDate: '10-Feb-2024',
       dueDate: '20-Feb-2024',
-      completion: '19-Feb-2024',
+      dateCreated: '02-Feb-2024',
+      dateResolved: '25-Aug-2024',
+      dateClosed: '29-Sept-2024',
+      completion: '28-Nov-2024',
       reference: '2026/ENG/098125',
       delayInDays: null,
       severity: 3,
@@ -207,8 +229,7 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'Low',
       rating: 5,
       pdcaStatus: 'Closed',
-      capaActionType: 'Containment',
-      isAlert: false
+      capaActionType: 'Containment'
     },
     {
       status: 'WIP',
@@ -225,6 +246,9 @@ export class SupplierCapaComponent implements OnInit {
       supplierRemarks: 'Documents currently being compiled.',
       logDate: '05-Mar-2024',
       dueDate: '15-Mar-2024',
+      dateCreated: '14-Feb-2024',
+      dateResolved: '27-Oct-2024',
+      dateClosed: '21-Nov-2024',
       completion: null,
       reference: '2026/ENG/098126',
       delayInDays: null,
@@ -234,17 +258,28 @@ export class SupplierCapaComponent implements OnInit {
       riskRating: 'Medium',
       rating: 3,
       pdcaStatus: 'Plan',
-      capaActionType: 'Preventive',
-      isAlert: true // Alert Item
+      capaActionType: 'Preventive'
     }
   ];
 
+
+
+
+
+
+
   addTests(applicant: any) {
+    console.log('jkhksbdjk');
     let dialogRef = this.dialog.open(EditissuesComponent, {
+      // data: id,
       height: 'auto',
       width: '5000px',
     });
+    // dialogRef.afterClosed().subscribe((data: any) => {});
   }
+  // deleteConfirmation(applicant: any) {
+  //   console.log('Delete:', applicant);
+  // }
 
   imageSource1() {
     this.dialog.open(ActionDescRemarksComponent, {
@@ -254,54 +289,53 @@ export class SupplierCapaComponent implements OnInit {
   }
 
   public addIssues(id: any) {
+    console.log('jkhksbdjk');
     let dialogRef = this.dialog.open(AddIssuesssComponent, {
       data: id,
       height: 'auto',
       width: '500px',
     });
+    // dialogRef.afterClosed().subscribe((data: any) => {});
   }
 
   public openGrid(id: any) {
+    console.log('jkhksbdjk');
     let dialogRef = this.dialog.open(IssuesGridColumnsComponent, {
       data: id,
       height: 'auto',
       width: '800px',
     });
+    // dialogRef.afterClosed().subscribe((data: any) => {});
   }
-
   deleteConfirmation(item: any) {
     let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: 'auto',
       data: { ProjectId: item.ProjectId, title: 'Delete Confirmation', content: 'Are you sure you want to Delete?' }
     });
-  }
 
+  }
   tractors = [
     { TractorStatusId: 'ID-01' },
     { TractorStatusId: 'ID-02' },
     { TractorStatusId: 'ID-03' }
   ];
-
   TractorIdSections = [
     { item_id: 1, item_text: 'ID-01' },
     { item_id: 2, item_text: 'ID-02' },
     { item_id: 3, item_text: 'ID-03' },
   ];
-
   responsibleSections = [
     { item_id: 1, item_text: 'Front Axle Bracket Area' },
     { item_id: 2, item_text: 'Gearbox' },
     { item_id: 3, item_text: 'Cooling Package' },
     { item_id: 4, item_text: 'Air Intake System' },
   ];
-
   ORCStatuses = [
     { item_id: 1, item_text: 'O' },
     { item_id: 2, item_text: 'R1' },
     { item_id: 3, item_text: 'R2' },
     { item_id: 4, item_text: 'C' },
   ];
-
   Probability = [
     { item_id: 1, item_text: '1' },
     { item_id: 2, item_text: '2' },
@@ -312,24 +346,27 @@ export class SupplierCapaComponent implements OnInit {
     { item_id: 7, item_text: '7' },
     { item_id: 8, item_text: '8' },
     { item_id: 9, item_text: '9' },
-    { item_id: 10, item_text: '10' }
-  ];
+    { item_id: 10, item_text: '10' },
 
+  ];
   sortOrder = [
     { item_id: 1, item_text: 'ASC' },
-    { item_id: 2, item_text: 'DESC' }
-  ];
+    { item_id: 2, item_text: 'DESC' },
 
+  ];
   IsNew = [
     { item_id: 1, item_text: 'New' },
-    { item_id: 2, item_text: 'Regular' }
-  ];
+    { item_id: 2, item_text: 'Regular' },
 
+  ];
   ScoreMatrix = [
     { item_id: 1, item_text: 'Assembly' },
     { item_id: 2, item_text: 'Service' },
     { item_id: 3, item_text: 'Performance' },
-    { item_id: 4, item_text: 'Functional' }
+    { item_id: 4, item_text: 'Functional' },
+
+
+
   ];
 
   scrollRight() {
@@ -346,6 +383,9 @@ export class SupplierCapaComponent implements OnInit {
     }
   }
 
+  // Component .ts file
+  ;
+
   resSectionFilterLeads = [
     { UserId: 'U001', UserName: 'Lead A' },
     { UserId: 'U002', UserName: 'Lead B' },
@@ -357,6 +397,8 @@ export class SupplierCapaComponent implements OnInit {
     { SubGroupId: 'SG002', SubGroupName: 'Subgroup 2' },
     { SubGroupId: 'SG003', SubGroupName: 'Subgroup 3' }
   ];
+
+
 
   scorematrix = [
     { ScoreMatrixId: 'FE001', ScoreMatrixName: 'High Impact' },
@@ -375,8 +417,40 @@ export class SupplierCapaComponent implements OnInit {
       width: '650px',
       height: 'auto',
       maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog' 
+      panelClass: 'no-scroll-dialog'
+    })
+  }
+
+  deleteConfirmation(item: any) {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: 'auto',
+      data: { ProjectId: item.ProjectId, title: 'Delete Confirmation', content: 'Are you sure you want to Delete?' }
     });
+  }
+
+  editparts() {
+    this.dialog.open(PartsActionsEditComponent, {
+      width: '650px',
+      height: 'auto',
+      maxHeight: '90vh',
+      panelClass: 'no-scroll-dialog'
+    })
+  }
+
+  scrollLeft() {
+    const container = document.getElementById('grid-table-container');
+    if (container) {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  }
+
+  docsPhoto() {
+    this.dialog.open(PartsActionsDocsComponent, {
+      width: '650px',
+      height: 'auto',
+      maxHeight: '90vh',
+      panelClass: 'no-scroll-dialog'
+    })
   }
 
   editparts() {
@@ -388,13 +462,22 @@ export class SupplierCapaComponent implements OnInit {
     });
   }
 
-  docsPhoto() {
-    this.dialog.open(PartsActionsDocsComponent, {
+  editrow() {
+    this.dialog.open(ProcessActionsEditComponent, {
       width: '650px',
       height: 'auto',
       maxHeight: '90vh',
-      panelClass: 'no-scroll-dialog' 
-    });
+      panelClass: 'no-scroll-dialog'
+    })
+  }
+
+  processgrid() {
+    this.dialog.open(ProcessActionsGridComponent, {
+      width: '650px',
+      height: 'auto',
+      maxHeight: '90vh',
+      panelClass: 'no-scroll-dialog'
+    })
   }
 
   editrow() {
@@ -415,6 +498,13 @@ export class SupplierCapaComponent implements OnInit {
     });
   }
 
+
+
+
+
+
+
+
   go() {
     const filters = this.myGroup.value;
     const keyword = filters.Keyword ? filters.Keyword.toLowerCase() : '';
@@ -433,6 +523,17 @@ export class SupplierCapaComponent implements OnInit {
           (item.description && item.description.toLowerCase().includes(keyword))
         );
       }
+
+      // 2. Dropdown Filters
+      // Note: In your mock data, the form controls are storing IDs (e.g., item_id: 1) 
+      // but the tableList contains strings (e.g., processCategory: 'Manufacturing').
+      // You will need to ensure the values match for these to work perfectly in production.
+
+      /* Example of how to filter a dropdown once data types match:
+      if (filters.TractorIdSections) {
+         isMatch = isMatch && item.processCategory === filters.TractorIdSections;
+      }
+      */
 
       return isMatch;
     });
