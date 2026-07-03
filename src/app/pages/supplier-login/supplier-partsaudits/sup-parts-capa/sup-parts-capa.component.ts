@@ -12,6 +12,7 @@ import { PartsActionsEditComponent } from 'src/app/pages/sqm/parts-audits/parts-
 import { PartsActionsDocsComponent } from 'src/app/pages/sqm/parts-audits/parts-actions/parts-actions-docs/parts-actions-docs.component';
 import { ProcessActionsEditComponent } from 'src/app/pages/sqm/process-audits/paudits-actions/process-actions-edit/process-actions-edit.component';
 import { ProcessActionsGridComponent } from 'src/app/pages/sqm/process-audits/paudits-actions/process-actions-grid/process-actions-grid.component';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-sup-parts-capa',
@@ -26,12 +27,12 @@ export class SupPartsCapaComponent implements OnInit {
   originalTableList: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   someElementRef: any;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-
     this.myGroup = new FormGroup({
       firstName: new FormControl(''),
       Keyword: new FormControl(''),
@@ -49,6 +50,7 @@ export class SupPartsCapaComponent implements OnInit {
     });
 
     this.originalTableList = [...this.tableList];
+    this.totalSize = this.tableList.length; // Add this line
   }
 
   tableList = [
@@ -210,6 +212,7 @@ export class SupPartsCapaComponent implements OnInit {
     }
   ];
 
+  // Dialog Methods
   addTests(applicant: any) {
     console.log('jkhksbdjk');
     let dialogRef = this.dialog.open(EditissuesComponent, {
@@ -249,93 +252,6 @@ export class SupPartsCapaComponent implements OnInit {
       data: { ProjectId: item.ProjectId, title: 'Delete Confirmation', content: 'Are you sure you want to Delete?' }
     });
   }
-
-  tractors = [
-    { TractorStatusId: 'ID-01' },
-    { TractorStatusId: 'ID-02' },
-    { TractorStatusId: 'ID-03' }
-  ];
-  TractorIdSections = [
-    { item_id: 1, item_text: 'ID-01' },
-    { item_id: 2, item_text: 'ID-02' },
-    { item_id: 3, item_text: 'ID-03' },
-  ];
-  responsibleSections = [
-    { item_id: 1, item_text: 'Front Axle Bracket Area' },
-    { item_id: 2, item_text: 'Gearbox' },
-    { item_id: 3, item_text: 'Cooling Package' },
-    { item_id: 4, item_text: 'Air Intake System' },
-  ];
-  ORCStatuses = [
-    { item_id: 1, item_text: 'O' },
-    { item_id: 2, item_text: 'R1' },
-    { item_id: 3, item_text: 'R2' },
-    { item_id: 4, item_text: 'C' },
-  ];
-  Probability = [
-    { item_id: 1, item_text: '1' },
-    { item_id: 2, item_text: '2' },
-    { item_id: 3, item_text: '3' },
-    { item_id: 4, item_text: '4' },
-    { item_id: 5, item_text: '5' },
-    { item_id: 6, item_text: '6' },
-    { item_id: 7, item_text: '7' },
-    { item_id: 8, item_text: '8' },
-    { item_id: 9, item_text: '9' },
-    { item_id: 10, item_text: '10' },
-  ];
-  sortOrder = [
-    { item_id: 1, item_text: 'ASC' },
-    { item_id: 2, item_text: 'DESC' },
-  ];
-  IsNew = [
-    { item_id: 1, item_text: 'New' },
-    { item_id: 2, item_text: 'Regular' },
-  ];
-  ScoreMatrix = [
-    { item_id: 1, item_text: 'Assembly' },
-    { item_id: 2, item_text: 'Service' },
-    { item_id: 3, item_text: 'Performance' },
-    { item_id: 4, item_text: 'Functional' },
-  ];
-
-  scrollRight() {
-    const container = document.getElementById('grid-table-container');
-    if (container) {
-      container.scrollBy({ left: 300, behavior: 'smooth' });
-    }
-  }
-
-  scrollLeft() {
-    const container = document.getElementById('grid-table-container');
-    if (container) {
-      container.scrollBy({ left: -300, behavior: 'smooth' });
-    }
-  }
-
-  resSectionFilterLeads = [
-    { UserId: 'U001', UserName: 'Lead A' },
-    { UserId: 'U002', UserName: 'Lead B' },
-    { UserId: 'U003', UserName: 'Lead C' }
-  ];
-
-  FilterSubgroup = [
-    { SubGroupId: 'SG001', SubGroupName: 'Subgroup 1' },
-    { SubGroupId: 'SG002', SubGroupName: 'Subgroup 2' },
-    { SubGroupId: 'SG003', SubGroupName: 'Subgroup 3' }
-  ];
-
-  scorematrix = [
-    { ScoreMatrixId: 'FE001', ScoreMatrixName: 'High Impact' },
-    { ScoreMatrixId: 'FE002', ScoreMatrixName: 'Medium Impact' },
-    { ScoreMatrixId: 'FE003', ScoreMatrixName: 'Low Impact' }
-  ];
-
-  categories = [
-    { CategoryId: 'C001', CategoryName: 'Detection 1' },
-    { CategoryId: 'C002', CategoryName: 'Detection 2' },
-    { CategoryId: 'C003', CategoryName: 'Detection 3' }
-  ];
 
   partsgrid() {
     this.dialog.open(PartsActionsGridComponent, {
@@ -382,6 +298,103 @@ export class SupPartsCapaComponent implements OnInit {
     });
   }
 
+  // Filter Dropdown Data
+  tractors = [
+    { TractorStatusId: 'ID-01' },
+    { TractorStatusId: 'ID-02' },
+    { TractorStatusId: 'ID-03' }
+  ];
+
+  TractorIdSections = [
+    { item_id: 1, item_text: 'ID-01' },
+    { item_id: 2, item_text: 'ID-02' },
+    { item_id: 3, item_text: 'ID-03' },
+  ];
+
+  responsibleSections = [
+    { item_id: 1, item_text: 'Front Axle Bracket Area' },
+    { item_id: 2, item_text: 'Gearbox' },
+    { item_id: 3, item_text: 'Cooling Package' },
+    { item_id: 4, item_text: 'Air Intake System' },
+  ];
+
+  ORCStatuses = [
+    { item_id: 1, item_text: 'O' },
+    { item_id: 2, item_text: 'R1' },
+    { item_id: 3, item_text: 'R2' },
+    { item_id: 4, item_text: 'C' },
+  ];
+
+  Probability = [
+    { item_id: 1, item_text: '1' },
+    { item_id: 2, item_text: '2' },
+    { item_id: 3, item_text: '3' },
+    { item_id: 4, item_text: '4' },
+    { item_id: 5, item_text: '5' },
+    { item_id: 6, item_text: '6' },
+    { item_id: 7, item_text: '7' },
+    { item_id: 8, item_text: '8' },
+    { item_id: 9, item_text: '9' },
+    { item_id: 10, item_text: '10' },
+  ];
+
+  sortOrder = [
+    { item_id: 1, item_text: 'ASC' },
+    { item_id: 2, item_text: 'DESC' },
+  ];
+
+  IsNew = [
+    { item_id: 1, item_text: 'New' },
+    { item_id: 2, item_text: 'Regular' },
+  ];
+
+  ScoreMatrix = [
+    { item_id: 1, item_text: 'Assembly' },
+    { item_id: 2, item_text: 'Service' },
+    { item_id: 3, item_text: 'Performance' },
+    { item_id: 4, item_text: 'Functional' },
+  ];
+
+  resSectionFilterLeads = [
+    { UserId: 'U001', UserName: 'Lead A' },
+    { UserId: 'U002', UserName: 'Lead B' },
+    { UserId: 'U003', UserName: 'Lead C' }
+  ];
+
+  FilterSubgroup = [
+    { SubGroupId: 'SG001', SubGroupName: 'Subgroup 1' },
+    { SubGroupId: 'SG002', SubGroupName: 'Subgroup 2' },
+    { SubGroupId: 'SG003', SubGroupName: 'Subgroup 3' }
+  ];
+
+  scorematrix = [
+    { ScoreMatrixId: 'FE001', ScoreMatrixName: 'High Impact' },
+    { ScoreMatrixId: 'FE002', ScoreMatrixName: 'Medium Impact' },
+    { ScoreMatrixId: 'FE003', ScoreMatrixName: 'Low Impact' }
+  ];
+
+  categories = [
+    { CategoryId: 'C001', CategoryName: 'Detection 1' },
+    { CategoryId: 'C002', CategoryName: 'Detection 2' },
+    { CategoryId: 'C003', CategoryName: 'Detection 3' }
+  ];
+
+  // Scroll Methods
+  scrollRight() {
+    const container = document.getElementById('grid-table-container');
+    if (container) {
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  }
+
+  scrollLeft() {
+    const container = document.getElementById('grid-table-container');
+    if (container) {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  }
+
+  // Filter Methods
   go() {
     const filters = this.myGroup.value;
     const keyword = filters.Keyword ? filters.Keyword.toLowerCase() : '';
@@ -413,5 +426,4 @@ export class SupPartsCapaComponent implements OnInit {
       this.paginator.firstPage();
     }
   }
-
 }

@@ -39,14 +39,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { SupplierInnerscreenComponent } from './supplier-innerscreen/supplier-innerscreen.component';
+// import { SupplierInnerscreenComponent } from './supplier-innerscreen/supplier-innerscreen.component';
 import { SupplierProcessRefComponent } from './supplier-innerscreen/supplier-process-ref/supplier-process-ref.component';
 import { SupplierCapaRefComponent } from './supplier-innerscreen/supplier-capa-ref/supplier-capa-ref.component';
 import { SupplierPartsRefComponent } from './supplier-innerscreen/supplier-parts-ref/supplier-parts-ref.component';
 // import { SupplierPartsCapaComponent } from './supplier-innerscreen/supplier-parts-capa/supplier-parts-capa.component';
-import { SupplierPartsDetailsComponent } from './supplier-innerscreen/supplier-parts-details/supplier-parts-details.component';
+// import { SupplierPartsDetailsComponent } from './supplier-innerscreen/supplier-parts-details/supplier-parts-details.component';
 // import { SupplierAuditReferenceComponent } from './supplier-partsaudits/sup-parts-active/supplier-audit-reference/supplier-audit-reference.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // Define child routes for the supplier section
 const routes: Routes = [
   {
@@ -107,12 +109,12 @@ const routes: Routes = [
     SupplierInspectionComponent,
     SupplierPartsauditsComponent,
     SupplierProcessauditsComponent,
-    SupplierInnerscreenComponent,
-    SupplierProcessRefComponent,
-    SupplierCapaRefComponent,
-    SupplierPartsRefComponent,
+    // SupplierInnerscreenComponent,
+    // SupplierProcessRefComponent,
+    // SupplierCapaRefComponent,
+    // SupplierPartsRefComponent,
     // SupplierPartsCapaComponent,
-    SupplierPartsDetailsComponent,
+    // SupplierPartsDetailsComponent,
     SupProactivegridComponent,
     SupProcapaComponent,
     SupPartsActiveComponent,
@@ -141,7 +143,10 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,      // For mat-table
+    MatSortModule,       // For matSort directive
+    MatTooltipModule     // For matTooltip on buttons/icons
   ]
 })
 export class SupplierLoginModule { }

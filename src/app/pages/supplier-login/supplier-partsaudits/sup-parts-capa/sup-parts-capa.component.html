@@ -177,33 +177,33 @@
   <div class="col-sm-12" style="margin-top: 10px; width: 100%; padding: 0;">
     <div class="table-responsive" id="grid-table-container">
 
-      <table mat-table class="table table-bordered table-hover">
+      <table class="table table-bordered table-hover">
         <thead class="tbl-head">
           <tr>
-            <th mat-header-cell mat-sort-header class="text-center">Action</th>
-            <th mat-header-cell mat-sort-header class="text-center">Status</th>
-            <th mat-header-cell mat-sort-header class="text-center">Resolved </th>
-            <th mat-header-cell mat-sort-header class="text-center">Docs</th>
+            <th  class="text-center">Action</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Resolved </th>
+            <th class="text-center">Docs</th>
             <!-- <th mat-header-cell mat-sort-header class="text-center">Photos </th> -->
-            <th mat-header-cell mat-sort-header class="text-center">Reference </th>
-            <th mat-header-cell mat-sort-header class="text-center">CAPA Subject</th>
-            <th mat-header-cell mat-sort-header class="text-center">Supplier Name</th>
-            <th mat-header-cell mat-sort-header class="text-center">Action Type</th>
-            <th mat-header-cell mat-sort-header class="text-center">Audit Reference</th>
+            <th class="text-center">Reference </th>
+            <th class="text-center">CAPA Subject</th>
+            <th class="text-center">Supplier Name</th>
+            <th class="text-center">Action Type</th>
+            <th class="text-center">Audit Reference</th>
             <!-- <th mat-header-cell mat-sort-header class="text-center">Process Area</th> -->
-            <th mat-header-cell mat-sort-header class="text-center">Process Category</th>
-            <th mat-header-cell mat-sort-header class="text-center">Description</th>
-            <th mat-header-cell mat-sort-header class="text-center">Supplier Remarks</th>
-            <th mat-header-cell mat-sort-header class="text-center">Log Date</th>
-            <th mat-header-cell mat-sort-header class="text-center"> Due Date</th>
-             <th mat-header-cell mat-sort-header class="text-center">Delay In Days</th>
-            <th mat-header-cell mat-sort-header class="text-center">Completion Date</th>
-               <th mat-header-cell mat-sort-header class="text-center">Severity</th>
-                  <th mat-header-cell mat-sort-header class="text-center">Occurrence</th>
-                     <th mat-header-cell mat-sort-header class="text-center">Detection</th>
-                        <th mat-header-cell mat-sort-header class="text-center">Risk Rating</th>
-                           <th mat-header-cell mat-sort-header class="text-center">Rating</th>
-                            <th mat-header-cell mat-sort-header class="text-center">PDCA Status</th>
+            <th class="text-center">Process Category</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Supplier Remarks</th>
+            <th class="text-center">Log Date</th>
+            <th class="text-center"> Due Date</th>
+             <th class="text-center">Delay In Days</th>
+            <th class="text-center">Completion Date</th>
+               <th class="text-center">Severity</th>
+                  <th class="text-center">Occurrence</th>
+                     <th class="text-center">Detection</th>
+                        <th class="text-center">Risk Rating</th>
+                           <th class="text-center">Rating</th>
+                            <th class="text-center">PDCA Status</th>
                               <!-- <th mat-header-cell mat-sort-header class="text-center">Action  Type</th> -->
           </tr>
         </thead>
@@ -234,7 +234,7 @@
             <td class="text-center" style="color: blue; cursor: pointer;" (click)="docsPhoto()">{{ applicant.docs }}</td>
             
             <td class="text-link text-center">
-              <a [routerLink]="['/app','sqm','parts-inner-screen','parts-audit-reference']">
+                <a [routerLink]="['/app','supplier-login','inner-screen','parts-capa']">
                 {{ applicant.reference }}
               </a>
             </td>
