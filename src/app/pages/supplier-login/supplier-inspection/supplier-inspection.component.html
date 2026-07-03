@@ -1,0 +1,35 @@
+<!-- Wrapper handling the fixed positioning and width -->
+<div class="nav-container" [ngClass]="{'nav-open': isSidenavOpen, 'nav-closed': !isSidenavOpen}">
+    
+    <!-- Toggle Button -->
+    <button class="toggle-button" (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+    </button> 
+
+    <!-- Your specific nav links block -->
+    <nav class="nav-links" *ngIf="activeTab === 'inspection'">
+      <ul>
+        <!-- Points to SupplierActiverecordsComponent -->
+        <li routerLinkActive="active" routerLink="./active-records">
+          <a>
+            <mat-icon class="nav-icon" *ngIf="!isSidenavOpen" matTooltip="Active Records">pending_actions</mat-icon>
+            <span *ngIf="isSidenavOpen">Active Records</span>
+          </a>
+        </li>
+        
+        <!-- Points to SupplierCapaComponent -->
+        <li routerLinkActive="active" routerLink="./capa">
+          <a>
+            <mat-icon class="nav-icon" *ngIf="!isSidenavOpen" matTooltip="CAPA">play_circle_outline</mat-icon>
+            <span *ngIf="isSidenavOpen">CAPA</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+</div>
+
+<!-- Main content area with Router Outlet for child components -->
+<div class="main-content" [ngClass]="{'content-shrink': isSidenavOpen, 'content-expanded': !isSidenavOpen}">
+    <router-outlet></router-outlet>
+</div>

@@ -305,11 +305,20 @@ export const clientMenuItems = [
 ];
 
 export const supplierMenuItems = [
-  new Menu(1, "Dashboard", "/app/sqm/sqmd", null, "dashboard", null, false, 0),
+  new Menu(
+    1,
+    "Dashboard",
+    "/app/supplier-login/dashboard", // Updated to point explicitly to the dashboard child route
+    null,
+    "dashboard",
+    null,
+    false,
+    0,
+  ),
   new Menu(
     2,
-    "Process Audit",
-    "/app/sqm/process",
+    "Process Audit", // Fixed the typo here
+    "/app/supplier-login/process-audits", // Updated to the process-audits route
     null,
     "assignment_turned_in",
     null,
@@ -319,7 +328,7 @@ export const supplierMenuItems = [
   new Menu(
     3,
     "Parts Audit",
-    "/app/sqm/parts",
+    "/app/supplier-login/parts-audits", // Updated from /app/sqm/parts
     null,
     "handyman",
     null,
@@ -329,7 +338,7 @@ export const supplierMenuItems = [
   new Menu(
     4,
     "Inspection",
-    "/app/sqm/inspection",
+    "/app/supplier-login/inspection", // Updated from /app/sqm/inspection
     null,
     "fact_check",
     null,

@@ -107,7 +107,8 @@ import { AgendadetailsComponent } from './agendadetails/agendadetails.component'
 import { DragulaModule } from 'ng2-dragula';
 import { SqmComponent } from './pages/sqm/sqm.component';
 import { AddSupplierComponent } from './add-supplier/add-supplier.component';
- 
+// import { SupplierLoginComponent } from './pages/supplier-login/supplier-login.component';
+  
  
  
 
@@ -222,6 +223,7 @@ DragulaModule.forRoot()
     AgendadetailsComponent,
     SqmComponent,
     AddSupplierComponent,
+    // SupplierLoginComponent,
  
  
      
