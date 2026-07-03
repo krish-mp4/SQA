@@ -317,7 +317,7 @@ export const supplierMenuItems = [
   ),
   new Menu(
     2,
-    "Process Audit", // Fixed the typo here
+    "Process Audits", // Fixed the typo here
     "/app/supplier-login/process-audits", // Updated to the process-audits route
     null,
     "assignment_turned_in",
@@ -327,7 +327,7 @@ export const supplierMenuItems = [
   ),
   new Menu(
     3,
-    "Parts Audit",
+    "Parts Audits",
     "/app/supplier-login/parts-audits", // Updated from /app/sqm/parts
     null,
     "handyman",

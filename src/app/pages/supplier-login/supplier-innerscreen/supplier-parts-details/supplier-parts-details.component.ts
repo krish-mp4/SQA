@@ -13,3 +13,4 @@ export class SupplierPartsDetailsComponent implements OnInit {
   }
 
 }
+    

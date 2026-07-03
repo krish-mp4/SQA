@@ -1,0 +1,51 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+
+// Import Inner Screen components
+import { SupplierInnerscreenComponent } from './supplier-innerscreen.component';
+import { SupplierProcessRefComponent } from './supplier-process-ref/supplier-process-ref.component';
+import { SupplierCapaRefComponent } from './supplier-capa-ref/supplier-capa-ref.component';
+import { SupplierPartsRefComponent } from './supplier-parts-ref/supplier-parts-ref.component';
+import { SupplierPartsCapaComponent } from './supplier-parts-capa/supplier-parts-capa.component';
+import { SupplierPartsDetailsComponent } from './supplier-parts-details/supplier-parts-details.component';
+
+// Optional: Import only the Material/Shared modules you actually use in these specific screens
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: SupplierInnerscreenComponent,
+    children: [
+      { path: 'process-ref', component: SupplierProcessRefComponent },
+      { path: 'capa-ref', component: SupplierCapaRefComponent },
+      { path: 'parts-ref', component: SupplierPartsRefComponent },
+      { path: 'parts-capa', component: SupplierPartsCapaComponent },
+      { path: 'parts-details', component: SupplierPartsDetailsComponent }
+    ]
+  }
+];
+
+@NgModule({
+  declarations: [
+    SupplierInnerscreenComponent,
+    SupplierProcessRefComponent,
+    SupplierCapaRefComponent,
+    SupplierPartsRefComponent,
+    SupplierPartsCapaComponent,
+    SupplierPartsDetailsComponent
+  ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    SharedModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
+  ]
+})
+export class SupplierInnerscreenModule { }
