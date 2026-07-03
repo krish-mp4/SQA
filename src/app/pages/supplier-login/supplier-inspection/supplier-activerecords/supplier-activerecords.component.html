@@ -199,14 +199,14 @@
         <a
           matTooltip="Archive Record"
           style="cursor: pointer;"
-          (click)="archiveRecord(item)">
+         >
           <i class="fa fa-archive" style="color: gray;"></i>
         </a>
       </td>
 
       <td class="text-link text-center">
         <a
-          [routerLink]="['/app','sqm','inspect-inner-screen','active-records']"
+        [routerLink]="['/app','supplier-login','inner-screen','ins-active-ref']"
           [queryParams]="{
             reference: item.Reference,
             partFamily: item.PartFamily,

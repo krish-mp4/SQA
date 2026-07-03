@@ -39,7 +39,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { SupplierInnerscreenComponent } from './supplier-innerscreen/supplier-innerscreen.component';
+// import { SupplierInnerscreenComponent } from './supplier-innerscreen/supplier-innerscreen.component';
 import { SupplierProcessRefComponent } from './supplier-innerscreen/supplier-process-ref/supplier-process-ref.component';
 import { SupplierCapaRefComponent } from './supplier-innerscreen/supplier-capa-ref/supplier-capa-ref.component';
 import { SupplierPartsRefComponent } from './supplier-innerscreen/supplier-parts-ref/supplier-parts-ref.component';
@@ -109,7 +109,7 @@ const routes: Routes = [
     SupplierInspectionComponent,
     SupplierPartsauditsComponent,
     SupplierProcessauditsComponent,
-    SupplierInnerscreenComponent,
+    // SupplierInnerscreenComponent,
     // SupplierProcessRefComponent,
     // SupplierCapaRefComponent,
     // SupplierPartsRefComponent,

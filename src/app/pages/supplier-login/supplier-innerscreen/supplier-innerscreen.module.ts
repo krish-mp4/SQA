@@ -19,6 +19,9 @@ import { InsActiveRefComponent } from './ins-active-ref/ins-active-ref.component
 import { InsCapaRefComponent } from './ins-capa-ref/ins-capa-ref.component';
 import { PartsCapaDetailsComponent } from './parts-capa-details/parts-capa-details.component';
 import { InsCapaDetailsComponent } from './ins-capa-details/ins-capa-details.component';
+import { PartsCapaComponent } from './parts-capa/parts-capa.component';
+import { InsCapaComponent } from './ins-capa/ins-capa.component';
+import { SuppAddSampleComponent } from './supp-add-sample/supp-add-sample.component';
 
 const routes: Routes = [  
   {
@@ -31,7 +34,11 @@ const routes: Routes = [
       { path: 'parts-capa', component: SupplierPartsCapaComponent },
       { path: 'parts-details', component: SupplierPartsDetailsComponent },
        { path: 'ins-active-ref', component: InsActiveRefComponent },
-      { path: 'ins-capa-ref', component: InsCapaRefComponent }
+      { path: 'ins-capa-ref', component: InsCapaRefComponent },
+         { path: 'part-inner-capa', component: PartsCapaComponent },
+                { path: 'ins-inner-capa', component: InsCapaComponent },
+                     { path: 'ins-sample', component: SuppAddSampleComponent },
+         
     ]
   }
 ];
@@ -47,7 +54,10 @@ const routes: Routes = [
     InsActiveRefComponent,
     InsCapaRefComponent,
     PartsCapaDetailsComponent,
-    InsCapaDetailsComponent
+    InsCapaDetailsComponent,
+    PartsCapaComponent,
+    InsCapaComponent,
+    SuppAddSampleComponent
   ],
   imports: [
     CommonModule,
