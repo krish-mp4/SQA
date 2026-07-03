@@ -15,6 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { InsActiveRefComponent } from './ins-active-ref/ins-active-ref.component';
+import { InsCapaRefComponent } from './ins-capa-ref/ins-capa-ref.component';
 
 const routes: Routes = [
   {
@@ -25,7 +27,9 @@ const routes: Routes = [
       { path: 'capa-ref', component: SupplierCapaRefComponent },
       { path: 'parts-ref', component: SupplierPartsRefComponent },
       { path: 'parts-capa', component: SupplierPartsCapaComponent },
-      { path: 'parts-details', component: SupplierPartsDetailsComponent }
+      { path: 'parts-details', component: SupplierPartsDetailsComponent },
+       { path: 'ins-active-ref', component: InsActiveRefComponent },
+      { path: 'ins-capa-ref', component: InsCapaRefComponent }
     ]
   }
 ];
@@ -37,7 +41,9 @@ const routes: Routes = [
     SupplierCapaRefComponent,
     SupplierPartsRefComponent,
     SupplierPartsCapaComponent,
-    SupplierPartsDetailsComponent
+    SupplierPartsDetailsComponent,
+    InsActiveRefComponent,
+    InsCapaRefComponent
   ],
   imports: [
     CommonModule,
