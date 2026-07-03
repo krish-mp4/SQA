@@ -75,7 +75,59 @@ export class LoginComponent implements OnInit {
 
 
 
-    public onSubmit(values) {
+  //   public onSubmit(values) {
+  //   console.log(values);
+  //   if (this.form.valid) {
+      
+  //     // 1. Supplier Hardcoded Login Check
+  //     if (values.email === 'supplier@optionmatrix.com' && values.password === 'supplier@123') {
+  //       let userToken = btoa(encodeURIComponent(values.email));
+  //       localStorage.setItem('userToken', userToken);
+  //       localStorage.setItem('userType', 'supplier'); // Set flag for supplier
+  //       localStorage.setItem('isClient', JSON.stringify(false));
+        
+  //       // Route to supplier specific dashboard ncdksnk
+  //        this.router.navigate(['/app']);
+  //       return;
+  //     }
+
+  //     // 2. Admin Hardcoded Login Check
+  //     if (values.email === 'admin@optionmatrix.com' && values.password === 'admin@123') {
+  //       let userToken = btoa(encodeURIComponent(values.email));
+  //       localStorage.setItem('userToken', userToken);
+  //       localStorage.setItem('userType', 'admin'); // Set flag for admin
+  //       localStorage.setItem('isClient', JSON.stringify(false));
+        
+  //       this.router.navigate(['/app']);
+  //       return;
+  //     }
+
+  //     // 3. Dynamic User Data Loop (for Clients or other users in data array)
+  //     for (let i = 0; i < this.data.length; i++) {
+  //       if (values.email === this.data[i].email && values.password === this.data[i].password) {
+  //         let userToken = btoa(encodeURIComponent(this.data[i]['email']));
+  //         localStorage.setItem('userToken', userToken);
+  //         localStorage.setItem('userId', JSON.stringify(this.data[i].userId));
+          
+  //         if (this.data[i]['isClient']) {
+  //           localStorage.setItem('userType', 'client');
+  //           localStorage.setItem('isClient', JSON.stringify(true));
+  //           this.router.navigate(['/app/client-login']);
+  //         } else {
+  //           localStorage.setItem('userType', 'standard');
+  //           localStorage.setItem('isClient', JSON.stringify(false));
+  //           this.router.navigate(['/app']);
+  //         }
+  //         return;
+  //       }
+  //     }
+
+  //     // If no conditions are met
+  //     alert("Wrong E-mail Id or Password");
+  //   }
+  // }
+
+  public onSubmit(values) {
     console.log(values);
     if (this.form.valid) {
       
@@ -86,8 +138,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userType', 'supplier'); // Set flag for supplier
         localStorage.setItem('isClient', JSON.stringify(false));
         
-        // Route to supplier specific dashboard ncdksnk
-         this.router.navigate(['/app']);
+        // Route to supplier specific dashboard
+        this.router.navigate(['/app/supplier-login/dashboard']);
         return;
       }
 
@@ -98,7 +150,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userType', 'admin'); // Set flag for admin
         localStorage.setItem('isClient', JSON.stringify(false));
         
-        this.router.navigate(['/app']);
+        // Route to Admin/Normal User Dashboard
+        this.router.navigate(['/app/sqm/sqmd']);
         return;
       }
 
@@ -116,7 +169,9 @@ export class LoginComponent implements OnInit {
           } else {
             localStorage.setItem('userType', 'standard');
             localStorage.setItem('isClient', JSON.stringify(false));
-            this.router.navigate(['/app']);
+            
+            // Route standard users to SQM dashboard as well
+            this.router.navigate(['/app/sqm/sqmd']);
           }
           return;
         }

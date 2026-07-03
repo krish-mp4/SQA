@@ -1,0 +1,36 @@
+<!-- Wrapper handling the fixed positioning and width -->
+<div class="nav-container" [ngClass]="{'nav-open': isSidenavOpen, 'nav-closed': !isSidenavOpen}">
+    
+    <!-- Toggle Button -->
+    <button class="toggle-button" (click)="isSidenavOpen = !isSidenavOpen">
+        <mat-icon>menu</mat-icon>
+    </button> 
+    
+    <!-- Your existing nav links -->
+    <nav class="nav-links" *ngIf="activeTab === 'process'">
+      <ul>
+        <!-- Points to SupProactivegridComponent -->
+        <li routerLinkActive="active" routerLink="./active-audits">
+          <a>
+            <mat-icon class="nav-icon" *ngIf="!isSidenavOpen" matTooltip="Active Audits">pending_actions</mat-icon>
+            <span *ngIf="isSidenavOpen">Active Audits</span>
+          </a>
+        </li>
+        
+        <!-- Points to SupProcapaComponent -->
+        <li routerLinkActive="active" routerLink="./actions">
+          <a>
+            <mat-icon class="nav-icon" *ngIf="!isSidenavOpen" matTooltip="Actions">play_circle_outline</mat-icon>
+            <span *ngIf="isSidenavOpen">CAPA</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+</div>
+
+<!-- Make sure your main content has the corresponding dynamic margin -->
+<div class="main-content" [ngClass]="{'content-shrink': isSidenavOpen, 'content-expanded': !isSidenavOpen}">
+    <!-- The Router Outlet renders your child components -->
+    <router-outlet></router-outlet>
+</div>
