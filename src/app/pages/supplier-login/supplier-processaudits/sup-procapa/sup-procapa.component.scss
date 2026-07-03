@@ -73,7 +73,6 @@ td[mat-cell]:nth-child(13) {
   right: 110px; 
 }
 
-
 /* --- UTILITIES & MISC --- */
 .outerDivFull {
   margin: 50px;
@@ -90,7 +89,16 @@ td[mat-cell]:nth-child(13) {
   text-overflow: ellipsis !important;
 }
 
-/* --- SWITCH TOGGLE (from your original code) --- */
+/* Basic styling for status badges if not imported globally */
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  background-color: #f1f3f4;
+  display: inline-block;
+}
+
+/* --- SWITCH TOGGLE --- */
 .switchToggle input[type=checkbox] {
   height: 0;
   width: 0;
