@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { InsActiveRefComponent } from './ins-active-ref/ins-active-ref.component';
 import { InsCapaRefComponent } from './ins-capa-ref/ins-capa-ref.component';
+import { PartsCapaDetailsComponent } from './parts-capa-details/parts-capa-details.component';
+import { InsCapaDetailsComponent } from './ins-capa-details/ins-capa-details.component';
 
 const routes: Routes = [  
   {
@@ -43,7 +45,9 @@ const routes: Routes = [
     SupplierPartsCapaComponent,
     SupplierPartsDetailsComponent,
     InsActiveRefComponent,
-    InsCapaRefComponent
+    InsCapaRefComponent,
+    PartsCapaDetailsComponent,
+    InsCapaDetailsComponent
   ],
   imports: [
     CommonModule,
