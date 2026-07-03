@@ -11,11 +11,29 @@ export class SupplierDashboardComponent implements OnInit {
  
   Highcharts: typeof Highcharts = Highcharts;
 
-  // Base configuration shared across all 3 charts
+  // Mock data for last 5 process audits
+  last5ProcessAudits = [
+    { auditRef: 'PA-2024-001', score: 85 },
+    { auditRef: 'PA-2024-002', score: 78 },
+    { auditRef: 'PA-2024-003', score: 92 },
+    { auditRef: 'PA-2024-004', score: 88 },
+    { auditRef: 'PA-2024-005', score: 95 }
+  ];
+
+  // Mock data for last 5 parts audits
+  last5PartsAudits = [
+    { auditRef: 'PPA-2024-001', score: 80 },
+    { auditRef: 'PPA-2024-002', score: 88 },
+    { auditRef: 'PPA-2024-003', score: 75 },
+    { auditRef: 'PPA-2024-004', score: 90 },
+    { auditRef: 'PPA-2024-005', score: 85 }
+  ];
+
+  // Base configuration shared across charts
   chartOptionsBase: Highcharts.Options = {
     chart: { type: 'column', backgroundColor: 'transparent' },
     title: { text: undefined }, // Title handled in HTML
-    colors: ['#6b69a6', '#55c898'], // Purple (Plan), Green (Actual)
+    colors: ['#6b69a6', '#55c898'], // Purple, Green
     xAxis: { 
       categories: ['Quarter 1', 'Quarter 2', 'Quarter 3', 'Quarter 4'],
       lineColor: '#ccc',
@@ -33,7 +51,7 @@ export class SupplierDashboardComponent implements OnInit {
       align: 'right', 
       verticalAlign: 'middle',
       itemStyle: { fontSize: '11px', color: '#555', fontWeight: 'bold' },
-      symbolRadius: 0 // Makes the legend markers square
+      symbolRadius: 0
     },
     credits: { 
       enabled: true, 
@@ -46,21 +64,39 @@ export class SupplierDashboardComponent implements OnInit {
     }
   };
 
-  // 1. Parts Audits Chart
+  // 1. Parts Audits Chart - Last 5 Audits with Scores
   partsAuditOptions: Highcharts.Options = {
     ...this.chartOptionsBase,
+    xAxis: { 
+      categories: this.last5PartsAudits.map(audit => audit.auditRef),
+      lineColor: '#ccc',
+      tickColor: 'transparent'
+    },
     series: [
-      // { type: 'column', name: 'Plan', data: [85, 80, 68, 70] },
-      { type: 'column', name: 'Actual', data: [40, 35, 92, 78] }
+      { 
+        type: 'column', 
+        name: 'Score', 
+        data: this.last5PartsAudits.map(audit => audit.score),
+        color: '#6b69a6' // Purple color for parts audits
+      }
     ]
   };
 
-  // 2. Process Audits Chart
+  // 2. Process Audits Chart - Last 5 Audits with Scores
   processAuditOptions: Highcharts.Options = {
     ...this.chartOptionsBase,
+    xAxis: { 
+      categories: this.last5ProcessAudits.map(audit => audit.auditRef),
+      lineColor: '#ccc',
+      tickColor: 'transparent'
+    },
     series: [
-      // { type: 'column', name: 'Plan', data: [85, 80, 68, 70] },
-      { type: 'column', name: 'Actual', data: [40, 35, 92, 78] }
+      { 
+        type: 'column', 
+        name: 'Score', 
+        data: this.last5ProcessAudits.map(audit => audit.score),
+        color: '#55c898' // Green color for process audits
+      }
     ]
   };
 
