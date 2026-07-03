@@ -18,7 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { InsActiveRefComponent } from './ins-active-ref/ins-active-ref.component';
 import { InsCapaRefComponent } from './ins-capa-ref/ins-capa-ref.component';
 
-const routes: Routes = [
+const routes: Routes = [  
   {
     path: '',
     component: SupplierInnerscreenComponent,
