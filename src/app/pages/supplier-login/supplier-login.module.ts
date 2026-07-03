@@ -39,6 +39,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { SupplierInnerscreenComponent } from './supplier-innerscreen/supplier-innerscreen.component';
+import { SupplierProcessRefComponent } from './supplier-innerscreen/supplier-process-ref/supplier-process-ref.component';
+import { SupplierCapaRefComponent } from './supplier-innerscreen/supplier-capa-ref/supplier-capa-ref.component';
+import { SupplierPartsRefComponent } from './supplier-innerscreen/supplier-parts-ref/supplier-parts-ref.component';
+// import { SupplierPartsCapaComponent } from './supplier-innerscreen/supplier-parts-capa/supplier-parts-capa.component';
+import { SupplierPartsDetailsComponent } from './supplier-innerscreen/supplier-parts-details/supplier-parts-details.component';
+// import { SupplierAuditReferenceComponent } from './supplier-partsaudits/sup-parts-active/supplier-audit-reference/supplier-audit-reference.component';
 
 // Define child routes for the supplier section
 const routes: Routes = [
@@ -67,7 +74,9 @@ const routes: Routes = [
         children: [
           { path: '', redirectTo: 'parts-dashboard', pathMatch: 'full' },
           { path: 'parts-dashboard', component: SupPartsActiveComponent },
-          { path: 'parts-actions', component: SupPartsCapaComponent }
+          { path: 'parts-actions', component: SupPartsCapaComponent },
+          {path: 'reference-audits', component: SupplierPartsRefComponent}
+         
         ]
       },
       
@@ -98,6 +107,12 @@ const routes: Routes = [
     SupplierInspectionComponent,
     SupplierPartsauditsComponent,
     SupplierProcessauditsComponent,
+    SupplierInnerscreenComponent,
+    SupplierProcessRefComponent,
+    SupplierCapaRefComponent,
+    SupplierPartsRefComponent,
+    // SupplierPartsCapaComponent,
+    SupplierPartsDetailsComponent,
     SupProactivegridComponent,
     SupProcapaComponent,
     SupPartsActiveComponent,
