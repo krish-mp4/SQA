@@ -31,10 +31,11 @@
                     <app-horizontal-menu fxShow.gt-sm="true" fxShow="false" [menuParentId]="0"></app-horizontal-menu>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="end center">
-                    <mat-icon matBadge="3" matBadgeSize="small" matBadgeColor="accent" (click)="alerts()"
+                    <!-- <mat-icon matBadge="3" matBadgeSize="small" matBadgeColor="accent" (click)="alerts()"
                         style="margin-right:15px; cursor: pointer; color: white;">
                         notifications
-                    </mat-icon>
+                    </mat-icon> -->
+                   <app-user-notification></app-user-notification>
 
                     <app-fullscreen></app-fullscreen>
                     <app-user-menu></app-user-menu>

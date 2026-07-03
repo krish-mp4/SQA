@@ -22,9 +22,11 @@ import { MatSort } from '@angular/material/sort';
 export class SupPartsCapaComponent implements OnInit {
 
   filterToggle: boolean = false;
+  isAlertsView: boolean = false; // Tracks if alerts filter is active
   totalSize = 0;
   myGroup!: FormGroup;
   originalTableList: any[] = [];
+  tableList: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -49,11 +51,32 @@ export class SupPartsCapaComponent implements OnInit {
       sortOrder: new FormControl('')
     });
 
-    this.originalTableList = [...this.tableList];
-    this.totalSize = this.tableList.length; // Add this line
+    this.tableList = [...this.mockData];
+    this.originalTableList = [...this.mockData];
+    this.totalSize = this.tableList.length; 
   }
 
-  tableList = [
+  // Helper getter to count total alerts dynamically
+  get alertsCount(): number {
+    return this.originalTableList.filter(item => item.isAlert).length;
+  }
+
+  // Toggle filtering logic for the Alerts button
+  toggleAlerts() {
+    this.isAlertsView = !this.isAlertsView;
+    if (this.isAlertsView) {
+      this.tableList = this.originalTableList.filter(item => item.isAlert);
+    } else {
+      this.tableList = [...this.originalTableList];
+    }
+    
+    this.totalSize = this.tableList.length;
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
+  }
+
+  mockData = [
     {
       status: 'WIP',
       resolved: true,
@@ -78,7 +101,36 @@ export class SupPartsCapaComponent implements OnInit {
       riskRating: 'Medium',
       rating: 4,
       pdcaStatus: 'Plan',
-      capaActionType: 'Containment'
+      capaActionType: 'Containment',
+      isAlert: false
+    },
+    // Adding an ALERT record
+    {
+      status: 'Open',
+      resolved: false,
+      docs: 1,
+      photos: 1,
+      actionSubject: 'Critical Material Shortage',
+      supplierName: 'Global Tech Supplies',
+      actionType: 'Preventive',
+      auditReference: 'AT12399',
+      processArea: 'Supply Chain',
+      processCategory: 'Procurement',
+      description: 'Severe delay in raw material delivery.',
+      supplierRemarks: 'Seeking alternative sources immediately.',
+      logDate: '05-Jan-2024',
+      dueDate: '08-Jan-2024',
+      completion: '-',
+      reference: '99001',
+      delayInDays: 7,
+      severity: 10,
+      occurrence: 9,
+      detection: 5,
+      riskRating: 'High',
+      rating: 1,
+      pdcaStatus: 'Plan',
+      capaActionType: 'Preventive',
+      isAlert: true
     },
     {
       status: 'Open',
@@ -104,7 +156,36 @@ export class SupPartsCapaComponent implements OnInit {
       riskRating: 'High',
       rating: 2,
       pdcaStatus: 'Do',
-      capaActionType: 'Corrective'
+      capaActionType: 'Corrective',
+      isAlert: false
+    },
+    // Adding an ALERT record
+    {
+      status: 'Pending',
+      resolved: false,
+      docs: 3,
+      photos: 0,
+      actionSubject: 'Compliance Violation detected',
+      supplierName: 'Ace Components',
+      actionType: 'Corrective',
+      auditReference: 'AT67811',
+      processArea: 'Regulatory',
+      processCategory: 'Distribution',
+      description: 'Non-compliant shipping labels identified at customs.',
+      supplierRemarks: 'Halted shipments until label corrected.',
+      logDate: '12-Feb-2024',
+      dueDate: '14-Feb-2024',
+      completion: '-',
+      reference: '99002',
+      delayInDays: 5,
+      severity: 9,
+      occurrence: 7,
+      detection: 9,
+      riskRating: 'High',
+      rating: 2,
+      pdcaStatus: 'Act',
+      capaActionType: 'Corrective',
+      isAlert: true
     },
     {
       status: 'WIP',
@@ -130,7 +211,8 @@ export class SupPartsCapaComponent implements OnInit {
       riskRating: 'Low',
       rating: 5,
       pdcaStatus: 'Check',
-      capaActionType: 'Preventive'
+      capaActionType: 'Preventive',
+      isAlert: false
     },
     {
       status: 'In Progress',
@@ -156,7 +238,36 @@ export class SupPartsCapaComponent implements OnInit {
       riskRating: 'High',
       rating: 3,
       pdcaStatus: 'Act',
-      capaActionType: 'Corrective'
+      capaActionType: 'Corrective',
+      isAlert: false
+    },
+    // Adding an ALERT record
+    {
+      status: 'Open',
+      resolved: false,
+      docs: 1,
+      photos: 1,
+      actionSubject: 'Machine Breakdown Warning',
+      supplierName: 'Prime Manufacturing',
+      actionType: 'Containment',
+      auditReference: 'AT34399',
+      processArea: 'Operations',
+      processCategory: 'Manufacturing',
+      description: 'Key assembly line machine failing diagnostics repeatedly.',
+      supplierRemarks: 'Emergency technician dispatched.',
+      logDate: '20-Mar-2024',
+      dueDate: '21-Mar-2024',
+      completion: '-',
+      reference: '99003',
+      delayInDays: 2,
+      severity: 8,
+      occurrence: 9,
+      detection: 2,
+      riskRating: 'High',
+      rating: 3,
+      pdcaStatus: 'Do',
+      capaActionType: 'Containment',
+      isAlert: true
     },
     {
       status: 'Completed',
@@ -182,7 +293,8 @@ export class SupPartsCapaComponent implements OnInit {
       riskRating: 'Low',
       rating: 5,
       pdcaStatus: 'Closed',
-      capaActionType: 'Containment'
+      capaActionType: 'Containment',
+      isAlert: false
     },
     {
       status: 'WIP',
@@ -208,13 +320,13 @@ export class SupPartsCapaComponent implements OnInit {
       riskRating: 'Medium',
       rating: 3,
       pdcaStatus: 'Plan',
-      capaActionType: 'Preventive'
+      capaActionType: 'Preventive',
+      isAlert: false
     }
   ];
 
   // Dialog Methods
   addTests(applicant: any) {
-    console.log('jkhksbdjk');
     let dialogRef = this.dialog.open(EditissuesComponent, {
       height: 'auto',
       width: '5000px',
@@ -229,7 +341,6 @@ export class SupPartsCapaComponent implements OnInit {
   }
 
   public addIssues(id: any) {
-    console.log('jkhksbdjk');
     let dialogRef = this.dialog.open(AddIssuesssComponent, {
       data: id,
       height: 'auto',
@@ -238,7 +349,6 @@ export class SupPartsCapaComponent implements OnInit {
   }
 
   public openGrid(id: any) {
-    console.log('jkhksbdjk');
     let dialogRef = this.dialog.open(IssuesGridColumnsComponent, {
       data: id,
       height: 'auto',
@@ -399,7 +509,12 @@ export class SupPartsCapaComponent implements OnInit {
     const filters = this.myGroup.value;
     const keyword = filters.Keyword ? filters.Keyword.toLowerCase() : '';
 
-    this.tableList = this.originalTableList.filter(item => {
+    // Respect current view (Alerts vs All) while searching
+    let baseList = this.isAlertsView 
+      ? this.originalTableList.filter(item => item.isAlert)
+      : this.originalTableList;
+
+    this.tableList = baseList.filter(item => {
       let isMatch = true;
 
       if (keyword) {
@@ -413,6 +528,8 @@ export class SupPartsCapaComponent implements OnInit {
       return isMatch;
     });
 
+    this.totalSize = this.tableList.length;
+
     if (this.paginator) {
       this.paginator.firstPage();
     }
@@ -420,7 +537,9 @@ export class SupPartsCapaComponent implements OnInit {
 
   clearFilter() {
     this.myGroup.reset();
+    this.isAlertsView = false; // reset alerts view when cleared
     this.tableList = [...this.originalTableList];
+    this.totalSize = this.tableList.length;
 
     if (this.paginator) {
       this.paginator.firstPage();
