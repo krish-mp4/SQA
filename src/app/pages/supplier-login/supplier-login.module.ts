@@ -17,7 +17,7 @@ import { SupProcapaComponent } from './supplier-processaudits/sup-procapa/sup-pr
 import { SupPartsActiveComponent } from './supplier-partsaudits/sup-parts-active/sup-parts-active.component';
 import { SupPartsCapaComponent } from './supplier-partsaudits/sup-parts-capa/sup-parts-capa.component';
 
-// Import the NEW Inspection child components
+// Import Inspection child components
 import { SupplierActiverecordsComponent } from './supplier-inspection/supplier-activerecords/supplier-activerecords.component';
 import { SupplierCapaComponent } from './supplier-inspection/supplier-capa/supplier-capa.component';
 
@@ -58,7 +58,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: SupplierDashboardComponent },
       
-      // Updated Inspection route with children
+      // Inspection route with children
       { 
         path: 'inspection', 
         component: SupplierInspectionComponent,
@@ -69,6 +69,7 @@ const routes: Routes = [
         ]
       },
       
+      // Parts Audits route with children
       { 
         path: 'parts-audits', 
         component: SupplierPartsauditsComponent,
@@ -80,6 +81,8 @@ const routes: Routes = [
          
         ]
       },
+      
+      // Process Audits route with children
       { 
         path: 'process-audits', 
         component: SupplierProcessauditsComponent,
@@ -88,6 +91,12 @@ const routes: Routes = [
           { path: 'active-audits', component: SupProactivegridComponent },
           { path: 'actions', component: SupProcapaComponent }
         ]
+      },
+
+      // Lazy load the Inner Screens module
+      {
+        path: 'inner-screen',
+        loadChildren: () => import('./supplier-innerscreen/supplier-innerscreen.module').then(m => m.SupplierInnerscreenModule)
       }
     ]
   }
@@ -110,8 +119,6 @@ const routes: Routes = [
     SupProcapaComponent,
     SupPartsActiveComponent,
     SupPartsCapaComponent,
-    
-    // Declare the new components here
     SupplierActiverecordsComponent,
     SupplierCapaComponent
   ],
