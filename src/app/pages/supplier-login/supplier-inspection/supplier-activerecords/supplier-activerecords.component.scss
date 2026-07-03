@@ -32,7 +32,18 @@
     color: white;
   }
 }
-  .btn-dark {
-    background-color: #111 !important;
-    color: #fff !important;
-  }
+
+.btn-dark {
+  background-color: #111 !important;
+  color: #fff !important;
+}
+
+/* Ensure proper spacing and alignments in the table */
+th, td {
+  padding: 10px 16px;
+  vertical-align: middle;
+}
+
+a:hover {
+  text-decoration: underline !important;
+}

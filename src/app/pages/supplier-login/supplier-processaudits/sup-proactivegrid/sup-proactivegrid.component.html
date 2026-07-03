@@ -2,13 +2,7 @@
 
   <div class="charts-row">
     <div class="chart-container">
-      <highcharts-chart [Highcharts]="Highcharts" [options]="commodityChartOptions"></highcharts-chart>
-    </div>
-    <div class="chart-container">
-      <highcharts-chart [Highcharts]="Highcharts" [options]="auditorChartOptions"></highcharts-chart>
-    </div>
-    <div class="chart-container">
-      <highcharts-chart [Highcharts]="Highcharts" [options]="statusChartOptions"></highcharts-chart>
+      <highcharts-chart [Highcharts]="Highcharts" [options]="auditScoreChartOptions"></highcharts-chart>
     </div>
   </div>
 
@@ -19,7 +13,6 @@
     <button mat-raised-button class="btn-dark">
       <mat-icon>filter_list</mat-icon> Filter
     </button>
-    
   </div>
 
   <div class="table-responsive">
@@ -54,15 +47,17 @@
           <td class="text-link text-center">{{ audit.action }}</td>
           <td class="text-link text-center" (click)="openscorepdf('processaudit.pdf')">{{ audit.score }}</td>
           <td class="text-center">
-            <mat-select placeholder="Select Status"
-              style="max-width: 120px; min-width: 120px; border: 0.5px solid black; border-radius: 4px; padding: 4px;">
-              <mat-option value="Initiated">Initiated</mat-option>
-              <mat-option value="Awarded">Awarded</mat-option>
-              <mat-option value="In Process">In Process</mat-option>
-              <mat-option value="On Hold">On Hold</mat-option>
-              <mat-option value="Complete">Complete</mat-option>
-            </mat-select>
-          </td>
+  <span class="status-badge"
+        [ngClass]="{
+          'status-open': audit.status === 'Open',
+          'status-progress': audit.status === 'In Progress',
+          'status-review': audit.status === 'Pending Review',
+          'status-completed': audit.status === 'Completed',
+          'status-closed': audit.status === 'Closed'
+        }">
+    {{ audit.status }}
+  </span>
+</td>
           <td class="text-center">
             <mat-checkbox [checked]="audit.done" (click)="onDoneClick($event, audit)" color="primary">
             </mat-checkbox>

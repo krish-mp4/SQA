@@ -1,7 +1,10 @@
 <div style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px; padding-right: 20px;">
-   <button mat-raised-button matTooltip="Alerts" style="background-color: black; color: white"
-    class="filter-hover margin-right-10" >
-    <mat-icon class="">warning</mat-icon> Alerts (12)
+   <button mat-raised-button matTooltip="Alerts" 
+     [style.background-color]="isAlertsView ? '#a31c1c' : 'rgb(252, 45, 45)'" 
+     style="color: white"
+     class="filter-hover margin-right-10" 
+     (click)="toggleAlerts()">
+    <mat-icon class="">warning</mat-icon> Alerts ({{ alertsCount }})
   </button>
   <button mat-raised-button matTooltip="Filter" style="background-color: black; color: white"
     class="filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
@@ -67,93 +70,7 @@
                   </mat-select>
                 </div>
               </div>
-
-              <!-- <div class="col-sm-4 row me-2 mt-3">
-                <div class="col-sm-4 newMarginClass"><b>Sub Group:</b></div>
-                <div class="col-sm-8">
-                  <mat-select class="form-control" formControlName="SubGroupId" placeholder="Select Sub Group">
-                    <mat-option *ngFor="let item of FilterSubgroup" [value]="item.SubGroupId">
-                      {{ item.SubGroupName }}
-                    </mat-option>
-                  </mat-select>
-                </div>
-              </div> -->
-
-              <!-- <div class="col-sm-4 row me-2 mt-3">
-                <div class="col-sm-4 newMarginClass"><b>ORC Status:</b></div>
-                <div class="col-sm-8">
-                  <mat-select class="form-control" formControlName="ORCStatuses" placeholder="Select ORC Status">
-                    <mat-option *ngFor="let status of ORCStatuses" [value]="status.item_id">
-                      {{ status.item_text }}
-                    </mat-option>
-                  </mat-select>
-                </div>
-              </div> -->
-
-              <!-- <div class="col-sm-4 row me-2 mt-3">
-                <div class="col-sm-4 newMarginClass"><b>New / Regular:</b></div>
-                <div class="col-sm-8">
-                  <mat-select class="form-control" formControlName="IsNew" placeholder="Select New or Regular">
-                    <mat-option [value]="true">New</mat-option>
-                    <mat-option [value]="false">Regular</mat-option>
-                  </mat-select>
-                </div>
-              </div> -->
-
-              <!-- <div class="col-sm-4 row me-2 mt-3">
-                <div class="col-sm-4 newMarginClass">
-                  <b>Failure Effect:</b>
-                </div>
-                <div class="col-sm-8">
-                  <mat-select class="form-control" formControlName="ScoreMatrix" placeholder="Select Failure Effect">
-                    <mat-option *ngFor="let item of scorematrix" [value]="item.ScoreMatrixId">
-                      {{ item.ScoreMatrixName }}
-                    </mat-option>
-                  </mat-select>
-                </div>
-              </div> -->
-
-              <!-- <div class="col-sm-4 row me-2 mt-3">
-                <div class="col-sm-4 newMarginClass"><b>Probability:</b></div>
-                <div class="col-sm-8">
-                  <mat-select class="form-control" formControlName="Probability" placeholder="Select Probability">
-                    <mat-option *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]" [value]="num">
-                      {{ num }}
-                    </mat-option>
-                  </mat-select>
-                </div>
-              </div> -->
-
-              <!-- <div class="col-sm-4 row me-2 mt-4">
-                <div class="col-sm-4 newMarginClass"><b>Part Code:</b></div>
-                <div class="col-sm-8">
-                  <input type="text" formControlName="PartCode" class="form-control" placeholder="Search by Part Code" />
-                </div>
-              </div> -->
-
-              <!-- <div class="col-sm-4 row me-2 mt-4">
-                <div class="col-sm-4 newMarginClass"><b>Detection:</b></div>
-                <div class="col-sm-8">
-                  <mat-select class="form-control" formControlName="CategoryId" placeholder="Select Detection">
-                    <mat-option *ngFor="let item of categories" [value]="item.CategoryId">
-                      {{ item.CategoryName }}
-                    </mat-option>
-                  </mat-select>
-                </div>
-              </div> -->
-
-              <!-- <div class="col-sm-4 row me-2 mt-4">
-                <div class="col-sm-4 newMarginClass"><b>Project Lead</b></div>
-                <div class="col-sm-8">
-                  <mat-select class="form-control" formControlName="sortOrder" placeholder="Select Project Lead">
-                    <mat-option value="ASC">ASC</mat-option>
-                    <mat-option value="DESC">DESC</mat-option>
-                  </mat-select>
-                </div>
-              </div> -->
-
                
-
               <div class="col-sm-12 pull-right mt-3" style="margin-left: -15px;">
                 <a (click)="filterToggle = !filterToggle" class="pull-right"
                   style="font-size: 25px; cursor: pointer; margin-left: 5px">
@@ -184,13 +101,11 @@
             <th class="text-center">Status</th>
             <th class="text-center">Resolved </th>
             <th class="text-center">Docs</th>
-            <!-- <th mat-header-cell mat-sort-header class="text-center">Photos </th> -->
             <th class="text-center">Reference </th>
             <th class="text-center">CAPA Subject</th>
             <th class="text-center">Supplier Name</th>
             <th class="text-center">Action Type</th>
             <th class="text-center">Audit Reference</th>
-            <!-- <th mat-header-cell mat-sort-header class="text-center">Process Area</th> -->
             <th class="text-center">Process Category</th>
             <th class="text-center">Description</th>
             <th class="text-center">Supplier Remarks</th>
@@ -204,7 +119,6 @@
                         <th class="text-center">Risk Rating</th>
                            <th class="text-center">Rating</th>
                             <th class="text-center">PDCA Status</th>
-                              <!-- <th mat-header-cell mat-sort-header class="text-center">Action  Type</th> -->
           </tr>
         </thead>
 
@@ -234,7 +148,9 @@
             <td class="text-center" style="color: blue; cursor: pointer;" (click)="docsPhoto()">{{ applicant.docs }}</td>
             
             <td class="text-link text-center">
-                <a [routerLink]="['/app','supplier-login','inner-screen','parts-capa']">
+                <!-- Apply red style here conditionally -->
+                <a [routerLink]="['/app','supplier-login','inner-screen','parts-capa']" 
+                   [ngStyle]="{'color': applicant.isAlert ? 'red' : 'inherit', 'font-weight': applicant.isAlert ? 'bold' : 'normal'}">
                 {{ applicant.reference }}
               </a>
             </td>
@@ -272,7 +188,9 @@
             
             <td class="text-center">{{ applicant.rating }}</td>
             <td class="text-center">{{ applicant.pdcaStatus }}</td>
-            <!-- <td class="text-center">{{ applicant.capaActionType }}</td> -->
+          </tr>
+          <tr *ngIf="tableList.length === 0">
+            <td colspan="22" class="text-center">No records found.</td>
           </tr>
         </tbody>
       </table>

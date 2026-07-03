@@ -88,7 +88,17 @@ isMenuItemActive(menu: any): boolean {
     (menu.routerLink === '/app/objective-audits' &&
       (url.startsWith('/app/setup/subjective/check') ||
        url.startsWith('/app/setup/subjective/overview') ||
-       url.startsWith('/app/parameterboard')));
+       url.startsWith('/app/parameterboard'))) ||
+
+    // NEW: supplier inner-screen routes
+    (menu.routerLink === '/app/supplier-login/process-audits' &&
+      url.startsWith('/app/supplier-login/inner-screen/process-ref')) ||
+
+    (menu.routerLink === '/app/supplier-login/parts-audits' &&
+      url.startsWith('/app/supplier-login/inner-screen/parts-ref')) ||
+
+    (menu.routerLink === '/app/supplier-login/inspection' &&
+      url.startsWith('/app/supplier-login/inner-screen/inspection-ref'));
 
   return result;
 }

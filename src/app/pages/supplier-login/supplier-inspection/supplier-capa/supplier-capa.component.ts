@@ -20,7 +20,39 @@ import { ProcessActionsGridComponent } from 'src/app/pages/sqm/process-audits/pa
 })
 export class SupplierCapaComponent implements OnInit {
 
+  filterToggle: boolean = false;
+  isAlertsView: boolean = false; // Tracks if alerts filter is active
+  totalSize = 0;
+  myGroup!: FormGroup;
+  originalTableList: any[] = [];
+  tableList: any[] = [];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  someElementRef: any;
+
+  constructor(public dialog: MatDialog) { }
+
+  ngOnInit(): void {
+    this.myGroup = new FormGroup({
+      firstName: new FormControl(''),
+      Keyword: new FormControl(''),
+      TractorIdSections: new FormControl(''),
+      ResponsibleSections: new FormControl(''),
+      ResponsibleSectionLeadId: new FormControl(''),
+      SubGroupId: new FormControl(''),
+      ORCStatuses: new FormControl(''),
+      IsNew: new FormControl(''),
+      ScoreMatrix: new FormControl(''),
+      Probability: new FormControl(''),
+      PartCode: new FormControl(''),
+      CategoryId: new FormControl(''),
+      sortOrder: new FormControl('')
+    });
+
+    this.originalTableList = [...this.mockData];
+    this.tableList = [...this.mockData];
+    this.totalSize = this.tableList.length;
+  }
 
 
   filterToggle: boolean = false;
@@ -389,6 +421,12 @@ export class SupplierCapaComponent implements OnInit {
     })
   }
 
+  deleteConfirmation(item: any) {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: 'auto',
+      data: { ProjectId: item.ProjectId, title: 'Delete Confirmation', content: 'Are you sure you want to Delete?' }
+    });
+  }
 
   editparts() {
     this.dialog.open(PartsActionsEditComponent, {
@@ -399,6 +437,12 @@ export class SupplierCapaComponent implements OnInit {
     })
   }
 
+  scrollLeft() {
+    const container = document.getElementById('grid-table-container');
+    if (container) {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  }
 
   docsPhoto() {
     this.dialog.open(PartsActionsDocsComponent, {
@@ -409,6 +453,14 @@ export class SupplierCapaComponent implements OnInit {
     })
   }
 
+  editparts() {
+    this.dialog.open(PartsActionsEditComponent, {
+      width: '650px',
+      height: 'auto',
+      maxHeight: '90vh',
+      panelClass: 'no-scroll-dialog' 
+    });
+  }
 
   editrow() {
     this.dialog.open(ProcessActionsEditComponent, {
@@ -428,7 +480,23 @@ export class SupplierCapaComponent implements OnInit {
     })
   }
 
+  editrow() {
+    this.dialog.open(ProcessActionsEditComponent, {
+      width: '650px',
+      height: 'auto',
+      maxHeight: '90vh',
+      panelClass: 'no-scroll-dialog' 
+    });
+  }
 
+  processgrid() {
+    this.dialog.open(ProcessActionsGridComponent, {
+      width: '650px',
+      height: 'auto',
+      maxHeight: '90vh',
+      panelClass: 'no-scroll-dialog' 
+    });
+  }
 
 
 
@@ -441,11 +509,13 @@ export class SupplierCapaComponent implements OnInit {
     const filters = this.myGroup.value;
     const keyword = filters.Keyword ? filters.Keyword.toLowerCase() : '';
 
-    // Filter the original array
-    this.tableList = this.originalTableList.filter(item => {
+    let baseList = this.isAlertsView 
+      ? this.originalTableList.filter(item => item.isAlert)
+      : this.originalTableList;
+
+    this.tableList = baseList.filter(item => {
       let isMatch = true;
 
-      // 1. Keyword Filter (Checks Subject, Supplier, and Description)
       if (keyword) {
         isMatch = isMatch && (
           (item.actionSubject && item.actionSubject.toLowerCase().includes(keyword)) ||
@@ -468,29 +538,21 @@ export class SupplierCapaComponent implements OnInit {
       return isMatch;
     });
 
-    // Reset paginator to the first page after filtering
+    this.totalSize = this.tableList.length;
+
     if (this.paginator) {
       this.paginator.firstPage();
     }
   }
 
   clearFilter() {
-    // Reset the form controls
     this.myGroup.reset();
-
-    // Restore the table to the original data
+    this.isAlertsView = false;
     this.tableList = [...this.originalTableList];
+    this.totalSize = this.tableList.length;
 
-    // Reset paginator to the first page
     if (this.paginator) {
       this.paginator.firstPage();
     }
   }
-
-
-
-
-
-
 }
-

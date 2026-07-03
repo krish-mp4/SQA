@@ -7,7 +7,7 @@
 /* Charts Grid */
 .charts-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr; /* Updated to 1fr for a single chart */
   gap: 10px;
   background-color: white;
   padding: 20px 0;
@@ -46,7 +46,6 @@
   overflow-x: auto;
   background-color: white;
   border: 1px solid #ddd;
-/* Optional: smooths the corners around table and paginator */
 }
 
 .audit-table {
@@ -62,7 +61,7 @@
       padding: 12px 10px;
       text-align: left;
       font-weight: bold;
-    border: 1px solid #e1e1e1; /* Subtle inner border for header */
+      border: 1px solid #e1e1e1; /* Subtle inner border for header */
       white-space: nowrap;
 
       &:nth-child(7), &:nth-child(8), &:nth-child(9), &:nth-child(10), &:nth-child(11) {
@@ -132,47 +131,6 @@
   border-top: 1px solid #e0e0e0;
 }
 
-.chart-container
-{
-  width: 100%;
-}
-
-.charts-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  background-color: white;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.chart-container {
-  width: 100%;
-  min-width: 0; // ← critical: prevents grid blowout
-}
-
-// Override the inline width on the Highcharts host element
-.chart-container ::ng-deep highcharts-chart {
-  display: block !important;
-  width: 100% !important;
-}
-
-.active-audits-container {
-  padding: 20px;
-  background-color: #f9f9f9;
-  font-family: Arial, sans-serif;
-}
-
-/* Charts Grid */
-.charts-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  background-color: white;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
 .chart-container {
   width: 100%;
   min-width: 0;
@@ -182,7 +140,6 @@
     width: 100% !important;
   }
 
-  // Force the inner SVG Highcharts renders to respect container width
   ::ng-deep .highcharts-container,
   ::ng-deep .highcharts-root {
     width: 100% !important;
@@ -193,35 +150,18 @@
   }
 }
 
-.chart-container {
-  width: 100%;
-  min-width: 0;
-  height: 320px; /* ensures equal height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
 th {
   background-color: #3f3f3f;
   color: white;
   padding: 12px;
   font-size: 14px;
-  border: 1px solid #e1e1e1;  /* ← darker shade of the header blue */
+  border: 1px solid #e1e1e1;
 }
-td {
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 14px;
-    padding: 10px 12px;
-    border: 1px solid #dee2e6;
-    vertical-align: middle;
-  }
 
-  th {
-  background-color: #3f3f3f;
-  color: white;
-  padding: 12px;
+td {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 14px;
-  border: 1px solid #e1e1e1;  /* already correct */
+  padding: 10px 12px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
 }
