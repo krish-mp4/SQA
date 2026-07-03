@@ -17,7 +17,7 @@ import { SupProcapaComponent } from './supplier-processaudits/sup-procapa/sup-pr
 import { SupPartsActiveComponent } from './supplier-partsaudits/sup-parts-active/sup-parts-active.component';
 import { SupPartsCapaComponent } from './supplier-partsaudits/sup-parts-capa/sup-parts-capa.component';
 
-// Import the NEW Inspection child components
+// Import Inspection child components
 import { SupplierActiverecordsComponent } from './supplier-inspection/supplier-activerecords/supplier-activerecords.component';
 import { SupplierCapaComponent } from './supplier-inspection/supplier-capa/supplier-capa.component';
 
@@ -39,12 +39,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { SupplierInnerscreenComponent } from './supplier-innerscreen/supplier-innerscreen.component';
-import { SupplierProcessRefComponent } from './supplier-innerscreen/supplier-process-ref/supplier-process-ref.component';
-import { SupplierCapaRefComponent } from './supplier-innerscreen/supplier-capa-ref/supplier-capa-ref.component';
-import { SupplierPartsRefComponent } from './supplier-innerscreen/supplier-parts-ref/supplier-parts-ref.component';
-import { SupplierPartsCapaComponent } from './supplier-innerscreen/supplier-parts-capa/supplier-parts-capa.component';
-import { SupplierPartsDetailsComponent } from './supplier-innerscreen/supplier-parts-details/supplier-parts-details.component';
 
 // Define child routes for the supplier section
 const routes: Routes = [
@@ -55,7 +49,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: SupplierDashboardComponent },
       
-      // Updated Inspection route with children
+      // Inspection route with children
       { 
         path: 'inspection', 
         component: SupplierInspectionComponent,
@@ -66,6 +60,7 @@ const routes: Routes = [
         ]
       },
       
+      // Parts Audits route with children
       { 
         path: 'parts-audits', 
         component: SupplierPartsauditsComponent,
@@ -75,6 +70,8 @@ const routes: Routes = [
           { path: 'parts-actions', component: SupPartsCapaComponent }
         ]
       },
+      
+      // Process Audits route with children
       { 
         path: 'process-audits', 
         component: SupplierProcessauditsComponent,
@@ -83,6 +80,12 @@ const routes: Routes = [
           { path: 'active-audits', component: SupProactivegridComponent },
           { path: 'actions', component: SupProcapaComponent }
         ]
+      },
+
+      // Lazy load the Inner Screens module
+      {
+        path: 'inner-screen',
+        loadChildren: () => import('./supplier-innerscreen/supplier-innerscreen.module').then(m => m.SupplierInnerscreenModule)
       }
     ]
   }
@@ -95,18 +98,10 @@ const routes: Routes = [
     SupplierInspectionComponent,
     SupplierPartsauditsComponent,
     SupplierProcessauditsComponent,
-    SupplierInnerscreenComponent,
-    SupplierProcessRefComponent,
-    SupplierCapaRefComponent,
-    SupplierPartsRefComponent,
-    SupplierPartsCapaComponent,
-    SupplierPartsDetailsComponent,
     SupProactivegridComponent,
     SupProcapaComponent,
     SupPartsActiveComponent,
     SupPartsCapaComponent,
-    
-    // Declare the new components here
     SupplierActiverecordsComponent,
     SupplierCapaComponent
   ],
