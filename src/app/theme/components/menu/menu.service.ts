@@ -90,15 +90,23 @@ isMenuItemActive(menu: any): boolean {
        url.startsWith('/app/setup/subjective/overview') ||
        url.startsWith('/app/parameterboard'))) ||
 
-    // NEW: supplier inner-screen routes
+    // Supplier - Process Audits inner-screen routes
     (menu.routerLink === '/app/supplier-login/process-audits' &&
-      url.startsWith('/app/supplier-login/inner-screen/process-ref')) ||
+      (url.startsWith('/app/supplier-login/inner-screen/process-ref') ||
+       url.startsWith('/app/supplier-login/inner-screen/capa-ref'))) ||
 
+    // Supplier - Parts Audits inner-screen routes
     (menu.routerLink === '/app/supplier-login/parts-audits' &&
-      url.startsWith('/app/supplier-login/inner-screen/parts-ref')) ||
+      (url.startsWith('/app/supplier-login/inner-screen/parts-ref') ||
+       url.startsWith('/app/supplier-login/inner-screen/part-inner-capa') ||
+       url.startsWith('/app/supplier-login/inner-screen/parts-capa'))) ||
 
+    // Supplier - Inspection inner-screen routes
     (menu.routerLink === '/app/supplier-login/inspection' &&
-      url.startsWith('/app/supplier-login/inner-screen/inspection-ref'));
+      (url.startsWith('/app/supplier-login/inner-screen/inspection-ref') ||
+       url.startsWith('/app/supplier-login/inner-screen/ins-inner-capa') ||
+       url.startsWith('/app/supplier-login/inner-screen/ins-active-ref') ||
+       url.startsWith('/app/supplier-login/inner-screen/ins-sample')));
 
   return result;
 }
