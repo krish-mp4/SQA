@@ -1,6 +1,6 @@
 <div style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10px; padding-right: 20px;">
-   <button mat-raised-button matTooltip="Alerts" style="background-color: black; color: white"
-    class="filter-hover margin-right-10" >
+  <button mat-raised-button matTooltip="Alerts" style="background-color: black; color: white"
+    class="filter-hover margin-right-10">
     <mat-icon class="">warning</mat-icon> Alerts (12)
   </button>
   <button mat-raised-button matTooltip="Filter" style="background-color: black; color: white"
@@ -8,7 +8,8 @@
     <mat-icon class="">filter_list</mat-icon> Filter
   </button>
 
-  <button mat-raised-button style="background-color: black; color: white; " matTooltip="Grid Columns" (click)="processgrid()">
+  <button mat-raised-button style="background-color: black; color: white; " matTooltip="Grid Columns"
+    (click)="processgrid()">
     <mat-icon>grid_on</mat-icon> Grid Columns
   </button>
 </div>
@@ -152,7 +153,7 @@
                 </div>
               </div> -->
 
-               
+
 
               <div class="col-sm-12 pull-right mt-3" style="margin-left: -15px;">
                 <a (click)="filterToggle = !filterToggle" class="pull-right"
@@ -177,125 +178,120 @@
   <div class="col-sm-12" style="margin-top: 10px; width: 100%; padding: 0;">
     <div class="table-responsive" id="grid-table-container">
 
-   <table class="table table-bordered table-hover">
-  <thead class="tbl-head">
-    <tr>
-      <th class="text-center">Action</th>
-      <th class="text-center">Status</th>
-      <th class="text-center">Resolved</th>
-      <th class="text-center">Docs</th>
-      <!-- <th class="text-center">Photos</th> -->
-      <th class="text-center">Reference</th>
-      <th class="text-center">CAPA Subject</th>
-      <th class="text-center">Supplier Name</th>
-      <th class="text-center">Action Type</th>
-      <th class="text-center">Audit Reference</th>
-      <!-- <th class="text-center">Process Area</th> -->
-      <th class="text-center">Process Category</th>
-      <th class="text-center">Description</th>
-      <th class="text-center">Supplier Remarks</th>
-      <th class="text-center">Log Date</th>
-      <th class="text-center">Due Date</th>
-      <th class="text-center">Delay In Days</th>
-      <th class="text-center">Completion Date</th>
-      <th class="text-center">Severity</th>
-      <th class="text-center">Occurrence</th>
-      <th class="text-center">Detection</th>
-      <th class="text-center">Risk Rating</th>
-      <th class="text-center">Rating</th>
-      <th class="text-center">PDCA Status</th>
-      <!-- <th class="text-center">Action Type</th> -->
-    </tr>
-  </thead>
+      <table class="table table-bordered table-hover">
+        <thead class="tbl-head">
+          <tr>
+            <th class="text-center">Action</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Resolved</th>
+            <th class="text-center">Docs</th>
+            <!-- <th class="text-center">Photos</th> -->
+            <th class="text-center">Reference</th>
+            <th class="text-center">CAPA Subject</th>
+            <th class="text-center">Supplier Name</th>
+            <th class="text-center">Action Type</th>
+            <th class="text-center">Audit Reference</th>
+            <!-- <th class="text-center">Process Area</th> -->
+            <th class="text-center">Process Category</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Supplier Remarks</th>
+            <th class="text-center">Log Date</th>
+            <th class="text-center">Date Created</th>
+            <th class="text-center">Due Date</th>
+            <th class="text-center">Date Resolved</th>
+            <th class="text-center">Date Closed</th>
+            <th class="text-center">Delay In Days</th>
+            <th class="text-center">Completion Date</th>
+            <th class="text-center">Severity</th>
+            <th class="text-center">Occurrence</th>
+            <th class="text-center">Detection</th>
+            <th class="text-center">Risk Rating</th>
+            <th class="text-center">Rating</th>
+            <th class="text-center">PDCA Status</th>
+            <!-- <th class="text-center">Action Type</th> -->
+          </tr>
+        </thead>
 
-  <tbody>
-    <tr *ngFor="let applicant of tableList">
-      <td class="text-center">
-        <a matTooltip="Edit" (click)="editrow()">
-          <i class="fa fa-edit"></i>
-        </a>
-        <a matTooltip="Delete" (click)="deleteConfirmation(applicant)">
-          <i class="fa fa-trash red"></i>
-        </a>
-      </td>
+        <tbody>
+          <tr *ngFor="let applicant of tableList">
+            <td class="text-center">
+              <a matTooltip="Edit" (click)="editrow()">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a matTooltip="Delete" (click)="deleteConfirmation(applicant)">
+                <i class="fa fa-trash red"></i>
+              </a>
+            </td>
 
-      <td class="text-center">
-        <mat-select [(ngModel)]="applicant.status" class="form-control">
-          <mat-option value="WIP">WIP</mat-option>
-          <mat-option value="Open">Open</mat-option>
-          <mat-option value="Closed">Closed</mat-option>
-          <mat-option value="Pending">Pending</mat-option>
-          <mat-option value="In Progress">In Progress</mat-option>
-          <mat-option value="Completed">Completed</mat-option>
-        </mat-select>
-      </td>
+            <td class="text-center">
+              <mat-select [(ngModel)]="applicant.status" class="form-control">
+                <mat-option value="WIP">WIP</mat-option>
+                <mat-option value="Open">Open</mat-option>
+                <mat-option value="Closed">Closed</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+                <mat-option value="In Progress">In Progress</mat-option>
+                <mat-option value="Completed">Completed</mat-option>
+              </mat-select>
+            </td>
 
-      <td class="text-center">
-        <mat-checkbox
-          [checked]="applicant.resolved === true"
-          color="primary">
-        </mat-checkbox>
-      </td>
+            <td class="text-center">
+              <mat-checkbox [checked]="applicant.resolved === true" color="primary">
+              </mat-checkbox>
+            </td>
 
-      <td
-        class="text-center"
-        style="color: blue; cursor: pointer;"
-        (click)="docsPhoto()">
-        {{ applicant.docs }}
-      </td>
+            <td class="text-center" style="color: blue; cursor: pointer;" (click)="docsPhoto()">
+              {{ applicant.docs }}
+            </td>
 
-      <td class="text-link text-center">
-        <a    [routerLink]="['/app','supplier-login','inner-screen','ins-active-ref']">
-          {{ applicant.reference }}
-        </a>
-      </td>
+            <td class="text-link text-center">
+              <a [routerLink]="['/app','supplier-login','inner-screen','ins-active-ref']">
+                {{ applicant.reference }}
+              </a>
+            </td>
 
-      <td class="text-center">{{ applicant.actionSubject }}</td>
-      <td class="text-center">{{ applicant.supplierName }}</td>
-      <td class="text-center">{{ applicant.actionType }}</td>
-      <td class="text-center">{{ applicant.auditReference }}</td>
-      <td class="text-center">{{ applicant.processCategory }}</td>
+            <td class="text-center">{{ applicant.actionSubject }}</td>
+            <td class="text-center">{{ applicant.supplierName }}</td>
+            <td class="text-center">{{ applicant.actionType }}</td>
+            <td class="text-center">{{ applicant.auditReference }}</td>
+            <td class="text-center">{{ applicant.processCategory }}</td>
 
-      <td class="text-center">
-        <mat-icon
-          (click)="imageSource1()"
-          style="color: blue; cursor: pointer;">
-          info
-        </mat-icon>
-      </td>
+            <td class="text-center">
+              <mat-icon (click)="imageSource1()" style="color: blue; cursor: pointer;">
+                info
+              </mat-icon>
+            </td>
 
-      <td class="text-center">
-        <mat-icon
-          (click)="imageSource1()"
-          style="color: blue; cursor: pointer;">
-          info
-        </mat-icon>
-      </td>
+            <td class="text-center">
+              <mat-icon (click)="imageSource1()" style="color: blue; cursor: pointer;">
+                info
+              </mat-icon>
+            </td>
 
-      <td class="text-center">{{ applicant.logDate }}</td>
-      <td class="text-center">{{ applicant.dueDate }}</td>
-      <td class="text-center">{{ applicant.delayInDays ?? '-' }}</td>
-      <td class="text-center">{{ applicant.completion ?? '-' }}</td>
-      <td class="text-center">{{ applicant.severity }}</td>
-      <td class="text-center">{{ applicant.occurrence }}</td>
-      <td class="text-center">{{ applicant.detection }}</td>
+            <td class="text-center">{{ applicant.logDate }}</td>
+            <td class="text-center">{{ applicant.dateCreated }}</td>
+            <td class="text-center">{{ applicant.dueDate }}</td>
+            <td class="text-center">{{ applicant.dateResolved ?? '-' }}</td>
+            <td class="text-center">{{ applicant.dateClosed ?? '-' }}</td>
+            <td class="text-center">{{ applicant.delayInDays ?? '-' }}</td>
+            <td class="text-center">{{ applicant.completion ?? '-' }}</td>
+            <td class="text-center">{{ applicant.severity }}</td>
+            <td class="text-center">{{ applicant.occurrence }}</td>
+            <td class="text-center">{{ applicant.detection }}</td>
 
-      <td class="text-center" style="min-width: 120px;">
-        <mat-select
-          [(ngModel)]="applicant.riskRating"
-          class="form-control">
-          <mat-option value="High">High</mat-option>
-          <mat-option value="Medium">Medium</mat-option>
-          <mat-option value="Low">Low</mat-option>
-        </mat-select>
-      </td>
+            <td class="text-center" style="min-width: 120px;">
+              <mat-select [(ngModel)]="applicant.riskRating" class="form-control">
+                <mat-option value="High">High</mat-option>
+                <mat-option value="Medium">Medium</mat-option>
+                <mat-option value="Low">Low</mat-option>
+              </mat-select>
+            </td>
 
-      <td class="text-center">{{ applicant.rating }}</td>
-      <td class="text-center">{{ applicant.pdcaStatus }}</td>
-      <!-- <td class="text-center">{{ applicant.capaActionType }}</td> -->
-    </tr>
-  </tbody>
-</table>
+            <td class="text-center">{{ applicant.rating }}</td>
+            <td class="text-center">{{ applicant.pdcaStatus }}</td>
+            <!-- <td class="text-center">{{ applicant.capaActionType }}</td> -->
+          </tr>
+        </tbody>
+      </table>
 
       <button class="mine mine-right" mat-fab (click)="scrollRight()">
         <mat-icon style="color: #37474f">fast_forward</mat-icon>
@@ -305,7 +301,7 @@
       </button>
 
     </div>
-    
+
     <div style="width: 100%;">
       <mat-paginator [length]="totalSize" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons>
       </mat-paginator>
